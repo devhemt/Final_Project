@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Client\Auth;
 
+use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Auth;
 
 class CustomerController extends Controller
 {
@@ -51,7 +52,6 @@ class CustomerController extends Controller
             'email' => 'required|email|unique:customer,email',
             'phone' => 'required|unique:customer,phone',
             'password' => 'required|min:6',
-            'address' => 'required',
         ]);
 
         $data = $request->all();
@@ -66,19 +66,9 @@ class CustomerController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
-            'password' => Hash::make($data['password']),
-            'address' => $data['address']
+            'password' => Hash::make($data['password'])
         ]);
     }
-
-//    public function dashboard()
-//    {
-//        if(Auth::check()){
-//            return view('dashboard');
-//        }
-//
-//        return redirect("login")->withSuccess('You are not allowed to access');
-//    }
 
     public function signOut() {
         Auth::guard('customer')->logout();

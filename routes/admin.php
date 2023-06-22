@@ -32,9 +32,9 @@ Route::post('/purchase/saveproduct',[\App\Http\Controllers\Admin\Purchase\Purcha
 Route::get('/purchase/addnewproduct/{prd_id}/{purchase_id}',[\App\Http\Controllers\Admin\Purchase\PurchaseController::class, 'addOldProduct']);
 Route::post('/purchase/addold',[\App\Http\Controllers\Admin\Purchase\PurchaseController::class, 'addOld']);
 
-Route::get('/signout', [\App\Http\Controllers\AdminAccountController::class,'signOut']);
+Route::get('/signout', [\App\Http\Controllers\Admin\Profile\AdminAccountController::class,'signOut']);
 
-Route::match(['get', 'post'], '/login', [\App\Http\Controllers\AdminAccountController::class, 'login']);
+Route::match(['get', 'post'], '/login', [\App\Http\Controllers\Admin\Profile\AdminAccountController::class, 'login']);
 
 Route::get('/product',[\App\Http\Controllers\Admin\Product\ProductController::class, 'index']);
 Route::get('/product/{id}',[\App\Http\Controllers\Admin\Product\ProductController::class,'show']);
@@ -45,17 +45,17 @@ Route::post('/product/edit',[\App\Http\Controllers\Admin\Product\ProductControll
 
 Route::get('/addbatch/{id}', [\App\Http\Controllers\Admin\Product\ProductController::class,'batch']);
 
-Route::get('/allorder', [\App\Http\Controllers\InvoiceController::class, 'index6']);
-Route::get('/canceledorder', [\App\Http\Controllers\InvoiceController::class, 'index0']);
-Route::get('/noprocessorder', [\App\Http\Controllers\InvoiceController::class, 'index1']);
-Route::get('/confirmedorder', [\App\Http\Controllers\InvoiceController::class, 'index2']);
-Route::get('/packingorder', [\App\Http\Controllers\InvoiceController::class, 'index3']);
-Route::get('/deliveryorder', [\App\Http\Controllers\InvoiceController::class, 'index4']);
-Route::get('/successfulorder', [\App\Http\Controllers\InvoiceController::class, 'index5']);
-Route::get('/order/{id}/{type}', [\App\Http\Controllers\InvoiceController::class, 'show']);
+Route::get('/allorder', [\App\Http\Controllers\Client\Invoice\InvoiceController::class, 'index6']);
+Route::get('/canceledorder', [\App\Http\Controllers\Client\Invoice\InvoiceController::class, 'index0']);
+Route::get('/noprocessorder', [\App\Http\Controllers\Client\Invoice\InvoiceController::class, 'index1']);
+Route::get('/confirmedorder', [\App\Http\Controllers\Client\Invoice\InvoiceController::class, 'index2']);
+Route::get('/packingorder', [\App\Http\Controllers\Client\Invoice\InvoiceController::class, 'index3']);
+Route::get('/deliveryorder', [\App\Http\Controllers\Client\Invoice\InvoiceController::class, 'index4']);
+Route::get('/successfulorder', [\App\Http\Controllers\Client\Invoice\InvoiceController::class, 'index5']);
+Route::get('/order/{id}/{type}', [\App\Http\Controllers\Client\Invoice\InvoiceController::class, 'show']);
 
 
-Route::post('/invoice',[\App\Http\Controllers\InvoiceController::class, 'store']);
+Route::post('/invoice',[\App\Http\Controllers\Client\Invoice\InvoiceController::class, 'store']);
 
 
 
@@ -65,9 +65,9 @@ Route::post('/product/addbatch',[\App\Http\Controllers\Admin\Product\ProductCont
 
 
 
-Route::get('/profile',[\App\Http\Controllers\AdminAccountController::class,'index']);
-Route::post('/profile',[\App\Http\Controllers\AdminAccountController::class,'store']);
-Route::get('/profile/create',[\App\Http\Controllers\AdminAccountController::class,'create']);
-Route::get('/profile/showall',[\App\Http\Controllers\AdminAccountController::class,'showall']);
+Route::get('/profile',[\App\Http\Controllers\Admin\Profile\AdminAccountController::class,'index']);
+Route::post('/profile',[\App\Http\Controllers\Admin\Profile\AdminAccountController::class,'store']);
+Route::get('/profile/create',[\App\Http\Controllers\Admin\Profile\AdminAccountController::class,'create']);
+Route::get('/profile/showall',[\App\Http\Controllers\Admin\Profile\AdminAccountController::class,'showall']);
 
 

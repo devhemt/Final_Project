@@ -121,7 +121,7 @@
                                 </li>
                                 @livewire('smallcart')
                                 <li class="top-search">
-                                    @livewire('searchhome')
+{{--                                    @livewire('searchhome')--}}
                                 </li>
                             </ul>
                         </div>

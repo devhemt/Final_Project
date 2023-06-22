@@ -1,17 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Client\Invoice;
 
+use App\Http\Controllers\Controller;
 use App\Models\Detail_invoice;
 use App\Models\Detail_invoice_noacc;
 use App\Models\Invoice;
 use App\Models\Invoice_noacc;
 use App\Models\Status;
 use App\Models\Status_noacc;
+use Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Cart;
 use Illuminate\Support\Facades\Session;
 
 class InvoiceController extends Controller

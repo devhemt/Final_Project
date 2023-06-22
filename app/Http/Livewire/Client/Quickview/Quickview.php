@@ -1,18 +1,19 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Client\Quickview;
 
-use Livewire\Component;
-use Illuminate\Support\Facades\DB;
 use Cart;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Livewire\Component;
+use App\Models\Properties;
 
 class Quickview extends Component
 {
     protected $listeners = ['idView'];
     public $prdQV;
-    public $getid,$thisid;
+    public $getid;
     public $name,$price,$imagein;
     public $sizes,$colors,$colorclass = null;
     public $getsize;
@@ -33,10 +34,11 @@ class Quickview extends Component
         $this->open = null;
     }
 
+//    update số lượng sản phẩm mỗi 500ms
     public function amount(){
-        $this->amount = DB::table('items')
-            ->join('properties', 'items.prd_id','=', 'properties.itemsid')
-            ->where('prd_id', $this->getid)->sum('properties.amount');
+        $this->amount = DB::table('product')
+            ->join('properties', 'product.id','=', 'properties.prd_id')
+            ->where('properties.prd_id', $this->getid)->sum('properties.amount');
     }
 
     public function getColor($input){
@@ -68,7 +70,7 @@ class Quickview extends Component
         }
         if ($this->quantity != 0){
             Cart::add([
-                'id' => $this->thisid,
+                'id' => $this->getid,
                 'name' => $this->name,
                 'price' => $this->price,
                 'quantity' => $this->quantity,
@@ -97,17 +99,16 @@ class Quickview extends Component
 
     public function render()
     {
-        $this->prdQV = DB::table('items')
-            ->join('total_property', 'items.prd_id','=', 'total_property.itemsid')
-            ->select('items.*','total_property.sizes','total_property.colors')
-            ->where('prd_id', $this->getid)->get();
+        $this->prdQV = DB::table('product')
+            ->join('total_property', 'product.id','=', 'total_property.prd_id')
+            ->select('product.*','total_property.sizes','total_property.colors')
+            ->where('product.id', $this->getid)->get();
         foreach ($this->prdQV as $p){
-            $this->thisid = $p->prd_id;
             $this->sizes = $p->sizes;
             $this->colors = $p->colors;
             $this->name = $p->name;
             $this->price = $p->price;
-            $this->imagein = $p->demoimage;
+            $this->imagein = $p->demo_image;
         }
 
 
@@ -121,19 +122,19 @@ class Quickview extends Component
             $colorch = explode(" ",$trim);
             $this->color = $colorch[0];
         }
-        $detail = DB::table('properties')
-            ->where('itemsid','=',$this->thisid)
-            ->where('size','=',$this->getsize)
-            ->where('color','=',$this->color)
+
+        $property_amount = Properties::where('prd_id',$this->getid)
+            ->where('size',$this->getsize)
+            ->where('color',$this->color)
             ->sum('amount');
 
-        if ($this->quantity >= $detail){
+        if ($this->quantity >= $property_amount){
             $this->checked = 'Sold out';
-            $this->quantity = $detail;
+            $this->quantity = $property_amount;
         }
-        if ($this->quantity < $detail){
+        if ($this->quantity < $property_amount){
             $this->checked = 'Stock';
         }
-        return view('livewire.client.quickview',['prdQV' => $this->prdQV,'showchose'=>$this->color,'thisid'=>$this->thisid]);
+        return view('livewire.client.quickview.quickview',['prdQV' => $this->prdQV,'showchose'=>$this->color,'thisid'=>$this->getid]);
     }
 }

@@ -9,17 +9,17 @@
             @if (isset($prdQV))
                 @foreach ($prdQV as $p)
                     <div class="col-md-6">
-                        <img src="images/{{ $p->demoimage }}" href="">
+                        <img src="images/{{ $p->demo_image }}" href="">
                     </div>
 
 
                     <div class="col-md-6">
                         <div class="product-details">
-                            <h5 class="pro-title"><a href="{{url('product/'.$p->prd_id)}}">
+                            <h5 class="pro-title"><a href="{{url('product/'.$p->id)}}">
                                     {{ $p->name }}
                                 </a></h5>
                             <span class="price">Price : ${{ $p->price }}</span>
-                            <div  wire:poll.500ms.visible="amount" class="size-variation">
+                            <div  wire:poll.2000ms.visible="amount" class="size-variation">
                                 <span>Amount :{{$amount}}</span>
                             </div>
                             <div class="size-variation">
@@ -68,15 +68,15 @@
                                 @endif
                             </p>
 
-                            <div class="product-social">
-                                <span>Share :</span>
-                                <ul>
-                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                </ul>
-                            </div>
+{{--                            <div class="product-social">--}}
+{{--                                <span>Share :</span>--}}
+{{--                                <ul>--}}
+{{--                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>--}}
+{{--                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>--}}
+{{--                                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>--}}
+{{--                                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>--}}
+{{--                                </ul>--}}
+{{--                            </div>--}}
 
                         </div>
 

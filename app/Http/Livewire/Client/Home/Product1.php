@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Client\Home;
 
-use Livewire\Component;
 use Illuminate\Support\Facades\DB;
+use Livewire\Component;
+use App\Models\Product;
 
-class Index extends Component
+class Product1 extends Component
 {
-    public $product1,$product2,$product3,$product4;
+    public $product;
 
     public function showQuickView($id) {
         $this->emit('idView', $id);
@@ -15,38 +16,10 @@ class Index extends Component
 
     public function render()
     {
-        $this->product1 = DB::table('items')
-            ->join('category', 'items.prd_id','=', 'category.prdid')
-            ->select('items.*','category.categories')
-            ->where('block','=', null)
-            ->where('category.categories','=', 1)
-            ->orderByDesc('items.prd_id')
-            ->limit(2)
+        $this->product = Product::where('sell','=', 1)
+            ->orderByDesc('id')
+            ->limit(8)
             ->get();
-        $this->product2 = DB::table('items')
-            ->join('category', 'items.prd_id','=', 'category.prdid')
-            ->select('items.*','category.categories')
-            ->where('block','=', null)
-            ->where('category.categories','=', 2)
-            ->orderByDesc('items.prd_id')
-            ->limit(2)
-            ->get();
-        $this->product3 = DB::table('items')
-            ->join('category', 'items.prd_id','=', 'category.prdid')
-            ->select('items.*','category.categories')
-            ->where('block','=', null)
-            ->where('category.categories','=', 3)
-            ->orderByDesc('items.prd_id')
-            ->limit(2)
-            ->get();
-        $this->product4 = DB::table('items')
-            ->join('category', 'items.prd_id','=', 'category.prdid')
-            ->select('items.*','category.categories')
-            ->where('block','=', null)
-            ->where('category.categories','=', 4)
-            ->orderByDesc('items.prd_id')
-            ->limit(2)
-            ->get();
-        return view('livewire.client.index');
+        return view('livewire.client.home.product1');
     }
 }

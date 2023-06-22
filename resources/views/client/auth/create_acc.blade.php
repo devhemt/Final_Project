@@ -58,12 +58,6 @@
                                             <span class="text-danger">{{ $errors->first('phone') }}</span>
                                         @endif
 									</div>
-                                    <div class="col-xl-12">
-                                        <input name="address" type="text" placeholder="Address">
-                                        @if ($errors->has('address'))
-                                            <span class="text-danger">{{ $errors->first('address') }}</span>
-                                        @endif
-                                    </div>
 									<div class="col-xl-12">
 										<input name="password" type="password" placeholder="Password">
                                         @if ($errors->has('password'))
