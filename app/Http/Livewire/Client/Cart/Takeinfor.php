@@ -1,12 +1,8 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Client\Cart;
 
 use App\Models\Detail_invoice;
-use App\Models\Invoice;
-use App\Models\Status;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class Takeinfor extends Component
@@ -39,6 +35,6 @@ class Takeinfor extends Component
 
     public function render()
     {
-        return view('livewire.client.takeinfor');
+        return view('livewire.client.cart.takeinfor');
     }
 }

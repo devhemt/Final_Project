@@ -6,10 +6,10 @@
         <!-- login form container  -->
 
         <div class="container">
-            @livewire('takeinfor')
+            @livewire('client.cart.takeinfor')
         </div>
 
-            @livewire('truecart')
+            @livewire('client.cart.truecart')
 
       </section>
 

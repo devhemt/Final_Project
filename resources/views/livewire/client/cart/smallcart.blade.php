@@ -12,6 +12,9 @@
                 <p><a href="{{url('product/'.$c['id'])}}">{{$c['name']}}</a></p>
             </div>
             <div class="cart-price">
+                <p>{{$c['attributes']['size']}} x <span style="background: {{$c['attributes']['color']}}">...</span></p>
+            </div>
+            <div class="cart-price">
                 <p>{{$c['quantity']}} x ${{$c['price']}}</p>
             </div>
             <a href="#"><i wire:click="deleteCartItem({{$c['id']}})" class="fa fa-times"></i></a>
@@ -33,7 +36,7 @@
                         <div class="cart-price">
                             <p>{{$c->amount}} x ${{$c->price}}</p>
                         </div>
-                        <a href="#"><i wire:click="deleteCartItem({{$c->id}})" class="fa fa-times"></i></a>
+                        <a href="#"><i wire:click="deleteCartItem({{$c->property_id}})" class="fa fa-times"></i></a>
                     </div>
                 @endforeach
             @endif

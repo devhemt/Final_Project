@@ -11,24 +11,72 @@
                                     <h6 class="mb-0 text-muted">{{$totalquantity}} items</h6>
                                 </div>
                                 <hr class="my-4">
-                                @if(isset($cart))
-                                @foreach($cart as $c)
+                                @if($flag == 0)
+                                    @foreach($customer_cart as $c)
+                                        <div class="row mb-4 d-flex justify-content-between align-items-center">
+                                            <div class="col-md-2 col-lg-2 col-xl-2">
+                                                <img
+                                                    src="{{url('images/'.$c->demo_image)}}"
+                                                    class="img-fluid rounded-3" alt="Cotton T-shirt">
+                                            </div>
+                                            <div class="col-md-3 col-lg-3 col-xl-3">
+                                                <h6 class="text-muted">{{$c->name}}</h6>
+                                                <h6 class="color">Color:
+                                                    <div class="color-container">
+                                                        <div id="colors" class="colors" style="background-color:{{$c->color}};"></div>
+                                                    </div>
+                                                </h6>
+                                                <h6 class="size">Size:
+                                                    <div class="size-container">
+                                                        <div id="sizes" class="sizes">{{$c->size}}</div>
+                                                    </div>
+                                                </h6>
+                                                <h6 class="text-danger">
+                                                    @if(isset($checked[$c->property_id]))
+                                                        {{$checked[$c->property_id]}}
+                                                    @endif
+                                                </h6>
+                                            </div>
+                                            <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                                                <button wire:click="minus({{$c->property_id}})" class="btn btn-link px-2">
+                                                    <i class="fas fa-minus"></i>
+                                                </button>
+
+                                                <input id="form3" class="quantity" min="0" name="quantity" value="{{$c->amount}}" type="number" readonly/>
+
+                                                <button wire:click="plus({{$c->property_id}})" class="btn btn-link px-2">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
+                                            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                                <h6 class="mb-0">$ {{$c->price}}</h6>
+                                            </div>
+                                            <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                                                <a href="#!" class="text-muted"><i wire:click="deleteCartItem({{$c->property_id}})" class="fas fa-times"></i></a>
+                                            </div>
+                                        </div>
+
+                                        <hr class="my-4">
+                                    @endforeach
+                                @endif
+                                @if($flag == 1)
+                                @foreach($guest_cart as $c)
                                 <div class="row mb-4 d-flex justify-content-between align-items-center">
                                     <div class="col-md-2 col-lg-2 col-xl-2">
                                         <img
-                                            src="{{url('images/'.$c['attributes'][0]['image'])}}"
+                                            src="{{url('images/'.$c['attributes']['image'])}}"
                                             class="img-fluid rounded-3" alt="Cotton T-shirt">
                                     </div>
                                     <div class="col-md-3 col-lg-3 col-xl-3">
                                         <h6 class="text-muted">{{$c['name']}}</h6>
                                         <h6 class="color">Color:
                                             <div class="color-container">
-                                                <div id="colors" class="colors" style="background-color:{{$c['attributes'][0]['color']}};"></div>
+                                                <div id="colors" class="colors" style="background-color:{{$c['attributes']['color']}};"></div>
                                             </div>
                                         </h6>
                                         <h6 class="size">Size:
                                             <div class="size-container">
-                                                <div id="sizes" class="sizes">{{$c['attributes'][0]['size']}}</div>
+                                                <div id="sizes" class="sizes">{{$c['attributes']['size']}}</div>
                                             </div>
                                         </h6>
                                             <h6 class="text-danger">

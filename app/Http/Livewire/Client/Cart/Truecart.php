@@ -1,25 +1,20 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Client\Cart;
 
-use App\Models\Customer_noacc;
-use App\Models\Detail_invoice;
-use App\Models\Detail_invoice_noacc;
-use App\Models\Invoice;
-use App\Models\Invoice_noacc;
-use App\Models\Status;
-use App\Models\Status_noacc;
+use App\Models\Cart_memory;
+use App\Models\Properties;
+use Cart;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Livewire\Component;
-use Cart;
-use Illuminate\Support\Facades\DB;
 
 class Truecart extends Component
 {
     protected $listeners = ['loadtruecart','setCusNoacc'];
     public $resultCode;
-    public $cart;
+    public $guest_cart, $customer_cart, $flag = null;
     public $totalquantity = 0;
     public $total,$totalpl;
     public $checked = [];
@@ -54,12 +49,12 @@ class Truecart extends Component
     public function deleteCartItem($itemsid){
         if (Auth::guard("customer")->check()){
             $userId = Auth::guard("customer")->id();
-            Cart::session($userId);
+            $deleted = Cart_memory::where('property_id', $itemsid)->delete();
         }else{
             $userId = Session::getId();
             Cart::session($userId);
+            Cart::remove($itemsid);
         }
-        Cart::remove($itemsid);
         $this->emit('loadsmallcart');
     }
 
@@ -366,50 +361,68 @@ class Truecart extends Component
     public function minus($id){
         if (Auth::guard("customer")->check()){
             $userId = Auth::guard("customer")->id();
-            Cart::session($userId);
+            $thiscart = Cart_memory::where('customer_id',$userId)
+                ->where('property_id',$id)->first();
+            $minus = $thiscart->amount - 1;
+
+            if ($minus == 0){
+                $affected = Cart_memory::where('customer_id',$userId)
+                    ->where('property_id',$id)
+                    ->update(['amount' => 1]);
+            }else{
+                $prd_id = Properties::where('id',$thiscart->property_id)->first()->prd_id;
+                $check_amount = Properties::where('prd_id',$prd_id)
+                    ->where('size',$thiscart->size)
+                    ->where('color',$thiscart->color)
+                    ->sum('amount');
+
+                if ($minus > $check_amount){
+                    $this->checked[$id] = 'Sold out';
+                }
+                if ($minus <= $check_amount){
+                    $this->checked[$id] = 'Stock';
+                    $affected = Cart_memory::where('customer_id',$userId)
+                        ->where('property_id',$id)
+                        ->update(['amount' => $minus]);
+                }
+            }
         }else{
             $userId = Session::getId();
             Cart::session($userId);
-        }
-        $thiscartquantity = Cart::get($id);
-        $minus = $thiscartquantity['quantity'];
-        $minus--;
+            $thiscart = Cart::get($id);
+            $minus = $thiscart['quantity'] - 1;
 
-        if ($minus == 0){
-            Cart::update($id, array(
-                'quantity' => array(
-                    'relative' => false,
-                    'value' => 1
-                ),
-            ));
-        }else{
-            $detail = DB::table('properties')
-                ->where('itemsid','=',$id)
-                ->where('size','=',$thiscartquantity['attributes'][0]['size'])
-                ->where('color','=',$thiscartquantity['attributes'][0]['color'])
-                ->get();
-
-            $totalamount = 0;
-            foreach ($detail as $d){
-                $totalamount += $d->amount;
-            }
-
-            if ($minus >= $totalamount){
-                $this->checked[$id] = 'Sold out';
+            if ($minus == 0){
                 Cart::update($id, array(
                     'quantity' => array(
                         'relative' => false,
-                        'value' => $totalamount
+                        'value' => 1
                     ),
                 ));
-            }
-            if ($minus < $totalamount){
-                $this->checked[$id] = 'Stock';
-                Cart::update($id, array(
-                    'quantity' => -1,
-                ));
-            }
+            }else{
+                $prd_id = Properties::where('id',$thiscart['id'])->first()->prd_id;
+                $check_amount = Properties::where('prd_id',$prd_id)
+                    ->where('size',$thiscart['attributes']['size'])
+                    ->where('color',$thiscart['attributes']['color'])
+                    ->sum('amount');
 
+                if ($minus >= $check_amount){
+                    $this->checked[$id] = 'Sold out';
+                    Cart::update($id, array(
+                        'quantity' => array(
+                            'relative' => false,
+                            'value' => $check_amount
+                        ),
+                    ));
+                }
+                if ($minus < $check_amount){
+                    $this->checked[$id] = 'Stock';
+                    Cart::update($id, array(
+                        'quantity' => -1,
+                    ));
+                }
+
+            }
         }
         $this->emit('loadsmallcart');
     }
@@ -417,56 +430,113 @@ class Truecart extends Component
     public function plus($id){
         if (Auth::guard("customer")->check()){
             $userId = Auth::guard("customer")->id();
-            Cart::session($userId);
+            $thiscart = Cart_memory::where('customer_id',$userId)
+                ->where('property_id',$id)->first();
+
+            $plus = $thiscart->amount + 1;
+
+            $prd_id = Properties::where('id',$thiscart->property_id)->first()->prd_id;
+            $check_amount = Properties::where('prd_id',$prd_id)
+                ->where('size',$thiscart->size)
+                ->where('color',$thiscart->color)
+                ->sum('amount');
+
+            if ($plus > $check_amount){
+                $this->checked[$id] = 'Sold out';
+            }
+            if ($plus <= $check_amount){
+                $this->checked[$id] = 'Stock';
+                $affected = Cart_memory::where('customer_id',$userId)
+                    ->where('property_id',$id)
+                    ->update(['amount' => $plus]);
+            }
         }else{
             $userId = Session::getId();
             Cart::session($userId);
-        }
-        $thiscartquantity = Cart::get($id);
-        $plus = $thiscartquantity['quantity'];
-        $plus++;
+            $thiscart = Cart::get($id);
+            $plus = $thiscart['quantity'] + 1;
 
-        $detail = DB::table('properties')
-            ->where('itemsid','=',$id)
-            ->where('size','=',$thiscartquantity['attributes'][0]['size'])
-            ->where('color','=',$thiscartquantity['attributes'][0]['color'])
-            ->get();
+            $prd_id = Properties::where('id',$thiscart['id'])->first()->prd_id;
+            $check_amount = Properties::where('prd_id',$prd_id)
+                ->where('size',$thiscart['attributes']['size'])
+                ->where('color',$thiscart['attributes']['color'])
+                ->sum('amount');
 
-        $totalamount = 0;
-        foreach ($detail as $d){
-            $totalamount += $d->amount;
-        }
+            if ($plus > $check_amount){
+                $this->checked[$id] = 'Sold out';
+            }
+            if ($plus <= $check_amount){
+                $this->checked[$id] = 'Stock';
+                Cart::update($id, array(
+                    'quantity' => 1,
+                ));
 
-        if ($plus > $totalamount){
-            $this->checked[$id] = 'Sold out';
+            }
         }
-        if ($plus <= $totalamount){
-            $this->checked[$id] = 'Stock';
-            Cart::update($id, array(
-                'quantity' => 1,
-            ));
-            $this->emit('loadsmallcart');
-        }
-
+        $this->emit('loadsmallcart');
     }
 
     public function render()
     {
+        $this->totalquantity = 0;
         if (Auth::guard("customer")->check()){
+            $this->flag = 0;
             $userId = Auth::guard("customer")->id();
-            Cart::session($userId);
+
+            $this->customer_cart = DB::table('cart_memory')
+                ->join('properties', 'properties.id','=', 'cart_memory.property_id')
+                ->join('product', 'product.id','=', 'properties.prd_id')
+                ->select('product.*','cart_memory.amount','cart_memory.size','cart_memory.color','cart_memory.property_id')
+                ->where('cart_memory.customer_id',$userId)->get();
+
+            $this->totalquantity = DB::table('cart_memory')
+                ->join('properties', 'properties.id','=', 'cart_memory.property_id')
+                ->join('product', 'product.id','=', 'properties.prd_id')
+                ->select('product.*','cart_memory.amount','cart_memory.size','cart_memory.color','cart_memory.property_id')
+                ->where('cart_memory.customer_id',$userId)->count();
+
+            foreach ($this->customer_cart as $c){
+                $prd_id = Properties::where('id',$c->property_id)->first()->prd_id;
+                $check_amount = Properties::where('prd_id',$prd_id)
+                    ->where('size',$c->size)
+                    ->where('color',$c->color)
+                    ->sum('amount');
+                if ($c->amount>$check_amount){
+                    $this->checked[$c->property_id] = 'The product in the order has exceeded the number of products left in stock';
+                }
+            }
+
             $this->momodirec = true;
         }else{
+            $this->flag = 1;
             $userId = Session::getId();
             Cart::session($userId);
+            $this->guest_cart = Cart::getContent()->toArray();
+            $this->total = Cart::getTotal();
+
+            foreach ($this->guest_cart as $c){
+                $this->totalquantity++ ;
+            }
+
             if ($this->name != null && $this->email != null && $this->phone != null && $this->address != null){
                 $this->momodirec = true;
             }else{
                 $this->momodirec = false;
             }
+
+            foreach ($this->guest_cart as $c){
+                $prd_id = Properties::where('id',$c['id'])->first()->prd_id;
+                $check_amount = Properties::where('prd_id',$prd_id)
+                    ->where('size',$c['attributes']['size'])
+                    ->where('color',$c['attributes']['color'])
+                    ->sum('amount');
+
+                if ($c['quantity']>$check_amount){
+                    $this->checked[$c['id']] = 'The product in the order has exceeded the number of products left in stock';
+                }
+            }
         }
-        $this->cart = Cart::getContent()->toArray();
-        $this->total = Cart::getTotal();
+
         if ($this->deliverymethod == 'Default delivery $5'){
             $this->totalpl = $this->total+5;
         }
@@ -478,27 +548,6 @@ class Truecart extends Component
         }
 
 
-        $this->totalquantity = 0;
-        foreach ($this->cart as $c){
-            $this->totalquantity++ ;
-        }
-        foreach ($this->cart as $c){
-            $detail = DB::table('properties')
-                ->where('itemsid','=',$c['id'])
-                ->where('size','=',$c['attributes'][0]['size'])
-                ->where('color','=',$c['attributes'][0]['color'])
-                ->get();
-
-            $totalamount = 0;
-            foreach ($detail as $d){
-                $totalamount += $d->amount;
-            }
-            if ($c['quantity']>$totalamount){
-                $this->checked[$c['id']] = 'The product in the order has exceeded the number of products left in stock';
-            }
-        }
-
-
-        return view('livewire.client.truecart');
+        return view('livewire.client.cart.truecart');
     }
 }

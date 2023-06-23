@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Client\Cart;
 
+use App\Models\Images;
 use Cart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -21,7 +22,7 @@ class Smallcart extends Component
     public function deleteCartItem($itemsid){
         if (Auth::guard("customer")->check()){
             $userId = Auth::guard("customer")->id();
-
+            $deleted = Cart_memory::where('property_id', $itemsid)->delete();
         }else{
             $userId = Session::getId();
             Cart::session($userId);
@@ -36,14 +37,13 @@ class Smallcart extends Component
         if (Auth::guard("customer")->check()){
             $this->flag = 0;
             $userId = Auth::guard("customer")->id();
-            $cart = Cart_memory::where('customer_id',$userId)->get();
 
             $this->customer_cart = DB::table('cart_memory')
                 ->join('properties', 'properties.id','=', 'cart_memory.property_id')
                 ->join('product', 'product.id','=', 'properties.prd_id')
-                ->select('product.*','cart_memory.amount','cart_memory.size','cart_memory.color')
+                ->select('product.*','cart_memory.amount','cart_memory.size','cart_memory.color','cart_memory.property_id')
                 ->where('cart_memory.customer_id',$userId)->get();
-//
+
             foreach ($this->customer_cart as $c){
                 $this->amount++ ;
                 $this->subtotal += $c->amount*$c->price;
