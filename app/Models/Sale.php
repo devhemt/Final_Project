@@ -11,5 +11,5 @@ class Sale extends Model
 
     protected $table = 'sale';
     protected $primaryKey = 'id';
-    protected $fillable = ['prd_id','sale','begin','end'];
+    protected $fillable = ['prd_id','discount','begin','end'];
 }

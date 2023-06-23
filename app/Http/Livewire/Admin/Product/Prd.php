@@ -20,7 +20,6 @@ class Prd extends Component
 
 
         $this->images = Images::where('prd_id', $this->idprd)->get();
-//        $this->properties = Properties::where('prd_id', $this->idprd)->get();
         $this->properties = DB::table('properties')->join('purchase_items', 'properties.batch','=', 'purchase_items.batch')
             ->where('properties.prd_id',$this->idprd)->where('purchase_items.prd_id',$this->idprd)->get();
 

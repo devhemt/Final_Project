@@ -11,5 +11,5 @@ class Cart_memory extends Model
 
     protected $table = 'cart_memory';
     protected $primaryKey = 'id';
-    protected $fillable = ['prd_id','customer_id','size','color','amount'];
+    protected $fillable = ['property_id','customer_id','size','color','check_buy','amount'];
 }

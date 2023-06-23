@@ -2,11 +2,11 @@
     <a href="javascript:void(0)" ><i class="fa fa-shopping-cart" aria-hidden="true"></i> {{$amount}}</a>
     <div class="cart-drop" wire:ignore.self>
         <div style="max-height: 200px;overflow-y: overlay;">
-        @if(isset($cart))
-        @foreach($cart as $c)
+        @if($flag == 1)
+        @foreach($guest_cart as $c)
         <div class="single-cart">
             <div class="cart-img">
-                <img alt="" src="{{url('images/'.$c['attributes'][0]['image'])}}">
+                <img alt="" src="{{url('images/'.$c['attributes']['image'])}}">
             </div>
             <div class="cart-title">
                 <p><a href="{{url('product/'.$c['id'])}}">{{$c['name']}}</a></p>
@@ -18,6 +18,25 @@
         </div>
         @endforeach
         @endif
+            @if($flag == 0)
+                @foreach($customer_cart as $c)
+                    <div class="single-cart">
+                        <div class="cart-img">
+                            <img alt="" src="{{url('images/'.$c->demo_image)}}">
+                        </div>
+                        <div class="cart-title">
+                            <p><a href="{{url('product/'.$c->id)}}">{{$c->name}}</a></p>
+                        </div>
+                        <div class="cart-price">
+                            <p>{{$c->size}} x <span style="background: {{$c->color}}">...</span></p>
+                        </div>
+                        <div class="cart-price">
+                            <p>{{$c->amount}} x ${{$c->price}}</p>
+                        </div>
+                        <a href="#"><i wire:click="deleteCartItem({{$c->id}})" class="fa fa-times"></i></a>
+                    </div>
+                @endforeach
+            @endif
         </div>
         <div class="cart-bottom">
             <div class="cart-sub-total">

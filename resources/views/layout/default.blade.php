@@ -119,7 +119,7 @@
                                 <li class="user-login">
                                     <a href="{{ url('/login') }}"><i class="fa fa-user" aria-hidden="true"></i></a>
                                 </li>
-                                @livewire('smallcart')
+                                @livewire('client.cart.smallcart')
                                 <li class="top-search">
 {{--                                    @livewire('searchhome')--}}
                                 </li>

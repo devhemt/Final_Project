@@ -142,7 +142,7 @@ class PurchaseController extends Controller
             'price' => $request->get('prd_price'),
             'tag' => $request->get('prd_tag'),
             'brand' => $request->get('prd_brand'),
-            'sell' => 1,
+            'status' => 1,
             'category_id' => $request->get('prd_category')
         ]);
         $id = Product::where('name',$request->get('prd_name'))

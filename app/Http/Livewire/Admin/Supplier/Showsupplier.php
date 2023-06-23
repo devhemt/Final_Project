@@ -28,7 +28,10 @@ class Showsupplier extends Component
         $this->isShowCreate = 0;
     }
     public function createNew(){
-        $validatedData = $this->validate();
+        $this->validateOnly('newSupplierName');
+        $this->validateOnly('newSupplierAddress');
+        $this->validateOnly('newSupplierEmail');
+        $this->validateOnly('newSupplierPhone');
         Supplier::create([
             'name' => $this->newSupplierName,
             'phone' => $this->newSupplierPhone,

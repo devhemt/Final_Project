@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('sale', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('prd_id')->unsigned();
-            $table->tinyInteger('sale');
+            $table->tinyInteger('discount');
             $table->timestamp('begin')->nullable();
             $table->timestamp('end')->nullable();
             $table->timestamps();

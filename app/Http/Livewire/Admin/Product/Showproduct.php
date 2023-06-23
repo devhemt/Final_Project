@@ -41,7 +41,7 @@ class Showproduct extends Component
                 '=',
                 'prop.prd_id'
             )
-                ->where('sell',1)
+                ->where('status',1)
                 ->orderBy('prop.total_amount', 'ASC')
                 ->select('product.*','prop.total_amount')
                 ->paginate(10),

@@ -16,7 +16,7 @@ class Product1 extends Component
 
     public function render()
     {
-        $this->product = Product::where('sell','=', 1)
+        $this->product = Product::where('status','=', 1)
             ->orderByDesc('id')
             ->limit(8)
             ->get();

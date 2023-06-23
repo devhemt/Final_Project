@@ -33,8 +33,8 @@
             </div>
 
             <div class="text-center">
-                <button wire:click="createNew" type="submit" class="btn btn-primary">Create</button>
-                <button wire:click="cancelNew" class="btn btn-secondary">Cancel</button>
+                <button wire:click="createNew" type="button" class="btn btn-primary">Create</button>
+                <button wire:click="cancelNew" type="button" class="btn btn-secondary">Cancel</button>
             </div>
         </form>
 

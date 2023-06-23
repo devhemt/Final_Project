@@ -35,7 +35,9 @@ class Showpurchase extends Component
         $this->isShowCreate = 0;
     }
     public function createNew(){
-        $validatedData = $this->validate();
+        $this->validateOnly('purchaseCode');
+        $this->validateOnly('supplier_id');
+        $this->validateOnly('total_pay');
         Purchase::create([
             'purchase_code' => $this->purchaseCode,
             'supplier_id' => $this->supplier,
