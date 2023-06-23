@@ -40,11 +40,11 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
+        <i class="bi bi-list toggle-sidebar-btn"></i>
       <a href="{{url('admin')}}" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
         <span class="d-none d-lg-block">KF Admin</span>
       </a>
-      <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 
 
@@ -65,57 +65,23 @@
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
-      </li><!-- End Dashboard Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#category-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-menu-button-wide"></i><span>Category</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="category-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="{{ url('admin/category/show') }}">
-                        <i class="bi bi-circle"></i><span>Show categories</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#supplier-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-menu-button-wide"></i><span>Supplier</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="supplier-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="{{ url('admin/supplier/show') }}">
-                        <i class="bi bi-circle"></i><span>Show supplier</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#purchase-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-menu-button-wide"></i><span>Purchase</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="purchase-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="{{ url('admin/purchase/show') }}">
-                        <i class="bi bi-circle"></i><span>Show purchase</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-menu-button-wide"></i><span>Products</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="{{ url('admin/product') }}">
-              <i class="bi bi-circle"></i><span>Show products</span>
-            </a>
-          </li>
-        </ul>
-      </li><!-- End Components Nav -->
+          <a class="nav-link collapsed" href="{{ url('admin/category/show') }}">
+              <i class="bi bi-grid"></i>
+              <span>Category</span>
+          </a>
+          <a class="nav-link collapsed" href="{{ url('admin/supplier/show') }}">
+              <i class="bi bi-grid"></i>
+              <span>Supplier</span>
+          </a>
+          <a class="nav-link collapsed" href="{{ url('admin/purchase/show') }}">
+              <i class="bi bi-grid"></i>
+              <span>Purchase</span>
+          </a>
+          <a class="nav-link collapsed" href="{{ url('admin/product') }}">
+              <i class="bi bi-grid"></i>
+              <span>Product</span>
+          </a>
+      </li>
 
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#cus-nav" data-bs-toggle="collapse" href="#">
@@ -137,7 +103,7 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-journal-text"></i><span>Orders</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-journal-text"></i><span>Order</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>

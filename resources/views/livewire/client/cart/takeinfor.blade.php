@@ -10,8 +10,19 @@
         @error('email') <span class="text-danger">{{ $message }}</span> @enderror
         <input required wire:model="phone" name="phone" type="tel" class="box" placeholder="enter your phone">
         @error('phone') <span class="text-danger">{{ $message }}</span> @enderror
-        <input required wire:model="address" name="address" type="text" class="box" placeholder="enter your address">
-        @error('address') <span class="text-danger">{{ $message }}</span> @enderror
+        <div>
+            <select class="form-select form-select-sm mb-3" id="city" aria-label=".form-select-sm">
+                <option value="" selected>Chọn tỉnh thành</option>
+            </select>
+
+            <select class="form-select form-select-sm mb-3" id="district" aria-label=".form-select-sm">
+                <option value="" selected>Chọn quận huyện</option>
+            </select>
+
+            <select class="form-select form-select-sm" id="ward" aria-label=".form-select-sm">
+                <option value="" selected>Chọn phường xã</option>
+            </select>
+        </div>
         <input wire:click="confirm" type="button" value="confirm" class="btn">
         <p for="remember">Because you don't have an account, we need you to provide your personal information in order to confirm the order.</p>
     </form>
