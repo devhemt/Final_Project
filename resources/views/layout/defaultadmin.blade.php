@@ -35,7 +35,7 @@
 </head>
 
 <body>
-
+@include('sweetalert::alert')
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
 
@@ -75,7 +75,7 @@
           </a>
           <a class="nav-link collapsed" href="{{ url('admin/purchase/show') }}">
               <i class="bi bi-grid"></i>
-              <span>Purchase</span>
+              <span>Import Purchase</span>
           </a>
           <a class="nav-link collapsed" href="{{ url('admin/product') }}">
               <i class="bi bi-grid"></i>

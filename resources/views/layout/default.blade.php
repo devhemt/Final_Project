@@ -36,6 +36,8 @@
 
 <body id="home-version-1" class="home-version-1" data-style="default">
 
+    @include('sweetalert::alert')
+
     <div class="site-content">
 
 

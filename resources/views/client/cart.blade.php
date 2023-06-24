@@ -22,6 +22,7 @@
             method: "GET",
             responseType: "application/json",
         };
+
         var promise = axios(Parameter);
         promise.then(function (result) {
             renderCity(result.data);
