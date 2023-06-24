@@ -10,7 +10,7 @@
 				<div class="row">
 					<div class="col-xl-12">
 						<div class="bc-inner">
-							<p><a href="#">Home  |</a> Shop</p>
+							<p><a href="#">Home  |</a> Create Account</p>
 						</div>
 					</div>
 					<!-- /.col-xl-12 -->
@@ -64,6 +64,25 @@
                                             <span class="text-danger">{{ $errors->first('password') }}</span>
                                         @endif
 									</div>
+                                    <div class="col-xl-12">
+                                        <select class="form-select form-select-sm mb-3" name="city" id="city" aria-label=".form-select-sm">
+                                            <option value="" selected>City</option>
+                                        </select>
+
+                                        <select class="form-select form-select-sm mb-3" name="district" id="district" aria-label=".form-select-sm">
+                                            <option value="" selected>District</option>
+                                        </select>
+
+                                        <select class="form-select form-select-sm" name="ward" id="ward" aria-label=".form-select-sm">
+                                            <option value="" selected>Ward</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-xl-12">
+                                        <input name="detailed_address" type="text" placeholder="Detailed address">
+                                        @if ($errors->has('detailed_address'))
+                                            <span class="text-danger">{{ $errors->first('detailed_address') }}</span>
+                                        @endif
+                                    </div>
 									<div class="col-xl-12">
 										<input type="submit" value="CREATE">
 									</div>
@@ -89,5 +108,49 @@
 			<!-- /.container-fluid -->
 		</section>
 		<!-- /.login-now -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+        <script>
+            var citis = document.getElementById("city");
+            var districts = document.getElementById("district");
+            var wards = document.getElementById("ward");
+            var Parameter = {
+                url: "https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json",
+                method: "GET",
+                responseType: "application/json",
+            };
+
+            var promise = axios(Parameter);
+            promise.then(function (result) {
+                renderCity(result.data);
+            });
+
+            function renderCity(data) {
+                for (const x of data) {
+                    citis.options[citis.options.length] = new Option(x.Name, x.Id);
+                }
+                citis.onchange = function () {
+                    district.length = 1;
+                    ward.length = 1;
+                    if(this.value != ""){
+                        const result = data.filter(n => n.Id === this.value);
+
+                        for (const k of result[0].Districts) {
+                            district.options[district.options.length] = new Option(k.Name, k.Id);
+                        }
+                    }
+                };
+                district.onchange = function () {
+                    ward.length = 1;
+                    const dataCity = data.filter((n) => n.Id === citis.value);
+                    if (this.value != "") {
+                        const dataWards = dataCity[0].Districts.filter(n => n.Id === this.value)[0].Wards;
+
+                        for (const w of dataWards) {
+                            wards.options[wards.options.length] = new Option(w.Name, w.Id);
+                        }
+                    }
+                };
+            }
+        </script>
     </main>
 @endsection
