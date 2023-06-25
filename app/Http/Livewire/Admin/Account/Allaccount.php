@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Admin\Account;
 
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -10,19 +10,18 @@ use Livewire\WithPagination;
 class Allaccount extends Component
 {
     use WithPagination;
-//    protected $listeners = ['searchOut5'];
     protected $paginationTheme = 'bootstrap';
     public $accounts, $iddelete;
     public $top = null;
 
     public function yes(){
-        $check = DB::table('user')
-            ->where('user_id','=', $this->iddelete)
+        $check = DB::table('admin_account')
+            ->where('id','=', $this->iddelete)
             ->first();
 
-        if ($check->role != 1){
-            $deleted = DB::table('user')
-                ->where('user_id','=', $this->iddelete)
+        if ($check->id != 1){
+            $deleted = DB::table('admin_account')
+                ->where('id','=', $this->iddelete)
                 ->delete();
         }
 
@@ -38,8 +37,8 @@ class Allaccount extends Component
 
     public function render()
     {
-        return view('livewire.admin.allaccount',[
-            'accountss' => DB::table('user')
+        return view('livewire.admin.account.allaccount',[
+            'accountss' => DB::table('admin_account')
                 ->paginate(10),
         ]);
     }

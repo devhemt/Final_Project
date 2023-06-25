@@ -6,8 +6,8 @@
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item">Tables</li>
-                    <li class="breadcrumb-item active">General</li>
+                    <li class="breadcrumb-item">Account</li>
+                    <li class="breadcrumb-item active">Create Account</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
@@ -19,13 +19,13 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Create new staff</h5>
+                            <h5 class="card-title">Create new account</h5>
 
                             <!-- Vertical Form -->
                             <form class="row g-3" accept-charset="utf-8" action="{{url('admin/profile')}}" role="form" method="POST">
                             @csrf
                                 <div class="col-12">
-                                    <label for="inputNanme4" class="form-label">Your Name</label>
+                                    <label for="inputNanme4" class="form-label">Name</label>
                                     <input required name="name" type="text" class="form-control" id="inputNanme4">
                                     @if ($errors->has('name'))
                                         <span class="text-danger">{{ $errors->first('name') }}</span>
@@ -50,22 +50,6 @@
                                     <input required name="password" type="password" class="form-control" id="inputPassword4">
                                     @if ($errors->has('password'))
                                         <span class="text-danger">{{ $errors->first('password') }}</span>
-                                    @endif
-                                </div>
-                                <div class="col-12">
-                                    <select name="role" id="inputState" class="form-select">
-                                        <option value="1" selected>Director</option>
-                                        <option value="2">Total Manager</option>
-                                        <option value="3">Import Manager</option>
-                                        <option value="4">Order Manager canceled</option>
-                                        <option value="5">Order Manager noprocess</option>
-                                        <option value="6">Order Manager confirmed</option>
-                                        <option value="7">Order Manager packing</option>
-                                        <option value="8">Order Manager success</option>
-                                        <option value="9">Delivery Manager</option>
-                                    </select>
-                                    @if ($errors->has('role'))
-                                        <span class="text-danger">{{ $errors->first('role') }}</span>
                                     @endif
                                 </div>
                                 <div class="text-center">

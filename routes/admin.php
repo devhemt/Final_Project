@@ -41,6 +41,11 @@ Route::get('/product/{id}',[\App\Http\Controllers\Admin\Product\ProductControlle
 Route::get('/product/{product}/edit',[\App\Http\Controllers\Admin\Product\ProductController::class,'edit']);
 Route::post('/product/edit',[\App\Http\Controllers\Admin\Product\ProductController::class,'update']);
 
+
+Route::get('/profile',[\App\Http\Controllers\Admin\Profile\AdminAccountController::class,'index']);
+Route::post('/profile',[\App\Http\Controllers\Admin\Profile\AdminAccountController::class,'store']);
+Route::get('/profile/create',[\App\Http\Controllers\Admin\Profile\AdminAccountController::class,'create']);
+Route::get('/profile/showall',[\App\Http\Controllers\Admin\Profile\AdminAccountController::class,'showall']);
 //old route
 
 Route::get('/addbatch/{id}', [\App\Http\Controllers\Admin\Product\ProductController::class,'batch']);
@@ -65,9 +70,6 @@ Route::post('/product/addbatch',[\App\Http\Controllers\Admin\Product\ProductCont
 
 
 
-Route::get('/profile',[\App\Http\Controllers\Admin\Profile\AdminAccountController::class,'index']);
-Route::post('/profile',[\App\Http\Controllers\Admin\Profile\AdminAccountController::class,'store']);
-Route::get('/profile/create',[\App\Http\Controllers\Admin\Profile\AdminAccountController::class,'create']);
-Route::get('/profile/showall',[\App\Http\Controllers\Admin\Profile\AdminAccountController::class,'showall']);
+
 
 

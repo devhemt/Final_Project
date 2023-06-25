@@ -25,7 +25,7 @@
         <tbody>
         @foreach($accountss as $p)
             <tr>
-                <th scope="row">{{$p->user_id}}</th>
+                <th scope="row">{{$p->id}}</th>
                 <td>{{$p->name}}</td>
                 <td>{{$p->phone}}</td>
                 <td>{{$p->email}}</td>
@@ -33,7 +33,7 @@
                     {{$p->image}}
                 </td>
                 <td style="text-align: center;">
-                    <a href="#" wire:click="block('{{$p->user_id}}')" id="deleteprd"><i class="fas fa-trash "></i></a>
+                    <a href="#" wire:click="block('{{$p->id}}')" id="deleteprd"><i class="fas fa-trash "></i></a>
                 </td>
             </tr>
         @endforeach

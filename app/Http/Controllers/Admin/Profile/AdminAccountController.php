@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin\Profile;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\Admin_account;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -29,22 +29,20 @@ class AdminAccountController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:user,email',
-            'phone' => 'required|unique:user,phone',
+            'email' => 'required|email|unique:admin_account,email',
+            'phone' => 'required|unique:admin_account,phone',
             'password' => 'required|min:6',
-            'role' => 'required',
         ]);
 
         $data = $request->all();
-        $create = User::create([
+        $create = Admin_account::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
             'password' => Hash::make($data['password']),
-            'role' => $data['role']
         ]);
 
-        return redirect()->back();
+        return redirect('admin/profile/showall');
     }
 
     public function login(Request $request)

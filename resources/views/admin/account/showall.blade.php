@@ -10,8 +10,7 @@
                     <li class="breadcrumb-item active">All account</li>
                 </ol>
             </nav>
-{{--            @livewire('searchadmin',['currentURL' => $currentURL])--}}
-        </div><!-- End Page Title -->
+        </div>
 
         <section class="section">
             <div class="row">
@@ -19,7 +18,7 @@
                 <div class="col-lg-12">
 
                     <div class="card">
-                        @livewire('allaccount')
+                        @livewire('admin.account.allaccount')
                     </div>
 
                 </div>
