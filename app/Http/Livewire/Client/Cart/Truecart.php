@@ -5,6 +5,11 @@ namespace App\Http\Livewire\Client\Cart;
 use App\Models\Cart_memory;
 use App\Models\Properties;
 use App\Models\Purchase_items;
+use App\Models\Invoice;
+use App\Models\Status;
+use App\Models\Invoice_items;
+use App\Models\Guest;
+use App\Models\Address;
 use Cart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -13,7 +18,7 @@ use Livewire\Component;
 
 class Truecart extends Component
 {
-    protected $listeners = ['loadtruecart','setCusNoacc'];
+    protected $listeners = ['loadtruecart'];
     public $resultCode;
     public $guest_cart, $customer_cart, $flag = null, $alert = null;
     public $totalquantity = 0;
@@ -22,30 +27,9 @@ class Truecart extends Component
     public $deliverymethod = 'Default delivery $5';
     public $options = ['Default delivery $5','Fast delivery $15','Super fast delivery $25'];
     public $momodirec  = false;
-    public $name, $email, $phone, $address;
 
 
     public function loadtruecart(){}
-    public function setCusNoacc($datas){
-        $this->name = $datas[0];
-        $this->email = $datas[1];
-        $this->phone = $datas[2];
-        $this->address = $datas[3];
-        $userId = Session::getId();
-
-        $usernoacc = DB::table('customer_noacc')
-            ->where('sessionid','=',$userId)
-            ->count();
-        if ($usernoacc == 0){
-            $cusnoacc = Customer_noacc::create([
-                'sessionid'=> $userId,
-                'name' => $this->name,
-                'email' => $this->email,
-                'phone' => $this->phone,
-                'address' => $this->address
-            ]);
-        }
-    }
 
     public function deleteCartItem($itemsid){
         if (Auth::guard("customer")->check()){
@@ -67,6 +51,7 @@ class Truecart extends Component
             if ($check_cart > 0){
                 $customer_cart = Cart_memory::where('customer_id',$userId)
                     ->where('check_buy',1)->get();
+
                 $flagcountcheck = true;
                 $true_pay = 0;
                 foreach ($customer_cart as $c){
@@ -96,162 +81,159 @@ class Truecart extends Component
                                     if ($b->amount<=$amount){
                                         $true_pay+=$b->amount*$unit_price;
                                         $amount -= $b->amount;
+
+                                        $affected = Properties::where('prd_id',$prd_id)
+                                            ->where('size',$c->size)
+                                            ->where('color',$c->color)
+                                            ->where('batch',$b->batch)
+                                            ->update(['amount' => 0]);
                                     }else{
                                         $true_pay+=$amount*$unit_price;
+
+                                        $amount_before = Properties::where('prd_id',$prd_id)
+                                            ->where('size',$c->size)
+                                            ->where('color',$c->color)
+                                            ->where('batch',$b->batch)
+                                            ->first()->amount;
+
+                                        $affected = Properties::where('prd_id',$prd_id)
+                                            ->where('size',$c->size)
+                                            ->where('color',$c->color)
+                                            ->where('batch',$b->batch)
+                                            ->update(['amount' => $amount_before-$amount]);
+
                                         $amount=0;
                                     }
                                 }
                             }
                         }
                     }
-                }
-                dd($true_pay);
+                    $invoice = Invoice::create([
+                        'customer_id' => $userId,
+                        'address_id' => 1,
+                        'pay' => $this->totalpl,
+                        'true_pay' => $true_pay,
+                        'payment' => 'cash',
+                        'see' => 0,
+                        'delivery' => $this->deliverymethod
+                    ]);
+                    $status = Status::create([
+                        'invoice_id' => $invoice->id,
+                        'status' => 1
+                    ]);
+                    foreach ($customer_cart as $c){
+                        Invoice_items::create([
+                           'property_id' => $c->property_id,
+                            'invoice_id' => $invoice->id,
+                            'size' => $c->size,
+                            'color' => $c->color,
+                            'amount' => $c->amount
+                        ]);
+                    }
 
+                }
+                $deleted = Cart_memory::where('customer_id',$userId)
+                    ->where('check_buy',1)->delete();
+                $this->emit('loadsmallcart');
                 $this->redirect('success');
             }
         }else{
-            if ($this->name != null && $this->email != null && $this->phone != null && $this->address != null){
-//                dd($userId = Session::getId());
-                $userId = Session::getId();
+            $userId = Session::getId();
+            $guest = Guest::where('session_id',$userId)->count();
+            $guest_id = Guest::where('session_id',$userId)->first()->id;
+            if ($guest>0){
                 Cart::session($userId);
-                $this->total = Cart::getTotal();
-                if (Cart::isEmpty()){
-                    dd("mua hang di");
-                }else{
-                    $cartin = Cart::getContent()->toArray();
-                    $flagcountcheck = false;
-                    foreach ($cartin as $c){
-                        $detail = DB::table('properties')
-                            ->where('itemsid','=',$c['id'])
-                            ->where('size','=',$c['attributes'][0]['size'])
-                            ->where('color','=',$c['attributes'][0]['color'])
-                            ->get();
-
-                        $totalamount = 0;
-                        foreach ($detail as $d){
-                            $totalamount += $d->amount;
-                        }
-                        if ($c['quantity']>$totalamount){
-                            $flagcountcheck = true;
+                if (!Cart::isEmpty()){
+                    $guest_cart = Cart::getContent()->toArray();
+                    $flagcountcheck = true;
+                    $true_pay = 0;
+                    foreach ($guest_cart as $c){
+                        $prd_id = Properties::where('id',$c['id'])->first()->prd_id;
+                        $check_amount = Properties::where('prd_id',$prd_id)
+                            ->where('size',$c['attributes']['size'])
+                            ->where('color',$c['attributes']['color'])
+                            ->sum('amount');
+                        if ($c['quantity'] > $check_amount){
+                            $this->redirect('fail');
+                            $flagcountcheck = false;
                         }
                     }
                     if ($flagcountcheck){
-                        $this->redirect('fail');
-                    }
-                    $usernoacc = DB::table('customer_noacc')
-                        ->where('sessionid','=',$userId)
-                        ->latest()
-                        ->get();
-                    $items = Invoice_noacc::create([
-                        'cusid' => $usernoacc[0]->cus_id,
-                        'pay' => $this->total,
-                        'payment' => 'cash',
-                        'delivery' => $this->deliverymethod
-                    ]);
-                    $idinvoice = DB::table('invoice_noacc')->latest('created_at')->first();
-                    $status = Status_noacc::create([
-                        'invoice_id'=> $idinvoice->invoice_id,
-                        'status'=> 1,
-                    ]);
+                        foreach ($guest_cart as $c){
+                            $prd_id = Properties::where('id',$c['id'])->first()->prd_id;
+                            $batch = Properties::where('prd_id',$prd_id)
+                                ->where('size',$c['attributes']['size'])
+                                ->where('color',$c['attributes']['color'])
+                                ->get();
+                            $amount = $c['quantity'];
+                            foreach ($batch as $b){
+                                if ($amount!=0){
+                                    $unit_price = Purchase_items::where('prd_id',$prd_id)
+                                        ->where('batch',$b->batch)->first()->unit_price;
+                                    if ($b->amount>0){
+                                        if ($b->amount<=$amount){
+                                            $true_pay+=$b->amount*$unit_price;
+                                            $amount -= $b->amount;
 
-                    foreach ($cartin as $c){
-                        $prdbatch = DB::table('batch_price')
-                            ->where('prdid','=',$c['id'])
-                            ->get();
-                        $length = count($prdbatch);
-                        $check = 0;
-                        $start;
-                        $end;
-                        $input1;
-                        for ($i=1;$i<=$length;$i++){
-                            $check += $this->checkBatch($c['id'],$i);
-                            if ($this->checkInvoice($c['id'])<$check){
-                                $start = $i;
-                                $input1 = $check - $this->checkInvoice($c['id']);
-                            }
-                            if (($this->checkInvoice($c['id'])+$c['quantity'])<=$check){
-                                $end = $i;
-                                if ($start == $end){
-                                    $batch1 = DB::table('batch_price')
-                                        ->where('prdid','=',$c['id'])
-                                        ->where('batch','=',$start)
-                                        ->get();
+                                            $affected = Properties::where('prd_id',$prd_id)
+                                                ->where('size',$c['attributes']['size'])
+                                                ->where('color',$c['attributes']['color'])
+                                                ->where('batch',$b->batch)
+                                                ->update(['amount' => 0]);
+                                        }else{
+                                            $true_pay+=$amount*$unit_price;
 
-                                    $cost1 = $batch1['0']->cost;
-                                    $detail1 = Detail_invoice_noacc::create([
-                                        'itemsid'=> $c['id'],
-                                        'invoice_id'=> $idinvoice->invoice_id,
-                                        'size'=> $c['attributes'][0]['size'],
-                                        'color'=> $c['attributes'][0]['color'],
-                                        'amount'=> $c['quantity'],
-                                        'price_one'=> $c['price'],
-                                        'cost_one'=> $cost1,
-                                    ]);
-                                    $change = DB::table('properties')
-                                        ->where('size','=', $c['attributes'][0]['size'])
-                                        ->where('color','=', $c['attributes'][0]['color'])
-                                        ->where('batch','=', $start )
-                                        ->decrement('amount', $c['quantity']);
-                                }else{
-                                    $input2 = $c['quantity'] - $input1;
-                                    $batch1 = DB::table('batch_price')
-                                        ->where('prdid','=',$c['id'])
-                                        ->where('batch','=',$start)
-                                        ->get();
-                                    $cost1 = $batch1['0']->cost;
-                                    $batch2 = DB::table('batch_price')
-                                        ->where('prdid','=',$c['id'])
-                                        ->where('batch','=',$end)
-                                        ->get();
-                                    $cost2 = $batch2['0']->cost;
-                                    $detail1 = Detail_invoice_noacc::create([
-                                        'itemsid'=> $c['id'],
-                                        'invoice_id'=> $idinvoice->invoice_id,
-                                        'size'=> $c['attributes'][0]['size'],
-                                        'color'=> $c['attributes'][0]['color'],
-                                        'amount'=> $input1,
-                                        'price_one'=> $c['price'],
-                                        'cost_one'=> $cost1,
-                                    ]);
-                                    $detail2 = Detail_invoice_noacc::create([
-                                        'itemsid'=> $c['id'],
-                                        'invoice_id'=> $idinvoice->invoice_id,
-                                        'size'=> $c['attributes'][0]['size'],
-                                        'color'=> $c['attributes'][0]['color'],
-                                        'amount'=> $input2,
-                                        'price_one'=> $c['price'],
-                                        'cost_one'=> $cost2,
-                                    ]);
-                                    $change1 = DB::table('properties')
-                                        ->where('size','=', $c['attributes'][0]['size'])
-                                        ->where('color','=', $c['attributes'][0]['color'])
-                                        ->where('batch','=', $start )
-                                        ->decrement('amount', $input1);
-                                    $change2 = DB::table('properties')
-                                        ->where('size','=', $c['attributes'][0]['size'])
-                                        ->where('color','=', $c['attributes'][0]['color'])
-                                        ->where('batch','=', $end )
-                                        ->decrement('amount', $input2);
+                                            $amount_before = Properties::where('prd_id',$prd_id)
+                                                ->where('size',$c['attributes']['size'])
+                                                ->where('color',$c['attributes']['color'])
+                                                ->where('batch',$b->batch)
+                                                ->first()->amount;
+
+                                            $affected = Properties::where('prd_id',$prd_id)
+                                                ->where('size',$c['attributes']['size'])
+                                                ->where('color',$c['attributes']['color'])
+                                                ->where('batch',$b->batch)
+                                                ->update(['amount' => $amount_before-$amount]);
+
+                                            $amount=0;
+                                        }
+                                    }
                                 }
-                                Cart::clear();
-                                $this->emit('loadsmallcart');
-                                break;
                             }
+                        }
+                        $address_id = Address::where('guest_id',$guest_id)->first()->id;
+                        $invoice = Invoice::create([
+                            'guest_id' => $guest_id,
+                            'address_id' => $address_id,
+                            'pay' => $this->totalpl,
+                            'true_pay' => $true_pay,
+                            'payment' => 'cash',
+                            'see' => 0,
+                            'delivery' => $this->deliverymethod
+                        ]);
+                        $status = Status::create([
+                            'invoice_id' => $invoice->id,
+                            'status' => 1
+                        ]);
+                        foreach ($guest_cart as $c){
+                            Invoice_items::create([
+                                'property_id' => $c['id'],
+                                'invoice_id' => $invoice->id,
+                                'size' => $c['attributes']['size'],
+                                'color' => $c['attributes']['color'],
+                                'amount' => $c['quantity']
+                            ]);
                         }
 
                     }
+                    Cart::clear();
+                    $this->emit('loadsmallcart');
                     $this->redirect('success');
                 }
-
-            }else{
-                $this->emit('showTakeInfor');
             }
         }
     }
 
-    public function momonoacc(){
-        $this->emit('showTakeInfor');
-    }
 
     public function minus($id){
         if (Auth::guard("customer")->check()){
@@ -373,9 +355,6 @@ class Truecart extends Component
 
     public function render()
     {
-        alert()->warning('WarningAlert','Your cart is empty.');
-
-
         $this->totalquantity = 0;
         if (Auth::guard("customer")->check()){
             $this->flag = 0;
@@ -417,7 +396,9 @@ class Truecart extends Component
                 $this->totalquantity++ ;
             }
 
-            if ($this->name != null && $this->email != null && $this->phone != null && $this->address != null){
+            $guest = Guest::where('session_id',$userId)->count();
+
+            if ($guest>0){
                 $this->momodirec = true;
             }else{
                 $this->momodirec = false;

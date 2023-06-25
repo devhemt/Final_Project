@@ -11,5 +11,5 @@ class Invoice_items extends Model
 
     protected $table = 'invoice_items';
     protected $primaryKey = 'id';
-    protected $fillable = ['prd_id','invoice_id','size','color','amount'];
+    protected $fillable = ['property_id','invoice_id','size','color','amount'];
 }

@@ -162,16 +162,19 @@
                                             <input type="submit" class="btn btn-info" value="MoMo payment">
                                         </div>
                                     </form>
+                                    <button wire:click="register" type="button" class="btn btn-dark btn-block btn-lg"
+                                            data-mdb-ripple-color="dark" id="visitor-btn">Cash payment</button>
                                 @endif
                                 @if(!$momodirec)
-                                    <form method="POST" action="">
+                                    <form>
                                         <div class="d-flex justify-content-between mb-5">
-                                            <input wire:click="momonoacc" type="button" class="btn btn-info" value="MoMo payment">
+                                            <input onclick="openForm()" type="button" class="btn btn-info" value="MoMo payment">
                                         </div>
                                     </form>
+                                    <button onclick="openForm()" type="button" class="btn btn-dark btn-block btn-lg"
+                                            data-mdb-ripple-color="dark" id="visitor-btn">Cash payment</button>
                                 @endif
-                                <button wire:click="register" type="button" class="btn btn-dark btn-block btn-lg"
-                                        data-mdb-ripple-color="dark" id="visitor-btn">Cash payment</button>
+
 
                             </div>
                         </div>

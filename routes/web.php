@@ -55,3 +55,6 @@ Route::get('signout', [\App\Http\Controllers\Client\Auth\CustomerController::cla
 
 Route::get('success',[\App\Http\Controllers\Client\Home\HomeController::class, 'success'])->name('success');
 Route::get('fail',[\App\Http\Controllers\Client\Home\HomeController::class, 'fail'])->name('fail');
+
+
+Route::post('guest/create',[\App\Http\Controllers\Client\Auth\CustomerController::class,'createGuest']);

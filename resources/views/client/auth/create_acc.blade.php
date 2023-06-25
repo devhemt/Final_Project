@@ -65,17 +65,24 @@
                                         @endif
 									</div>
                                     <div class="col-xl-12">
-                                        <select class="form-select form-select-sm mb-3" name="city" id="city" aria-label=".form-select-sm">
+                                        <select required class="form-select form-select-sm mb-3" name="city" id="city" aria-label=".form-select-sm">
                                             <option value="" selected>City</option>
                                         </select>
-
-                                        <select class="form-select form-select-sm mb-3" name="district" id="district" aria-label=".form-select-sm">
+                                        @if ($errors->has('city'))
+                                            <span class="text-danger">{{ $errors->first('city') }}</span>
+                                        @endif
+                                        <select required class="form-select form-select-sm mb-3" name="district" id="district" aria-label=".form-select-sm">
                                             <option value="" selected>District</option>
                                         </select>
-
-                                        <select class="form-select form-select-sm" name="ward" id="ward" aria-label=".form-select-sm">
+                                        @if ($errors->has('district'))
+                                            <span class="text-danger">{{ $errors->first('district') }}</span>
+                                        @endif
+                                        <select required class="form-select form-select-sm" name="ward" id="ward" aria-label=".form-select-sm">
                                             <option value="" selected>Ward</option>
                                         </select>
+                                        @if ($errors->has('ward'))
+                                            <span class="text-danger">{{ $errors->first('ward') }}</span>
+                                        @endif
                                     </div>
                                     <div class="col-xl-12">
                                         <input name="detailed_address" type="text" placeholder="Detailed address">

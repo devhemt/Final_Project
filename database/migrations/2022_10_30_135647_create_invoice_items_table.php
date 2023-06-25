@@ -15,14 +15,14 @@ return new class extends Migration
     {
         Schema::create('invoice_items', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('prd_id')->unsigned();
+            $table->integer('property_id')->unsigned();
             $table->integer('invoice_id')->unsigned();
             $table->string('size',20);
             $table->string('color',20);
             $table->smallInteger('amount');
             $table->timestamps();
-            $table->foreign('prd_id')
-                  ->references('id')->on('product')
+            $table->foreign('property_id')
+                  ->references('id')->on('properties')
                   ->onDelete('cascade');
             $table->foreign('invoice_id')
                   ->references('id')->on('invoice')

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use App\Models\Guest;
 use App\Models\Address;
 
 
@@ -49,10 +50,6 @@ class CustomerController extends Controller
 
     public function customRegistration(Request $request)
     {
-        $jsonString = file_get_contents(public_path('data.json'));
-        $data = json_decode($jsonString, true);
-
-
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:customer,email',
@@ -72,17 +69,15 @@ class CustomerController extends Controller
 
     public function create(array $data)
     {
-        Customer::create([
+        $cus = Customer::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
             'password' => Hash::make($data['password'])
         ]);
 
-        $cus_id  = Customer::latest('created_at')->first()->id;
-
         Address::create([
-            'customer_id' => $cus_id,
+            'customer_id' => $cus->id,
             'province' => $data['city'],
             'district' => $data['district'],
             'wards' => $data['ward'],
@@ -98,5 +93,35 @@ class CustomerController extends Controller
         return Redirect('login');
     }
 
+    public function createGuest(Request $request){
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:customer,email',
+            'phone' => 'required|numeric|unique:customer,phone|digits_between:1,20',
+            "city" => "required|numeric",
+            "district" => "required|numeric",
+            "ward" => "required|numeric",
+            "detailed_address" => 'required',
+        ]);
+        $data = $request->all();
+
+        $session_id  = Session::getId();
+        $guest = Guest::create([
+            'session_id'=> $session_id,
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'phone' => $data['phone'],
+        ]);
+
+        Address::create([
+            'guest_id' => $guest->id,
+            'province' => $data['city'],
+            'district' => $data['district'],
+            'wards' => $data['ward'],
+            'detailed_address' => $data['detailed_address']
+        ]);
+
+        return redirect('cart');
+    }
 
 }

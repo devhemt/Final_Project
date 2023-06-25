@@ -11,5 +11,5 @@ class Guest extends Model
 
     protected $table = 'guest';
     protected $primaryKey = 'id';
-    protected $fillable = ['name','email','phone'];
+    protected $fillable = ['session_id','name','email','phone'];
 }
