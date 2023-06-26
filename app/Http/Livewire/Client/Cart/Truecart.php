@@ -81,36 +81,18 @@ class Truecart extends Component
                                     if ($b->amount<=$amount){
                                         $true_pay+=$b->amount*$unit_price;
                                         $amount -= $b->amount;
-
-                                        $affected = Properties::where('prd_id',$prd_id)
-                                            ->where('size',$c->size)
-                                            ->where('color',$c->color)
-                                            ->where('batch',$b->batch)
-                                            ->update(['amount' => 0]);
                                     }else{
                                         $true_pay+=$amount*$unit_price;
-
-                                        $amount_before = Properties::where('prd_id',$prd_id)
-                                            ->where('size',$c->size)
-                                            ->where('color',$c->color)
-                                            ->where('batch',$b->batch)
-                                            ->first()->amount;
-
-                                        $affected = Properties::where('prd_id',$prd_id)
-                                            ->where('size',$c->size)
-                                            ->where('color',$c->color)
-                                            ->where('batch',$b->batch)
-                                            ->update(['amount' => $amount_before-$amount]);
-
                                         $amount=0;
                                     }
                                 }
                             }
                         }
                     }
+                    $address_id = Address::where('customer_id',$userId)->first()->id;
                     $invoice = Invoice::create([
                         'customer_id' => $userId,
-                        'address_id' => 1,
+                        'address_id' => $address_id,
                         'pay' => $this->totalpl,
                         'true_pay' => $true_pay,
                         'payment' => 'cash',
@@ -122,20 +104,59 @@ class Truecart extends Component
                         'status' => 1
                     ]);
                     foreach ($customer_cart as $c){
-                        Invoice_items::create([
-                           'property_id' => $c->property_id,
-                            'invoice_id' => $invoice->id,
-                            'size' => $c->size,
-                            'color' => $c->color,
-                            'amount' => $c->amount
-                        ]);
-                    }
+                        $prd_id = Properties::where('id',$c->property_id)->first()->prd_id;
+                        $batch = Properties::where('prd_id',$prd_id)
+                            ->where('size',$c->size)
+                            ->where('color',$c->color)
+                            ->get();
+                        $amount = $c->amount;
+                        foreach ($batch as $b){
+                            if ($amount!=0){
+                                if ($b->amount>0){
+                                    if ($b->amount<=$amount){
+                                        $amount -= $b->amount;
+                                        Invoice_items::create([
+                                            'property_id' => $b->id,
+                                            'invoice_id' => $invoice->id,
+                                            'size' => $c->size,
+                                            'color' => $c->color,
+                                            'amount' => $b->amount
+                                        ]);
+                                        $affected = Properties::where('prd_id',$prd_id)
+                                            ->where('size',$c->size)
+                                            ->where('color',$c->color)
+                                            ->where('batch',$b->batch)
+                                            ->update(['amount' => 0]);
+                                    }else{
+                                        Invoice_items::create([
+                                            'property_id' => $b->id,
+                                            'invoice_id' => $invoice->id,
+                                            'size' => $c->size,
+                                            'color' => $c->color,
+                                            'amount' => $amount
+                                        ]);
+                                        $amount_before = Properties::where('prd_id',$prd_id)
+                                            ->where('size',$c->size)
+                                            ->where('color',$c->color)
+                                            ->where('batch',$b->batch)
+                                            ->first()->amount;
 
+                                        $affected = Properties::where('prd_id',$prd_id)
+                                            ->where('size',$c->size)
+                                            ->where('color',$c->color)
+                                            ->where('batch',$b->batch)
+                                            ->update(['amount' => $amount_before-$amount]);
+                                        $amount=0;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    $deleted = Cart_memory::where('customer_id',$userId)
+                        ->where('check_buy',1)->delete();
+                    $this->emit('loadsmallcart');
+                    $this->redirect('success');
                 }
-                $deleted = Cart_memory::where('customer_id',$userId)
-                    ->where('check_buy',1)->delete();
-                $this->emit('loadsmallcart');
-                $this->redirect('success');
             }
         }else{
             $userId = Session::getId();
@@ -174,27 +195,8 @@ class Truecart extends Component
                                         if ($b->amount<=$amount){
                                             $true_pay+=$b->amount*$unit_price;
                                             $amount -= $b->amount;
-
-                                            $affected = Properties::where('prd_id',$prd_id)
-                                                ->where('size',$c['attributes']['size'])
-                                                ->where('color',$c['attributes']['color'])
-                                                ->where('batch',$b->batch)
-                                                ->update(['amount' => 0]);
                                         }else{
                                             $true_pay+=$amount*$unit_price;
-
-                                            $amount_before = Properties::where('prd_id',$prd_id)
-                                                ->where('size',$c['attributes']['size'])
-                                                ->where('color',$c['attributes']['color'])
-                                                ->where('batch',$b->batch)
-                                                ->first()->amount;
-
-                                            $affected = Properties::where('prd_id',$prd_id)
-                                                ->where('size',$c['attributes']['size'])
-                                                ->where('color',$c['attributes']['color'])
-                                                ->where('batch',$b->batch)
-                                                ->update(['amount' => $amount_before-$amount]);
-
                                             $amount=0;
                                         }
                                     }
@@ -224,11 +226,68 @@ class Truecart extends Component
                                 'amount' => $c['quantity']
                             ]);
                         }
+                        foreach ($guest_cart as $c){
+                            $prd_id = Properties::where('id',$c['id'])->first()->prd_id;
+                            $batch = Properties::where('prd_id',$prd_id)
+                                ->where('size',$c['attributes']['size'])
+                                ->where('color',$c['attributes']['color'])
+                                ->get();
+                            $amount = $c['quantity'];
+                            foreach ($batch as $b){
+                                if ($amount!=0){
+                                    $unit_price = Purchase_items::where('prd_id',$prd_id)
+                                        ->where('batch',$b->batch)->first()->unit_price;
+                                    if ($b->amount>0){
+                                        if ($b->amount<=$amount){
+                                            $true_pay+=$b->amount*$unit_price;
+                                            $amount -= $b->amount;
 
+                                            Invoice_items::create([
+                                                'property_id' => $b->id,
+                                                'invoice_id' => $invoice->id,
+                                                'size' => $c['attributes']['size'],
+                                                'color' => $c['attributes']['color'],
+                                                'amount' => $b->amount
+                                            ]);
+
+                                            $affected = Properties::where('prd_id',$prd_id)
+                                                ->where('size',$c['attributes']['size'])
+                                                ->where('color',$c['attributes']['color'])
+                                                ->where('batch',$b->batch)
+                                                ->update(['amount' => 0]);
+                                        }else{
+                                            $true_pay+=$amount*$unit_price;
+
+                                            Invoice_items::create([
+                                                'property_id' => $b->id,
+                                                'invoice_id' => $invoice->id,
+                                                'size' => $c['attributes']['size'],
+                                                'color' => $c['attributes']['color'],
+                                                'amount' => $amount
+                                            ]);
+
+                                            $amount_before = Properties::where('prd_id',$prd_id)
+                                                ->where('size',$c['attributes']['size'])
+                                                ->where('color',$c['attributes']['color'])
+                                                ->where('batch',$b->batch)
+                                                ->first()->amount;
+
+                                            $affected = Properties::where('prd_id',$prd_id)
+                                                ->where('size',$c['attributes']['size'])
+                                                ->where('color',$c['attributes']['color'])
+                                                ->where('batch',$b->batch)
+                                                ->update(['amount' => $amount_before-$amount]);
+
+                                            $amount=0;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        Cart::clear();
+                        $this->emit('loadsmallcart');
+                        $this->redirect('success');
                     }
-                    Cart::clear();
-                    $this->emit('loadsmallcart');
-                    $this->redirect('success');
                 }
             }
         }
