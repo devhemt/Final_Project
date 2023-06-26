@@ -101,48 +101,23 @@
             </ul>
         </li>
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-journal-text"></i><span>Order</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-            <li>
-                <a href="{{url('admin/allorder')}}">
-                    <i class="bi bi-circle"></i><span>All order</span>
-                </a>
-            </li>
-            <li>
-            <a href="{{url('admin/canceledorder')}}">
-              <i class="bi bi-circle"></i><span>Canceled order</span>
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-journal-text"></i><span>Order</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
-          </li>
-          <li>
-            <a href="{{url('admin/noprocessorder')}}">
-              <i class="bi bi-circle"></i><span>Noprocess order</span>
-            </a>
-          </li>
-            <li>
-                <a href="{{url('admin/confirmedorder')}}">
-                    <i class="bi bi-circle"></i><span>Confirmed order</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{url('admin/packingorder')}}">
-                    <i class="bi bi-circle"></i><span>Packing order</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{url('admin/deliveryorder')}}">
-                    <i class="bi bi-circle"></i><span>Delivery order</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{url('admin/successfulorder')}}">
-                    <i class="bi bi-circle"></i><span>Sucessful order</span>
-                </a>
-            </li>
-        </ul>
-      </li><!-- End Forms Nav -->
+            <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="{{url('admin/customer_order')}}">
+                        <i class="bi bi-circle"></i><span>Customer order</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{url('admin/guest_order')}}">
+                        <i class="bi bi-circle"></i><span>Guest order</span>
+                    </a>
+                </li>
+            </ul>
+        </li><!-- End Forms Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">

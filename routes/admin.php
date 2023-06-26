@@ -46,27 +46,12 @@ Route::get('/profile',[\App\Http\Controllers\Admin\Profile\AdminAccountControlle
 Route::post('/profile',[\App\Http\Controllers\Admin\Profile\AdminAccountController::class,'store']);
 Route::get('/profile/create',[\App\Http\Controllers\Admin\Profile\AdminAccountController::class,'create']);
 Route::get('/profile/showall',[\App\Http\Controllers\Admin\Profile\AdminAccountController::class,'showall']);
+
+Route::get('/customer_order', [\App\Http\Controllers\Admin\Order\OrderController::class, 'customer']);
+Route::get('/guest_order', [\App\Http\Controllers\Admin\Order\OrderController::class, 'guest']);
+Route::get('/order/{id}', [\App\Http\Controllers\Admin\Order\OrderController::class, 'show']);
 //old route
-
-Route::get('/addbatch/{id}', [\App\Http\Controllers\Admin\Product\ProductController::class,'batch']);
-
-Route::get('/allorder', [\App\Http\Controllers\Client\Invoice\InvoiceController::class, 'index6']);
-Route::get('/canceledorder', [\App\Http\Controllers\Client\Invoice\InvoiceController::class, 'index0']);
-Route::get('/noprocessorder', [\App\Http\Controllers\Client\Invoice\InvoiceController::class, 'index1']);
-Route::get('/confirmedorder', [\App\Http\Controllers\Client\Invoice\InvoiceController::class, 'index2']);
-Route::get('/packingorder', [\App\Http\Controllers\Client\Invoice\InvoiceController::class, 'index3']);
-Route::get('/deliveryorder', [\App\Http\Controllers\Client\Invoice\InvoiceController::class, 'index4']);
-Route::get('/successfulorder', [\App\Http\Controllers\Client\Invoice\InvoiceController::class, 'index5']);
-Route::get('/order/{id}/{type}', [\App\Http\Controllers\Client\Invoice\InvoiceController::class, 'show']);
-
-
 Route::post('/invoice',[\App\Http\Controllers\Client\Invoice\InvoiceController::class, 'store']);
-
-
-
-Route::post('/product',[\App\Http\Controllers\Admin\Product\ProductController::class, 'store']);
-Route::get('product/create',[\App\Http\Controllers\Admin\Product\ProductController::class,'create']);
-Route::post('/product/addbatch',[\App\Http\Controllers\Admin\Product\ProductController::class,'batchinside']);
 
 
 

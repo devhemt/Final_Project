@@ -18,10 +18,10 @@
                 <div class="col-lg-12">
 
                     <div class="card">
-                        @livewire('prdinorder',['idinvoice'=>$id,'type'=>$type])
+                        @livewire('admin.order.prdinorder',['idinvoice'=>$id])
                     </div>
 
-                    @livewire('maskloadadmin')
+                    @livewire('admin.order.maskloadadmin')
                 </div>
             </div>
         </section>

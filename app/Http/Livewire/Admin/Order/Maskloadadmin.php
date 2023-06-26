@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Admin\Order;
 
 use Livewire\Component;
 
@@ -16,6 +16,6 @@ class Maskloadadmin extends Component
 
     public function render()
     {
-        return view('livewire.admin.maskloadadmin');
+        return view('livewire.admin.order.maskloadadmin');
     }
 }

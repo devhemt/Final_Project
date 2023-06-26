@@ -1,12 +1,17 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Admin\Order;
 
+use App\Mail\MailNotify;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Livewire\Component;
-use App\Mail\MailNotify;
 use Illuminate\Support\Facades\Mail;
+use Livewire\Component;
+use App\Models\Invoice;
+use App\Models\Guest;
+use App\Models\Customer;
+use App\Models\Invoice_items;
+use App\Models\Address;
 
 class Prdinorder extends Component
 {
@@ -15,32 +20,7 @@ class Prdinorder extends Component
     public $invoice,$cusdetail,$prd;
     public $top = null,$top1 = null;
     public $iddelete;
-    public $email = 'thucc6696@gmail.com',$data;
-
-    public function redirectOrder()
-    {
-        if(Auth::guard('user')->user()->role == 4){
-            return redirect('admin/canceledorder');
-        }
-        if(Auth::guard('user')->user()->role == 5){
-            return redirect('admin/noprocessorder');
-        }
-        if(Auth::guard('user')->user()->role == 6){
-            return redirect('admin/confirmedorder');
-        }
-        if(Auth::guard('user')->user()->role == 7){
-            return redirect('admin/packingorder');
-        }
-        if(Auth::guard('user')->user()->role == 8){
-            return redirect('admin/successfulorder');
-        }
-        if(Auth::guard('user')->user()->role == 9){
-            return redirect('admin/deliveryorder');
-        }
-        if(Auth::guard('user')->user()->role == 1||Auth::guard('user')->user()->role == 2){
-            return redirect('admin');
-        }
-    }
+    public $email = 'thucc6696@gmail.com',$data,$address;
 
     public function forward(){
         if ($this->type == 'Have account'){
@@ -108,7 +88,7 @@ class Prdinorder extends Component
 
     public function mail(){
         Mail::to($this->email)->send(new MailNotify($this->data));
-        $this->redirectOrder();
+//        redirect
     }
 
     public function yes1(){
@@ -152,18 +132,10 @@ class Prdinorder extends Component
     }
 
     public function yes(){
-        if ($this->type == 'Have account'){
-            $deleted = DB::table('detail_invoice')
-                ->where('invoice_id','=', $this->idinvoice)
-                ->where('itemsid','=', $this->iddelete)
-                ->delete();
-        }else{
-            $deleted = DB::table('detail_invoice_noacc')
-                ->where('invoice_id','=', $this->idinvoice)
-                ->where('itemsid','=', $this->iddelete)
-                ->delete();
-        }
-
+        $deleted = DB::table('detail_invoice')
+            ->where('invoice_id','=', $this->idinvoice)
+            ->where('itemsid','=', $this->iddelete)
+            ->delete();
         $this->top = null;
     }
     public function no(){
@@ -174,38 +146,53 @@ class Prdinorder extends Component
         $this->top = 0;
     }
 
-    public function render()
-    {
-        if ($this->type == 'Have account'){
-            $this->invoice = DB::table('invoice')
-                ->where('invoice_id', $this->idinvoice)
-                ->get();
-
-            $this->cusdetail = DB::table('customer')
-                ->where('cus_id', $this->invoice[0]->cusid)
-                ->get();
-
-            $this->prd = DB::table('detail_invoice')
-                ->join('items', 'items.prd_id','=', 'detail_invoice.itemsid')
-                ->where('invoice_id', $this->invoice[0]->invoice_id)
-                ->get();
-        }else{
-            $this->invoice = DB::table('invoice_noacc')
-                ->where('invoice_id', $this->idinvoice)
-                ->get();
-
-            $this->cusdetail = DB::table('customer_noacc')
-                ->where('cus_id', $this->invoice[0]->cusid)
-                ->get();
-
-            $this->prd = DB::table('detail_invoice_noacc')
-                ->join('items', 'items.prd_id','=', 'detail_invoice_noacc.itemsid')
-                ->where('invoice_id', $this->invoice[0]->invoice_id)
-                ->get();
+    public function getAddress($city_id,$district_id,$warn_id){
+        $jsonString = file_get_contents(public_path('data.json'));
+        $data = json_decode($jsonString);
+        $city = '';
+        $district = '';
+        $warn = '';
+        foreach ($data as $d){
+            if($d->Id == $city_id){
+                $city = $d->Name;
+                foreach ($d->Districts as $di){
+                    if ($di->Id == $district_id){
+                        $district = $di->Name;
+                        foreach ($di->Wards as $w){
+                            if ($w->Id == $warn_id){
+                                $warn = $w->Name;
+                            }
+                        }
+                    }
+                }
+            }
         }
 
+        return [$city,$district,$warn];
+    }
 
+    public function render()
+    {
+        $this->invoice = Invoice::where('id', $this->idinvoice)
+            ->first();
+        $address = Address::where('id', $this->invoice->address_id)->first();
+        $this->address = $this->getAddress($address->province,$address->district,$address->wards);
 
-        return view('livewire.admin.prdinorder');
+        if($this->invoice->guest_id == null){
+            $this->cusdetail = Customer::where('id', $this->invoice->customer_id)
+                ->first();
+        }else{
+            $this->cusdetail = Guest::where('id', $this->invoice->guest_id)
+                ->first();
+        }
+
+        $this->prd = DB::table('invoice_items')
+            ->join('properties', 'properties.id','=', 'invoice_items.property_id')
+            ->join('product', 'product.id','=', 'properties.prd_id')
+            ->where('invoice_id', $this->idinvoice)
+            ->select('product.*','invoice_items.*','properties.batch')
+            ->get();
+
+        return view('livewire.admin.order.prdinorder');
     }
 }

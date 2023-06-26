@@ -22,17 +22,17 @@
     <div class="row">
         <div class="col-5">
             <h5 class="card-title">Customer informations</h5>
-            <h6>Customer name: {{$cusdetail[0]->name}}</h6>
-            <h6>Customer phone: {{$cusdetail[0]->phone}}</h6>
-            <h6>Customer email: {{$cusdetail[0]->email}}</h6>
-            <h6>Customer address: {{$cusdetail[0]->address}}</h6>
+            <h6>Customer name: {{$cusdetail->name}}</h6>
+            <h6>Customer phone: {{$cusdetail->phone}}</h6>
+            <h6>Customer email: {{$cusdetail->email}}</h6>
+            <h6>Customer address: {{$address[2]}}, {{$address[1]}}, {{$address[0]}}</h6>
         </div>
         <div class="col-5">
             <h5 class="card-title">Order informations</h5>
-            <h6>Pay: ${{$invoice[0]->pay}}</h6>
-            <h6>Payment: {{$invoice[0]->payment}}</h6>
-            <h6>Delivery: {{$invoice[0]->delivery}}</h6>
-            <h6>Created_at: {{$invoice[0]->created_at}}</h6>
+            <h6>Pay: ${{$invoice->pay}}</h6>
+            <h6>Payment: {{$invoice->payment}}</h6>
+            <h6>Delivery: {{$invoice->delivery}}</h6>
+            <h6>Created_at: {{$invoice->created_at}}</h6>
         </div>
         <div class="col-2" style="text-align: center;">
             <h5 class="card-title">Order actions</h5>
@@ -45,25 +45,27 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th scope="col">Id</th>
             <th scope="col">Name</th>
             <th scope="col">Demo image</th>
-            <th scope="col">Created at</th>
-            <th scope="col">Update at</th>
+            <th scope="col">Size</th>
+            <th scope="col">Color</th>
+            <th scope="col">Batch</th>
+            <th scope="col">Amount</th>
             <th scope="col">Actions</th>
         </tr>
         </thead>
         <tbody>
         @foreach($prd as $p)
             <tr>
-                <th scope="row">{{$p->prd_id}}</th>
-                <td>{{$p->name}}</td>
-                <td><img src="{{asset('images/'.$p->demoimage)}}" alt=""></td>
-                <td>{{$p->created_at}}</td>
-                <td>{{$p->updated_at}}</td>
+                <th scope="row">{{$p->name}}</th>
+                <td><img src="{{asset('images/'.$p->demo_image)}}" alt=""></td>
+                <td>{{$p->size}}</td>
+                <td style="background: {{$p->color}};"></td>
+                <td>{{$p->batch}}</td>
+                <td>{{$p->amount}}</td>
                 <td>
-                    <a href="#" wire:click="block('{{$p->prd_id}}')" id="deleteprd"><i class="fas fa-trash "></i></a>
-                    <a href="{{url('admin/product/'.$p->prd_id)}}"><i class="fas fa-eye "></i></a>
+                    <a href="#" wire:click="block('{{$p->id}}')" id="deleteprd"><i class="fas fa-trash "></i></a>
+                    <a href="{{url('admin/product/'.$p->id)}}"><i class="fas fa-eye "></i></a>
                 </td>
             </tr>
         @endforeach

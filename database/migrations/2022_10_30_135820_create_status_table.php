@@ -23,7 +23,7 @@ return new class extends Migration
                   ->onDelete('cascade');
         });
     }
-//        0=bihuy 1=chuaxuly 2=daxacnhan 3=dangdonggoi 4=danggiaohang 5=giaohangthanhcong
+//        0=cancelled 1=pending 2=confirmed 3=packing 4=delivery 5=delivered 6=delivery failed 7=return
     /**
      * Reverse the migrations.
      *
