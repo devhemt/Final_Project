@@ -1,4 +1,4 @@
-<div class="col-xxl-4 col-xl-12">
+<div class="col-xxl-4 col-xl-6">
     <div class="card info-card revenue-card">
 
         <div class="filter">
@@ -23,7 +23,7 @@
                 </div>
                 <div class="ps-3">
                     <h6>${{$amount}}</h6>
-                    <span class="{{$class}} small pt-1 fw-bold">{{$percent}}%</span> <span class="text-muted small pt-2 ps-1">{{$status}}</span>
+                    <span class="{{$class}} small pt-1 fw-bold">{{$percent}}%</span> <span class="text-muted small pt-2 ps-1">|| {{$status}}</span>
 
                 </div>
             </div>

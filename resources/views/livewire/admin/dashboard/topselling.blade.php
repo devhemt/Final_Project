@@ -24,31 +24,19 @@
                     <th scope="col">Product</th>
                     <th scope="col">Price</th>
                     <th scope="col">Sold</th>
-                    <th scope="col">Revenue</th>
+                    <th scope="col">Brand</th>
                 </tr>
                 </thead>
                 <tbody>
-                @if($size >= 5)
-                    @for($i = 0; $i < 5; $i++)
-                        <tr>
-                            <th scope="row"><a href="{{url('admin/product/'.$allprd[$i])}}"><img src="{{asset('images/'.$img[$allprd[$i]])}}" alt=""></a></th>
-                            <td><a href="{{url('admin/product/'.$allprd[$i])}}" class="text-primary fw-bold">{{$name[$allprd[$i]]}}</a></td>
-                            <td>${{$price[$allprd[$i]]}}</td>
-                            <td class="fw-bold">{{$sold[$allprd[$i]]}}</td>
-                            <td>${{$reveneu[$allprd[$i]]}}</td>
-                        </tr>
-                    @endfor
-                @else
-                    @foreach($allprd as $allprd)
-                        <tr>
-                            <th scope="row"><a href="{{url('admin/product/'.$allprd)}}"><img src="{{asset('images/'.$img[$allprd])}}" alt=""></a></th>
-                            <td><a href="{{url('admin/product/'.$allprd)}}" class="text-primary fw-bold">{{$name[$allprd]}}</a></td>
-                            <td>${{$price[$allprd]}}</td>
-                            <td class="fw-bold">{{$sold[$allprd]}}</td>
-                            <td>${{$reveneu[$allprd]}}</td>
-                        </tr>
-                    @endforeach
-                @endif
+                @foreach($topProducts as $product)
+                    <tr>
+                        <th scope="row"><a href="{{url('admin/product/'.$product->id)}}"><img src="{{asset('images/'.$product->demo_image)}}" alt=""></a></th>
+                        <td><a href="{{url('admin/product/'.$product->id)}}" class="text-primary fw-bold">{{$product->name}}</a></td>
+                        <td>${{$product->price}}</td>
+                        <td class="fw-bold">{{$product->total_sales}}</td>
+                        <td>{{$product->brand}}</td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
 

@@ -15,7 +15,7 @@
         </div>
 
         <div class="card-body">
-            <h5 class="card-title">Revenue <span>| {{$time}}</span></h5>
+            <h5 class="card-title">Import Money<span>| {{$time}}</span></h5>
 
             <div class="d-flex align-items-center">
                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -23,7 +23,7 @@
                 </div>
                 <div class="ps-3">
                     <h6>${{$amount}}</h6>
-                    <span class="{{$class}} small pt-1 fw-bold">{{$percent}}%</span> <span class="text-muted small pt-2 ps-1">{{$status}}</span>
+                    <span class="{{$class}} small pt-1 fw-bold">{{$percent}}%</span> <span class="text-muted small pt-2 ps-1">|| {{$status}}</span>
 
                 </div>
             </div>

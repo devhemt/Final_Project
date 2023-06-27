@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Admin\Dashboard;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;

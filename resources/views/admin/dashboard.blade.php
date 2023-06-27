@@ -10,56 +10,54 @@
           <li class="breadcrumb-item active">Dashboard</li>
         </ol>
       </nav>
-    </div><!-- End Page Title -->
+    </div>
 
     <section class="section dashboard">
       <div class="row">
-
-        <!-- Left side columns -->
-        <div class="col-lg-12">
+        <div class="col-lg-8">
           <div class="row">
 
             <!-- Sales Card -->
-{{--              @livewire('salescard')--}}
+              @livewire('admin.dashboard.salescard')
             <!-- End Sales Card -->
 {{--              import money--}}
-{{--              @livewire('importmoney')--}}
+              @livewire('admin.dashboard.importmoney')
             <!-- Revenue Card -->
-{{--              @livewire('revenuecard')--}}
+              @livewire('admin.dashboard.revenuecard')
             <!-- End Revenue Card -->
 
             <!-- Customers Card -->
-{{--              @livewire('customerscard')--}}
+              @livewire('admin.dashboard.customerscard')
             <!-- End Customers Card -->
 
             <!-- Reports -->
-{{--              @livewire('reports')--}}
+{{--              @livewire('admin.dashboard.reports')--}}
             <!-- End Reports -->
 
             <!-- Top Selling -->
-{{--              @livewire('topselling')--}}
+              @livewire('admin.dashboard.topselling')
             <!-- End Top Selling -->
 
           </div>
         </div><!-- End Left side columns -->
 
-{{--        <!-- Right side columns -->--}}
-{{--        <div class="col-lg-4">--}}
+        <!-- Right side columns -->
+        <div class="col-lg-4">
 
-{{--          <!-- Recent Activity -->--}}
-{{--            @livewire('recentact')--}}
-{{--          <!-- End Recent Activity -->--}}
+          <!-- Recent Activity -->
+            @livewire('admin.dashboard.recentact')
+          <!-- End Recent Activity -->
 
-{{--          <!-- Budget Report -->--}}
-{{--            @livewire('budgetreport')--}}
-{{--          <!-- End Budget Report -->--}}
+          <!-- Budget Report -->
+{{--            @livewire('admin.dashboard.budgetreport')--}}
+          <!-- End Budget Report -->
 
 
 
-{{--        </div><!-- End Right side columns -->--}}
+        </div><!-- End Right side columns -->
 
       </div>
     </section>
 
-  </main><!-- End #main -->
+  </main>
 @endsection
