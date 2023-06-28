@@ -31,7 +31,7 @@
   }
 
   /**
-   * Easy on scroll event listener 
+   * Easy on scroll event listener
    */
   const onscroll = (el, listener) => {
     el.addEventListener('scroll', listener)
@@ -306,15 +306,15 @@
   /**
    * Autoresize echart charts
    */
-  const mainContainer = select('#main');
-  if (mainContainer) {
-    setTimeout(() => {
-      new ResizeObserver(function() {
-        select('.echart', true).forEach(getEchart => {
-          echarts.getInstanceByDom(getEchart).resize();
-        })
-      }).observe(mainContainer);
-    }, 200);
-  }
+  // const mainContainer = select('#main');
+  // if (mainContainer) {
+  //   setTimeout(() => {
+  //     new ResizeObserver(function() {
+  //       select('.echart', true).forEach(getEchart => {
+  //         echarts.getInstanceByDom(getEchart).resize();
+  //       })
+  //     }).observe(mainContainer);
+  //   }, 200);
+  // }
 
 })();

@@ -31,7 +31,7 @@
             <!-- End Customers Card -->
 
             <!-- Reports -->
-{{--              @livewire('admin.dashboard.reports')--}}
+              @livewire('admin.dashboard.reports')
             <!-- End Reports -->
 
             <!-- Top Selling -->

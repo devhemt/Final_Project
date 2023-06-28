@@ -18,196 +18,123 @@
             <h5 class="card-title">Reports <span>/{{$time}}</span></h5>
             <!-- Line Chart -->
             <div style="display: {{$day}};">
-                <div id="reportsChart1" wire:ignore></div>
+                <div id="lineChart1" wire:ignore></div>
             </div>
             <div style="display: {{$month}};">
-                <div id="reportsChart2" wire:ignore></div>
+                <div id="lineChart2" wire:ignore></div>
             </div>
             <div style="display: {{$year}};">
-                <div id="reportsChart3" wire:ignore></div>
+                <div id="lineChart3" wire:ignore></div>
             </div>
 
 
             <script>
                 document.addEventListener('livewire:load', function () {
-
-                    new ApexCharts(document.querySelector("#reportsChart1"), {
+                    new ApexCharts(document.querySelector("#lineChart1"), {
                         series: [{
-                            name: 'Sales',
+                            name: "Products sold",
                             data: [
-                                @foreach ($sales1 as $t)
-                                    {{ $t }},
-                                @endforeach
-                            ],
-                        }, {
-                            name: 'Revenue',
-                            data: [
-                                @foreach ($revenue1 as $t)
-                                    {{ $t }},
-                                @endforeach
-                            ]
-                        }, {
-                            name: 'Customers',
-                            data: [
-                                @foreach ($customers1 as $t)
-                                    {{ $t }},
+                                @foreach ($data1 as $d)
+                                    {{ $d }},
                                 @endforeach
                             ]
                         }],
                         chart: {
                             height: 350,
-                            type: 'area',
-                            toolbar: {
-                                show: false
-                            },
-                        },
-                        markers: {
-                            size: 4
-                        },
-                        colors: ['#4154f1', '#2eca6a', '#ff771d'],
-                        fill: {
-                            type: "gradient",
-                            gradient: {
-                                shadeIntensity: 1,
-                                opacityFrom: 0.3,
-                                opacityTo: 0.4,
-                                stops: [0, 90, 100]
+                            type: 'line',
+                            zoom: {
+                                enabled: false
                             }
                         },
                         dataLabels: {
                             enabled: false
                         },
                         stroke: {
-                            curve: 'smooth',
-                            width: 2
+                            curve: 'straight'
+                        },
+                        grid: {
+                            row: {
+                                colors: ['#f3f3f3', 'transparent'],
+                                opacity: 0.5
+                            },
                         },
                         xaxis: {
-                            categories: [
-                                @foreach ($charttime1 as $t)
-                                    "{{ $t }}",
-                                @endforeach
-                            ]
-                        },
-
+                            categories: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23'],
+                        }
                     }).render();
-                    new ApexCharts(document.querySelector("#reportsChart2"), {
+                    new ApexCharts(document.querySelector("#lineChart2"), {
                         series: [{
-                            name: 'Sales',
+                            name: "Products sold",
                             data: [
-                                @foreach ($sales2 as $t)
-                                    {{ $t }},
-                                @endforeach
-                            ],
-                        }, {
-                            name: 'Revenue',
-                            data: [
-                                @foreach ($revenue2 as $t)
-                                    {{ $t }},
-                                @endforeach
-                            ]
-                        }, {
-                            name: 'Customers',
-                            data: [
-                                @foreach ($customers2 as $t)
-                                    {{ $t }},
+                                @foreach ($data2 as $d)
+                                    {{ $d }},
                                 @endforeach
                             ]
                         }],
                         chart: {
                             height: 350,
-                            type: 'area',
-                            toolbar: {
-                                show: false
-                            },
-                        },
-                        markers: {
-                            size: 4
-                        },
-                        colors: ['#4154f1', '#2eca6a', '#ff771d'],
-                        fill: {
-                            type: "gradient",
-                            gradient: {
-                                shadeIntensity: 1,
-                                opacityFrom: 0.3,
-                                opacityTo: 0.4,
-                                stops: [0, 90, 100]
+                            type: 'line',
+                            zoom: {
+                                enabled: false
                             }
                         },
                         dataLabels: {
                             enabled: false
                         },
                         stroke: {
-                            curve: 'smooth',
-                            width: 2
+                            curve: 'straight'
+                        },
+                        grid: {
+                            row: {
+                                colors: ['#f3f3f3', 'transparent'],
+                                opacity: 0.5
+                            },
                         },
                         xaxis: {
                             categories: [
-                                @foreach ($charttime2 as $t)
-                                    "{{ $t }}",
-                                @endforeach
-                            ]
-                        },
-
-                    }).render();
-                    new ApexCharts(document.querySelector("#reportsChart3"), {
-                        series: [{
-                            name: 'Sales',
-                            data: [
-                                @foreach ($sales3 as $t)
-                                    {{ $t }},
-                                @endforeach
+                                @for ($i = 1; $i < 32; $i++)
+                                    {{ $i }},
+                                @endfor
                             ],
-                        }, {
-                            name: 'Revenue',
+                        }
+                    }).render();
+                    new ApexCharts(document.querySelector("#lineChart3"), {
+                        series: [{
+                            name: "Products sold",
                             data: [
-                                @foreach ($revenue3 as $t)
-                                    {{ $t }},
-                                @endforeach
-                            ]
-                        }, {
-                            name: 'Customers',
-                            data: [
-                                @foreach ($customers3 as $t)
-                                    {{ $t }},
+                                @foreach ($data3 as $d)
+                                    {{ $d }},
                                 @endforeach
                             ]
                         }],
                         chart: {
                             height: 350,
-                            type: 'area',
-                            toolbar: {
-                                show: false
-                            },
-                        },
-                        markers: {
-                            size: 4
-                        },
-                        colors: ['#4154f1', '#2eca6a', '#ff771d'],
-                        fill: {
-                            type: "gradient",
-                            gradient: {
-                                shadeIntensity: 1,
-                                opacityFrom: 0.3,
-                                opacityTo: 0.4,
-                                stops: [0, 90, 100]
+                            type: 'line',
+                            zoom: {
+                                enabled: false
                             }
                         },
                         dataLabels: {
                             enabled: false
                         },
                         stroke: {
-                            curve: 'smooth',
-                            width: 2
+                            curve: 'straight'
+                        },
+                        grid: {
+                            row: {
+                                colors: ['#f3f3f3', 'transparent'],
+                                opacity: 0.5
+                            },
                         },
                         xaxis: {
                             categories: [
-                                @foreach ($charttime3 as $t)
-                                    "{{ $t }}",
-                                @endforeach
-                            ]
-                        },
-
+                                @for ($i = 1; $i < 13; $i++)
+                                    {{ $i }},
+                                @endfor
+                            ],
+                        }
                     }).render();
+
                 });
             </script>
             <!-- End Line Chart -->
