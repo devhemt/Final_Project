@@ -7,6 +7,57 @@
   scroll-behavior: smooth;
 }
 
+.vuong{
+    border: 2px solid black;
+    height: 25px;
+    text-align: center;
+    margin-left: 10px;
+    color: black;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+}
+.vuong.active{
+    border: 2px solid black;
+    height: 25px;
+    text-align: center;
+    margin-left: 10px;
+    color: white;
+    background-color: black;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+}
+.circle.active {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    margin-left: 10px;
+}
+.circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    margin-left: 10px;
+}
+
 .btn-popup {
     margin: 0;
     position: absolute;

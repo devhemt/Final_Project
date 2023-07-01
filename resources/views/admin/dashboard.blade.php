@@ -37,6 +37,7 @@
             <!-- Top Selling -->
               @livewire('admin.dashboard.topselling')
             <!-- End Top Selling -->
+              @livewire('admin.dashboard.lowproduct')
 
           </div>
         </div><!-- End Left side columns -->
@@ -58,6 +59,5 @@
 
       </div>
     </section>
-
   </main>
 @endsection

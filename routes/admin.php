@@ -50,6 +50,12 @@ Route::get('/profile/showall',[\App\Http\Controllers\Admin\Profile\AdminAccountC
 Route::get('/customer_order', [\App\Http\Controllers\Admin\Order\OrderController::class, 'customer']);
 Route::get('/guest_order', [\App\Http\Controllers\Admin\Order\OrderController::class, 'guest']);
 Route::get('/order/{id}', [\App\Http\Controllers\Admin\Order\OrderController::class, 'show']);
+
+Route::get('/lowproduct/{amount}',[\App\Http\Controllers\Admin\Dashboard\DashboardController::class,'lowProduct']);
+Route::get('/newcustomer/{time}',[\App\Http\Controllers\Admin\Dashboard\DashboardController::class,'customer']);
+Route::get('/revenue/{time}',[\App\Http\Controllers\Admin\Dashboard\DashboardController::class,'revenue']);
+Route::get('/topcity/{time}',[\App\Http\Controllers\Admin\Dashboard\DashboardController::class,'topCity']);
+Route::get('/topproduct/{time}',[\App\Http\Controllers\Admin\Dashboard\DashboardController::class,'topProduct']);
 //old route
 Route::post('/invoice',[\App\Http\Controllers\Client\Invoice\InvoiceController::class, 'store']);
 

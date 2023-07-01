@@ -39,6 +39,9 @@ class CustomerController extends Controller
         if (Auth::guard('customer')->attempt($credentials)) {
             return redirect('/');
         } else {
+            throw \Illuminate\Validation\ValidationException::withMessages([
+                'password' => ['Email or password incorect'],
+            ]);
             return redirect()->back();
         }
     }
