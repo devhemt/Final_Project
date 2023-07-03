@@ -81,6 +81,7 @@ class CustomerController extends Controller
 
         Address::create([
             'customer_id' => $cus->id,
+            'active' => 1,
             'province' => $data['city'],
             'district' => $data['district'],
             'wards' => $data['ward'],
@@ -118,6 +119,7 @@ class CustomerController extends Controller
 
         Address::create([
             'guest_id' => $guest->id,
+            'active' => 1,
             'province' => $data['city'],
             'district' => $data['district'],
             'wards' => $data['ward'],

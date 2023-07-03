@@ -17,6 +17,7 @@ return new class extends Migration
             $table->increments('id');
             $table->integer('customer_id')->unsigned()->nullable(true);
             $table->integer('guest_id')->unsigned()->nullable(true);
+            $table->tinyInteger('active');
             $table->String('province',200);
             $table->String('district',200);
             $table->String('wards',200);

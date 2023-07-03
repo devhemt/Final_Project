@@ -84,6 +84,7 @@ class Profile extends Component
             $affected = Admin_account::where('id', $userid)
                 ->update(['email' => $this->email]);
         }
+
         $this->emit('loadsmallnavadmin');
     }
 

@@ -89,7 +89,7 @@ class Truecart extends Component
                             }
                         }
                     }
-                    $address_id = Address::where('customer_id',$userId)->first()->id;
+                    $address_id = Address::where('customer_id',$userId)->where('active',1)->first()->id;
                     $invoice = Invoice::create([
                         'customer_id' => $userId,
                         'address_id' => $address_id,
@@ -203,7 +203,7 @@ class Truecart extends Component
                                 }
                             }
                         }
-                        $address_id = Address::where('guest_id',$guest_id)->first()->id;
+                        $address_id = Address::where('guest_id',$guest_id)->where('active',1)->first()->id;
                         $invoice = Invoice::create([
                             'guest_id' => $guest_id,
                             'address_id' => $address_id,

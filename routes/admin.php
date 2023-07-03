@@ -56,6 +56,10 @@ Route::get('/newcustomer/{time}',[\App\Http\Controllers\Admin\Dashboard\Dashboar
 Route::get('/revenue/{time}',[\App\Http\Controllers\Admin\Dashboard\DashboardController::class,'revenue']);
 Route::get('/topcity/{time}',[\App\Http\Controllers\Admin\Dashboard\DashboardController::class,'topCity']);
 Route::get('/topproduct/{time}',[\App\Http\Controllers\Admin\Dashboard\DashboardController::class,'topProduct']);
+
+Route::get('/create/customer',[\App\Http\Controllers\Admin\Customer\CustomerController::class, 'create']);
+Route::post('/create_customer',[\App\Http\Controllers\Admin\Customer\CustomerController::class, 'store']);
+Route::get('/showcustomer/{type}',[\App\Http\Controllers\Admin\Customer\CustomerController::class, 'show']);
 //old route
 Route::post('/invoice',[\App\Http\Controllers\Client\Invoice\InvoiceController::class, 'store']);
 

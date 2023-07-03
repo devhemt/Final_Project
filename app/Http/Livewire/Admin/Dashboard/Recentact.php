@@ -52,6 +52,7 @@ class Recentact extends Component
             ->whereDay('invoice.created_at', '=', $now->day)
             ->whereMonth('invoice.created_at', '=', $now->month)
             ->whereYear('invoice.created_at', '=', $now->year)
+            ->where('address.active', '=' ,1)
             ->select('address.province', DB::raw('COUNT(address.province) as city_count'))
             ->groupBy('address.province')
             ->orderByDesc('city_count')
@@ -64,6 +65,7 @@ class Recentact extends Component
             ->join('invoice', 'address.id', '=', 'invoice.address_id')
             ->whereMonth('invoice.created_at', '=', $now->month)
             ->whereYear('invoice.created_at', '=', $now->year)
+            ->where('address.active', '=' ,1)
             ->select('address.province', DB::raw('COUNT(address.province) as city_count'))
             ->groupBy('address.province')
             ->orderByDesc('city_count')
@@ -75,6 +77,7 @@ class Recentact extends Component
         $city3 = DB::table('address')
             ->join('invoice', 'address.id', '=', 'invoice.address_id')
             ->whereYear('invoice.created_at', '=', $now->year)
+            ->where('address.active', '=' ,1)
             ->select('address.province', DB::raw('COUNT(address.province) as city_count'))
             ->groupBy('address.province')
             ->orderByDesc('city_count')
@@ -83,7 +86,6 @@ class Recentact extends Component
         foreach ($city3 as $c) {
             $this->data3[] = [$this->getCityName($c->province),$c->city_count];
         }
-//        dd($this->data3);
 
 
         return view('livewire.admin.dashboard.recentact');

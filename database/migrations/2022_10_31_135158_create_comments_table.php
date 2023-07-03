@@ -17,6 +17,7 @@ return new class extends Migration
             $table->increments('id');
             $table->integer('prd_id')->unsigned();
             $table->integer('customer_id')->unsigned();
+            $table->tinyInteger('status')->comment('0 = ko hiển thị, 1 = hiển thị');
             $table->text('comment');
             $table->timestamps();
             $table->foreign('prd_id')

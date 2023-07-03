@@ -138,13 +138,13 @@
             </a>
             <ul id="cus-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="{{ url('admin/product') }}">
-                        <i class="bi bi-circle"></i><span>Show products</span>
+                    <a href="{{ url('admin/create/customer') }}">
+                        <i class="bi bi-circle"></i><span>Create customer</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('admin/product/create') }}">
-                        <i class="bi bi-circle"></i><span>Add product</span>
+                    <a href="{{ url('admin/showcustomer/1') }}">
+                        <i class="bi bi-circle"></i><span>Show customer</span>
                     </a>
                 </li>
             </ul>

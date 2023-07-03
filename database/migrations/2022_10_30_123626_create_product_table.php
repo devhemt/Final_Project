@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('product', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('category_id')->unsigned();
-            $table->smallInteger('status')->comment('0 = không bán, 1 = bán, 2 = hàng chờ');
+            $table->tinyInteger('status')->comment('0 = không bán, 1 = bán, 2 = hàng chờ');
             $table->string('demo_image',200);
             $table->string('name',150);
             $table->text('description');

@@ -40,7 +40,40 @@ class DashboardController extends Controller
 
     public function customer($time){
         $now = Carbon::now();
-        return view('admin.dashboard.customer');
+        if ($time == 1){
+            $customers = DB::table('customer')
+                ->whereDay('customer.created_at', '=', $now->day)
+                ->whereMonth('customer.created_at', '=', $now->month)
+                ->whereYear('customer.created_at', '=', $now->year)
+                ->leftJoin('invoice', 'customer.id', '=', 'invoice.customer_id')
+                ->select('customer.name','customer.id','customer.email','customer.phone','customer.created_at', DB::raw('COUNT(invoice.id) as invoices_count'))
+                ->groupBy('customer.name','customer.id','customer.email','customer.phone','customer.created_at')
+                ->orderByDesc('invoices_count')
+                ->get();
+        }
+        if ($time == 2){
+            $customers = DB::table('customer')
+                ->whereMonth('customer.created_at', '=', $now->month)
+                ->whereYear('customer.created_at', '=', $now->year)
+                ->leftJoin('invoice', 'customer.id', '=', 'invoice.customer_id')
+                ->select('customer.name','customer.id','customer.email','customer.phone','customer.created_at', DB::raw('COUNT(invoice.id) as invoices_count'))
+                ->groupBy('customer.name','customer.id','customer.email','customer.phone','customer.created_at')
+                ->orderByDesc('invoices_count')
+                ->get();
+        }
+        if ($time == 3){
+            $customers = DB::table('customer')
+                ->whereYear('customer.created_at', '=', $now->year)
+                ->leftJoin('invoice', 'customer.id', '=', 'invoice.customer_id')
+                ->select('customer.name','customer.id','customer.email','customer.phone','customer.created_at', DB::raw('COUNT(invoice.id) as invoices_count'))
+                ->groupBy('customer.name','customer.id','customer.email','customer.phone','customer.created_at')
+                ->orderByDesc('invoices_count')
+                ->get();
+        }
+        return view('admin.dashboard.customer',[
+            'time' => $time,
+            'customers' => $customers
+        ]);
     }
 
     public function topProduct($time){

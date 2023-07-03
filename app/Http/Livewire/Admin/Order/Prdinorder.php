@@ -175,7 +175,7 @@ class Prdinorder extends Component
     {
         $this->invoice = Invoice::where('id', $this->idinvoice)
             ->first();
-        $address = Address::where('id', $this->invoice->address_id)->first();
+        $address = Address::where('id', $this->invoice->address_id)->where('active',1)->first();
         $this->address = $this->getAddress($address->province,$address->district,$address->wards);
 
         if($this->invoice->guest_id == null){
