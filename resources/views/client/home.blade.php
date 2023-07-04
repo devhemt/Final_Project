@@ -158,13 +158,6 @@
             <div class="row">
                 <div class="col-xl-12 ">
                     <div class="pro-tab-filter">
-{{--                        <ul class="pro-tab-button">--}}
-{{--                            <li class="filter active" data-filter="*">ALL</li>--}}
-{{--                            <li class="filter" data-filter=".1">Men's clothing</li>--}}
-{{--                            <li class="filter" data-filter=".2">Women dresses</li>--}}
-{{--                            <li class="filter" data-filter=".3">Kids clothing</li>--}}
-{{--                            <li class="filter" data-filter=".4">Accessories</li>--}}
-{{--                        </ul>--}}
                         @livewire('client.home.product1')
                     </div>
                 </div>
@@ -176,8 +169,7 @@
 
       <!-- main-product 1 End -->
 
-
-{{--        @livewire('client.home.product2')--}}
+        @livewire('client.home.product2')
         @livewire('client.home.product3')
 
     <!--=========================-->

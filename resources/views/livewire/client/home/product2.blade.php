@@ -14,10 +14,10 @@
                                     <div class="sin-product style-three">
                                         <div class="pro-img-three">
                                             <div class="img-show">
-                                                <img src="{{ asset('images/'.$p->demoimage) }}" alt="">
+                                                <img src="{{ asset('images/'.$p->demo_image) }}" alt="">
                                             </div>
                                             <div class="img-hover">
-                                                <img src="{{ asset('images/'.$p->demoimage) }}" alt="">
+                                                <img src="{{ asset('images/'.$p->demo_image) }}" alt="">
                                             </div>
                                         </div>
                                         <div class="mid-wrapper">

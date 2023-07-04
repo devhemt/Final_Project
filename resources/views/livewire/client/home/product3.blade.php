@@ -8,102 +8,28 @@
                 <h3>NEW <span>TRENDING</span></h3>
             </div>
             <!-- section-heading-->
-            <div class="row justify-content-center">
-                <div class="col-xl-6 col-lg-4 col-md-8">
-                    <!-- Single Product-->
-                    <div class="sin-product">
-                        <div class="pro-img">
-                            <img src="media/images/product/b1.jpg" alt="">
-                        </div>
-                        <div class="mid-wrapper style-two">
-                            <h5 class="pro-title"><a href="product.html">Colorfull long dress</a></h5>
-                            <span>$60.00</span>
-                        </div>
-                        <div class="pro-icon">
-                            <ul>
-                                <li><a href="#"><i class="flaticon-valentines-heart"></i></a></li>
-                                <li><a href="#"><i class="flaticon-shopping-cart"></i></a></li>
-                                <li><a class="trigger" href="#"><i class="flaticon-zoom-in"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+            <div class="grid row" >
+                @foreach ($product as $p)
+                    <div class=" grid-item 1 col-6 col-md-6  col-lg-4 col-xl-3">
+                        <div class="sin-product style-one">
+                            <div class="pro-img">
+                                <img src="{{ asset('images/'.$p->demo_image) }}" alt="">
+                            </div>
+                            <div class="mid-wrapper">
+                                <h5 class="pro-title"><a href="{{url('product/'.$p->id)}}">{{ $p->name }}</a></h5>
+                                <span id="{{ $p->price }}">${{ $p->price }}</span>
+                            </div>
 
-                <div class="col-xl-3 col-lg-4 col-sm-6">
-                    <!-- Single Product-->
-                    <div class="sin-product">
-                        <div class="pro-img">
-                            <img src="media/images/product/10.jpg" alt="">
-                        </div>
-                        <div class="mid-wrapper style-two">
-                            <h5 class="pro-title"><a href="product.html">Top shirt for women</a></h5>
-                            <span>$60.00</span>
-                        </div>
-                        <div class="pro-icon">
-                            <ul>
-                                <li><a href="#"><i class="flaticon-valentines-heart"></i></a></li>
-                                <li><a href="#"><i class="flaticon-shopping-cart"></i></a></li>
-                                <li><a class="trigger" href="#"><i class="flaticon-zoom-in"></i></a></li>
-                            </ul>
+                            <div class="pro-icon">
+                                <ul>
+                                    <li><a href="{{url('cart')}}"><i class="flaticon-shopping-cart"></i></a></li>
+                                    <li><a class="trigger" href="#{{ $p->name }}" wire:click.prefetch="showQuickView({{ $p->id }})"><i class="flaticon-zoom-in" ></i></a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                    <!-- Single Product-->
-                    <div class="sin-product">
-                        <div class="pro-img">
-                            <img src="media/images/product/11.jpg" alt="">
-                        </div>
-                        <div class="mid-wrapper style-two">
-                            <h5 class="pro-title"><a href="product.html">Men long jacket</a></h5>
-                            <span>$60.00</span>
-                        </div>
-                        <div class="pro-icon">
-                            <ul>
-                                <li><a href="#"><i class="flaticon-valentines-heart"></i></a></li>
-                                <li><a href="#"><i class="flaticon-shopping-cart"></i></a></li>
-                                <li><a class="trigger" href="#"><i class="flaticon-zoom-in"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class=" col-lg-4 col-sm-6 col-xl-3">
-                    <!-- Single Product-->
-                    <div class="sin-product">
-                        <div class="pro-img">
-                            <img src="media/images/product/12.jpg" alt="">
-                        </div>
-                        <div class="mid-wrapper style-two">
-                            <h5 class="pro-title"><a href="product.html">Lon  dress</a></h5>
-                            <span>$60.00</span>
-                        </div>
-                        <div class="pro-icon">
-                            <ul>
-                                <li><a href="#"><i class="flaticon-valentines-heart"></i></a></li>
-                                <li><a href="#"><i class="flaticon-shopping-cart"></i></a></li>
-                                <li><a class="trigger" href="#"><i class="flaticon-zoom-in"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- Single Product-->
-                    <div class="sin-product">
-                        <div class="pro-img">
-                            <img src="media/images/product/13.jpg" alt="">
-                        </div>
-                        <div class="mid-wrapper style-two">
-                            <h5 class="pro-title"><a href="product.html">Embellished white dress</a></h5>
-                            <span>$60.00</span>
-                        </div>
-                        <div class="pro-icon">
-                            <ul>
-                                <li><a href="#"><i class="flaticon-valentines-heart"></i></a></li>
-                                <li><a href="#"><i class="flaticon-shopping-cart"></i></a></li>
-                                <li><a class="trigger" href="#"><i class="flaticon-zoom-in"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
-            <!-- /.row -->
         </div>
         <!-- Container-two  -->
     </section>

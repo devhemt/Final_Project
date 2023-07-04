@@ -18,7 +18,7 @@ class Product1 extends Component
     {
         $this->product = Product::where('status','=', 1)
             ->orderByDesc('id')
-            ->limit(8)
+            ->limit(4)
             ->get();
         return view('livewire.client.home.product1');
     }
