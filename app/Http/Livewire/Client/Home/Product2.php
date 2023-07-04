@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Client\Home;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
-class Index2 extends Component
+class Product2 extends Component
 {
     public $allprd = [], $sold = [],$size;
     public $products;
@@ -73,6 +73,6 @@ class Index2 extends Component
 //            ->orWhere('prd_id','=',$this->allprd[2])
 //            ->orWhere('prd_id','=',$this->allprd[3])
             ->get();
-        return view('livewire.client.index2');
+        return view('livewire.client.home.product2');
     }
 }

@@ -12,7 +12,6 @@
 
             <div class="pro-icon">
                 <ul>
-{{--                    <li><a href="#"><i class="flaticon-valentines-heart"></i></a></li>--}}
                     <li><a href="{{url('cart')}}"><i class="flaticon-shopping-cart"></i></a></li>
                     <li><a class="trigger" href="#{{ $p->name }}" wire:click.prefetch="showQuickView({{ $p->id }})"><i class="flaticon-zoom-in" ></i></a></li>
                 </ul>

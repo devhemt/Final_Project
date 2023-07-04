@@ -26,19 +26,35 @@ class Revenuecard extends Component
     {
         $now = Carbon::now();
         if ($this->time == 'Today'){
-            $current = Invoice::whereDay('created_at', $now->day)
-                    ->whereMonth('created_at', $now->month)
-                    ->whereYear('created_at', $now->year)
-                    ->sum('pay') - Invoice::whereDay('created_at', $now->day)
-                    ->whereMonth('created_at', $now->month)
-                    ->whereYear('created_at', $now->year)
+            $current = DB::table('invoice')
+                    ->join('status', 'status.invoice_id', '=', 'invoice.id')
+                    ->where('status.status','!=' ,0)
+                    ->where('status.status','!=' ,7)
+                    ->whereDay('invoice.created_at', '=', $now->day)
+                    ->whereMonth('invoice.created_at', '=', $now->month)
+                    ->whereYear('invoice.created_at', '=', $now->year)
+                    ->sum('pay') - DB::table('invoice')
+                    ->join('status', 'status.invoice_id', '=', 'invoice.id')
+                    ->where('status.status','!=' ,0)
+                    ->where('status.status','!=' ,7)
+                    ->whereDay('invoice.created_at', '=', $now->day)
+                    ->whereMonth('invoice.created_at', '=', $now->month)
+                    ->whereYear('invoice.created_at', '=', $now->year)
                     ->sum('true_pay');
-            $past = Invoice::whereDay('created_at', $now->day -1)
-                    ->whereMonth('created_at', $now->month)
-                    ->whereYear('created_at', $now->year)
-                    ->sum('pay') - Invoice::whereDay('created_at', $now->day -1)
-                    ->whereMonth('created_at', $now->month)
-                    ->whereYear('created_at', $now->year)
+            $past = DB::table('invoice')
+                    ->join('status', 'status.invoice_id', '=', 'invoice.id')
+                    ->where('status.status','!=' ,0)
+                    ->where('status.status','!=' ,7)
+                    ->whereDay('invoice.created_at', '=', $now->day - 1)
+                    ->whereMonth('invoice.created_at', '=', $now->month)
+                    ->whereYear('invoice.created_at', '=', $now->year)
+                    ->sum('pay') - DB::table('invoice')
+                    ->join('status', 'status.invoice_id', '=', 'invoice.id')
+                    ->where('status.status','!=' ,0)
+                    ->where('status.status','!=' ,7)
+                    ->whereDay('invoice.created_at', '=', $now->day - 1)
+                    ->whereMonth('invoice.created_at', '=', $now->month)
+                    ->whereYear('invoice.created_at', '=', $now->year)
                     ->sum('true_pay');
 
             if ($current!=0 && $past !=0){
@@ -76,15 +92,31 @@ class Revenuecard extends Component
             $this->amount=$current;
         }
         if ($this->time == 'This month'){
-            $current = Invoice::whereMonth('created_at', $now->month)
-                    ->whereYear('created_at', $now->year)
-                    ->sum('pay') - Invoice::whereMonth('created_at', $now->month)
-                    ->whereYear('created_at', $now->year)
+            $current = DB::table('invoice')
+                    ->join('status', 'status.invoice_id', '=', 'invoice.id')
+                    ->where('status.status','!=' ,0)
+                    ->where('status.status','!=' ,7)
+                    ->whereMonth('invoice.created_at', '=', $now->month)
+                    ->whereYear('invoice.created_at', '=', $now->year)
+                    ->sum('pay') - DB::table('invoice')
+                    ->join('status', 'status.invoice_id', '=', 'invoice.id')
+                    ->where('status.status','!=' ,0)
+                    ->where('status.status','!=' ,7)
+                    ->whereMonth('invoice.created_at', '=', $now->month)
+                    ->whereYear('invoice.created_at', '=', $now->year)
                     ->sum('true_pay');
-            $past = Invoice::whereMonth('created_at', $now->month - 1)
-                    ->whereYear('created_at', $now->year)
-                    ->sum('pay') - Invoice::whereMonth('created_at', $now->month - 1)
-                    ->whereYear('created_at', $now->year)
+            $past = DB::table('invoice')
+                    ->join('status', 'status.invoice_id', '=', 'invoice.id')
+                    ->where('status.status','!=' ,0)
+                    ->where('status.status','!=' ,7)
+                    ->whereMonth('invoice.created_at', '=', $now->month - 1)
+                    ->whereYear('invoice.created_at', '=', $now->year)
+                    ->sum('pay') - DB::table('invoice')
+                    ->join('status', 'status.invoice_id', '=', 'invoice.id')
+                    ->where('status.status','!=' ,0)
+                    ->where('status.status','!=' ,7)
+                    ->whereMonth('invoice.created_at', '=', $now->month - 1)
+                    ->whereYear('invoice.created_at', '=', $now->year)
                     ->sum('true_pay');
 
             if ($current!=0 && $past !=0){
@@ -122,11 +154,27 @@ class Revenuecard extends Component
             $this->amount=$current;
         }
         if ($this->time == 'This year'){
-            $current = Invoice::whereYear('created_at', $now->year)
-                    ->sum('pay') - Invoice::whereYear('created_at', $now->year)
+            $current = DB::table('invoice')
+                    ->join('status', 'status.invoice_id', '=', 'invoice.id')
+                    ->where('status.status','!=' ,0)
+                    ->where('status.status','!=' ,7)
+                    ->whereYear('invoice.created_at', '=', $now->year)
+                    ->sum('pay') - DB::table('invoice')
+                    ->join('status', 'status.invoice_id', '=', 'invoice.id')
+                    ->where('status.status','!=' ,0)
+                    ->where('status.status','!=' ,7)
+                    ->whereYear('invoice.created_at', '=', $now->year)
                     ->sum('true_pay');
-            $past = Invoice::whereYear('created_at', $now->year - 1)
-                    ->sum('pay') - Invoice::whereYear('created_at', $now->year - 1)
+            $past = DB::table('invoice')
+                    ->join('status', 'status.invoice_id', '=', 'invoice.id')
+                    ->where('status.status','!=' ,0)
+                    ->where('status.status','!=' ,7)
+                    ->whereYear('invoice.created_at', '=', $now->year - 1)
+                    ->sum('pay') - DB::table('invoice')
+                    ->join('status', 'status.invoice_id', '=', 'invoice.id')
+                    ->where('status.status','!=' ,0)
+                    ->where('status.status','!=' ,7)
+                    ->whereYear('invoice.created_at', '=', $now->year - 1)
                     ->sum('true_pay');
 
             if ($current!=0 && $past !=0){

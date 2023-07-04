@@ -177,8 +177,8 @@
       <!-- main-product 1 End -->
 
 
-{{--      @livewire('index2')--}}
-{{--      @livewire('index3')--}}
+{{--        @livewire('client.home.product2')--}}
+        @livewire('client.home.product3')
 
     <!--=========================-->
     <!--=        Feature Area      =-->
