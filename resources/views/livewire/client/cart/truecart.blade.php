@@ -154,7 +154,7 @@
                                     <h5>$ {{$totalpl}}</h5>
                                 </div>
                                 @if($momodirec)
-                                    <form method="POST" action="{{ url('admin/invoice') }}">
+                                    <form method="POST" action="{{ url('create/invoice') }}">
                                         @csrf
                                         <div class="d-flex justify-content-between mb-5">
                                             <input hidden name="delivery" value="{{$deliverymethod}}">

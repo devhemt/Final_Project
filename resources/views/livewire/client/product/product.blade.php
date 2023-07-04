@@ -31,6 +31,7 @@
             @endforeach
 
         </div>
+        <p class="text-danger" style="height:20px;padding: 0px;">{{$check_property}}</p>
         <p class="text-danger" style="height:20px;padding: 0px;">{{$checked}}</p>
         <div class="add-tocart-wrap" wire:ignore>
             <input wire:model="quantity" class="quantityQV" min="1" name="quantity" value="{{$quantity}}" type="number"/>

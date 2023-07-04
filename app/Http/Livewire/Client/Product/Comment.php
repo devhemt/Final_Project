@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Client\Product;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use App\Models\Comments;
 
 class Comment extends Component
 {
@@ -25,15 +26,14 @@ class Comment extends Component
         $validatedData = $this->validate();
         if (Auth::guard("customer")->check()){
             $userId = Auth::guard("customer")->id();
-            $checkcmt = DB::table('comments')
-                ->where('itemsid', $this->prd_id)
-                ->where('cus_id', $userId)
+            $checkcmt = Comments::where('prd_id', $this->prd_id)
+                ->where('customer_id', $userId)
                 ->first();
             $checkitem = DB::table('invoice')
-                ->join('detail_invoice', 'invoice.invoice_id','=', 'detail_invoice.invoice_id')
-                ->select('detail_invoice.itemsid','invoice.cusid')
-                ->where('detail_invoice.itemsid', $this->prd_id)
-                ->where('invoice.cusid', $userId)
+                ->join('invoice_items', 'invoice.id','=', 'invoice_items.invoice_id')
+                ->join('properties', 'invoice_items.property_id','=', 'properties.id')
+                ->where('properties.prd_id', $this->prd_id)
+                ->where('invoice.customer_id', $userId)
                 ->first();
             if ($checkcmt != null){
                 $this->addError('noacc', 'You have commented on this product.');
@@ -42,9 +42,10 @@ class Comment extends Component
                 $this->addError('noacc', 'You have never purchased this product.');
             }
             if ($checkitem != null && $checkcmt == null){
-                $cmtin = \App\Models\Comment::create([
-                    'itemsid' => $this->prd_id,
-                    'cus_id' => $userId,
+                $cmtin = Comments::create([
+                    'prd_id' => $this->prd_id,
+                    'customer_id' => $userId,
+                    'status' => 0,
                     'comment' => $this->cmt
                 ]);
                 $this->cmt == null;
@@ -58,17 +59,18 @@ class Comment extends Component
     public function render()
     {
         $this->comments = DB::table('comments')
-            ->join('customer', 'comments.cus_id','=', 'customer.cus_id')
+            ->join('customer', 'comments.customer_id','=', 'customer.id')
             ->select('comments.*','customer.name')
-            ->where('itemsid', $this->prd_id)
+            ->where('prd_id','=', $this->prd_id)
+            ->where('comments.status', '=', 1)
             ->latest()->limit(5)->get();
 
         $this->count = DB::table('comments')
-            ->join('customer', 'comments.cus_id','=', 'customer.cus_id')
+            ->join('customer', 'comments.customer_id','=', 'customer.id')
             ->select('comments.*','customer.name')
-            ->where('itemsid', $this->prd_id)
+            ->where('prd_id','=', $this->prd_id)
             ->count();
 
-        return view('livewire.client.comment');
+        return view('livewire.client.product.comment');
     }
 }

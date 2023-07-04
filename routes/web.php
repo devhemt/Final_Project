@@ -58,3 +58,5 @@ Route::get('fail',[\App\Http\Controllers\Client\Home\HomeController::class, 'fai
 
 
 Route::post('guest/create',[\App\Http\Controllers\Client\Auth\CustomerController::class,'createGuest']);
+
+Route::post('create/invoice',[\App\Http\Controllers\Client\Invoice\InvoiceController::class, 'store']);

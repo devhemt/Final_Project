@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Client\Home;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use App\Models\Images;
 
 class HomeController extends Controller
 {
@@ -36,11 +37,10 @@ class HomeController extends Controller
 
     public function show($id)
     {
-        $product = DB::table('items')
-            ->join('total_property','items.prd_id','total_property.itemsid')
+        $product = DB::table('product')
+            ->join('total_property','product.id','total_property.prd_id')
             ->where('prd_id', $id)->get();
-        $images = DB::table('images')
-            ->where('itemsid', $id)->get();
+        $images = Images::where('prd_id', $id)->get();
         return view('client.product',[
             'product' => $product,
             'images' => $images,

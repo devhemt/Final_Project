@@ -111,7 +111,7 @@
 							</div>
 							<!-- /.col-xl-6 -->
 
-							@livewire('product',['prd_id' => $id])
+							@livewire('client.product.product',['prd_id' => $id])
 							<!-- /.col-xl-6 -->
 
 
@@ -144,14 +144,6 @@
 												<div class="info-wrap">
 													<div class="sin-aditional-info">
 														<div class="first">
-															Brand
-														</div>
-														<div class="secound">
-															{{$p->brand}}
-														</div>
-													</div>
-													<div class="sin-aditional-info">
-														<div class="first">
 															Manufacturer
 														</div>
 														<div class="secound">
@@ -178,7 +170,7 @@
 											</div>
 										</div>
 										<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                                            @livewire('comment',['prd_id' => $id])
+                                            @livewire('client.product.comment',['prd_id' => $id])
 										</div>
 									@endforeach
                                     @endif

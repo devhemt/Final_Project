@@ -100,8 +100,8 @@ class CustomerController extends Controller
     public function createGuest(Request $request){
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:customer,email',
-            'phone' => 'required|numeric|unique:customer,phone|digits_between:1,20',
+            'email' => 'required|email',
+            'phone' => 'required|numeric|digits_between:1,20',
             "city" => "required|numeric",
             "district" => "required|numeric",
             "ward" => "required|numeric",

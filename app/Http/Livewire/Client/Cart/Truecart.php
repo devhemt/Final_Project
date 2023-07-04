@@ -218,15 +218,6 @@ class Truecart extends Component
                             'status' => 1
                         ]);
                         foreach ($guest_cart as $c){
-                            Invoice_items::create([
-                                'property_id' => $c['id'],
-                                'invoice_id' => $invoice->id,
-                                'size' => $c['attributes']['size'],
-                                'color' => $c['attributes']['color'],
-                                'amount' => $c['quantity']
-                            ]);
-                        }
-                        foreach ($guest_cart as $c){
                             $prd_id = Properties::where('id',$c['id'])->first()->prd_id;
                             $batch = Properties::where('prd_id',$prd_id)
                                 ->where('size',$c['attributes']['size'])

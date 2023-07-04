@@ -1,55 +1,41 @@
 <?php
 
-namespace App\Http\Livewire\Client\Quickview;
+namespace App\Http\Livewire\Client\Product;
 
+use App\Models\Cart_memory;
+use App\Models\Properties;
 use Cart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Livewire\Component;
-use App\Models\Cart_memory;
-use App\Models\Properties;
-use function PHPUnit\Framework\isEmpty;
 
-class Quickview extends Component
+class Product extends Component
 {
-    protected $listeners = ['idView'];
-    public $prdQV;
-    public $getid;
-    public $name,$price,$imagein,$sizes;
-    public $colorclass = null;
-    public $getsize = null, $color = null;
+    public $prd_id,$product;
+    public $name,$price,$imagein;
+    public $sizes;
+    public $getsize;
+    public $color;
     public $quantity = 1;
-    public $check_amount = null, $check_property = null;
-    public $open = null;
-    public $amount;
+    public $checked = 'Stock', $check_property = null;
+    public $amount = "countting";
 
-    public function updated($quantity)
-    {
-        if ($this->quantity < 1){
-            $this->quantity = 1;
-        }
-    }
-
-    public function close(){
-        $this->open = null;
-    }
-
-//    update số lượng sản phẩm mỗi 2000ms
     public function amount(){
         $this->amount = DB::table('product')
             ->join('properties', 'product.id','=', 'properties.prd_id')
-            ->where('properties.prd_id', $this->getid)->sum('properties.amount');
+            ->where('product.id', $this->prd_id)->sum('properties.amount');
     }
 
     public function getColor($input){
         $this->color = $input;
         $this->colorclass = "active";
+
     }
 
     public function addcart(){
         if($this->color != null && $this->getsize != null){
-            $property_id = Properties::where('prd_id',$this->getid)
+            $property_id = Properties::where('prd_id',$this->prd_id)
                 ->where('size',$this->getsize)
                 ->where('color',$this->color)
                 ->first()->id;
@@ -80,7 +66,7 @@ class Quickview extends Component
 
 
             }else{
-                if ($this->check_amount == 'Stock'){
+                if ($this->checked == 'Stock'){
                     $userId = Session::getId();
                     Cart::session($userId);
                     if ($this->quantity != 0){
@@ -104,55 +90,41 @@ class Quickview extends Component
         $this->emit('loadsmallcart');
     }
 
-    public function idView($id)
-    {
-        $this->getid = $id;
-        $this->open = "open";
-        $this->getsize = null;
-        $this->color = null;
-        $this->quantity = 1;
-        $this->amount = "countting";
-    }
-
     public function render()
     {
-        $this->prdQV = DB::table('product')
-            ->join('total_property', 'product.id','=', 'total_property.prd_id')
+        $this->product = DB::table('product')
+            ->join('total_property','product.id','total_property.prd_id')
             ->select('product.*','total_property.sizes','total_property.colors')
-            ->where('product.id', $this->getid)->get();
-        foreach ($this->prdQV as $p){
+            ->where('product.id', $this->prd_id)->get();
+        foreach ($this->product as $p){
             $this->sizes = $p->sizes;
-            $this->name = $p->name;
             $this->price = $p->price;
+            $this->name = $p->name;
             $this->imagein = $p->demo_image;
         }
-
         if($this->getsize == null){
             $trim = trim($this->sizes);
             $size = explode(" ",$trim);
             $this->getsize = $size[0];
         }
 
-
         if($this->color != null && $this->getsize != null){
             $this->check_property = null;
-            $property_amount = Properties::where('prd_id',$this->getid)
+            $property_amount = Properties::where('prd_id',$this->prd_id)
                 ->where('size',$this->getsize)
                 ->where('color',$this->color)
                 ->sum('amount');
 
             if ($this->quantity >= $property_amount){
-                $this->check_amount = 'Sold out';
+                $this->checked = 'Sold out';
                 $this->quantity = $property_amount;
             }
             if ($this->quantity < $property_amount){
-                $this->check_amount = 'Stock';
+                $this->checked = 'Stock';
             }
         }else{
-            $this->check_amount = null;
+            $this->checked = null;
         }
-
-
-        return view('livewire.client.quickview.quickview',['prdQV' => $this->prdQV,'showchose'=>$this->color,'thisid'=>$this->getid]);
+        return view('livewire.client.product.product');
     }
 }
