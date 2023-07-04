@@ -36,7 +36,6 @@ class ProductController extends Controller
 
     public function update(Request $request)
     {
-//        dd($request);
         if ($request->get('prd_name') != null){
             $request->validate([
                 'prd_name' => 'required|unique:product,name|max:200',

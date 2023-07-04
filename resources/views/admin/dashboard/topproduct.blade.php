@@ -38,7 +38,6 @@
                         <th>Name</th>
                         <th>Description</th>
                         <th>Price</th>
-                        <th>Brand</th>
                         <th>Sold</th>
                     </tr>
                     </thead>
@@ -48,7 +47,6 @@
                             <td><a href="{{url('admin/product/'.$product->id)}}" class="text-primary fw-bold">{{$product->name}}</a></td>
                             <td>{{$product->description}}</td>
                             <td>{{$product->price}}</td>
-                            <td>{{$product->brand}}</td>
                             <td>{{$product->total_sales}}</td>
                         </tr>
                     @endforeach

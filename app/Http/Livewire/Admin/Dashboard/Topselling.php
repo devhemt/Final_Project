@@ -30,8 +30,8 @@ class Topselling extends Component
                 ->whereDay('invoice_items.created_at', '=', $now->day)
                 ->whereMonth('invoice_items.created_at', '=', $now->month)
                 ->whereYear('invoice_items.created_at', '=', $now->year)
-                ->select('product.id','product.brand', 'product.name', 'product.demo_image', 'product.price', DB::raw('SUM(invoice_items.amount) as total_sales'))
-                ->groupBy('product.id','product.brand', 'product.name', 'product.demo_image', 'product.price')
+                ->select('product.id', 'product.name', 'product.demo_image', 'product.price', DB::raw('SUM(invoice_items.amount) as total_sales'))
+                ->groupBy('product.id', 'product.name', 'product.demo_image', 'product.price')
                 ->orderByDesc('total_sales')
                 ->limit(5)
                 ->get();
@@ -43,8 +43,8 @@ class Topselling extends Component
                 ->join('product', 'properties.prd_id', '=', 'product.id')
                 ->whereMonth('invoice_items.created_at', '=', $now->month)
                 ->whereYear('invoice_items.created_at', '=', $now->year)
-                ->select('product.id','product.brand', 'product.name', 'product.demo_image', 'product.price', DB::raw('SUM(invoice_items.amount) as total_sales'))
-                ->groupBy('product.id','product.brand', 'product.name', 'product.demo_image', 'product.price')
+                ->select('product.id', 'product.name', 'product.demo_image', 'product.price', DB::raw('SUM(invoice_items.amount) as total_sales'))
+                ->groupBy('product.id', 'product.name', 'product.demo_image', 'product.price')
                 ->orderByDesc('total_sales')
                 ->limit(5)
                 ->get();
@@ -54,8 +54,8 @@ class Topselling extends Component
                 ->join('properties', 'invoice_items.property_id', '=', 'properties.id')
                 ->join('product', 'properties.prd_id', '=', 'product.id')
                 ->whereYear('invoice_items.created_at', '=', $now->year)
-                ->select('product.id','product.brand', 'product.name', 'product.demo_image', 'product.price', DB::raw('SUM(invoice_items.amount) as total_sales'))
-                ->groupBy('product.id','product.brand', 'product.name', 'product.demo_image', 'product.price')
+                ->select('product.id', 'product.name', 'product.demo_image', 'product.price', DB::raw('SUM(invoice_items.amount) as total_sales'))
+                ->groupBy('product.id', 'product.name', 'product.demo_image', 'product.price')
                 ->orderByDesc('total_sales')
                 ->limit(5)
                 ->get();

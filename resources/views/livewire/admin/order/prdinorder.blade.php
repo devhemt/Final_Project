@@ -2,19 +2,9 @@
     <div class="visitor-form-container" style="top:{{$top}};">
 
         <form action="">
-            <h3>Are you sure about delete this product</h3>
+            <h3>Are you sure about cancel this order</h3>
             <input wire:click="yes" type="button" value="Yes" class="btn danger">
             <input wire:click="no" type="button" value="No" class="btn no">
-            <p for="remember">Please consider your optios.</p>
-        </form>
-
-    </div>
-    <div class="visitor-form-container" style="top:{{$top1}};">
-
-        <form action="">
-            <h3>Are you sure about delete this order</h3>
-            <input wire:click="yes1" type="button" value="Yes" class="btn danger">
-            <input wire:click="no1" type="button" value="No" class="btn no">
             <p for="remember">Please consider your optios.</p>
         </form>
 
@@ -29,6 +19,7 @@
         </div>
         <div class="col-5">
             <h5 class="card-title">Order informations</h5>
+            <h6>Status: {{$status}}</h6>
             <h6>Pay: ${{$invoice->pay}}</h6>
             <h6>Payment: {{$invoice->payment}}</h6>
             <h6>Delivery: {{$invoice->delivery}}</h6>
@@ -36,8 +27,24 @@
         </div>
         <div class="col-2" style="text-align: center;">
             <h5 class="card-title">Order actions</h5>
-            <a href="#"><i wire:click="block1" class="fas fa-trash "></i></a>
+            @if($status_number != 0 && $status_number != 7)
+            <a href="#"><i wire:click="block" class="fas fa-trash " title="cancel"></i></a>
+            @endif
+            @if($status_number != 0 && $status_number != 1 && $status_number != 6 && $status_number != 7)
+            <a href="#"><i wire:click="back" class="fa-solid fa-arrow-left"></i></a>
+            @endif
+            @if($status_number != 0 && $status_number != 5 && $status_number != 6 && $status_number != 7)
             <a href="#"><i wire:click="forward" class="fa-solid fa-arrow-right"></i></a>
+            @endif
+            @if($status_number == 4)
+                <a href="#"><i wire:click="fail" class="fa-solid fa-phone-slash fa-fade" title="delivery failed"></i></a>
+            @endif
+            @if($status_number == 5)
+                <a href="#"><i wire:click="return" class="fa-solid fa-right-left fa-fade" title="return order"></i></a>
+            @endif
+            @if($status_number == 6)
+            <a href="#"><i wire:click="delivery" class="fa-solid fa-rotate-left fa-spin fa-spin-reverse" title="re-delivery"></i></a>
+            @endif
         </div>
     </div>
 
@@ -64,8 +71,7 @@
                 <td>{{$p->batch}}</td>
                 <td>{{$p->amount}}</td>
                 <td>
-                    <a href="#" wire:click="block('{{$p->id}}')" id="deleteprd"><i class="fas fa-trash "></i></a>
-                    <a href="{{url('admin/product/'.$p->id)}}"><i class="fas fa-eye "></i></a>
+                    <a href="{{url('admin/product/'.$p->id)}}"><i title="see product detail" class="fas fa-eye "></i></a>
                 </td>
             </tr>
         @endforeach

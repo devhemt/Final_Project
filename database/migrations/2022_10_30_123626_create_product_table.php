@@ -22,7 +22,6 @@ return new class extends Migration
             $table->text('description');
             $table->float('price');
             $table->string('tag');
-            $table->string('brand',100);
             $table->timestamps();
             $table->foreign('category_id')
                 ->references('id')->on('category');

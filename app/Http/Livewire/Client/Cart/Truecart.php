@@ -432,7 +432,7 @@ class Truecart extends Component
                 ->where('cart_memory.customer_id',$userId)->count();
 
             foreach ($this->customer_cart as $c){
-                $this->total = $c->amount*$c->price;
+                $this->total += $c->amount*$c->price;
                 $prd_id = Properties::where('id',$c->property_id)->first()->prd_id;
                 $check_amount = Properties::where('prd_id',$prd_id)
                     ->where('size',$c->size)

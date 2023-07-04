@@ -39,7 +39,7 @@
                         <th>Email</th>
                         <th>Phone</th>
                         <th>Invoices Count</th>
-                        <th>Created At</th>
+                        <th>Address</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -49,7 +49,7 @@
                             <td>{{$customer->email}}</td>
                             <td>{{$customer->phone}}</td>
                             <td>{{$customer->invoices_count}}</td>
-                            <td>{{$customer->created_at}}</td>
+                            <td>{{$address[$customer->id][2]}}, {{$address[$customer->id][1]}}, {{$address[$customer->id][0]}}</td>
                         </tr>
                     @endforeach
                     </tbody>

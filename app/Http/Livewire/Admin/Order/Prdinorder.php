@@ -12,50 +12,40 @@ use App\Models\Guest;
 use App\Models\Customer;
 use App\Models\Invoice_items;
 use App\Models\Address;
+use App\Models\Status;
+use App\Models\Properties;
 
 class Prdinorder extends Component
 {
     protected $listeners = ['mail'];
-    public $idinvoice,$type;
+    public $idinvoice;
     public $invoice,$cusdetail,$prd;
-    public $top = null,$top1 = null;
-    public $iddelete;
-    public $email = 'thucc6696@gmail.com',$data,$address;
+    public $top = null;
+    public $email = 'thucc6696@gmail.com',$data,$address,$status,$status_number;
+
+    public function fail(){
+        $affected = Status::where('invoice_id', $this->idinvoice)
+            ->update(['status' => 6]);
+    }
+    public function return(){
+        $affected = Status::where('invoice_id', $this->idinvoice)
+            ->update(['status' => 7]);
+    }
+    public function delivery(){
+        $affected = Status::where('invoice_id', $this->idinvoice)
+            ->update(['status' => 4]);
+    }
 
     public function forward(){
-        if ($this->type == 'Have account'){
-            $invoice_status = DB::table('invoice')
-                ->join('status', 'invoice.invoice_id','=', 'status.invoice_id')
-                ->join('customer', 'customer.cus_id','=', 'invoice.cusid')
-                ->select('invoice.*','status.status','customer.email')
-                ->where('invoice.invoice_id', $this->idinvoice)
-                ->first();
-        }else{
-            $invoice_status = DB::table('invoice_noacc')
-                ->join('status_noacc', 'invoice_noacc.invoice_id','=', 'status_noacc.invoice_id')
-                ->join('customer_noacc', 'customer_noacc.cus_id','=', 'invoice_noacc.cusid')
-                ->select('invoice_noacc.*','status_noacc.status','customer_noacc.email')
-                ->where('invoice_noacc.invoice_id', $this->idinvoice)
-                ->first();
-        }
+        $invoice_status = DB::table('invoice')
+            ->join('status', 'invoice.id','=', 'status.invoice_id')
+            ->where('invoice.id', $this->idinvoice)
+            ->first();
 
 
-        if ($invoice_status->status != 0 && $invoice_status->status != 5){
-            if ($this->type == 'Have account'){
-                $status = DB::table('status')
-                    ->where('invoice_id','=', $this->idinvoice)
-                    ->first();
-                $affected = DB::table('status')
-                    ->where('invoice_id','=', $this->idinvoice)
-                    ->update(['status' => ($status->status+1)]);
-            }else{
-                $status = DB::table('status_noacc')
-                    ->where('invoice_id','=', $this->idinvoice)
-                    ->first();
-                $affected = DB::table('status_noacc')
-                    ->where('invoice_id','=', $this->idinvoice)
-                    ->update(['status' => ($status->status+1)]);
-            }
+        if ($invoice_status->status != 0 && $invoice_status->status != 5 && $invoice_status->status != 6 && $invoice_status->status != 7){
+            $affected = Status::where('invoice_id', $this->idinvoice)
+                ->update(['status' => ($invoice_status->status+1)]);
         }
         if ($invoice_status->status == 1){
             $this->data = [
@@ -81,68 +71,82 @@ class Prdinorder extends Component
                 "notify" => "This is an email notification of your order status in real time. You can track to know the status of your order. Thank you for choosing our products!"
             ];
         }
-        $this->emit('mask');
-//        $this->email = $invoice_status->email;
+        if ($invoice_status->customer_id != null){
+            $this->email = Customer::where('id',$invoice_status->customer_id)->first()->email;
+        }else{
+            $this->email = Guest::where('id',$invoice_status->guest_id)->first()->email;
+        }
+//        $this->emit('mask');
+    }
+    public function back(){
+        $invoice_status = DB::table('invoice')
+            ->join('status', 'invoice.id','=', 'status.invoice_id')
+            ->where('invoice.id', $this->idinvoice)
+            ->first();
 
+
+        if ($invoice_status->status != 0 && $invoice_status->status != 1 && $invoice_status->status != 6 && $invoice_status->status != 7){
+            $affected = Status::where('invoice_id', $this->idinvoice)
+                ->update(['status' => ($invoice_status->status-1)]);
+        }
+        if ($invoice_status->status == 5){
+            $this->data = [
+                "order" => "Your order was comfirmed",
+                "notify" => "This is an email notification of your order status in real time. You can track to know the status of your order. Thank you for choosing our products!"
+            ];
+        }
+        if ($invoice_status->status == 2){
+            $this->data = [
+                "order" => "Your order is pending",
+                "notify" => "This is an email notification of your order status in real time. You can track to know the status of your order. Thank you for choosing our products!"
+            ];
+        }
+        if ($invoice_status->status == 3){
+            $this->data = [
+                "order" => "Your order is confirmed",
+                "notify" => "This is an email notification of your order status in real time. You can track to know the status of your order. Thank you for choosing our products!"
+            ];
+        }
+        if ($invoice_status->status == 4){
+            $this->data = [
+                "order" => "Your order is packing",
+                "notify" => "This is an email notification of your order status in real time. You can track to know the status of your order. Thank you for choosing our products!"
+            ];
+        }
+        if ($invoice_status->customer_id != null){
+            $this->email = Customer::where('id',$invoice_status->customer_id)->first()->email;
+        }else{
+            $this->email = Guest::where('id',$invoice_status->guest_id)->first()->email;
+        }
+//        $this->emit('mask');
     }
 
     public function mail(){
         Mail::to($this->email)->send(new MailNotify($this->data));
-//        redirect
-    }
-
-    public function yes1(){
-        if ($this->type == 'Have account'){
-            $invoice_status = DB::table('invoice')
-                ->join('status', 'invoice.invoice_id','=', 'status.invoice_id')
-                ->join('customer', 'customer.cus_id','=', 'invoice.cusid')
-                ->select('invoice.*','status.status','customer.email')
-                ->where('invoice.invoice_id', $this->idinvoice)
-                ->first();
-        }else{
-            $invoice_status = DB::table('invoice_noacc')
-                ->join('status_noacc', 'invoice_noacc.invoice_id','=', 'status_noacc.invoice_id')
-                ->join('customer_noacc', 'customer_noacc.cus_id','=', 'invoice_noacc.cusid')
-                ->select('invoice_noacc.*','status_noacc.status','customer_noacc.email')
-                ->where('invoice_noacc.invoice_id', $this->idinvoice)
-                ->first();
-        }
-        if ($this->type == 'Have account'){
-            $affected = DB::table('status')
-                ->where('invoice_id','=', $this->idinvoice)
-                ->update(['status' => 0]);
-        }else{
-            $affected = DB::table('status_noacc')
-                ->where('invoice_id','=', $this->idinvoice)
-                ->update(['status' => 0]);
-        }
-
-        $this->data = [
-            "order" => "Your order was canceled",
-            "notify" => "This is an email notification of your order status in real time. You can track to know the status of your order. Thank you for choosing our products!"
-        ];
-//        $this->email = $invoice_status->email;
-        $this->emit('mask');
-    }
-    public function no1(){
-        $this->top1 = null;
-    }
-    public function block1(){
-        $this->top1 = 0;
     }
 
     public function yes(){
-        $deleted = DB::table('detail_invoice')
-            ->where('invoice_id','=', $this->idinvoice)
-            ->where('itemsid','=', $this->iddelete)
-            ->delete();
+        $items = Invoice_items::where('invoice_id', $this->idinvoice)->get();
+
+        foreach ($items as $item){
+            $current = Properties::where('id',$item->property_id)->first()->amount;
+            $affected = Properties::where('id', $item->property_id)
+                ->update(['amount' => $current+$item->amount]);
+        }
+
+        $affected = Status::where('invoice_id', $this->idinvoice)
+            ->update(['status' => 0]);
         $this->top = null;
+//        $this->data = [
+//            "order" => "Your order was canceled",
+//            "notify" => "This is an email notification of your order status in real time. You can track to know the status of your order. Thank you for choosing our products!"
+//        ];
+//        $this->emit('mask');
     }
     public function no(){
         $this->top = null;
     }
-    public function block($id){
-        $this->iddelete = $id;
+    public function block(){
         $this->top = 0;
     }
 
@@ -175,6 +179,33 @@ class Prdinorder extends Component
     {
         $this->invoice = Invoice::where('id', $this->idinvoice)
             ->first();
+        $this->status_number = Status::where('invoice_id', $this->idinvoice)->first()->status;
+        switch ($this->status_number){
+            case "1":
+                $this->status = "Pending";
+                break;
+            case "2":
+                $this->status = "Confirmed";
+                break;
+            case "3":
+                $this->status = "Packing";
+                break;
+            case "4":
+                $this->status = "Delivery";
+                break;
+            case "5":
+                $this->status = "Delivered";
+                break;
+            case "6":
+                $this->status = "Delivery failed";
+                break;
+            case "7":
+                $this->status = "Return";
+                break;
+            case "0":
+                $this->status = "Cancelled";
+                break;
+        }
         $address = Address::where('id', $this->invoice->address_id)->where('active',1)->first();
         $this->address = $this->getAddress($address->province,$address->district,$address->wards);
 

@@ -127,7 +127,6 @@ class PurchaseController extends Controller
             'prd_price' => 'required|numeric',
             'prd_category' => 'required|numeric',
             'prd_tag' => 'required',
-            'prd_brand'=> 'required|max:200',
             'prd_size' => 'required|max:20',
             'prd_color' => 'required|max:20',
             'prd_amount' => 'required',
@@ -141,7 +140,6 @@ class PurchaseController extends Controller
             'description' => $request->get('prd_description'),
             'price' => $request->get('prd_price'),
             'tag' => $request->get('prd_tag'),
-            'brand' => $request->get('prd_brand'),
             'status' => 1,
             'category_id' => $request->get('prd_category')
         ]);

@@ -78,17 +78,6 @@
                 @endif
             </div>
             <div class="form-group">
-                <label>Brand</label>
-                <input name="prd_brand" type="text" class="form-control" placeholder="{{$product[0]->brand}}">
-                @if ($errors->has('prd_brand'))
-                    <p class="text-danger">
-                        @foreach ($errors->get('prd_brand') as $e)
-                            {{ $e }}
-                        @endforeach
-                    </p>
-                @endif
-            </div>
-            <div class="form-group">
                 <label>Nature:</label>
                 @if ($errors->has('prd_size'))
                     <p class="text-danger">

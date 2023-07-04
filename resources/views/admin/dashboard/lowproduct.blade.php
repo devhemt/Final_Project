@@ -51,7 +51,6 @@
                         <th>Name</th>
                         <th>Description</th>
                         <th>Price</th>
-                        <th>Brand</th>
                         <th>Amount</th>
                         <th>Created At</th>
                     </tr>
@@ -62,7 +61,6 @@
                             <td><a href="{{url('admin/product/'.$product->id)}}" class="text-primary fw-bold">{{$product->name}}</a></td>
                             <td>{{$product->description}}</td>
                             <td>{{$product->price}}</td>
-                            <td>{{$product->brand}}</td>
                             <td>{{$product->total_amount}}</td>
                             <td>{{$product->created_at}}</td>
                         </tr>

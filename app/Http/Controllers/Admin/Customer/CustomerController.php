@@ -47,7 +47,7 @@ class CustomerController extends Controller
                 ->join('address', 'address.customer_id' , '=' ,'customer.id')
                 ->leftJoin('invoice', 'customer.id', '=', 'invoice.customer_id')
                 ->select(
-                    'address.id',
+                    'address.id as address_id',
                     'customer.name',
                     'customer.id',
                     'customer.email',
@@ -65,16 +65,13 @@ class CustomerController extends Controller
                 )
                 ->havingRaw('COUNT(invoice.id) >= 2')
                 ->get();
-
-//            $address = [];
-//            foreach ($customers as $customer){
-//                $this->getAddress($customer)
-//            }
         }
         if ($type == 2){
             $customers = DB::table('customer')
+                ->join('address', 'address.customer_id' , '=' ,'customer.id')
                 ->leftJoin('invoice', 'customer.id', '=', 'invoice.customer_id')
                 ->select(
+                    'address.id as address_id',
                     'customer.name',
                     'customer.id',
                     'customer.email',
@@ -83,6 +80,7 @@ class CustomerController extends Controller
                     DB::raw('COUNT(invoice.id) as invoices_count')
                 )
                 ->groupBy(
+                    'address.id',
                     'customer.name',
                     'customer.id',
                     'customer.email',
@@ -94,8 +92,10 @@ class CustomerController extends Controller
         }
         if ($type == 3){
             $customers = DB::table('customer')
+                ->join('address', 'address.customer_id' , '=' ,'customer.id')
                 ->leftJoin('invoice', 'customer.id', '=', 'invoice.customer_id')
                 ->select(
+                    'address.id as address_id',
                     'customer.name',
                     'customer.id',
                     'customer.email',
@@ -104,6 +104,7 @@ class CustomerController extends Controller
                     DB::raw('COUNT(invoice.id) as invoices_count')
                 )
                 ->groupBy(
+                    'address.id',
                     'customer.name',
                     'customer.id',
                     'customer.email',
@@ -113,9 +114,15 @@ class CustomerController extends Controller
                 ->havingRaw('COUNT(invoice.id) = 0')
                 ->get();
         }
+        $address = [];
+        foreach ($customers as $customer){
+            $infor = Address::where('id',$customer->address_id)->first();
+            $address[$customer->id] = $this->getAddress($infor->province,$infor->district,$infor->wards);
+        }
         return view('admin.customer.showcustomer',[
             'type' => $type,
-            'customers' => $customers
+            'customers' => $customers,
+            'address' => $address
         ]);
     }
 

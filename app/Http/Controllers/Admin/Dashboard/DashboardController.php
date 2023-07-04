@@ -85,8 +85,8 @@ class DashboardController extends Controller
                 ->whereDay('invoice_items.created_at', '=', $now->day)
                 ->whereMonth('invoice_items.created_at', '=', $now->month)
                 ->whereYear('invoice_items.created_at', '=', $now->year)
-                ->select('product.id','product.brand', 'product.name', 'product.description', 'product.price', DB::raw('SUM(invoice_items.amount) as total_sales'))
-                ->groupBy('product.id','product.brand', 'product.name', 'product.description', 'product.price')
+                ->select('product.id', 'product.name', 'product.description', 'product.price', DB::raw('SUM(invoice_items.amount) as total_sales'))
+                ->groupBy('product.id', 'product.name', 'product.description', 'product.price')
                 ->orderByDesc('total_sales')
                 ->get();
         }
@@ -96,8 +96,8 @@ class DashboardController extends Controller
                 ->join('product', 'properties.prd_id', '=', 'product.id')
                 ->whereMonth('invoice_items.created_at', '=', $now->month)
                 ->whereYear('invoice_items.created_at', '=', $now->year)
-                ->select('product.id','product.brand', 'product.name', 'product.description', 'product.price', DB::raw('SUM(invoice_items.amount) as total_sales'))
-                ->groupBy('product.id','product.brand', 'product.name', 'product.description', 'product.price')
+                ->select('product.id', 'product.name', 'product.description', 'product.price', DB::raw('SUM(invoice_items.amount) as total_sales'))
+                ->groupBy('product.id', 'product.name', 'product.description', 'product.price')
                 ->orderByDesc('total_sales')
                 ->get();
         }
@@ -106,8 +106,8 @@ class DashboardController extends Controller
                 ->join('properties', 'invoice_items.property_id', '=', 'properties.id')
                 ->join('product', 'properties.prd_id', '=', 'product.id')
                 ->whereYear('invoice_items.created_at', '=', $now->year)
-                ->select('product.id','product.brand', 'product.name', 'product.description', 'product.price', DB::raw('SUM(invoice_items.amount) as total_sales'))
-                ->groupBy('product.id','product.brand', 'product.name', 'product.description', 'product.price')
+                ->select('product.id', 'product.name', 'product.description', 'product.price', DB::raw('SUM(invoice_items.amount) as total_sales'))
+                ->groupBy('product.id', 'product.name', 'product.description', 'product.price')
                 ->orderByDesc('total_sales')
                 ->get();
         }

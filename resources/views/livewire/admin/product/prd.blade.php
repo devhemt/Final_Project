@@ -18,10 +18,6 @@
                 <input readonly name="prd_tag" type="text" class="form-control" placeholder="{{$product[0]->tag}}">
             </div>
             <div class="form-group">
-                <label>Brand</label>
-                <input readonly name="prd_brand" type="text" class="form-control" placeholder="{{$product[0]->brand}}">
-            </div>
-            <div class="form-group">
                 <label>Description</label>
                 <textarea readonly name="prd_description" class="form-control" rows="3" placeholder="{{$product[0]->description}}"></textarea>
             </div>

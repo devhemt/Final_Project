@@ -24,7 +24,6 @@
                     <th scope="col">Product</th>
                     <th scope="col">Price</th>
                     <th scope="col">Sold</th>
-                    <th scope="col">Brand</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -34,7 +33,6 @@
                         <td><a href="{{url('admin/product/'.$product->id)}}" class="text-primary fw-bold">{{$product->name}}</a></td>
                         <td>${{$product->price}}</td>
                         <td class="fw-bold">{{$product->total_sales}}</td>
-                        <td>{{$product->brand}}</td>
                     </tr>
                 @endforeach
                 </tbody>
