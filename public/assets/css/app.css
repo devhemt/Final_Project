@@ -112,6 +112,14 @@
     text-align: center;
 }
 
+.form-select.form-select-sm.mb-3{
+    width: 100%;
+    height: 56px;
+    background: #f2f1f1;
+    border: none;
+    padding: 0px 20px;
+}
+
 /*--------------------------------------------------------------
   ##  Fonts
   --------------------------------------------------------------*/

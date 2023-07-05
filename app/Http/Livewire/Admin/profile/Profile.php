@@ -24,24 +24,21 @@ class Profile extends Component
         ]);
         $auth = Auth::guard('admin_account')->user();
 
-        // The passwords matches
         if (!Hash::check($this->current_password, $auth->password))
         {
             $this->addError('psmatchs', 'Current Password is Invalid.');
         }
 
-        // Current password and new password same
         if (strcmp($this->current_password, $this->new_password) == 0)
         {
             $this->addError('cpsamenp', 'New Password cannot be same as your current password.');
         }
 
-        // Current password and new password confirmation
-        if ($this->current_password != $this->new_password_confirmation)
+        if ($this->new_password != $this->new_password_confirmation)
         {
             $this->addError('confirm', 'The re-entered password does not match the new password.');
         }
-        if ($this->current_password == $this->new_password_confirmation && Hash::check($this->current_password, $auth->password) && strcmp($this->current_password, $this->new_password) != 0){
+        if ($this->new_password == $this->new_password_confirmation && Hash::check($this->current_password, $auth->password) && strcmp($this->current_password, $this->new_password) != 0){
             $user =  Admin_account::find($auth->id);
             $user->password =  Hash::make($this->new_password);
             $user->save();

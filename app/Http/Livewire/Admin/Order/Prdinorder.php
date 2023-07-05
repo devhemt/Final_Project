@@ -76,7 +76,7 @@ class Prdinorder extends Component
         }else{
             $this->email = Guest::where('id',$invoice_status->guest_id)->first()->email;
         }
-//        $this->emit('mask');
+        $this->emit('mask');
     }
     public function back(){
         $invoice_status = DB::table('invoice')
@@ -118,11 +118,12 @@ class Prdinorder extends Component
         }else{
             $this->email = Guest::where('id',$invoice_status->guest_id)->first()->email;
         }
-//        $this->emit('mask');
+        $this->emit('mask');
     }
 
     public function mail(){
         Mail::to($this->email)->send(new MailNotify($this->data));
+        $this->emit('done');
     }
 
     public function yes(){
@@ -137,11 +138,11 @@ class Prdinorder extends Component
         $affected = Status::where('invoice_id', $this->idinvoice)
             ->update(['status' => 0]);
         $this->top = null;
-//        $this->data = [
-//            "order" => "Your order was canceled",
-//            "notify" => "This is an email notification of your order status in real time. You can track to know the status of your order. Thank you for choosing our products!"
-//        ];
-//        $this->emit('mask');
+        $this->data = [
+            "order" => "Your order was canceled",
+            "notify" => "This is an email notification of your order status in real time. You can track to know the status of your order. Thank you for choosing our products!"
+        ];
+        $this->emit('mask');
     }
     public function no(){
         $this->top = null;
@@ -212,9 +213,11 @@ class Prdinorder extends Component
         if($this->invoice->guest_id == null){
             $this->cusdetail = Customer::where('id', $this->invoice->customer_id)
                 ->first();
+            $this->email = Customer::where('id', $this->invoice->customer_id)->first()->email;
         }else{
             $this->cusdetail = Guest::where('id', $this->invoice->guest_id)
                 ->first();
+            $this->email = Guest::where('id', $this->invoice->guest_id)->first()->email;
         }
 
         $this->prd = DB::table('invoice_items')

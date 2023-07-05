@@ -1,22 +1,32 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Client\Account;
 
+use App\Models\Invoice_items;
+use App\Models\Properties;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class Customer extends Component
 {
-    public $order1, $order2 ,$order3 ,$order4;
+    public $order1, $order2 ;
     public $top = null, $top1 = null;
-    public $orderid;
+    public $orderid, $customer;
 
     public function block($orderid){
         $this->orderid = $orderid;
         $this->top = 0;
     }
     public function yes(){
+        $items = Invoice_items::where('invoice_id', $this->orderid)->get();
+
+        foreach ($items as $item){
+            $current = Properties::where('id',$item->property_id)->first()->amount;
+            $affected = Properties::where('id', $item->property_id)
+                ->update(['amount' => $current+$item->amount]);
+        }
+
         $affected = DB::table('status')
             ->where('invoice_id','=', $this->orderid)
             ->update(['status' => 0]);
@@ -43,38 +53,30 @@ class Customer extends Component
 
     public function render()
     {
-        $userid = Auth::guard('customer')->user()->phone;
+        $userid = Auth::guard('customer')->user()->id;
+        $this->customer = \App\Models\Customer::where('id', $userid)
+            ->first();
         $this->order1 = DB::table('invoice')
-            ->join('customer', 'invoice.cusid','=', 'customer.cus_id')
-            ->join('status', 'invoice.invoice_id','=', 'status.invoice_id')
+            ->join('customer', 'invoice.customer_id','=', 'customer.id')
+            ->join('status', 'invoice.id','=', 'status.invoice_id')
             ->select('invoice.*','status.status')
-            ->where('customer.phone', $userid)
+            ->where('customer.id', $userid)
             ->Where('status.status', 1)
             ->orWhere('status.status', 2)
             ->orWhere('status.status', 3)
+            ->orWhere('status.status', 5)
             ->get();
         $this->order2 = DB::table('invoice')
-            ->join('customer', 'invoice.cusid','=', 'customer.cus_id')
-            ->join('status', 'invoice.invoice_id','=', 'status.invoice_id')
+            ->join('customer', 'invoice.customer_id','=', 'customer.id')
+            ->join('status', 'invoice.id','=', 'status.invoice_id')
             ->select('invoice.*','status.status')
-            ->where('customer.phone', $userid)
+            ->where('customer.id', $userid)
             ->Where('status.status', 4)
-            ->get();
-        $this->order3 = DB::table('invoice')
-            ->join('customer', 'invoice.cusid','=', 'customer.cus_id')
-            ->join('status', 'invoice.invoice_id','=', 'status.invoice_id')
-            ->select('invoice.*','status.status')
-            ->where('customer.phone', $userid)
-            ->Where('status.status', 0)
-            ->get();
-        $this->order4 = DB::table('invoice')
-            ->join('customer', 'invoice.cusid','=', 'customer.cus_id')
-            ->join('status', 'invoice.invoice_id','=', 'status.invoice_id')
-            ->select('invoice.*','status.status')
-            ->where('customer.phone', $userid)
-            ->Where('status.status', 5)
+            ->orWhere('status.status', 0)
+            ->orWhere('status.status', 6)
+            ->orWhere('status.status', 7)
             ->get();
 
-        return view('livewire.client.customer');
+        return view('livewire.client.account.customer');
     }
 }

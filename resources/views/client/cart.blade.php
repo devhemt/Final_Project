@@ -38,7 +38,7 @@
                         @if ($errors->has('district'))
                             <span class="text-danger">{{ $errors->first('district') }}</span>
                         @endif
-                        <select required class="form-select form-select-sm" name="ward" id="ward" aria-label=".form-select-sm">
+                        <select required class="form-select form-select-sm mb-3" name="ward" id="ward" aria-label=".form-select-sm">
                             <option value="" selected>Ward</option>
                         </select>
                         @if ($errors->has('ward'))
