@@ -24,9 +24,9 @@
 
             <div class="col-sm-6 col-xl-3  col-md-6">
                 <div class="small-sec-title">
-                    <h6>TOP <span>RATED</span></h6>
+                    <h6>TOP <span>DAILY</span></h6>
                 </div>
-                @foreach ($rate as $p)
+                @foreach ($topDay as $p)
                 <!-- Single product-->
                     <div class="sin-product-s">
                         <div class="sp-img">
@@ -39,16 +39,14 @@
                         </div>
                     </div>
                 @endforeach
-
-
             </div>
             <!-- col -->
 
             <div class="col-sm-6 col-xl-3  col-md-6">
                 <div class="small-sec-title">
-                    <h6>WEEKLY <span>BEST</span></h6>
+                    <h6>BEST<span> MONTHLY</span></h6>
                 </div>
-                @foreach ($weeklyBest as $p)
+                @foreach ($topMonth as $p)
                     <!-- Single product-->
                     <div class="sin-product-s">
                         <div class="sp-img">
@@ -68,9 +66,9 @@
 
             <div class="col-sm-6 col-xl-3 col-md-6">
                 <div class="small-sec-title">
-                    <h6>SALE <span>OFF</span></h6>
+                    <h6>LASTEST <span>PRODUCTS</span></h6>
                 </div>
-                @foreach ($saleoff as $p)
+                @foreach ($latest as $p)
                     <!-- Single product-->
                     <div class="sin-product-s">
                         <div class="sp-img">
