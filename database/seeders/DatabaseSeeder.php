@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
 
         DB::table('admin_account')->insert([
             'name' => 'Admin User',
+            'image' => 'default.jpg',
             'email' => 'admin@gmail.com',
             'phone' => '00000',
             'password' => Hash::make('admin123'),

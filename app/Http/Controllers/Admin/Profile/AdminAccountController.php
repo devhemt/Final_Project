@@ -37,6 +37,7 @@ class AdminAccountController extends Controller
         $data = $request->all();
         $create = Admin_account::create([
             'name' => $data['name'],
+            'image' => 'default.jpg',
             'email' => $data['email'],
             'phone' => $data['phone'],
             'password' => Hash::make($data['password']),

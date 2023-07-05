@@ -217,94 +217,66 @@
 		</section>
 		<!-- main-product -->
 
-		<!--=========================-->
-		<!--=   Subscribe area      =-->
-		<!--=========================-->
+        <!--=========================-->
+        <!--=   Instagram area      =-->
+        <!--=========================-->
 
-		<section class="subscribe-area">
-			<div class="container container-two">
-				<div class="row">
-					<div class="col-lg-5 col-xl-5">
-						<div class="subscribe-text">
-							<h6><span>Join our newsletter </span>save 10% off</h6>
-							<p>Autem vel eum iriure dolor in hendrerit in vulpuate velit esse molestie consequat vel illum dolore eu olestie.</p>
-						</div>
-					</div>
-					<!-- col-xl-6 -->
-
-					<div class="col-lg-7 col-xl-7">
-						<div class="subscribe-wrapper">
-							<input placeholder="Enter Keyword" type="text">
-							<button type="submit">SUBSCRIBE</button>
-						</div>
-					</div>
-
-				</div>
-			</div>
-			<!-- /.container-two -->
-		</section>
-		<!-- subscribe-area -->
-
-		<!--=========================-->
-		<!--=   Instagram area      =-->
-		<!--=========================-->
-
-		<section class="instagram-area">
-			<div class="instagram-slider owl-carousel owl-theme">
-				<!-- single instagram-slider -->
-				<div class="sin-instagram">
-					<img src="media/images/instagram/1.jpg" alt="">
-					<div class="hover-text">
-						<a href="#">
-					<img src="media/images/icon/ig.png" alt="">
-					<span>instagram</span>
-				</a>
-					</div>
-				</div>
-				<!-- single instagram-slider -->
-				<div class="sin-instagram">
-					<img src="media/images/instagram/2.jpg" alt="">
-					<div class="hover-text">
-						<a href="#">
-					<img src="media/images/icon/ig.png" alt="">
-					<span>instagram</span>
-				</a>
-					</div>
-				</div>
-				<!-- single instagram-slider -->
-				<div class="sin-instagram">
-					<img src="media/images/instagram/3.jpg" alt="">
-					<div class="hover-text">
-						<a href="#">
-					<img src="media/images/icon/ig.png" alt="">
-					<span>instagram</span>
-				</a>
-					</div>
-				</div>
-				<!-- single instagram-slider -->
-				<div class="sin-instagram">
-					<img src="media/images/instagram/4.jpg" alt="">
-					<div class="hover-text">
-						<a href="#">
-					<img src="media/images/icon/ig.png" alt="">
-					<span>instagram</span>
-				</a>
-					</div>
-				</div>
-				<!-- single instagram-slider -->
-				<div class="sin-instagram">
-					<img src="media/images/instagram/5.jpg" alt="">
-					<div class="hover-text">
-						<a href="#">
-					<img src="media/images/icon/ig.png" alt="">
-					<span>instagram</span>
-				</a>
-					</div>
-				</div>
-			</div>
-			<!-- /.instagram-slider end -->
-		</section>
-		<!-- /.instagram-area end-->
+        <section class="instagram-area">
+            <div class="instagram-slider owl-carousel owl-theme">
+                <!-- single instagram-slider -->
+                <div class="sin-instagram">
+                    <img src="{{asset('images/inta1.jpg')}}" alt="">
+                    <div class="hover-text">
+                        <a href="#">
+                            <img src="media/images/icon/ig.png" alt="">
+                            <span>instagram</span>
+                        </a>
+                    </div>
+                </div>
+                <!-- single instagram-slider -->
+                <div class="sin-instagram">
+                    <img src="{{asset('images/inta2.jpg')}}" alt="">
+                    <div class="hover-text">
+                        <a href="#">
+                            <img src="media/images/icon/ig.png" alt="">
+                            <span>instagram</span>
+                        </a>
+                    </div>
+                </div>
+                <!-- single instagram-slider -->
+                <div class="sin-instagram">
+                    <img src="{{asset('images/inta3.jpg')}}" alt="">
+                    <div class="hover-text">
+                        <a href="#">
+                            <img src="media/images/icon/ig.png" alt="">
+                            <span>instagram</span>
+                        </a>
+                    </div>
+                </div>
+                <!-- single instagram-slider -->
+                <div class="sin-instagram">
+                    <img src="{{asset('images/inta1.jpg')}}" alt="">
+                    <div class="hover-text">
+                        <a href="#">
+                            <img src="media/images/icon/ig.png" alt="">
+                            <span>instagram</span>
+                        </a>
+                    </div>
+                </div>
+                <!-- single instagram-slider -->
+                <div class="sin-instagram">
+                    <img src="{{asset('images/inta2.jpg')}}" alt="">
+                    <div class="hover-text">
+                        <a href="#">
+                            <img src="media/images/icon/ig.png" alt="">
+                            <span>instagram</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.instagram-slider end -->
+        </section>
+        <!-- /.instagram-area end-->
 
     </main>
 @endsection

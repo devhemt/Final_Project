@@ -6,11 +6,13 @@ use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use App\Models\Purchase;
 use App\Models\Supplier;
+use Livewire\WithPagination;
 
 class Showpurchase extends Component
 {
+    use WithPagination;
     public $isShowCreate = null, $isShowEdit = null, $total = null;
-    public $purchase, $suppliers;
+    public $suppliers;
     public $purchaseCode, $totalPay, $supplier;
     public $editPurchaseCode,$editTotalPay, $editSupplier;
     public $purchase_id;
@@ -88,12 +90,13 @@ class Showpurchase extends Component
 
     public function render()
     {
-        $this->purchase = DB::table('purchase')
-            ->join('supplier', 'purchase.supplier_id','=', 'supplier.id')
-            ->select('purchase.*','supplier.name')
-            ->get();
         $this->suppliers = Supplier::get();
         $this->total = Purchase::count();
-        return view('livewire.admin.purchase.showpurchase');
+        return view('livewire.admin.purchase.showpurchase',[
+            'purchase' => DB::table('purchase')
+                ->join('supplier', 'purchase.supplier_id','=', 'supplier.id')
+                ->select('purchase.*','supplier.name')
+                ->paginate(10),
+        ]);
     }
 }

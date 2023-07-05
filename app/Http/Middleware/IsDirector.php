@@ -17,7 +17,7 @@ class IsDirector
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::guard('user')->check() && Auth::guard('user')->user()->role == 1)
+        if(Auth::guard('admin_account')->check())
         {
             return $next($request);
         }else{
