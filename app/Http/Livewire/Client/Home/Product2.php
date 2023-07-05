@@ -18,10 +18,27 @@ class Product2 extends Component
 
     public function render()
     {
-        $this->product = Product::where('status','=', 1)
-            ->orderByDesc('id')
-            ->limit(4)
+        $this->sale = Product::where('status', '=', 1)
+            -> orderBy('price', 'asc')
+            -> limit (2)
             ->get();
+
+
+        $this->rate = Product::where('tag', '=', 'fall dress')
+            ->where('status', '=', 1)
+            -> limit (2)
+            ->get();
+
+        $this->weeklyBest = Product::where('tag', '=', 'summer skirt')
+            ->where('status', '=', 1)
+            -> limit (2)
+            ->get();
+
+        $this->saleoff = Product::where('tag', '=', 'fall dress')
+            -> orderBy('price', 'desc')
+            -> limit (2)
+            ->get();
+
         return view('livewire.client.home.product2');
     }
 }

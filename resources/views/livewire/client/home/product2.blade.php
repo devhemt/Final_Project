@@ -1,54 +1,94 @@
-<section class="main-product bg-one">
-    <div class="container container-two">
-        <div class="section-heading">
-            <h3>Hottest <span>product</span></h3>
-        </div>
-        <!-- /.section-heading-->
-        <div class="row" wire:ignore>
-            <div class="col-xl-12 ">
-                <div class="pro-tab-filter">
-                    <div class="grid grid-three">
-                        @if($size != 0)
-                            @foreach($products as $p)
-                                <div class="grid-item 1 2 3 4 col-sm-12 col-md-6">
-                                    <div class="sin-product style-three">
-                                        <div class="pro-img-three">
-                                            <div class="img-show">
-                                                <img src="{{ asset('images/'.$p->demo_image) }}" alt="">
-                                            </div>
-                                            <div class="img-hover">
-                                                <img src="{{ asset('images/'.$p->demo_image) }}" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="mid-wrapper">
-                                            <h5 class="pro-title"><a href="{{url('product/'.$p->prd_id)}}">{{ $p->name }}</a></h5>
-                                            <p>@if($p->categories == 1)
-                                                    {{'Men'}}
-                                                @elseif($p->categories == 2)
-                                                    {{'Women'}}
-                                                @elseif($p->categories == 3)
-                                                    {{'Kid'}}
-                                                @elseif($p->categories == 4)
-                                                    {{'Accessories'}}
-                                                @endif / <span>${{ $p->price }}</span></p>
-                                        </div>
-                                        <div class="pro-icon style-three">
-                                            <ul>
-{{--                                                <li><a href="#"><i class="flaticon-valentines-heart"></i></a></li>--}}
-                                                <li><a href="{{url('cart')}}"><i class="flaticon-shopping-cart"></i></a></li>
-                                                <li><a class="trigger" wire:click.prefetch="showQuickView({{ $p->prd_id }})"><i class="flaticon-zoom-in"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        @endif
+<section class="product-small">
+    <div class="container-fluid  custom-container">
+        <div class="row">
+            <div class="col-sm-6 col-md-6 col-xl-3">
+                <div class="small-sec-title">
+                    <h6>TOP <span>SALE</span></h6>
+                </div>
+                <!-- Single product-->
+                @foreach ($sale as $p)
+                <div class="sin-product-s">
+                    <div class="sp-img">
+                        <img src="{{ asset('images/'.$p->demo_image) }}" alt="">
+                    </div>
+                    <div class="small-pro-details">
+                        <h5 class="title"><a href="{{url('product/'.$p->id)}}">{{ $p->name }}</a></h5>
+                        <span id="{{ $p->price }}">${{ $p->price }}</span>
+                        <a href="#">Buy Now</a>
                     </div>
                 </div>
+                @endforeach
+
             </div>
+            <!-- col -->
+
+            <div class="col-sm-6 col-xl-3  col-md-6">
+                <div class="small-sec-title">
+                    <h6>TOP <span>RATED</span></h6>
+                </div>
+                @foreach ($rate as $p)
+                <!-- Single product-->
+                    <div class="sin-product-s">
+                        <div class="sp-img">
+                            <img src="{{ asset('images/'.$p->demo_image) }}" alt="">
+                        </div>
+                        <div class="small-pro-details">
+                            <h5 class="title"><a href="{{url('product/'.$p->id)}}">{{ $p->name }}</a></h5>
+                            <span id="{{ $p->price }}">${{ $p->price }}</span>
+                            <a href="#">Buy Now</a>
+                        </div>
+                    </div>
+                @endforeach
+
+
+            </div>
+            <!-- col -->
+
+            <div class="col-sm-6 col-xl-3  col-md-6">
+                <div class="small-sec-title">
+                    <h6>WEEKLY <span>BEST</span></h6>
+                </div>
+                @foreach ($weeklyBest as $p)
+                    <!-- Single product-->
+                    <div class="sin-product-s">
+                        <div class="sp-img">
+                            <img src="{{ asset('images/'.$p->demo_image) }}" alt="">
+                        </div>
+                        <div class="small-pro-details">
+                            <h5 class="title"><a href="{{url('product/'.$p->id)}}">{{ $p->name }}</a></h5>
+                            <span id="{{ $p->price }}">${{ $p->price }}</span>
+                            <a href="#">Buy Now</a>
+                        </div>
+                    </div>
+                @endforeach
+
+
+            </div>
+            <!-- col -->
+
+            <div class="col-sm-6 col-xl-3 col-md-6">
+                <div class="small-sec-title">
+                    <h6>SALE <span>OFF</span></h6>
+                </div>
+                @foreach ($saleoff as $p)
+                    <!-- Single product-->
+                    <div class="sin-product-s">
+                        <div class="sp-img">
+                            <img src="{{ asset('images/'.$p->demo_image) }}" alt="">
+                        </div>
+                        <div class="small-pro-details">
+                            <h5 class="title"><a href="{{url('product/'.$p->id)}}">{{ $p->name }}</a></h5>
+                            <span id="{{ $p->price }}">${{ $p->price }}</span>
+                            <a href="#">Buy Now</a>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
+            <!-- col -->
         </div>
-        <!-- Row End -->
+        <!-- row -->
     </div>
-    <!-- Container End -->
+    <!-- container-fluid End-->
 </section>
 <!-- main-product 2 End -->

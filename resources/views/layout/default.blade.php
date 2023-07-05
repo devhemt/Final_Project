@@ -69,38 +69,39 @@
                             <ul id="navigation">
                                 <li><a href="{{ url('/') }}" class="active">home</a>
                                 </li>
-{{--                                <li><a href="{{ url('/shop') }}">Men</a></li>--}}
-{{--                                <li><a href="{{ url('/shop') }}">Woman</a></li>--}}
-                                <li class="has-child"><a href="{{ url('/shop') }}">Shop</a>
-                                    <div class="mega-menu">
-                                        <div class="mega-catagory per-20">
-                                            <h4><a class="font-red" href="shop.html">Woman Dresses</a></h4>
-                                            <ul class="mega-button">
-                                                <li><a href="shop.html">Woman Dresses</a></li>
-                                                <li><a href="shop.html">Women & Flowers</a></li>
-                                                <li><a href="shop.html">Girl Hat in Sunlights</a></li>
-                                                <li><a href="shop.html">Men Watches</a></li>
-                                                <li><a href="shop.html">Clothes Fashion</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="mega-catagory per-20">
-                                            <h4><a class="font-red" href="shop.html">Clothes Fashion</a></h4>
-                                            <ul class="mega-button">
-                                                <li><a href="shop.html">Woman Dresses</a></li>
-                                                <li><a href="shop.html">Girl Hat in Sunlights</a></li>
-                                                <li><a href="shop.html">Men Watches</a></li>
-                                                <li><a href="shop.html">Clothes Fashion</a></li>
-                                                <li><a href="shop.html">Woman Dresses</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="mega-catagory mega-img per-30">
-                                            <a href="#"><img src="{{ asset("images/banerheader1.jpg") }}" alt=""></a>
-                                        </div>
-                                        <div class="mega-catagory mega-img per-30">
-                                            <a href="#"><img src="{{ asset("images/banerheader2.jpg") }}" alt=""></a>
-                                        </div>
-                                    </div>
-                                </li>
+                                <li><a href="{{ url('/shop') }}">Shirt</a></li>
+                                <li><a href="{{ url('/shop') }}">Dress</a></li>
+                                <li><a href="{{ url('/shop') }}">Skirt</a></li>
+{{--                                <li class="has-child"><a href="{{ url('/shop') }}">Shop</a>--}}
+{{--                                    <div class="mega-menu">--}}
+{{--                                        <div class="mega-catagory per-20">--}}
+{{--                                            <h4><a class="font-red" href="shop.html">Woman Dresses</a></h4>--}}
+{{--                                            <ul class="mega-button">--}}
+{{--                                                <li><a href="shop.html">Woman Dresses</a></li>--}}
+{{--                                                <li><a href="shop.html">Women & Flowers</a></li>--}}
+{{--                                                <li><a href="shop.html">Girl Hat in Sunlights</a></li>--}}
+{{--                                                <li><a href="shop.html">Men Watches</a></li>--}}
+{{--                                                <li><a href="shop.html">Clothes Fashion</a></li>--}}
+{{--                                            </ul>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="mega-catagory per-20">--}}
+{{--                                            <h4><a class="font-red" href="shop.html">Clothes Fashion</a></h4>--}}
+{{--                                            <ul class="mega-button">--}}
+{{--                                                <li><a href="shop.html">Woman Dresses</a></li>--}}
+{{--                                                <li><a href="shop.html">Girl Hat in Sunlights</a></li>--}}
+{{--                                                <li><a href="shop.html">Men Watches</a></li>--}}
+{{--                                                <li><a href="shop.html">Clothes Fashion</a></li>--}}
+{{--                                                <li><a href="shop.html">Woman Dresses</a></li>--}}
+{{--                                            </ul>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="mega-catagory mega-img per-30">--}}
+{{--                                            <a href="#"><img src="{{ asset("images/banerheader1.jpg") }}" alt=""></a>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="mega-catagory mega-img per-30">--}}
+{{--                                            <a href="#"><img src="{{ asset("images/banerheader2.jpg") }}" alt=""></a>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </li>--}}
 {{--                                <li class="has-child"><a href="{{ url('/shop') }}">Shop</a>--}}
 {{--                                    <ul class="sub-menu">--}}
 {{--                                        <li><a href="{{ url('/prd') }}">Product details</a></li>--}}
@@ -109,7 +110,7 @@
 {{--                                        <li><a href="{{ url('/singleblog') }}">Single blog</a></li>--}}
 {{--                                    </ul>--}}
 {{--                                </li>--}}
-                                <li><a href="{{ url('/blog') }}">Blog</a></li>
+                                <li><a href="{{ url('/blog') }}">about us</a></li>
                                 <li><a href="{{ url('/contact') }}">CONTACT</a></li>
                             </ul>
                         </div>
@@ -312,18 +313,15 @@
                         <div class="footer-widget">
                             <div class="logo">
                                 <a href="#">
-                                    <img src="{{asset('images/logo.png')}}" alt="">
+                                    <img src="{{asset('images/logowhite.png')}}" alt="">
                                 </a>
                             </div>
-                            <p>Autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat vel illum dolore eu olestie consequat Autem vel eum iriure dolor.</p>
+                            <p>The comma brand's official online store in Europe. Sit back and be inspired by our current collections. You can easily order your favourite pieces online at home or on the go</p>
                             <div class="social">
                                 <ul>
-                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-dribbble"></i></a></li>
+                                    <li><a href="https://www.facebook.com/elegantfashionhn/"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="https://twitter.com/Elegant_Clthing"><i class="fab fa-twitter"></i></a></li>
+                                    <li><a href="https://www.instagram.com/elegant.fashionstore/"><i class="fab fa-instagram"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -345,13 +343,12 @@
                     <!-- /.col-xl-3 -->
                     <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3">
                         <div class="footer-widget">
-                            <h3>COLLECTIONS</h3>
+                            <h3>CATEGORIES</h3>
                             <div class="footer-menu">
                                 <ul>
-                                    <li><a href="#">Summer 2018</a></li>
-                                    <li><a href="#">Women's Dresses</a></li>
-                                    <li><a href="#">Women's Jackets</a></li>
-                                    <li><a href="#">Men's Shirts</a></li>
+                                    <li><a href="#">Dress</a></li>
+                                    <li><a href="#">Shirt</a></li>
+                                    <li><a href="#">Skirt</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -360,20 +357,14 @@
                     <div class="col-md-6 col-lg-3 col-xl-3">
                         <div class="footer-widget">
                             <h3>Payment Methods</h3>
-                            <p>Autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat vel illum</p>
+                            <p>We support payment by bank transfer via momo, or direct payment in cash.</p>
                             <div class="payment-link">
                                 <ul>
                                     <li>
-                                        <a href="#"><img src="{{asset('media/images/p1.png')}}" alt=""></a>
+                                        <a href="#"><img src="{{asset('media/momo.png')}}" alt=""></a>
                                     </li>
                                     <li>
-                                        <a href="#"><img src="{{asset('media/images/p2.png')}}" alt=""></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><img src="{{asset('media/images/p3.png')}}" alt=""></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><img src="{{asset('media/images/p4.png')}}" alt=""></a>
+                                        <a href="#"><img src="{{asset('media/cash.png')}}" alt=""></a>
                                     </li>
                                 </ul>
                             </div>
