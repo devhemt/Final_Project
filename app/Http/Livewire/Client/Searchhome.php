@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Client;
 
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -18,10 +18,9 @@ class Searchhome extends Component
 
     public function render()
     {
-        $this->results = DB::table('items')
-            ->join('category', 'items.prd_id','=', 'category.prdid')
-            ->where('items.name','like','%'.str_replace(' ', '',$this->search_home).'%')
-            ->orderByDesc('items.prd_id')
+        $this->results = DB::table('Product')
+            ->where('name','like','%'.str_replace(' ', '',$this->search_home).'%')
+            ->orderByDesc('id')
             ->get();
 
         if ($this->search_home != null){

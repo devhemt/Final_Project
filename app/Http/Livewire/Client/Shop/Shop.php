@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Client\Shop;
 
-use Livewire\Component;
-use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+use Livewire\Component;
 
 
 class Shop extends Component
@@ -79,7 +79,7 @@ class Shop extends Component
         }
 
         if ($this->bestsell == false && $this->categorysearch == true && $this->searchflag == true) {
-            $this->product = DB::table('items')
+            $this->product = DB::table('product')
                 ->join('category', 'items.prd_id','=', 'category.prdid')
                 ->select('items.*','category.categories')
                 ->where('items.name','like','%'.str_replace(' ', '',$this->search).'%')
@@ -179,8 +179,7 @@ class Shop extends Component
         }
 
         $this->bestsell;
-        return view('livewire.client.shop',['product'=>$this->product]);
+        return view('livewire.client.shop.shop',['product'=>$this->product]);
     }
-
 
 }

@@ -31,49 +31,18 @@
 						<div class=" shop-sidebar">
 							<div class="sidebar-widget product-widget">
 								<h6>BEST SELLERS</h6>
-								<div class="wid-pro">
-									<div class="sp-img">
-										<img src="{{asset('media/images/product/sb1.jpg')}}" alt="">
-									</div>
-									<div class="small-pro-details">
-										<h5 class="title"><a href="#">Contrasting T-Shirt</a></h5>
-										<span>$60</span>
-										<span class="pre-price">$80</span>
-									</div>
-								</div>
-
-								<div class="wid-pro">
-									<div class="sp-img">
-										<img src="{{asset('media/images/product/sb2.jpg')}}" alt="">
-									</div>
-									<div class="small-pro-details">
-										<h5 class="title"><a href="#">Contrasting T-Shirt</a></h5>
-										<span>$60</span>
-										<span class="pre-price">$80</span>
-									</div>
-								</div>
-
-								<div class="wid-pro">
-									<div class="sp-img">
-										<img src="{{asset('media/images/product/sb3.jpg')}}" alt="">
-									</div>
-									<div class="small-pro-details">
-										<h5 class="title"><a href="#">Contrasting T-Shirt</a></h5>
-										<span>$60</span>
-										<span class="pre-price">$80</span>
-									</div>
-								</div>
-
-								<div class="wid-pro">
-									<div class="sp-img">
-										<img src="{{asset('media/images/product/sb4.jpg')}}" alt="">
-									</div>
-									<div class="small-pro-details">
-										<h5 class="title"><a href="#">Contrasting T-Shirt</a></h5>
-										<span>$60</span>
-										<span class="pre-price">$80</span>
-									</div>
-								</div>
+                                @foreach($topProducts as $t)
+                                    <div class="wid-pro">
+                                        <div class="sp-img">
+                                            <img src="{{ asset('images/'.$t->demo_image) }}" alt="">
+                                        </div>
+                                        <div class="small-pro-details">
+                                            <h5 class="title"><a href="{{url('product/'.$t->id)}}">{{$t->name}}</a></h5>
+                                            <span>${{$t->price}}</span>
+                                            {{--                        <span class="pre-price">$80</span>--}}
+                                        </div>
+                                    </div>
+                                @endforeach
 							</div>
 
 							<div class="sidebar-widget banner-wid">
@@ -279,30 +248,5 @@
 		</section>
 		<!-- main-product -->
 
-		<!--=========================-->
-		<!--=   Subscribe area      =-->
-		<!--=========================-->
-
-		<section class="subscribe-area style-two">
-			<div class="container container-two">
-				<div class="row">
-					<div class="col-lg-5">
-						<div class="subscribe-text">
-							<h6>Join our newsletter</h6>
-						</div>
-					</div>
-					<!-- col-xl-6 -->
-
-					<div class="col-lg-7">
-						<div class="subscribe-wrapper">
-							<input placeholder="Enter Keyword" type="text">
-							<button type="submit">SUBSCRIBE</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- /.container-two -->
-		</section>
-		<!-- subscribe-area -->
     </main>
 @endsection

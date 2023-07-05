@@ -64,12 +64,16 @@
                             <div class="row mb-3">
                                 <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                                 <div class="col-md-8 col-lg-9">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-10">
+                                            <input wire:model="photo" name="prd_image" onchange="preview();" class="form-control" type="file" id="formFile">
+                                        </div>
+                                    </div>
                                     <div id="view-image" wire:ignore>
                                     <img src="{{asset('imagesadmin/images/'.$profile->image)}}" alt="Profile">
                                         @error('photo') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                     <div class="pt-2">
-                                        <input wire:model="photo" name="prd_image" onchange="preview();" type="file">
                                         <a wire:click="delProImage" class="btn btn-danger btn-sm" onchange="nopreview();" title="Remove my profile image"><i class="bi bi-trash"></i></a>
                                     </div>
                                 </div>

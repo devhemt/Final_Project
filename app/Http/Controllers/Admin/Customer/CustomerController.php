@@ -46,6 +46,7 @@ class CustomerController extends Controller
             $customers = DB::table('customer')
                 ->join('address', 'address.customer_id' , '=' ,'customer.id')
                 ->leftJoin('invoice', 'customer.id', '=', 'invoice.customer_id')
+                ->where('address.active','=',1)
                 ->select(
                     'address.id as address_id',
                     'customer.name',
@@ -70,6 +71,7 @@ class CustomerController extends Controller
             $customers = DB::table('customer')
                 ->join('address', 'address.customer_id' , '=' ,'customer.id')
                 ->leftJoin('invoice', 'customer.id', '=', 'invoice.customer_id')
+                ->where('address.active','=',1)
                 ->select(
                     'address.id as address_id',
                     'customer.name',
@@ -94,6 +96,7 @@ class CustomerController extends Controller
             $customers = DB::table('customer')
                 ->join('address', 'address.customer_id' , '=' ,'customer.id')
                 ->leftJoin('invoice', 'customer.id', '=', 'invoice.customer_id')
+                ->where('address.active','=',1)
                 ->select(
                     'address.id as address_id',
                     'customer.name',

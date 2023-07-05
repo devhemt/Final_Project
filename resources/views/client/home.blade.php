@@ -166,20 +166,9 @@
         </div>
         <!-- Container  -->
     </section>
-
-      <!-- main-product 1 End -->
-
+        <!-- main-product 1 End -->
         @livewire('client.home.product3')
 
-        <!--=========================-->
-        <!--=   Discount Countdown area   =-->
-        <!--=========================-->
-
-        <section class="add-area">
-            <div class="row">
-                <img class='img-fluid w-100' src="{{asset('images/banner1.png')}}" />
-            </div>
-        </section>
 
     <!--=========================-->
     <!--=   Small Product area    =-->
@@ -355,5 +344,5 @@
 
 
 
-    </main><!-- End #main -->
+    </main>
 @endsection

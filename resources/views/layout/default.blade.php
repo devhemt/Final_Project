@@ -110,7 +110,7 @@
 {{--                                        <li><a href="{{ url('/singleblog') }}">Single blog</a></li>--}}
 {{--                                    </ul>--}}
 {{--                                </li>--}}
-                                <li><a href="{{ url('/blog') }}">about us</a></li>
+                                <li><a href="{{ url('/blog') }}">blog</a></li>
                                 <li><a href="{{ url('/contact') }}">CONTACT</a></li>
                             </ul>
                         </div>
@@ -124,7 +124,7 @@
                                 </li>
                                 @livewire('client.cart.smallcart')
                                 <li class="top-search">
-{{--                                    @livewire('searchhome')--}}
+                                    @livewire('client.searchhome')
                                 </li>
                             </ul>
                         </div>

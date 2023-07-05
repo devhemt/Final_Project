@@ -27,14 +27,10 @@
                 <div class="icon-wrapper">
                     <div class="pro-icon">
                         <ul>
-{{--                            <li><a href="#"><i class="flaticon-valentines-heart"></i></a></li>--}}
                             <li><a href="{{url('cart')}}"><i class="flaticon-compare"></i></a></li>
                             <li><a href="#{{ $p->name }}" class="trigger" wire:click.prefetch="showQuickView({{ $p->prd_id }})"><i class="flaticon-eye"></i></a></li>
                         </ul>
                     </div>
-{{--                    <div class="add-to-cart">--}}
-{{--                        <a href="#">add to cart</a>--}}
-{{--                    </div>--}}
                 </div>
             </div>
 
