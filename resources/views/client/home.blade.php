@@ -12,34 +12,15 @@
           <div class="slider-start slider-1 owl-carousel owl-theme">
 
               <div class="item">
-                  <img src="{{asset('images/banner3.png')}}" alt="">
+                  <img src="{{asset('images/banner4.jpg')}}" alt="">
                   <div class="container-fluid custom-container slider-content">
                       <div class="row align-items-center">
 
                           <div class="col-12 col-sm-8 col-md-8 col-lg-6 ml-auto">
                               <div class="slider-text ">
-                                  <h4 class="animated fadeInUp"><span>BRAND NEW</span> COLLECTION</h4>
-                                  <h1 class="animated fadeInUp">COMERCIO SHOP</h1>
-                                  <p class="animated fadeInUp">Autem vel eum iriure dolor in molestie consequat vel illum dolore eu feugiat nulla facilisis at vero eros.</p>
-                                  <a class="animated fadeInUp btn-two" href="{{url('shop')}}">SHOP NOW</a>
-                              </div>
-                          </div>
-                          <!-- Col End -->
-                      </div>
-                      <!-- Row End -->
-                  </div>
-              </div>
-
-              <div class="item">
-                  <img src="{{asset('images/banner3.png')}}" alt="">
-                  <div class="container-fluid custom-container slider-content">
-                      <div class="row align-items-center">
-
-                          <div class="col-12 col-sm-8 col-md-8 col-lg-6 ml-auto">
-                              <div class="slider-text ">
-                                  <h4 class="animated fadeIn"><span>BRAND NEW</span> COLLECTION</h4>
-                                  <h1 class="animated fadeIn">NEW ARRIVALS</h1>
-                                  <p class="animated fadeIn">Autem vel eum iriure dolor in hendrerit molestie consequat vel illum dolore eu feugiat nulla facilisis at vero eros.</p>
+                                  <h4 class="animated fadeIn" style="color: black;" ><span style="color: white;" >BRAND NEW</span> COLLECTION</h4>
+                                  <h1 class="animated fadeIn" style="color: white;" >ELEGANT SHOP</h1>
+                                  <p class="animated fadeIn">Discover Elegant, the ultimate destination for fashionable women's clothing. Our brand is dedicated to helping you elevate your style and express your individuality through thoughtfully designed and meticulously crafted pieces.</p>
                                   <a class="animated fadeIn btn-two" href="#">SHOP NOW</a>
                               </div>
                           </div>
@@ -50,14 +31,33 @@
               </div>
 
               <div class="item">
-                  <img src="{{asset('images/banner3.png')}}" alt="">
+                  <img src="{{asset('images/banner2.png')}}" alt="">
+                  <div class="container-fluid custom-container slider-content">
+                      <div class="row align-items-center">
+
+                          <div class="col-12 col-sm-8 col-md-8 col-lg-6 ml-auto">
+                              <div class="slider-text ">
+                                  <h4 class="animated fadeIn" ><span style="color: white;" >BRAND NEW</span> COLLECTION</h4>
+                                  <h1 class="animated fadeIn" style="color: white;" >NEW ARRIVALS</h1>
+                                  <p class="animated fadeIn" style="color: #dad55e;">Our team of talented designers pays meticulous attention to fabric selection, fit, and finishing touches, ensuring that each piece not only looks stunning but also feels comfortable to wear.</p>
+                                  <a class="animated fadeIn btn-two" href="#">SHOP NOW</a>
+                              </div>
+                          </div>
+                          <!-- Col End -->
+                      </div>
+                      <!-- Row End -->
+                  </div>
+              </div>
+
+              <div class="item">
+                  <img src="{{asset('images/banner3.PNG')}}" alt="">
                   <div class="container-fluid custom-container slider-content">
                       <div class="row align-items-center">
                           <div class="col-12 col-sm-8 col-md-8 offset-md-1 col-lg-6 offset-xl-2 col-xl-5 mr-auto">
                               <div class="slider-text mob-align-left">
-                                  <h4 class="animated fadeIn"><span>LATEST COLLECTION </span> 2018 </h4>
-                                  <h1 class="animated fadeIn">STYLE & GRACE </h1>
-                                  <p class="animated fadeIn">Autem vel eum iriure dolor molestie consequat vel illum dolore eu feugiat nulla facilisis at vero eros.</p>
+                                  <h4 class="animated fadeIn" style="color: white;"><span style="color: black;">LATEST COLLECTION </span> 2023 </h4>
+                                  <h1 class="animated fadeIn" style="color: white;">STYLE & GRACE </h1>
+                                  <p class="animated fadeIn" style="color: #dad55e;">Experience the allure of Elegant and embrace your personal style with our exquisite collection of women's clothing. Explore our latest arrivals and elevate your wardrobe today.</p>
                                   <a class="animated fadeIn btn-two" href="#">SHOP NOW</a>
                               </div>
                           </div>
@@ -158,13 +158,6 @@
             <div class="row">
                 <div class="col-xl-12 ">
                     <div class="pro-tab-filter">
-{{--                        <ul class="pro-tab-button">--}}
-{{--                            <li class="filter active" data-filter="*">ALL</li>--}}
-{{--                            <li class="filter" data-filter=".1">Men's clothing</li>--}}
-{{--                            <li class="filter" data-filter=".2">Women dresses</li>--}}
-{{--                            <li class="filter" data-filter=".3">Kids clothing</li>--}}
-{{--                            <li class="filter" data-filter=".4">Accessories</li>--}}
-{{--                        </ul>--}}
                         @livewire('client.home.product1')
                     </div>
                 </div>
@@ -176,9 +169,23 @@
 
       <!-- main-product 1 End -->
 
-
-{{--        @livewire('client.home.product2')--}}
         @livewire('client.home.product3')
+
+        <!--=========================-->
+        <!--=   Discount Countdown area   =-->
+        <!--=========================-->
+
+        <section class="add-area">
+            <div class="row">
+                <img class='img-fluid w-100' src="{{asset('images/banner1.png')}}" />
+            </div>
+        </section>
+
+    <!--=========================-->
+    <!--=   Small Product area    =-->
+    <!--=========================-->
+
+        @livewire('client.home.product2')
 
     <!--=========================-->
     <!--=        Feature Area      =-->
@@ -254,154 +261,6 @@
 
 
       <!--=========================-->
-      <!--=   Discount Countdown area   =-->
-      <!--=========================-->
-
-      <section class="add-area">
-          <a href="#"><img src="{{asset('images/banner1.png')}}" alt=""></a>
-      </section>
-
-      <!--=========================-->
-      <!--=   Small Product area    =-->
-      <!--=========================-->
-
-      <section class="product-small">
-          <div class="container-fluid  custom-container">
-              <div class="row">
-                  <div class="col-sm-6 col-md-6 col-xl-3">
-                      <div class="small-sec-title">
-                          <h6>TOP <span>SALE</span></h6>
-                      </div>
-                      <!-- Single product-->
-                      <div class="sin-product-s">
-                          <div class="sp-img">
-                              <img src="media/images/product/s9.jpg" alt="">
-                          </div>
-                          <div class="small-pro-details">
-                              <h5 class="title"><a href="#">Sunglass dark color</a></h5>
-                              <span>$60</span>
-                              <a href="#">Buy Now</a>
-                          </div>
-                      </div>
-
-                      <!-- Single product-->
-                      <div class="sin-product-s">
-                          <div class="sp-img">
-                              <img src="media/images/product/s2.jpg" alt="">
-                          </div>
-                          <div class="small-pro-details">
-                              <h5 class="title"><a href="#">Top dress</a></h5>
-                              <span>$60</span>
-                              <a href="#">Buy Now</a>
-                          </div>
-                      </div>
-
-
-                  </div>
-                  <!-- col -->
-
-                  <div class="col-sm-6 col-xl-3  col-md-6">
-                      <div class="small-sec-title">
-                          <h6>TOP <span>RATED</span></h6>
-                      </div>
-                      <!-- Single product-->
-                      <div class="sin-product-s">
-                          <div class="sp-img">
-                              <img src="media/images/product/s1.jpg" alt="">
-                          </div>
-                          <div class="small-pro-details">
-                              <h5 class="title"><a href="#">Blue girls cap</a></h5>
-                              <span>$60</span>
-                              <a href="#">Buy Now</a>
-
-                          </div>
-                      </div>
-
-                      <!-- Single product-->
-                      <div class="sin-product-s">
-                          <div class="sp-img">
-                              <img src="media/images/product/s11.jpg" alt="">
-                          </div>
-                          <div class="small-pro-details">
-                              <h5 class="title"><a href="#">Red tops</a></h5>
-                              <span>$60</span>
-                              <a href="#">Buy Now</a>
-                          </div>
-                      </div>
-
-
-                  </div>
-                  <!-- col -->
-
-                  <div class="col-sm-6 col-xl-3  col-md-6">
-                      <div class="small-sec-title">
-                          <h6>WEEKLY <span>BEST</span></h6>
-                      </div>
-                      <!-- Single product-->
-                      <div class="sin-product-s">
-                          <div class="sp-img">
-                              <img src="media/images/product/s9.jpg" alt="">
-                          </div>
-                          <div class="small-pro-details">
-                              <h5 class="title"><a href="#">Contrasting T-Shirt</a></h5>
-                              <span>$60</span>
-                              <a href="#">Buy Now</a>
-                          </div>
-                      </div>
-
-                      <!-- Single product-->
-                      <div class="sin-product-s">
-                          <div class="sp-img">
-                              <img src="media/images/product/s4.jpg" alt="">
-                          </div>
-                          <div class="small-pro-details">
-                              <h5 class="title"><a href="#">Sunglas</a></h5>
-                              <span>$60</span>
-                              <a href="#">Buy Now</a>
-                          </div>
-                      </div>
-
-
-                  </div>
-                  <!-- col -->
-
-                  <div class="col-sm-6 col-xl-3 col-md-6">
-                      <div class="small-sec-title">
-                          <h6>SALE <span>OFF</span></h6>
-                      </div>
-                      <!-- Single product-->
-                      <div class="sin-product-s">
-                          <div class="sp-img">
-                              <img src="media/images/product/s6.jpg" alt="">
-                          </div>
-                          <div class="small-pro-details">
-                              <h5 class="title"><a href="#">Contrasting T-Shirt</a></h5>
-                              <span>$60</span>
-                              <a href="#">Buy Now</a>
-                          </div>
-                      </div>
-
-                      <!-- Single product-->
-                      <div class="sin-product-s">
-                          <div class="sp-img">
-                              <img src="media/images/product/s7.jpg" alt="">
-                          </div>
-                          <div class="small-pro-details">
-                              <h5 class="title"><a href="#">Contrasting T-Shirt</a></h5>
-                              <span>$60</span>
-                              <a href="#">Buy Now</a>
-                          </div>
-                      </div>
-                  </div>
-                  <!-- col -->
-              </div>
-              <!-- row -->
-          </div>
-          <!-- container-fluid End-->
-      </section>
-
-
-      <!--=========================-->
       <!--=   Instagram area      =-->
       <!--=========================-->
 
@@ -411,7 +270,7 @@
               <div class="sin-instagram">
                   <img src="{{asset('images/inta1.jpg')}}" alt="">
                   <div class="hover-text">
-                      <a href="#">
+                      <a href="https://www.instagram.com/">
                           <img src="media/images/icon/ig.png" alt="">
                           <span>instagram</span>
                       </a>
@@ -421,7 +280,7 @@
               <div class="sin-instagram">
                   <img src="{{asset('images/inta2.jpg')}}" alt="">
                   <div class="hover-text">
-                      <a href="#">
+                      <a href="https://www.instagram.com/">
                           <img src="media/images/icon/ig.png" alt="">
                           <span>instagram</span>
                       </a>
@@ -431,7 +290,7 @@
               <div class="sin-instagram">
                   <img src="{{asset('images/inta3.jpg')}}" alt="">
                   <div class="hover-text">
-                      <a href="#">
+                      <a href="https://www.instagram.com/">
                           <img src="media/images/icon/ig.png" alt="">
                           <span>instagram</span>
                       </a>
@@ -441,7 +300,7 @@
               <div class="sin-instagram">
                   <img src="{{asset('images/inta1.jpg')}}" alt="">
                   <div class="hover-text">
-                      <a href="#">
+                      <a href="https://www.instagram.com/">
                           <img src="media/images/icon/ig.png" alt="">
                           <span>instagram</span>
                       </a>
@@ -451,7 +310,7 @@
               <div class="sin-instagram">
                   <img src="{{asset('images/inta2.jpg')}}" alt="">
                   <div class="hover-text">
-                      <a href="#">
+                      <a href="https://www.instagram.com/">
                           <img src="media/images/icon/ig.png" alt="">
                           <span>instagram</span>
                       </a>
@@ -468,9 +327,7 @@
       <!--=========================-->
 
 
-
-
-      <!-- Popup -->
+      <!-- Popup --
         @if($flag)
       <div class="modal popup-1" id="exampleModalCenter" tabindex="-1" role="dialog" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
