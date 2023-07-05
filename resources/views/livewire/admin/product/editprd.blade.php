@@ -279,14 +279,19 @@
 
 
             <div class="form-group" style="flex-direction: row;margin-left: 120px;margin-top: -30px;">
-                <button type="button" value="Add column" onclick="javascript:appendColumn()" class="btn1">Append Column</button>
-                <button type="button" value="Delete columns" onclick="javascript:deleteColumns()" class="btn1">Delete Columns</button>
+                <button type="button" value="Add column" onclick="javascript:appendColumn()" class="btn btn-default">Append Column</button>
+                <button type="button" value="Delete columns" onclick="javascript:deleteColumns()" class="btn btn-default">Delete Columns</button>
             </div>
     </div>
 
     <div class="col-lg-6">
         <div class="form-group" style="margin-top: 22px;">
             <label>Product main image</label>
+            <div class="row mb-3">
+                <div class="col-sm-10">
+                    <input name="prd_image" onchange="preview();" class="form-control" type="file" id="formFile">
+                </div>
+            </div>
             @if ($errors->has('prd_image'))
                 <p class="text-danger">
                     @foreach ($errors->get('prd_image') as $e)
@@ -297,11 +302,14 @@
             <div id="view-image">
                 <img src="{{asset('images/'.$product[0]->demo_image)}}" alt="Thumb" style="height: 200px; width: 130px">
             </div>
-            <br>
-            <input name="prd_image" onchange="preview();" type="file">
         </div>
         <div class="form-group">
             <label>Product's images</label>
+            <div class="row mb-3">
+                <div class="col-sm-10">
+                    <input name="prd_images[]" onchange="previews();" class="form-control" type="file" id="formFile" multiple>
+                </div>
+            </div>
             <div id="view-images">
                 @foreach($images as $i)
                     <img src="{{asset('images/'.$i->url)}}" alt="Thumb" style="height: 200px; width: 130px">
@@ -316,7 +324,6 @@
                     @endforeach
                 </p>
             @endif
-            <input  name="prd_images[]" onchange="previews();" type="file"  multiple >
         </div>
 
 

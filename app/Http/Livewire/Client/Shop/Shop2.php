@@ -51,6 +51,7 @@ class Shop2 extends Component
                 $p->created_at = 'true';
             };
         }
+
         return view('livewire.client.shop.shop2');
     }
 }

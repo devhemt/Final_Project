@@ -175,14 +175,19 @@
                         </table>
                     </div>
                   <div class="form-group" style="flex-direction: row;margin-left: 120px;margin-top: -30px;">
-                      <button type="button" value="Add column" onclick="javascript:appendColumn()" class="btn1">Append Column</button>
-                      <button type="button" value="Delete columns" onclick="javascript:deleteColumns()" class="btn1">Delete Columns</button>
+                      <button type="button" value="Add column" onclick="javascript:appendColumn()" class="btn btn-default">Append Column</button>
+                      <button type="button" value="Delete columns" onclick="javascript:deleteColumns()" class="btn btn-default">Delete Columns</button>
                   </div>
               </div>
 
               <div class="col-lg-6">
                   <div class="form-group">
                       <label>Product main image</label>
+                      <div class="row mb-3">
+                          <div class="col-sm-10">
+                              <input required name="prd_image" onchange="preview();" class="form-control" type="file" id="formFile">
+                          </div>
+                      </div>
                       @if ($errors->has('prd_image'))
                           <p class="text-danger">
                               @foreach ($errors->get('prd_image') as $e)
@@ -190,14 +195,17 @@
                               @endforeach
                           </p>
                       @endif
-                      <input required  name="prd_image" onchange="preview();" type="file">
-                      <br>
                       <div id="view-image">
                       </div>
                   </div>
 
                 <div class="form-group">
                     <label>Product's images</label>
+                    <div class="row mb-3">
+                        <div class="col-sm-10">
+                            <input required name="prd_images[]" onchange="previews();" class="form-control" type="file" id="formFile" multiple>
+                        </div>
+                    </div>
                     @if ($errors->has('prd_images'))
                         <p class="text-danger">
                         @foreach ($errors->get('prd_images') as $e)
@@ -205,8 +213,6 @@
                         @endforeach
                         </p>
                     @endif
-                    <input required  name="prd_images[]" onchange="previews();" type="file"  multiple >
-                    <br>
                     <div id="view-images">
                     </div>
                 </div>
@@ -223,8 +229,8 @@
                         </p>
                     @endif
                   </div>
-                  <button name="sbm" type="submit" class="btn btn-success">Thêm mới</button>
-                  <button type="reset" class="btn btn-default">Làm mới</button>
+                  <button name="sbm" type="submit" class="btn btn-success">Add new</button>
+                  <button type="reset" class="btn btn-default">Reset</button>
                 </form>
 
               </div>
