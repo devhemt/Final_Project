@@ -43,7 +43,7 @@ class Orderclient extends Component
         $address_id = DB::table('invoice')
             ->where('id', $this->orderid)
             ->first()->address_id;
-        $address = Address::where('id', $address_id)->where('active',1)->first();
+        $address = Address::where('id', $address_id)->first();
         $this->address = $this->getAddress($address->province,$address->district,$address->wards);
 
         $this->prd = DB::table('invoice_items')
