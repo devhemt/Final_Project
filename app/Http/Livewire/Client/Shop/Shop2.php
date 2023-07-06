@@ -45,7 +45,7 @@ class Shop2 extends Component
             ->where('status','=',1)
             ->limit($this->limit)
             ->get();
-        $this->products = $this->products->where('id',1);
+//        $this->products = $this->products->where('id',1);
         foreach ($this->products as $p){
             if ($now->diffInDays(Carbon::parse((date("Y-m-d g:i:s", strtotime($p->created_at)))))<30) {
                 $p->created_at = 'true';

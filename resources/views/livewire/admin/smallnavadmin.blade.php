@@ -18,8 +18,8 @@
             <li class="notification-item">
                 <i class="bi bi-exclamation-circle text-warning"></i>
                 <div>
-                    <h4>Lorem Ipsum</h4>
-                    <p>Quae dolorem earum veritatis oditseno</p>
+                    <h4>Khách mua hàng</h4>
+                    <p>Khách customer1 đã mua skirt2</p>
                     <p>30 min. ago</p>
                 </div>
             </li>
@@ -31,8 +31,8 @@
             <li class="notification-item">
                 <i class="bi bi-x-circle text-danger"></i>
                 <div>
-                    <h4>Atque rerum nesciunt</h4>
-                    <p>Quae dolorem earum veritatis oditseno</p>
+                    <h4>Đơn hàng giao lỗi</h4>
+                    <p>Đơn hàng #ma0123 giao lỗi do không liên hệ đự với khách hàng</p>
                     <p>1 hr. ago</p>
                 </div>
             </li>
@@ -44,8 +44,8 @@
             <li class="notification-item">
                 <i class="bi bi-check-circle text-success"></i>
                 <div>
-                    <h4>Sit rerum fuga</h4>
-                    <p>Quae dolorem earum veritatis oditseno</p>
+                    <h4>Nhà cung cấp #supplier4 đã được thêm</h4>
+                    <p>Nhà cung cấp #supplier4 đã được thêm</p>
                     <p>2 hrs. ago</p>
                 </div>
             </li>
@@ -57,8 +57,8 @@
             <li class="notification-item">
                 <i class="bi bi-info-circle text-primary"></i>
                 <div>
-                    <h4>Dicta reprehenderit</h4>
-                    <p>Quae dolorem earum veritatis oditseno</p>
+                    <h4>Cập nhật thông tin</h4>
+                    <p>Thông tin mới nhất về đợt nhập hàng 4 đã được cập nhật</p>
                     <p>4 hrs. ago</p>
                 </div>
             </li>
@@ -72,7 +72,7 @@
     <li class="nav-item dropdown pe-3">
 
         <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="{{asset('imagesadmin/images/'.$profile->image)}}" alt="Profile" class="rounded-circle">
+            <img src="{{asset('assetsAdmin/img/'.$profile->image)}}" alt="Profile" class="rounded-circle">
             <span class="d-none d-md-block dropdown-toggle ps-2">{{$profile->name}}</span>
         </a><!-- End Profile Iamge Icon -->
 

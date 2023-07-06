@@ -73,6 +73,7 @@
         <div class="shop-content shop-four-grid">
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="row">
                     @foreach($products as $product)
                         <div class="col-sm-6 col-xl-3">
                         <div class="sin-product style-two">
@@ -105,6 +106,7 @@
                         <!-- /.sin-product -->
                     </div>
                     @endforeach
+                    </div>
                 </div>
                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                     <div>

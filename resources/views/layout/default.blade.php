@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>King Fashion - Luxurious And Seductive</title>
+    <title>Elegant - Luxurious And Seductive</title>
 
     <!-- Fav Icon -->
     <link rel="apple-touch-icon" sizes="180x180" href="{{asset('assets/img/fav-icons/apple-touch-icon.png')}}">
@@ -69,9 +69,21 @@
                             <ul id="navigation">
                                 <li><a href="{{ url('/') }}" class="active">home</a>
                                 </li>
+
+                                <li class="has-child"><a href="{{ url('/shop') }}">Categories</a>
+                                    <ul class="sub-menu">
+                                        <li><a href="{{ url('/shop') }}">Shorts</a></li>
+                                        <li><a href="{{ url('/shop') }}">Jeans</a></li>
+                                        <li><a href="{{ url('/shop') }}">Trousers</a></li>
+                                        <li><a href="{{ url('/shop') }}">Jacket</a></li>
+                                        <li><a href="{{ url('/shop') }}">Accessories</a></li>
+                                    </ul>
+                                </li>
+
                                 <li><a href="{{ url('/shop') }}">Shirt</a></li>
                                 <li><a href="{{ url('/shop') }}">Dress</a></li>
                                 <li><a href="{{ url('/shop') }}">Skirt</a></li>
+
 {{--                                <li class="has-child"><a href="{{ url('/shop') }}">Shop</a>--}}
 {{--                                    <div class="mega-menu">--}}
 {{--                                        <div class="mega-catagory per-20">--}}
@@ -102,14 +114,7 @@
 {{--                                        </div>--}}
 {{--                                    </div>--}}
 {{--                                </li>--}}
-{{--                                <li class="has-child"><a href="{{ url('/shop') }}">Shop</a>--}}
-{{--                                    <ul class="sub-menu">--}}
-{{--                                        <li><a href="{{ url('/prd') }}">Product details</a></li>--}}
-{{--                                        <li><a href="{{ url('/cart') }}">Cart</a></li>--}}
-{{--                                        <li><a href="{{ url('/acc') }}">Order</a></li>--}}
-{{--                                        <li><a href="{{ url('/singleblog') }}">Single blog</a></li>--}}
-{{--                                    </ul>--}}
-{{--                                </li>--}}
+
                                 <li><a href="{{ url('/blog') }}">blog</a></li>
                                 <li><a href="{{ url('/contact') }}">CONTACT</a></li>
                             </ul>
@@ -333,9 +338,9 @@
                             <div class="footer-menu">
                                 <ul>
                                     <li><a href="#">About Us</a></li>
-                                    <li><a href="#">Browse Products</a></li>
-                                    <li><a href="#">Read Our Blog</a></li>
-                                    <li><a href="#">Contact Us</a></li>
+                                    <li><a href="{{url('shop')}}">Browse Products</a></li>
+                                    <li><a href="{{url('blog')}}">Read Our Blog</a></li>
+                                    <li><a href="{{url('contact')}}">Contact Us</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -346,9 +351,9 @@
                             <h3>CATEGORIES</h3>
                             <div class="footer-menu">
                                 <ul>
-                                    <li><a href="#">Dress</a></li>
-                                    <li><a href="#">Shirt</a></li>
-                                    <li><a href="#">Skirt</a></li>
+                                    <li><a href="{{url('shop')}}">Dress</a></li>
+                                    <li><a href="{{url('shop')}}">Shirt</a></li>
+                                    <li><a href="{{url('shop')}}">Skirt</a></li>
                                 </ul>
                             </div>
                         </div>

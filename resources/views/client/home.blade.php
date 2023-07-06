@@ -21,7 +21,7 @@
                                   <h4 class="animated fadeIn" style="color: black;" ><span style="color: white;" >BRAND NEW</span> COLLECTION</h4>
                                   <h1 class="animated fadeIn" style="color: white;" >ELEGANT SHOP</h1>
                                   <p class="animated fadeIn">Discover Elegant, the ultimate destination for fashionable women's clothing. Our brand is dedicated to helping you elevate your style and express your individuality through thoughtfully designed and meticulously crafted pieces.</p>
-                                  <a class="animated fadeIn btn-two" href="#">SHOP NOW</a>
+                                  <a class="animated fadeIn btn-two" href="{{url('shop')}}">SHOP NOW</a>
                               </div>
                           </div>
                           <!-- Col End -->
@@ -40,7 +40,7 @@
                                   <h4 class="animated fadeIn" ><span style="color: white;" >BRAND NEW</span> COLLECTION</h4>
                                   <h1 class="animated fadeIn" style="color: white;" >NEW ARRIVALS</h1>
                                   <p class="animated fadeIn" style="color: #dad55e;">Our team of talented designers pays meticulous attention to fabric selection, fit, and finishing touches, ensuring that each piece not only looks stunning but also feels comfortable to wear.</p>
-                                  <a class="animated fadeIn btn-two" href="#">SHOP NOW</a>
+                                  <a class="animated fadeIn btn-two" href="{{url('shop')}}">SHOP NOW</a>
                               </div>
                           </div>
                           <!-- Col End -->
@@ -58,7 +58,7 @@
                                   <h4 class="animated fadeIn" style="color: white;"><span style="color: black;">LATEST COLLECTION </span> 2023 </h4>
                                   <h1 class="animated fadeIn" style="color: white;">STYLE & GRACE </h1>
                                   <p class="animated fadeIn" style="color: #dad55e;">Experience the allure of Elegant and embrace your personal style with our exquisite collection of women's clothing. Explore our latest arrivals and elevate your wardrobe today.</p>
-                                  <a class="animated fadeIn btn-two" href="#">SHOP NOW</a>
+                                  <a class="animated fadeIn btn-two" href="{{url('shop')}}">SHOP NOW</a>
                               </div>
                           </div>
                           <!-- Col End -->
@@ -81,14 +81,14 @@
           <div class="container-fluid custom-container">
               <div class="row">
                   <div class="col-12 col-md-4">
-                      <a href="#">
+                      <a href="{{url('shop')}}">
                           <div class="sin-banner align-items-center">
-                              <img src="{{asset('images/menfashion.jpg')}}" alt="">
+                              <img src="{{asset('images/banner1.1.png')}}" alt="">
                               <div class="sin-banner-con">
                                   <div class="sin-banner-inner-wrap">
                                       <div class="banner-top">
-                                          <h4>Man's</h4>
-                                          <h4>Acces <span>sories</span></h4>
+                                          <h4>Woman's</h4>
+                                          <h4>Fall <span>Dress</span></h4>
                                       </div>
                                       <p>Extra</p>
                                       <h3>60% Off</h3>
@@ -103,16 +103,16 @@
                   <!-- /.col-xl-5 -->
 
                   <div class="col-12 col-md-4">
-                      <a href="#">
+                      <a href="{{url('shop')}}">
                           <div class="sin-banner style-two">
 
-                              <img src="{{asset('images/womenfashion.png')}}" alt="">
+                              <img src="{{asset('images/banner1.2.jpg')}}" alt="">
 
                               <div class="sin-banner-con">
                                   <div class="sin-banner-inner-wrap">
-                                      <h4>Woman's Shop</h4>
+                                      <h4>Woman's Clothing</h4>
                                       <h3>40% Off</h3>
-                                      <span>Best of Shop Beauty</span>
+                                      <span>Best of Shop Skirt</span>
                                   </div>
 
                               </div>
@@ -125,12 +125,12 @@
                   <!-- /.col-xl-4 -->
 
                   <div class="col-12 col-md-4">
-                      <a href="#">
+                      <a href="{{url('shop')}}">
                           <div class="sin-banner">
-                              <img src="{{asset('images/kidfashion.jpg')}}" alt="">
+                              <img src="{{asset('images/banner1.3.png')}}" alt="">
                               <div class="br-wrapper">
                                   <div class="sin-banner-con-right">
-                                      <p>Kids shop sale</p>
+                                      <p>shirts shop sale</p>
                                       <span>up to 80% off</span>
                                   </div>
                               </div>
@@ -169,6 +169,12 @@
         <!-- main-product 1 End -->
         @livewire('client.home.product3')
 
+        <!--=========================-->
+        <!--=   Banner discount    =-->
+        <!--=========================-->
+        <section class="add-area">
+                <img class='img-fluid w-100' src="{{asset('images/banner1.png')}}" />
+        </section>
 
     <!--=========================-->
     <!--=   Small Product area    =-->

@@ -14,7 +14,7 @@
                     <div class="small-pro-details">
                         <h5 class="title"><a href="{{url('product/'.$p->id)}}">{{ $p->name }}</a></h5>
                         <span id="{{ $p->price }}">${{ $p->price }}</span>
-                        <a href="#">Buy Now</a>
+                        <a class="trigger" href="#{{ $p->name }}" wire:click.prefetch="showQuickView({{ $p->id }})">Buy Now</a>
                     </div>
                 </div>
                 @endforeach
@@ -35,7 +35,7 @@
                         <div class="small-pro-details">
                             <h5 class="title"><a href="{{url('product/'.$p->id)}}">{{ $p->name }}</a></h5>
                             <span id="{{ $p->price }}">${{ $p->price }}</span>
-                            <a href="#">Buy Now</a>
+                            <a class="trigger" href="#{{ $p->name }}" wire:click.prefetch="showQuickView({{ $p->id }})">Buy Now</a>
                         </div>
                     </div>
                 @endforeach
@@ -55,7 +55,7 @@
                         <div class="small-pro-details">
                             <h5 class="title"><a href="{{url('product/'.$p->id)}}">{{ $p->name }}</a></h5>
                             <span id="{{ $p->price }}">${{ $p->price }}</span>
-                            <a href="#">Buy Now</a>
+                            <a class="trigger" href="#{{ $p->name }}" wire:click.prefetch="showQuickView({{ $p->id }})">Buy Now</a>
                         </div>
                     </div>
                 @endforeach
@@ -77,7 +77,7 @@
                         <div class="small-pro-details">
                             <h5 class="title"><a href="{{url('product/'.$p->id)}}">{{ $p->name }}</a></h5>
                             <span id="{{ $p->price }}">${{ $p->price }}</span>
-                            <a href="#">Buy Now</a>
+                            <a class="trigger" href="#{{ $p->name }}" wire:click.prefetch="showQuickView({{ $p->id }})">Buy Now</a>
                         </div>
                     </div>
                 @endforeach
