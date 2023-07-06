@@ -121,6 +121,7 @@ class Quickview extends Component
             ->join('total_property', 'product.id','=', 'total_property.prd_id')
             ->select('product.*','total_property.sizes','total_property.colors')
             ->where('product.id', $this->getid)->get();
+
         foreach ($this->prdQV as $p){
             $this->sizes = $p->sizes;
             $this->name = $p->name;

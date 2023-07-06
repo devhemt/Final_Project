@@ -90,7 +90,7 @@ class Shop extends Component
             $this->products = DB::table('product')
                 ->join('category', 'product.category_id','=', 'category.id')
                 ->join('total_property', 'total_property.prd_id','=', 'product.id')
-                ->select('product.*','total_property.colors','category.*')
+                ->select('product.*','total_property.colors','category.category_name')
                 ->where('product.status','=',1)
                 ->whereBetween('product.price', [$this->min_price, $this->max_price])
                 ->limit($this->limit)
