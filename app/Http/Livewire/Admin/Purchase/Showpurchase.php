@@ -13,18 +13,16 @@ class Showpurchase extends Component
     use WithPagination;
     public $isShowCreate = null, $isShowEdit = null, $total = null;
     public $suppliers;
-    public $purchaseCode, $totalPay, $supplier;
-    public $editPurchaseCode,$editTotalPay, $editSupplier;
+    public $purchaseCode, $totalPay = 0, $supplier;
+    public $editPurchaseCode, $editSupplier;
     public $purchase_id;
-    public $edittingPC, $edittingTP;
+    public $edittingPC;
 
     protected $rules = [
         'purchaseCode' => 'required|max:200|unique:purchase,purchase_code',
-        'totalPay' => 'required|numeric',
         'supplier' => 'required|numeric',
         'editPurchaseCode' => 'max:200|unique:purchase,purchase_code',
         'editSupplier' => 'numeric',
-        'editTotalPay' => 'numeric',
     ];
 
     public function updated($propertyName)
@@ -39,7 +37,6 @@ class Showpurchase extends Component
     public function createNew(){
         $this->validateOnly('purchaseCode');
         $this->validateOnly('supplier_id');
-        $this->validateOnly('total_pay');
         Purchase::create([
             'purchase_code' => $this->purchaseCode,
             'supplier_id' => $this->supplier,
@@ -54,9 +51,7 @@ class Showpurchase extends Component
         if ($this->editSupplier!=null){
             $this->validateOnly('editSupplier');
         }
-        if ($this->editTotalPay!=null){
-            $this->validateOnly('editTotalPay');
-        }
+
         if ($this->editPurchaseCode!=null){
             $affected = Purchase::where('id', $this->purchase_id)
                 ->update(['purchase_code' => $this->editPurchaseCode]);
@@ -64,10 +59,6 @@ class Showpurchase extends Component
         if ($this->editSupplier!=null){
             $affected = Purchase::where('id', $this->purchase_id)
                 ->update(['supplier_id' => $this->editSupplier]);
-        }
-        if ($this->editTotalPay!=null){
-            $affected = Purchase::where('id', $this->purchase_id)
-                ->update(['total_pay' => $this->editTotalPay]);
         }
 
         $this->isShowEdit = null;
@@ -80,8 +71,7 @@ class Showpurchase extends Component
         $this->purchase_id = $id;
         $editting = Purchase::where('id',$id)->first();
         $this->edittingPC = $editting->purchase_code;
-        $this->edittingTP = $editting->total_pay;
-        $this->reset(['editPurchaseCode','editSupplier', 'editTotalPay']);
+        $this->reset(['editPurchaseCode','editSupplier']);
         $this->isShowEdit = 0;
     }
     public function cancelEdit(){
@@ -96,6 +86,7 @@ class Showpurchase extends Component
             'purchase' => DB::table('purchase')
                 ->join('supplier', 'purchase.supplier_id','=', 'supplier.id')
                 ->select('purchase.*','supplier.name')
+                ->orderByDesc('purchase.id')
                 ->paginate(10),
         ]);
     }

@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Images;
 use App\Models\Properties;
+use App\Models\Purchase;
 use App\Models\Totalproperty;
 use App\Models\Purchase_items;
 use Illuminate\Http\Request;
@@ -206,6 +207,11 @@ class PurchaseController extends Controller
             'batch' => 1,
             'quantity' => $quantity
         ]);
+
+        $total = Purchase::where('id', $request->get('purchase_id'))->first()->total_pay;
+        $total += $request->get('prd_cost_price')*$quantity;
+        $affected = Purchase::where('id', $request->get('purchase_id'))
+            ->update(['total_pay' => $total]);
 
         return redirect('/admin/purchase/'.$request->get('purchase_id'));
 

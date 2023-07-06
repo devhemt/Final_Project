@@ -2,12 +2,12 @@
     <!--=========================-->
     <!--=   Popup 1: Báo lỗi có 2 button =-->
     <!--=========================-->
-    <div class="text-center">
-        <!-- Button HTML (to Trigger Modal) -->
-        <a href="#myModal1" class="trigger-btn" data-toggle="modal">Click to Open Confirm Modal</a>
-    </div>
+{{--    <div class="text-center">--}}
+{{--        <a href="#myModal1" class="trigger-btn" data-toggle="modal">Click to Open Confirm Modal</a>--}}
+{{--    </div>--}}
 
     <!-- Modal HTML -->
+{{--    <div id="myModal1" class="modal fade show" style="display: block; padding-right: 17px;">--}}
     <div id="myModal1" class="modal fade">
         <div class="modal-dialog modal-confirm">
             <div class="modal-content">
@@ -29,15 +29,16 @@
         </div>
     </div>
 
+
     <!--=========================-->
     <!--=   Popup 2: Thông báo thành công  =-->
     <!--=========================-->
-    {{--        <div class="text-center">--}}
-    {{--            <!-- Button HTML (to Trigger Modal) -->--}}
-    {{--            <a href="#myModal2" class="trigger-btn" data-toggle="modal">Click to Open Confirm Modal</a>--}}
-    {{--        </div>--}}
+{{--            <div class="text-center">--}}
+{{--                <!-- Button HTML (to Trigger Modal) -->--}}
+{{--                <a href="#myModal2" class="trigger-btn" data-toggle="modal">Click to Open Confirm Modal</a>--}}
+{{--            </div>--}}
 
-    <div id="myModal2" class="modal fade">
+    <div id="myModal2" class="modal fade {{$show2}}" style="{{$style2}}">
         <div class="modal-dialog modal-confirm">
             <div class="modal-content">
                 <div class="modal-header d-flex justify-content-between">
@@ -50,7 +51,7 @@
                     <p class="text-center">Your booking has been confirmed. <br> Check your email for details.</p>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
+                    <button class="btn btn-success btn-block" data-dismiss="modal" wire:click="hide">OK</button>
                 </div>
             </div>
         </div>
@@ -83,4 +84,5 @@
             </div>
         </div>
     </div>
+
 </div>
