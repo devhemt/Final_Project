@@ -62,7 +62,7 @@ class Product2 extends Component
             ->limit(2)
             ->get();
 
-        //top selling of month
+        //top selling of month nè
         $this->topMonth = DB::table('invoice_items')
             ->join('invoice', 'invoice.id', '=', 'invoice_items.invoice_id')
             ->join('status', 'status.invoice_id', '=', 'invoice.id')
