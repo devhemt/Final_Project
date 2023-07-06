@@ -31,9 +31,7 @@ Route::get('/createacc', function () {
     return view('client.auth.create_acc');
 });
 
-Route::get('/shop', function () {
-    return view('client.shop');
-});
+Route::get('/shop/{category}',[\App\Http\Controllers\Client\Home\HomeController::class, 'shop']);
 
 Route::get('/singleblog', function () {
     return view('client.single_blog');

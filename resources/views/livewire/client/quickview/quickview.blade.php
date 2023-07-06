@@ -9,7 +9,7 @@
             @if (isset($prdQV))
                 @foreach ($prdQV as $p)
                     <div class="col-md-6">
-                        <img src="images/{{ $p->demo_image }}" href="">
+                        <img src="{{ asset('images/'.$p->demo_image) }}" href="">
                     </div>
 
 

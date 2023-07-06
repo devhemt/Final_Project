@@ -61,4 +61,11 @@ class HomeController extends Controller
         ]);
     }
 
+
+    public function shop($category){
+        return view('client.shop',[
+            'category' => $category
+        ]);
+    }
+
 }

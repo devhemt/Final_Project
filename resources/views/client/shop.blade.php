@@ -6,7 +6,7 @@
 				<div class="row">
 					<div class="col-xl-12">
 						<div class="bc-inner">
-							<p><a href="{{url('/')}}">Home  |</a> All Product</p>
+							<p><a href="{{url('/')}}">Home  |</a> SHOP {{$category}}</p>
 						</div>
 					</div>
 				</div>
@@ -19,7 +19,7 @@
 
 		<section class="shop-area">
 			<div class="container-fluid custom-container">
-                @livewire('client.shop.shop2')
+                @livewire('client.shop.shop',['category' => $category])
 			</div>
 		</section>
 

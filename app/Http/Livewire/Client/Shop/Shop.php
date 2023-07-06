@@ -2,50 +2,34 @@
 
 namespace App\Http\Livewire\Client\Shop;
 
-use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
-
+use Carbon\Carbon;
 
 class Shop extends Component
 {
-    protected $listeners = ['bestSell','default','CategorySearch','searchResult','priceSearch'];
-
-    public $product;
-    public $bestsell = false;
-    public $categorysearch = false;
-    public $cateId;
-    public $searchflag = false;
-    public $search;
-    public $min_price,$max_price,$price = null;
-
-    public function priceSearch($price){
-        $this->price = $price;
-    }
-
-    public function searchResult($autoSearch)
-    {
-        $this->search = $autoSearch;
-    }
+    public $category;
+    public $products,$topProducts,$limit = 8;
+    public $price,$sort;
+    public $options2 = ['default sort','best selling'];
+    public $options1 = ['all','$0-$50','$50-$100','$100-$200','$200-more'];
+    public $min_price,$max_price,$sort_flag;
 
     public function showQuickView($id) {
         $this->emit('idView', $id);
     }
 
-    public function CategorySearch($category){
-        $this->cateId = $category;
-    }
-
-    public function bestSell(){
-        $this->bestsell = true;
-    }
-
-    public function default(){
-        $this->bestsell = false;
+    public function loadMore(){
+        $this->limit += 8;
     }
 
     public function render()
     {
+        if($this->sort == 'default sort' || $this->sort == null){
+            $this->sort_flag = false;
+        }else{
+            $this->sort_flag = true;
+        }
         if($this->price == 'all' || $this->price == null){
             $this->min_price = 0;
             $this->max_price = 10000;
@@ -67,119 +51,62 @@ class Shop extends Component
             $this->max_price = 10000;
         }
 
-        if ($this->cateId == 0){
-            $this->categorysearch = false;
-        }else{
-            $this->categorysearch = true;
-        }
-        if ($this->search == null){
-            $this->searchflag = false;
-        }else{
-            $this->searchflag = true;
-        }
+        $now = Carbon::now();
+        $this->topProducts = DB::table('invoice_items')
+            ->join('invoice', 'invoice.id', '=', 'invoice_items.invoice_id')
+            ->join('status', 'status.invoice_id', '=', 'invoice.id')
+            ->join('properties', 'invoice_items.property_id', '=', 'properties.id')
+            ->join('product', 'properties.prd_id', '=', 'product.id')
+            ->where('status.status','!=' ,0)
+            ->where('status.status','!=' ,7)
+            ->whereMonth('invoice_items.created_at', '=', $now->month)
+            ->whereYear('invoice_items.created_at', '=', $now->year)
+            ->select('product.id', 'product.name', 'product.demo_image', 'product.price', DB::raw('SUM(invoice_items.amount) as total_sales'))
+            ->groupBy('product.id', 'product.name', 'product.demo_image', 'product.price')
+            ->orderByDesc('total_sales')
+            ->limit(4)
+            ->get();
 
-        if ($this->bestsell == false && $this->categorysearch == true && $this->searchflag == true) {
-            $this->product = DB::table('product')
-                ->join('category', 'items.prd_id','=', 'category.prdid')
-                ->select('items.*','category.categories')
-                ->where('items.name','like','%'.str_replace(' ', '',$this->search).'%')
-                ->where('category.categories', $this->cateId)
-                ->whereBetween('items.price', [$this->min_price, $this->max_price])
-                ->orderByDesc('items.prd_id')
-                ->limit(20)
+        if ($this->sort_flag){
+            $this->products = DB::table('invoice_items')
+                ->join('invoice', 'invoice.id', '=', 'invoice_items.invoice_id')
+                ->join('status', 'status.invoice_id', '=', 'invoice.id')
+                ->join('properties', 'invoice_items.property_id', '=', 'properties.id')
+                ->join('product', 'properties.prd_id', '=', 'product.id')
+                ->join('category', 'product.category_id','=', 'category.id')
+                ->join('total_property', 'total_property.prd_id','=', 'product.id')
+                ->where('status.status','!=' ,0)
+                ->where('status.status','!=' ,7)
+                ->where('product.status','=',1)
+                ->whereBetween('product.price', [$this->min_price, $this->max_price])
+                ->whereMonth('invoice_items.created_at', '=', $now->month)
+                ->whereYear('invoice_items.created_at', '=', $now->year)
+                ->select('product.id', 'product.name','product.description', 'product.demo_image', 'product.price','product.created_at','total_property.colors','category.category_name', DB::raw('SUM(invoice_items.amount) as total_sales'))
+                ->groupBy('product.id', 'product.name','product.description', 'product.demo_image', 'product.price','product.created_at','total_property.colors','category.category_name')
+                ->orderByDesc('total_sales')
+                ->limit($this->limit)
+                ->get();
+        }else{
+            $this->products = DB::table('product')
+                ->join('category', 'product.category_id','=', 'category.id')
+                ->join('total_property', 'total_property.prd_id','=', 'product.id')
+                ->select('product.*','total_property.colors','category.*')
+                ->where('product.status','=',1)
+                ->whereBetween('product.price', [$this->min_price, $this->max_price])
+                ->limit($this->limit)
                 ->get();
         }
 
-        if ($this->bestsell && $this->categorysearch == true && $this->searchflag == true) {
-            $this->product = DB::table('items')
-                ->join('category', 'items.prd_id','=', 'category.prdid')
-                ->select('items.*','category.categories')
-                ->where('items.name','like', '%'.str_replace(' ', '',$this->search).'%')
-                ->where('category.categories', $this->cateId)
-                ->whereBetween('items.price', [$this->min_price, $this->max_price])
-                ->limit(20)
-                ->get()
-                ->sortBy('prd_id')
-            ;
+        if ($this->category != 'all'){
+            $this->products = $this->products->where('category_name','=',$this->category);
         }
 
-        if ($this->bestsell == false && $this->categorysearch == false && $this->searchflag == true) {
-            $this->product = DB::table('items')
-            ->join('category', 'items.prd_id','=', 'category.prdid')
-            ->select('items.*','category.categories')
-            ->where('items.name','like','%'.str_replace(' ', '',$this->search).'%')
-                ->whereBetween('items.price', [$this->min_price, $this->max_price])
-            ->orderByDesc('items.prd_id')
-            ->limit(20)
-            ->get();
-        }
-
-        if ($this->bestsell && $this->categorysearch == false && $this->searchflag == true) {
-            $this->product = DB::table('items')
-            ->join('category', 'items.prd_id','=', 'category.prdid')
-            ->select('items.*','category.categories')
-            ->where('items.name','like', '%'.str_replace(' ', '',$this->search).'%')
-                ->whereBetween('items.price', [$this->min_price, $this->max_price])
-                ->limit(20)
-            ->get()
-            ->sortBy('prd_id')
-            ;
-        }
-
-        if ($this->bestsell == false && $this->categorysearch == true && $this->searchflag == false) {
-            $this->product = DB::table('items')
-            ->join('category', 'items.prd_id','=', 'category.prdid')
-            ->select('items.*','category.categories')
-            ->where('category.categories', $this->cateId)
-                ->whereBetween('items.price', [$this->min_price, $this->max_price])
-            ->orderByDesc('items.prd_id')
-            ->limit(20)
-            ->get();
-        }
-
-        if ($this->bestsell && $this->categorysearch == true && $this->searchflag == false) {
-            $this->product = DB::table('items')
-            ->join('category', 'items.prd_id','=', 'category.prdid')
-            ->select('items.*','category.categories')
-            ->where('category.categories', $this->cateId)
-                ->whereBetween('items.price', [$this->min_price, $this->max_price])
-            ->limit(20)
-            ->get()
-            ->sortBy('prd_id')
-            ;
-        }
-
-        if ($this->bestsell == false && $this->categorysearch == false && $this->searchflag == false) {
-            $this->product = DB::table('items')
-            ->join('category', 'items.prd_id','=', 'category.prdid')
-            ->select('items.*','category.categories')
-                ->whereBetween('items.price', [$this->min_price, $this->max_price])
-            ->orderByDesc('items.prd_id')
-            ->limit(20)
-            ->get();
-        }
-
-
-        if ($this->bestsell && $this->categorysearch == false && $this->searchflag == false) {
-            $this->product = DB::table('items')
-            ->join('category', 'items.prd_id','=', 'category.prdid')
-            ->select('items.*','category.categories')
-                ->whereBetween('items.price', [$this->min_price, $this->max_price])
-            ->limit(20)
-            ->get()
-            ->sortBy('prd_id')
-            ;
-        }
-
-        foreach ($this->product as $p){
-            $now = Carbon::now();
+        foreach ($this->products as $p){
             if ($now->diffInDays(Carbon::parse((date("Y-m-d g:i:s", strtotime($p->created_at)))))<30) {
                 $p->created_at = 'true';
             };
         }
 
-        $this->bestsell;
-        return view('livewire.client.shop.shop',['product'=>$this->product]);
+        return view('livewire.client.shop.shop');
     }
-
 }
