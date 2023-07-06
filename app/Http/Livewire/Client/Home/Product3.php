@@ -7,6 +7,12 @@ use Livewire\Component;
 
 class Product3 extends Component
 {
+    public $product;
+
+    public function showQuickView($id) {
+        $this->emit('idView', $id);
+    }
+
     public function render()
     {
         $this->product = Product::where('status', 1)
