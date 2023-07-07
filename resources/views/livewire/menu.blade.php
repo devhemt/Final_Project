@@ -14,9 +14,7 @@
         </ul>
     </li>
 
-    <li><a href="{{ url('/shop') }}">Shirt</a></li>
-    <li><a href="{{ url('/shop') }}">Dress</a></li>
-    <li><a href="{{ url('/shop') }}">Skirt</a></li>
+    <li><a href="{{ url('/shop/all') }}">All products</a></li>
 
     {{--                                <li class="has-child"><a href="{{ url('/shop') }}">Shop</a>--}}
     {{--                                    <div class="mega-menu">--}}
