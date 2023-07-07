@@ -125,7 +125,7 @@
                   <!-- /.col-xl-4 -->
 
                   <div class="col-12 col-md-4">
-                      <a href="{{url('shop/all')}}">
+                      <a href="{{url('shop')}}">
                           <div class="sin-banner">
                               <img src="{{asset('images/banner1.3.png')}}" alt="">
                               <div class="br-wrapper">
