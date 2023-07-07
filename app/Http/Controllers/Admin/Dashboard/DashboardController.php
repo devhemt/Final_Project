@@ -87,7 +87,42 @@ class DashboardController extends Controller
 
     public function revenue($time){
         $now = Carbon::now();
-        return view('admin.dashboard.revenue');
+
+        if($time == 1){
+            $orders = DB::table('invoice')
+                ->join('status', 'status.invoice_id', '=', 'invoice.id')
+                ->where('status.status','!=' ,0)
+                ->where('status.status','!=' ,7)
+                ->whereDay('invoice.created_at', '=', $now->day)
+                ->whereMonth('invoice.created_at', '=', $now->month)
+                ->whereYear('invoice.created_at', '=', $now->year)
+                ->orderByDesc('pay')
+                ->get();
+        }
+        if($time == 2){
+            $orders = DB::table('invoice')
+                ->join('status', 'status.invoice_id', '=', 'invoice.id')
+                ->where('status.status','!=' ,0)
+                ->where('status.status','!=' ,7)
+                ->whereMonth('invoice.created_at', '=', $now->month)
+                ->whereYear('invoice.created_at', '=', $now->year)
+                ->orderByDesc('pay')
+                ->get();
+        }
+        if($time == 3){
+            $orders = DB::table('invoice')
+                ->join('status', 'status.invoice_id', '=', 'invoice.id')
+                ->where('status.status','!=' ,0)
+                ->where('status.status','!=' ,7)
+                ->whereYear('invoice.created_at', '=', $now->year)
+                ->orderByDesc('pay')
+                ->get();
+        }
+
+        return view('admin.dashboard.revenue',[
+            'orders' => $orders,
+            'time' => $time
+        ]);
     }
 
     public function customer($time){
