@@ -46,11 +46,11 @@ Route::group(['middleware' => 'isdirector'], function () {
     Route::get('/guest_order', [\App\Http\Controllers\Admin\Order\OrderController::class, 'guest']);
     Route::get('/order/{id}', [\App\Http\Controllers\Admin\Order\OrderController::class, 'show']);
 
-    Route::get('/lowproduct/{amount}',[\App\Http\Controllers\Admin\Dashboard\DashboardController::class,'lowProduct']);
-    Route::get('/newcustomer/{time}',[\App\Http\Controllers\Admin\Dashboard\DashboardController::class,'customer']);
-    Route::get('/revenue/{time}',[\App\Http\Controllers\Admin\Dashboard\DashboardController::class,'revenue']);
-    Route::get('/topcity/{time}',[\App\Http\Controllers\Admin\Dashboard\DashboardController::class,'topCity']);
-    Route::get('/topproduct/{time}',[\App\Http\Controllers\Admin\Dashboard\DashboardController::class,'topProduct']);
+    Route::get('/db/lowproduct/{amount}',[\App\Http\Controllers\Admin\Dashboard\DashboardController::class,'lowProduct']);
+    Route::get('/db/newcustomer/{time}',[\App\Http\Controllers\Admin\Dashboard\DashboardController::class,'customer']);
+    Route::get('/db/revenue/{time}',[\App\Http\Controllers\Admin\Dashboard\DashboardController::class,'revenue']);
+    Route::get('/db/topcity/{time}',[\App\Http\Controllers\Admin\Dashboard\DashboardController::class,'topCity']);
+    Route::get('/db/topproduct/{time}',[\App\Http\Controllers\Admin\Dashboard\DashboardController::class,'topProduct']);
 
     Route::get('/create/customer',[\App\Http\Controllers\Admin\Customer\CustomerController::class, 'create']);
     Route::post('/create_customer',[\App\Http\Controllers\Admin\Customer\CustomerController::class, 'store']);

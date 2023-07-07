@@ -13,7 +13,7 @@
     </div>
 
     <div class="card-body pb-0">
-        <h5 class="card-title">Top City <span>| {{$time}}</span></h5>
+        <h5 class="card-title">Top City <span>| {{$time}} || <a href="{{url('/admin/db/topcity/1')}}">detail</a></span></h5>
 
         <div id="city-card1" style="display: {{$day}};">
             <div id="trafficChart1" style="min-height: 400px;" class="echart" wire:ignore></div>

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Client;
 
-use Livewire\Component;
 use App\Models\Category;
+use Livewire\Component;
 
 class Menu extends Component
 {
@@ -12,6 +12,6 @@ class Menu extends Component
     public function render()
     {
         $this->categories = Category::all();
-        return view('livewire.menu');
+        return view('livewire.client.menu');
     }
 }

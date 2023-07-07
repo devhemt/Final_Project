@@ -16,11 +16,13 @@
         </div>
     </div>
 
-
+    @php
+    $stt = 1;
+    @endphp
     <table class="table table-striped">
         <thead>
         <tr>
-            <th scope="col">Id</th>
+            <th scope="col">Stt</th>
             <th scope="col">Name</th>
             <th scope="col">Demo image</th>
             <th scope="col">Description</th>
@@ -31,7 +33,7 @@
         <tbody>
         @foreach($products as $p)
         <tr>
-            <th scope="row">{{$p->id}}</th>
+            <th scope="row">{{$stt}}</th>
             <td>{{$p->name}}</td>
             <td><img src="{{asset('images/'.$p->demo_image)}}" alt=""></td>
             <td>{{$p->description}}</td>
@@ -43,6 +45,9 @@
 {{--                <a href="#" title="Add new batch"><i class="fa-solid fa-circle-plus "></i></a>--}}
             </td>
         </tr>
+        @php
+            $stt++;
+        @endphp
         @endforeach
         </tbody>
     </table>

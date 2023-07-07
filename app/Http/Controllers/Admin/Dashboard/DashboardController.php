@@ -28,9 +28,61 @@ class DashboardController extends Controller
         ]);
     }
 
+    public function getCityName($city_id){
+        $jsonString = file_get_contents(public_path('data.json'));
+        $data = json_decode($jsonString);
+        $city = '';
+        foreach ($data as $d){
+            if($d->Id == $city_id){
+                $city = $d->Name;
+            }
+        }
+        return $city;
+    }
+
     public function topCity($time){
         $now = Carbon::now();
-        return view('admin.dashboard.topcity');
+        if ($time == 1){
+            $citys = DB::table('address')
+                ->join('invoice', 'address.id', '=', 'invoice.address_id')
+                ->whereDay('invoice.created_at', '=', $now->day)
+                ->whereMonth('invoice.created_at', '=', $now->month)
+                ->whereYear('invoice.created_at', '=', $now->year)
+                ->where('address.active', '=' ,1)
+                ->select('address.province', DB::raw('COUNT(address.province) as city_count'))
+                ->groupBy('address.province')
+                ->orderByDesc('city_count')
+                ->get();
+        }
+        if ($time == 2){
+            $citys = DB::table('address')
+                ->join('invoice', 'address.id', '=', 'invoice.address_id')
+                ->whereMonth('invoice.created_at', '=', $now->month)
+                ->whereYear('invoice.created_at', '=', $now->year)
+                ->where('address.active', '=' ,1)
+                ->select('address.province', DB::raw('COUNT(address.province) as city_count'))
+                ->groupBy('address.province')
+                ->orderByDesc('city_count')
+                ->get();
+        }
+        if ($time == 3){
+            $citys = DB::table('address')
+                ->join('invoice', 'address.id', '=', 'invoice.address_id')
+                ->whereYear('invoice.created_at', '=', $now->year)
+                ->where('address.active', '=' ,1)
+                ->select('address.province', DB::raw('COUNT(address.province) as city_count'))
+                ->groupBy('address.province')
+                ->orderByDesc('city_count')
+                ->get();
+        }
+        foreach ($citys as $c){
+            $c->province = $this->getCityName($c->province);
+        }
+
+        return view('admin.dashboard.topcity',[
+            'citys' => $citys,
+            'time' => $time
+        ]);
     }
 
     public function revenue($time){

@@ -15,7 +15,7 @@
         </div>
 
         <div class="card-body">
-            <h5 class="card-title">Reports <span>/{{$time}}</span></h5>
+            <h5 class="card-title">Reports: number of products sold <span>/{{$time}}</span></h5>
             <!-- Line Chart -->
             <div style="display: {{$day}};">
                 <div id="lineChart1" wire:ignore></div>
