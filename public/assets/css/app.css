@@ -1904,7 +1904,8 @@ a.btn-two::after {
 }
 
 .color-variation .quickcolor .active{
-    background-color: #0dcaf0;
+    border-radius: 50%;
+    border: 2px solid #000000; /* Màu và kích thước viền */
 }
 
 .color-variation ul li:nth-child(1) {
@@ -6861,4 +6862,11 @@ border-bottom-right-radius: 16px;
 .trigger-btn {
     display: inline-block;
     margin: 100px auto;
+}
+
+.shape {
+    display: inline-block;
+    width: 20px; /* Kích thước chiều rộng tùy chọn */
+    height: 20px; /* Kích thước chiều cao tùy chọn */
+    border-radius: 50%; /* Để tạo hình tròn hoặc sử dụng giá trị 0 để tạo hình vuông */
 }

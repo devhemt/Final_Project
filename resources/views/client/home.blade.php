@@ -159,6 +159,7 @@
                 <div class="col-xl-12 ">
                     <div class="pro-tab-filter">
                         @livewire('client.home.product1')
+                        <a class="animated fadeIn btn-two" style="background-color:#cc8500" href="{{url('/shop/all')}}">SEE MORE</a>
                     </div>
                 </div>
             </div>
