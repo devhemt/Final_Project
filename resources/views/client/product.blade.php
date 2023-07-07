@@ -10,7 +10,7 @@
 				<div class="row">
 					<div class="col-xl-12">
 						<div class="bc-inner">
-							<p><a href="#">Home  |</a> Shop</p>
+							<p><a href="#">Home  |</a> Product Detail</p>
 						</div>
 					</div>
 					<!-- /.col-xl-12 -->
@@ -163,86 +163,95 @@
 					<h3>related <span>product</span></h3>
 				</div>
 				<!-- /.section-heading-->
-				<div class="row inner-wrapper">
-					<!-- Single product -->
-					<div class="col-sm-6 col-lg-3 col-xl-3">
-						<div class="sin-product">
-							<div class="pro-img">
-								<img src="{{asset('media/images/product/8.jpg')}}" alt="">
-							</div>
-							<div class="mid-wrapper">
-								<h5 class="pro-title"><a href="product.html">Bandage Dresses</a></h5>
-								<span>$60.00</span>
-							</div>
-							<div class="pro-icon">
-								<ul>
-									<li><a href="#"><i class="flaticon-valentines-heart"></i></a></li>
-									<li><a href="#"><i class="flaticon-shopping-cart"></i></a></li>
-									<li><a href="#" class="trigger"><i class="flaticon-zoom-in"></i></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<!-- Single product -->
-					<div class="col-sm-6 col-lg-3 col-xl-3">
-						<div class="sin-product">
-							<div class="pro-img">
-								<img src="{{asset('media/images/product/1.jpg')}}" alt="">
-							</div>
-							<div class="mid-wrapper">
-								<h5 class="pro-title"><a href="product.html">High-Low Dresses</a></h5>
-								<span>$60.00</span>
-							</div>
-							<div class="pro-icon">
-								<ul>
-									<li><a href="#"><i class="flaticon-valentines-heart"></i></a></li>
-									<li><a href="#"><i class="flaticon-shopping-cart"></i></a></li>
-									<li><a href="#" class="trigger"><i class="flaticon-zoom-in"></i></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<!-- Single product -->
-					<div class="col-sm-6 col-lg-3 col-xl-3">
-						<div class="sin-product">
-							<div class="pro-img">
-								<img src="{{asset('media/images/product/2.jpg')}}" alt="">
-							</div>
-							<div class="mid-wrapper">
-								<h5 class="pro-title"><a href="product.html">Empire Waist Dresses</a></h5>
-								<span>$60.00</span>
-							</div>
-							<div class="pro-icon">
-								<ul>
-									<li><a href="#"><i class="flaticon-valentines-heart"></i></a></li>
-									<li><a href="#"><i class="flaticon-shopping-cart"></i></a></li>
-									<li><a href="#" class="trigger"><i class="flaticon-zoom-in"></i></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
+                <div class="row">
+                    <div class="col-xl-12 ">
+                        <div class="pro-tab-filter">
+                            @livewire('client.home.product1')
+                        </div>
+                    </div>
+                </div>
 
-					<!-- Single product -->
-					<div class="col-sm-6 col-lg-3 col-xl-3">
-						<div class="sin-product">
-							<div class="pro-img">
-								<img src="{{asset('media/images/product/3.jpg')}}" alt="">
-							</div>
-							<div class="mid-wrapper">
-								<h5 class="pro-title"><a href="product.html">Bodycon Dresses</a></h5>
-								<span>$60.00</span>
-							</div>
-							<div class="pro-icon">
-								<ul>
-									<li><a href="#"><i class="flaticon-valentines-heart"></i></a></li>
-									<li><a href="#"><i class="flaticon-shopping-cart"></i></a></li>
-									<li><a href="#" class="trigger"><i class="flaticon-zoom-in"></i></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- Row End -->
+{{--				<div class="row inner-wrapper">--}}
+{{--					<!-- Single product -->--}}
+{{--                    @foreach ($product as $p)--}}
+{{--					<div class="col-sm-6 col-lg-3 col-xl-3">--}}
+{{--						<div class="sin-product">--}}
+{{--							<div class="pro-img">--}}
+{{--								<img src="{{ asset('images/'.$p->demo_image) }}" alt="">--}}
+{{--							</div>--}}
+{{--							<div class="mid-wrapper">--}}
+{{--								<h5 class="pro-title"><a href="{{url('product/'.$p->id)}}">{{ $p->name }}</a></h5>--}}
+{{--                                <span id="{{ $p->price }}">${{ $p->price }}</span>--}}
+{{--							</div>--}}
+{{--							<div class="pro-icon">--}}
+{{--								<ul>--}}
+{{--                                    <li><a href="{{url('cart')}}"><i class="flaticon-shopping-cart"></i></a></li>--}}
+{{--                                    <li><a class="trigger" href="#{{ $p->name }}" wire:click.prefetch="showQuickView({{ $p->id }})"><i class="flaticon-zoom-in" ></i></a></li>--}}
+{{--								</ul>--}}
+{{--							</div>--}}
+{{--						</div>--}}
+{{--					</div>--}}
+{{--                    @endforeach--}}
+{{--					<!-- Single product -->--}}
+{{--					<div class="col-sm-6 col-lg-3 col-xl-3">--}}
+{{--						<div class="sin-product">--}}
+{{--							<div class="pro-img">--}}
+{{--								<img src="{{asset('media/images/product/1.jpg')}}" alt="">--}}
+{{--							</div>--}}
+{{--							<div class="mid-wrapper">--}}
+{{--								<h5 class="pro-title"><a href="product.html">High-Low Dresses</a></h5>--}}
+{{--								<span>$60.00</span>--}}
+{{--							</div>--}}
+{{--							<div class="pro-icon">--}}
+{{--								<ul>--}}
+{{--									<li><a href="#"><i class="flaticon-valentines-heart"></i></a></li>--}}
+{{--									<li><a href="#"><i class="flaticon-shopping-cart"></i></a></li>--}}
+{{--									<li><a href="#" class="trigger"><i class="flaticon-zoom-in"></i></a></li>--}}
+{{--								</ul>--}}
+{{--							</div>--}}
+{{--						</div>--}}
+{{--					</div>--}}
+{{--					<!-- Single product -->--}}
+{{--					<div class="col-sm-6 col-lg-3 col-xl-3">--}}
+{{--						<div class="sin-product">--}}
+{{--							<div class="pro-img">--}}
+{{--								<img src="{{asset('media/images/product/2.jpg')}}" alt="">--}}
+{{--							</div>--}}
+{{--							<div class="mid-wrapper">--}}
+{{--								<h5 class="pro-title"><a href="product.html">Empire Waist Dresses</a></h5>--}}
+{{--								<span>$60.00</span>--}}
+{{--							</div>--}}
+{{--							<div class="pro-icon">--}}
+{{--								<ul>--}}
+{{--									<li><a href="#"><i class="flaticon-valentines-heart"></i></a></li>--}}
+{{--									<li><a href="#"><i class="flaticon-shopping-cart"></i></a></li>--}}
+{{--									<li><a href="#" class="trigger"><i class="flaticon-zoom-in"></i></a></li>--}}
+{{--								</ul>--}}
+{{--							</div>--}}
+{{--						</div>--}}
+{{--					</div>--}}
+
+{{--					<!-- Single product -->--}}
+{{--					<div class="col-sm-6 col-lg-3 col-xl-3">--}}
+{{--						<div class="sin-product">--}}
+{{--							<div class="pro-img">--}}
+{{--								<img src="{{asset('media/images/product/3.jpg')}}" alt="">--}}
+{{--							</div>--}}
+{{--							<div class="mid-wrapper">--}}
+{{--								<h5 class="pro-title"><a href="product.html">Bodycon Dresses</a></h5>--}}
+{{--								<span>$60.00</span>--}}
+{{--							</div>--}}
+{{--							<div class="pro-icon">--}}
+{{--								<ul>--}}
+{{--									<li><a href="#"><i class="flaticon-valentines-heart"></i></a></li>--}}
+{{--									<li><a href="#"><i class="flaticon-shopping-cart"></i></a></li>--}}
+{{--									<li><a href="#" class="trigger"><i class="flaticon-zoom-in"></i></a></li>--}}
+{{--								</ul>--}}
+{{--							</div>--}}
+{{--						</div>--}}
+{{--					</div>--}}
+{{--				</div>--}}
+{{--				<!-- Row End -->--}}
 			</div>
 			<!-- Container  -->
 		</section>

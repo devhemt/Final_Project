@@ -20,3 +20,6 @@
     </div>
     @endforeach
 </div>
+<a class="animated fadeIn btn-two" style="background-color:#cc8500" href="{{url('/shop/all')}}">SEE MORE</a>
+</div>
+</div>
