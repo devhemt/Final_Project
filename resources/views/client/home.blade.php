@@ -21,7 +21,7 @@
                                   <h4 class="animated fadeIn" style="color: black;" ><span style="color: white;" >BRAND NEW</span> COLLECTION</h4>
                                   <h1 class="animated fadeIn" style="color: white;" >ELEGANT SHOP</h1>
                                   <p class="animated fadeIn">Discover Elegant, the ultimate destination for fashionable women's clothing. Our brand is dedicated to helping you elevate your style and express your individuality through thoughtfully designed and meticulously crafted pieces.</p>
-                                  <a class="animated fadeIn btn-two" href="{{url('shop')}}">SHOP NOW</a>
+                                  <a class="animated fadeIn btn-two" href="{{url('/shop/all')}}">SHOP NOW</a>
                               </div>
                           </div>
                           <!-- Col End -->
@@ -40,7 +40,7 @@
                                   <h4 class="animated fadeIn" ><span style="color: white;" >BRAND NEW</span> COLLECTION</h4>
                                   <h1 class="animated fadeIn" style="color: white;" >NEW ARRIVALS</h1>
                                   <p class="animated fadeIn" style="color: #dad55e;">Our team of talented designers pays meticulous attention to fabric selection, fit, and finishing touches, ensuring that each piece not only looks stunning but also feels comfortable to wear.</p>
-                                  <a class="animated fadeIn btn-two" href="{{url('shop')}}">SHOP NOW</a>
+                                  <a class="animated fadeIn btn-two" href="{{url('/shop/all')}}">SHOP NOW</a>
                               </div>
                           </div>
                           <!-- Col End -->
@@ -58,7 +58,7 @@
                                   <h4 class="animated fadeIn" style="color: white;"><span style="color: black;">LATEST COLLECTION </span> 2023 </h4>
                                   <h1 class="animated fadeIn" style="color: white;">STYLE & GRACE </h1>
                                   <p class="animated fadeIn" style="color: #dad55e;">Experience the allure of Elegant and embrace your personal style with our exquisite collection of women's clothing. Explore our latest arrivals and elevate your wardrobe today.</p>
-                                  <a class="animated fadeIn btn-two" href="{{url('shop')}}">SHOP NOW</a>
+                                  <a class="animated fadeIn btn-two" href="{{url('/shop/all')}}">SHOP NOW</a>
                               </div>
                           </div>
                           <!-- Col End -->
@@ -103,7 +103,7 @@
                   <!-- /.col-xl-5 -->
 
                   <div class="col-12 col-md-4">
-                      <a href="{{url('shop')}}">
+                      <a href="{{url('/shop/all')}}">
                           <div class="sin-banner style-two">
 
                               <img src="{{asset('images/banner1.2.jpg')}}" alt="">
@@ -125,7 +125,7 @@
                   <!-- /.col-xl-4 -->
 
                   <div class="col-12 col-md-4">
-                      <a href="{{url('shop')}}">
+                      <a href="{{url('/shop/all')}}">
                           <div class="sin-banner">
                               <img src="{{asset('images/banner1.3.png')}}" alt="">
                               <div class="br-wrapper">

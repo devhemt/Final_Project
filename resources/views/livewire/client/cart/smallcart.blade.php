@@ -12,7 +12,7 @@
                 <p><a href="{{url('product/'.$c['id'])}}">{{$c['name']}}</a></p>
             </div>
             <div class="cart-price">
-                <p>{{$c['attributes']['size']}} x <span style="background: {{$c['attributes']['color']}}">...</span></p>
+                <p>{{$c['attributes']['size']}} x <span class="shape" style="background: {{$c['attributes']['color']}}"></span></p>
             </div>
             <div class="cart-price">
                 <p>{{$c['quantity']}} x ${{$c['price']}}</p>
