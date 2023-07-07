@@ -81,7 +81,7 @@
           <div class="container-fluid custom-container">
               <div class="row">
                   <div class="col-12 col-md-4">
-                      <a href="{{url('shop')}}">
+                      <a href="{{url('shop/all')}}">
                           <div class="sin-banner align-items-center">
                               <img src="{{asset('images/banner1.1.png')}}" alt="">
                               <div class="sin-banner-con">
@@ -103,7 +103,7 @@
                   <!-- /.col-xl-5 -->
 
                   <div class="col-12 col-md-4">
-                      <a href="{{url('shop')}}">
+                      <a href="{{url('shop/all')}}">
                           <div class="sin-banner style-two">
 
                               <img src="{{asset('images/banner1.2.jpg')}}" alt="">
@@ -125,7 +125,7 @@
                   <!-- /.col-xl-4 -->
 
                   <div class="col-12 col-md-4">
-                      <a href="{{url('shop')}}">
+                      <a href="{{url('shop/all')}}">
                           <div class="sin-banner">
                               <img src="{{asset('images/banner1.3.png')}}" alt="">
                               <div class="br-wrapper">

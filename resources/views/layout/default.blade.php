@@ -294,7 +294,7 @@
                             <div class="footer-menu">
                                 <ul>
                                     <li><a href="#">About Us</a></li>
-                                    <li><a href="{{url('shop')}}">Browse Products</a></li>
+                                    <li><a href="{{url('shop/all')}}">Browse Products</a></li>
                                     <li><a href="{{url('blog')}}">Read Our Blog</a></li>
                                     <li><a href="{{url('contact')}}">Contact Us</a></li>
                                 </ul>
@@ -307,9 +307,9 @@
                             <h3>CATEGORIES</h3>
                             <div class="footer-menu">
                                 <ul>
-                                    <li><a href="{{url('shop')}}">Dress</a></li>
-                                    <li><a href="{{url('shop')}}">Shirt</a></li>
-                                    <li><a href="{{url('shop')}}">Skirt</a></li>
+                                    <li><a href="{{url('shop/all')}}">Dress</a></li>
+                                    <li><a href="{{url('shop/all')}}">Shirt</a></li>
+                                    <li><a href="{{url('shop/all')}}">Skirt</a></li>
                                 </ul>
                             </div>
                         </div>
