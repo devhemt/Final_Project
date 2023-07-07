@@ -10,6 +10,25 @@
 
     </div>
 
+    <div class="visitor-form-container" style="top:{{$isShowEdit}}">
+
+        <form action="">
+            <div class="row mb-3">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">New category</label>
+                <div class="col-sm-10">
+                    <input wire:model="editCategory" type="text" class="form-control" id="inputText" placeholder="{{$flag}}">
+                    @error('editCategory') <span class="text-danger">{{ $message }}</span> @enderror
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button wire:click="editOld" type="button" class="btn btn-primary">Edit</button>
+                <button wire:click="cancelEdit" type="button" class="btn btn-secondary">Cancel</button>
+            </div>
+        </form>
+
+    </div>
+
     <div class="visitor-form-container" style="top:{{$isShowCreate}}">
 
         <form action="">
@@ -59,7 +78,8 @@
                 <td>{{$p->created_at}}</td>
                 <td>{{$p->updated_at}}</td>
                 <td>
-                    <a href="#" wire:click="block('{{$p->id}}')" id="delete" title="Delete category"><i class="fas fa-trash "></i></a>
+                    <a href="#" wire:click="edit('{{$p->id}}')" id="edit" title="Edit category"><i class="fas fa-edit"></i></a>
+                    <a href="#" wire:click="block('{{$p->id}}')" id="delete" title="Delete category"><i class="fas fa-trash"></i></a>
                 </td>
             </tr>
         @endforeach

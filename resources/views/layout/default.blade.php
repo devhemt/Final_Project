@@ -66,7 +66,7 @@
 
                     <div class="col-lg-12 col-xl-7 order-lg-3 order-xl-2 menu-container">
                         <div class="mainmenu">
-                            @livewire('menu')
+                            @livewire('client.menu')
                         </div>
                     </div>
                     <!--Main menu end-->
@@ -261,7 +261,7 @@
         <!--=   POPUP AREA      =-->
         <!--=========================-->
 
-        @livewire('popup')
+        @livewire('client.popup')
 
         <!--=========================-->
         <!--=   Footer area      =-->

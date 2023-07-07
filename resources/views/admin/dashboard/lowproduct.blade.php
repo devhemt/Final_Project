@@ -19,27 +19,27 @@
                 </div>
                 <div style="display: flex">
                     <p>More:</p>
-                    <a href="{{url('admin/lowproduct/10')}}" class="circle
+                    <a href="{{url('admin/db/lowproduct/10')}}" class="circle
                         @if($amount == 10) active @endif
                     ">
                         10
                     </a>
-                    <a href="{{url('admin/lowproduct/20')}}" class="circle
+                    <a href="{{url('admin/db/lowproduct/20')}}" class="circle
                         @if($amount == 20) active @endif
                     ">
                         20
                     </a>
-                    <a href="{{url('admin/lowproduct/30')}}" class="circle
+                    <a href="{{url('admin/db/lowproduct/30')}}" class="circle
                         @if($amount == 30) active @endif
                     ">
                         30
                     </a>
-                    <a href="{{url('admin/lowproduct/40')}}" class="circle
+                    <a href="{{url('admin/db/lowproduct/40')}}" class="circle
                         @if($amount == 40) active @endif
                     ">
                         40
                     </a>
-                    <a href="{{url('admin/lowproduct/50')}}" class="circle
+                    <a href="{{url('admin/db/lowproduct/50')}}" class="circle
                         @if($amount == 50) active @endif
                     ">
                         50

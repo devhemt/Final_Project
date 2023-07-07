@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Client;
 
 use Livewire\Component;
 
@@ -23,6 +23,6 @@ class Popup extends Component
 
     public function render()
     {
-        return view('livewire.popup');
+        return view('livewire.client.popup');
     }
 }

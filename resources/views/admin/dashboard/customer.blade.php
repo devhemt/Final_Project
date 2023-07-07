@@ -16,17 +16,17 @@
             <div id="detail" style="background: whitesmoke">
                 <div style="display: flex">
                     <p>More:</p>
-                    <a href="{{url('admin/newcustomer/1')}}" class="vuong
+                    <a href="{{url('admin/db/newcustomer/1')}}" class="vuong
                         @if($time == 1) active @endif
                     " style="width: 50px;">
                         today
                     </a>
-                    <a href="{{url('admin/newcustomer/2')}}" class="vuong
+                    <a href="{{url('admin/db/newcustomer/2')}}" class="vuong
                         @if($time == 2) active @endif
                     " style="width: 80px;">
                         this month
                     </a>
-                    <a href="{{url('admin/newcustomer/3')}}" class="vuong
+                    <a href="{{url('admin/db/newcustomer/3')}}" class="vuong
                         @if($time == 3) active @endif
                     " style="width: 80px;">
                         this year
