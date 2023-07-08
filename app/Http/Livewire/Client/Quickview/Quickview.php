@@ -98,10 +98,10 @@ class Quickview extends Component
                     }
                 }
             }
+            $this->emit('success');
         }else{
             $this->check_property='Please select properties';
         }
-        $this->emit('success');
         $this->emit('loadsmallcart');
     }
 
