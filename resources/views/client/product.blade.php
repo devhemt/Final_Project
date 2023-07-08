@@ -168,7 +168,7 @@
 					<div class="col-sm-6 col-lg-3 col-xl-3">
 						<div class="sin-product">
 							<div class="pro-img">
-								<img src="{{asset('media/images/product/8.jpg')}}" alt="">
+								<img src="{{asset('media/images/product/4.jpg')}}" alt="">
 							</div>
 							<div class="mid-wrapper">
 								<h5 class="pro-title"><a href="product.html">Bandage Dresses</a></h5>
@@ -187,11 +187,11 @@
 					<div class="col-sm-6 col-lg-3 col-xl-3">
 						<div class="sin-product">
 							<div class="pro-img">
-								<img src="{{asset('media/images/product/1.jpg')}}" alt="">
+								<img src="{{asset('media/images/product/7.jpg')}}" alt="">
 							</div>
 							<div class="mid-wrapper">
 								<h5 class="pro-title"><a href="product.html">High-Low Dresses</a></h5>
-								<span>$60.00</span>
+								<span>$110.00</span>
 							</div>
 							<div class="pro-icon">
 								<ul>
@@ -206,7 +206,7 @@
 					<div class="col-sm-6 col-lg-3 col-xl-3">
 						<div class="sin-product">
 							<div class="pro-img">
-								<img src="{{asset('media/images/product/2.jpg')}}" alt="">
+								<img src="{{asset('media/images/product/4.jpg')}}" alt="">
 							</div>
 							<div class="mid-wrapper">
 								<h5 class="pro-title"><a href="product.html">Empire Waist Dresses</a></h5>

@@ -40,7 +40,7 @@ class Product2 extends Component
                 ->select('product.id', 'product.name', 'product.demo_image', 'product.price', DB::raw('SUM(invoice_items.amount) as total_sales'))
                 ->groupBy('product.id', 'product.name', 'product.demo_image', 'product.price')
                 ->orderByDesc('total_sales')
-                ->limit(5)
+                ->limit(2)
                 ->get();
 
         //Top selling of week
