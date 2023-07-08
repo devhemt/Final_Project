@@ -49,7 +49,7 @@ class InvoiceController extends Controller
 
     public function test(Request $request){
 //        if ($request->resultCode == 0)
-        if ($request->resultCode != null){
+        if ($request->resultCode == 0){
             if (Auth::guard("customer")->check()){
                 $userId = Auth::guard("customer")->id();
                 $check_cart = Cart_memory::where('customer_id',$userId)

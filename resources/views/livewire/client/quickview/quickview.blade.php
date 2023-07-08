@@ -49,9 +49,9 @@
                                         " style="color:{{ $s }}"></i></li>
                                     @endforeach
                                 </ul>
-                                <p class="text-danger" style="height:20px;padding: 0px;">{{$check_property}}</p>
+                                <p class="text-danger" style="height:10px;padding: 0px;">{{$check_property}}</p>
                             </div>
-                            <p class="text-danger" style="height:20px;padding: 0px;">{{$check_amount}}</p>
+                            <p class="text-danger" style="height:10px;padding: 0px;">{{$check_amount}}</p>
 
                             <div class="add-tocart-wrap" wire:ignore>
 

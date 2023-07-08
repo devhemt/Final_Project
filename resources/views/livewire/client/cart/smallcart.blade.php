@@ -9,7 +9,7 @@
                 <img alt="" src="{{url('images/'.$c['attributes']['image'])}}">
             </div>
             <div class="cart-title">
-                <p><a href="{{url('product/'.$c['id'])}}">{{$c['name']}}</a></p>
+                <p><a style="font-size: 8px" href="{{url('product/'.$c['id'])}}">{{$c['name']}}</a></p>
             </div>
             <div class="cart-price">
                 <p>{{$c['attributes']['size']}} x <span class="shape" style="background: {{$c['attributes']['color']}}"></span></p>
@@ -28,7 +28,7 @@
                             <img alt="" src="{{url('images/'.$c->demo_image)}}">
                         </div>
                         <div class="cart-title">
-                            <p><a href="{{url('product/'.$c->id)}}">{{$c->name}}</a></p>
+                            <p><a style="font-size: 8px" href="{{url('product/'.$c->id)}}">{{$c->name}}</a></p>
                         </div>
                         <div class="cart-price">
                             <p>{{$c->size}} x <span class="shape" style="background: {{$c->color}}"></span></p>
