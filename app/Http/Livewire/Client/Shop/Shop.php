@@ -67,38 +67,68 @@ class Shop extends Component
             ->limit(4)
             ->get();
 
-        if ($this->sort_flag){
-            $this->products = DB::table('invoice_items')
-                ->join('invoice', 'invoice.id', '=', 'invoice_items.invoice_id')
-                ->join('status', 'status.invoice_id', '=', 'invoice.id')
-                ->join('properties', 'invoice_items.property_id', '=', 'properties.id')
-                ->join('product', 'properties.prd_id', '=', 'product.id')
-                ->join('category', 'product.category_id','=', 'category.id')
-                ->join('total_property', 'total_property.prd_id','=', 'product.id')
-                ->where('status.status','!=' ,0)
-                ->where('status.status','!=' ,7)
-                ->where('product.status','=',1)
-                ->whereBetween('product.price', [$this->min_price, $this->max_price])
-                ->whereMonth('invoice_items.created_at', '=', $now->month)
-                ->whereYear('invoice_items.created_at', '=', $now->year)
-                ->select('product.id', 'product.name','product.description', 'product.demo_image', 'product.price','product.created_at','total_property.colors','category.category_name', DB::raw('SUM(invoice_items.amount) as total_sales'))
-                ->groupBy('product.id', 'product.name','product.description', 'product.demo_image', 'product.price','product.created_at','total_property.colors','category.category_name')
-                ->orderByDesc('total_sales')
-                ->limit($this->limit)
-                ->get();
-        }else{
-            $this->products = DB::table('product')
-                ->join('category', 'product.category_id','=', 'category.id')
-                ->join('total_property', 'total_property.prd_id','=', 'product.id')
-                ->select('product.*','total_property.colors','category.category_name')
-                ->where('product.status','=',1)
-                ->whereBetween('product.price', [$this->min_price, $this->max_price])
-                ->limit($this->limit)
-                ->get();
-        }
-
         if ($this->category != 'all'){
-            $this->products = $this->products->where('category_name','=',$this->category);
+            if ($this->sort_flag){
+                $this->products = DB::table('invoice_items')
+                    ->join('invoice', 'invoice.id', '=', 'invoice_items.invoice_id')
+                    ->join('status', 'status.invoice_id', '=', 'invoice.id')
+                    ->join('properties', 'invoice_items.property_id', '=', 'properties.id')
+                    ->join('product', 'properties.prd_id', '=', 'product.id')
+                    ->join('category', 'product.category_id','=', 'category.id')
+                    ->join('total_property', 'total_property.prd_id','=', 'product.id')
+                    ->where('status.status','!=' ,0)
+                    ->where('status.status','!=' ,7)
+                    ->where('product.status','=',1)
+                    ->where('category_name','=',$this->category)
+                    ->whereBetween('product.price', [$this->min_price, $this->max_price])
+                    ->whereMonth('invoice_items.created_at', '=', $now->month)
+                    ->whereYear('invoice_items.created_at', '=', $now->year)
+                    ->select('product.id', 'product.name','product.description', 'product.demo_image', 'product.price','product.created_at','total_property.colors','category.category_name', DB::raw('SUM(invoice_items.amount) as total_sales'))
+                    ->groupBy('product.id', 'product.name','product.description', 'product.demo_image', 'product.price','product.created_at','total_property.colors','category.category_name')
+                    ->orderByDesc('total_sales')
+                    ->limit($this->limit)
+                    ->get();
+            }else{
+                $this->products = DB::table('product')
+                    ->join('category', 'product.category_id','=', 'category.id')
+                    ->join('total_property', 'total_property.prd_id','=', 'product.id')
+                    ->select('product.*','total_property.colors','category.category_name')
+                    ->where('product.status','=',1)
+                    ->where('category_name','=',$this->category)
+                    ->whereBetween('product.price', [$this->min_price, $this->max_price])
+                    ->limit($this->limit)
+                    ->get();
+            }
+        }else{
+            if ($this->sort_flag){
+                $this->products = DB::table('invoice_items')
+                    ->join('invoice', 'invoice.id', '=', 'invoice_items.invoice_id')
+                    ->join('status', 'status.invoice_id', '=', 'invoice.id')
+                    ->join('properties', 'invoice_items.property_id', '=', 'properties.id')
+                    ->join('product', 'properties.prd_id', '=', 'product.id')
+                    ->join('category', 'product.category_id','=', 'category.id')
+                    ->join('total_property', 'total_property.prd_id','=', 'product.id')
+                    ->where('status.status','!=' ,0)
+                    ->where('status.status','!=' ,7)
+                    ->where('product.status','=',1)
+                    ->whereBetween('product.price', [$this->min_price, $this->max_price])
+                    ->whereMonth('invoice_items.created_at', '=', $now->month)
+                    ->whereYear('invoice_items.created_at', '=', $now->year)
+                    ->select('product.id', 'product.name','product.description', 'product.demo_image', 'product.price','product.created_at','total_property.colors','category.category_name', DB::raw('SUM(invoice_items.amount) as total_sales'))
+                    ->groupBy('product.id', 'product.name','product.description', 'product.demo_image', 'product.price','product.created_at','total_property.colors','category.category_name')
+                    ->orderByDesc('total_sales')
+                    ->limit($this->limit)
+                    ->get();
+            }else{
+                $this->products = DB::table('product')
+                    ->join('category', 'product.category_id','=', 'category.id')
+                    ->join('total_property', 'total_property.prd_id','=', 'product.id')
+                    ->select('product.*','total_property.colors','category.category_name')
+                    ->where('product.status','=',1)
+                    ->whereBetween('product.price', [$this->min_price, $this->max_price])
+                    ->limit($this->limit)
+                    ->get();
+            }
         }
 
         foreach ($this->products as $p){
