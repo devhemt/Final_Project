@@ -48,59 +48,61 @@ class Quickview extends Component
     }
 
     public function addcart(){
-        if($this->color != null && $this->getsize != null){
-            $property_id = Properties::where('prd_id',$this->getid)
-                ->where('size',$this->getsize)
-                ->where('color',$this->color)
-                ->first()->id;
-            if (Auth::guard("customer")->check()){
-                $userId = Auth::guard("customer")->id();
+        if ($this->check_amount == 'Stock'){
+            if($this->color != null && $this->getsize != null){
+                $property_id = Properties::where('prd_id',$this->getid)
+                    ->where('size',$this->getsize)
+                    ->where('color',$this->color)
+                    ->first()->id;
+                if (Auth::guard("customer")->check()){
+                    $userId = Auth::guard("customer")->id();
 
-                $checkin = Cart_memory::where('customer_id',$userId)
-                    ->where('property_id',$property_id)
-                    ->count();
-
-                if ($checkin==0){
-                    $create_cart = Cart_memory::create([
-                        'customer_id' => $userId,
-                        'property_id' => $property_id,
-                        'size' => $this->getsize,
-                        'color' => $this->color,
-                        'amount' => $this->quantity,
-                        'check_buy' => 1
-                    ]);
-                }else{
-                    $amount = Cart_memory::where('customer_id',$userId)
+                    $checkin = Cart_memory::where('customer_id',$userId)
                         ->where('property_id',$property_id)
-                        ->first()->amount;
-                    $affected = Cart_memory::where('customer_id',$userId)
-                        ->where('property_id',$property_id)
-                        ->update(['amount' => $amount+1]);
-                }
+                        ->count();
 
-
-            }else{
-                if ($this->check_amount == 'Stock'){
-                    $userId = Session::getId();
-                    Cart::session($userId);
-                    if ($this->quantity != 0){
-                        Cart::add([
-                            'id' => $property_id,
-                            'name' => $this->name,
-                            'price' => $this->price,
-                            'quantity' => $this->quantity,
-                            'attributes' => array(
-                                'color' => $this->color,
-                                'size' => $this->getsize,
-                                'image' => $this->imagein,
-                            )
+                    if ($checkin==0){
+                        $create_cart = Cart_memory::create([
+                            'customer_id' => $userId,
+                            'property_id' => $property_id,
+                            'size' => $this->getsize,
+                            'color' => $this->color,
+                            'amount' => $this->quantity,
+                            'check_buy' => 1
                         ]);
+                    }else{
+                        $amount = Cart_memory::where('customer_id',$userId)
+                            ->where('property_id',$property_id)
+                            ->first()->amount;
+                        $affected = Cart_memory::where('customer_id',$userId)
+                            ->where('property_id',$property_id)
+                            ->update(['amount' => $amount+1]);
+                    }
+
+
+                }else{
+                    if ($this->check_amount == 'Stock'){
+                        $userId = Session::getId();
+                        Cart::session($userId);
+                        if ($this->quantity != 0){
+                            Cart::add([
+                                'id' => $property_id,
+                                'name' => $this->name,
+                                'price' => $this->price,
+                                'quantity' => $this->quantity,
+                                'attributes' => array(
+                                    'color' => $this->color,
+                                    'size' => $this->getsize,
+                                    'image' => $this->imagein,
+                                )
+                            ]);
+                        }
                     }
                 }
+                $this->emit('success');
+            }else{
+                $this->check_property='Please select properties';
             }
-            $this->emit('success');
-        }else{
-            $this->check_property='Please select properties';
         }
         $this->emit('loadsmallcart');
     }
