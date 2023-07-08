@@ -10,9 +10,13 @@ use App\Models\Admin_account;
 class Smallnavadmin extends Component
 {
 //    check role and return notification
-    protected $listeners = ['loadsmallnavadmin'];
+    protected $listeners = ['loadsmallnavadmin','getTb'];
     public $job, $profile;
     public function loadsmallnavadmin(){}
+
+    public function getTb($data){
+
+    }
 
     public function render()
     {

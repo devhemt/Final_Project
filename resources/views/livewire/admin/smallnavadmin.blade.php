@@ -24,44 +24,44 @@
                 </div>
             </li>
 
-            <li>
-                <hr class="dropdown-divider">
-            </li>
+{{--            <li>--}}
+{{--                <hr class="dropdown-divider">--}}
+{{--            </li>--}}
 
-            <li class="notification-item">
-                <i class="bi bi-x-circle text-danger"></i>
-                <div>
-                    <h4>Đơn hàng giao lỗi</h4>
-                    <p>Đơn hàng #ma0123 giao lỗi do không liên hệ đự với khách hàng</p>
-                    <p>1 hr. ago</p>
-                </div>
-            </li>
+{{--            <li class="notification-item">--}}
+{{--                <i class="bi bi-x-circle text-danger"></i>--}}
+{{--                <div>--}}
+{{--                    <h4>Đơn hàng giao lỗi</h4>--}}
+{{--                    <p>Đơn hàng #ma0123 giao lỗi do không liên hệ đự với khách hàng</p>--}}
+{{--                    <p>1 hr. ago</p>--}}
+{{--                </div>--}}
+{{--            </li>--}}
 
-            <li>
-                <hr class="dropdown-divider">
-            </li>
+{{--            <li>--}}
+{{--                <hr class="dropdown-divider">--}}
+{{--            </li>--}}
 
-            <li class="notification-item">
-                <i class="bi bi-check-circle text-success"></i>
-                <div>
-                    <h4>Nhà cung cấp #supplier4 đã được thêm</h4>
-                    <p>Nhà cung cấp #supplier4 đã được thêm</p>
-                    <p>2 hrs. ago</p>
-                </div>
-            </li>
+{{--            <li class="notification-item">--}}
+{{--                <i class="bi bi-check-circle text-success"></i>--}}
+{{--                <div>--}}
+{{--                    <h4>Nhà cung cấp #supplier4 đã được thêm</h4>--}}
+{{--                    <p>Nhà cung cấp #supplier4 đã được thêm</p>--}}
+{{--                    <p>2 hrs. ago</p>--}}
+{{--                </div>--}}
+{{--            </li>--}}
 
-            <li>
-                <hr class="dropdown-divider">
-            </li>
+{{--            <li>--}}
+{{--                <hr class="dropdown-divider">--}}
+{{--            </li>--}}
 
-            <li class="notification-item">
-                <i class="bi bi-info-circle text-primary"></i>
-                <div>
-                    <h4>Cập nhật thông tin</h4>
-                    <p>Thông tin mới nhất về đợt nhập hàng 4 đã được cập nhật</p>
-                    <p>4 hrs. ago</p>
-                </div>
-            </li>
+{{--            <li class="notification-item">--}}
+{{--                <i class="bi bi-info-circle text-primary"></i>--}}
+{{--                <div>--}}
+{{--                    <h4>Cập nhật thông tin</h4>--}}
+{{--                    <p>Thông tin mới nhất về đợt nhập hàng 4 đã được cập nhật</p>--}}
+{{--                    <p>4 hrs. ago</p>--}}
+{{--                </div>--}}
+{{--            </li>--}}
 
 
         </ul><!-- End Notification Dropdown Items -->
