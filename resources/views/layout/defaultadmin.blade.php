@@ -52,11 +52,6 @@
   <!-- Template Main CSS File -->
   <link href="{{ asset('assetsAdmin/css/styleadmin.css') }}" rel="stylesheet">
 
-    <style>
-        .note-editor {
-            background-color: #fff;
-        }
-    </style>
 
   @livewireStyles
 </head>

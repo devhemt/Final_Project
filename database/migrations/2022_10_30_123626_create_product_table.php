@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('category_id')->unsigned();
             $table->tinyInteger('status')->comment('0 = không bán, 1 = bán, 2 = hàng chờ');
             $table->string('demo_image',200);
+            $table->string('product_code')->unique(true);
             $table->string('name',150);
             $table->text('description');
             $table->float('price');

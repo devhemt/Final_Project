@@ -134,10 +134,12 @@ class PurchaseController extends Controller
             'prd_description' => 'required'
         ]);
 
+        $product_code = '#PRD'.Product::latest()->first()->id+1;
 
         $items = Product::create([
             'demo_image'=> $request->prd_image->getClientOriginalName(),
             'name' => $request->get('prd_name'),
+            'product_code' => $product_code,
             'description' => $request->get('prd_description'),
             'price' => $request->get('prd_price'),
             'tag' => $request->get('prd_tag'),
