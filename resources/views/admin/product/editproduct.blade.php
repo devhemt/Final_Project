@@ -14,10 +14,23 @@
 
         <section class="section">
             @livewire('admin.product.editprd',['idprd'=>$id])
-
-
         </section>
         <script language="JavaScript" type="text/javascript">
+            $('#des').summernote({
+                placeholder: 'Please text something',
+                tabsize: 2,
+                height: 120,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link', 'picture', 'video']],
+                    ['view', ['fullscreen', 'codeview', 'help']]
+                ]
+            });
+
             var flag = true;
             var flagname = 1;
             var flagimage = false;

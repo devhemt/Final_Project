@@ -220,7 +220,7 @@
 
                   <div class="form-group">
                     <label>Description</label>
-                    <textarea required name="prd_description" class="form-control" rows="3"></textarea>
+                    <textarea id="des" required name="prd_description" class="form-control" rows="3"></textarea>
                     @if ($errors->has('prd_description'))
                         <p class="text-danger">
                         @foreach ($errors->get('prd_description') as $e)
@@ -237,6 +237,21 @@
             </div>
         </section>
         <script language="JavaScript" type="text/javascript">
+            $('#des').summernote({
+                placeholder: 'Please text something',
+                tabsize: 2,
+                height: 120,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link', 'picture', 'video']],
+                    ['view', ['fullscreen', 'codeview', 'help']]
+                ]
+            });
+
             var flagname = 1;
             var flagimage = false;
             function preview() {

@@ -329,7 +329,7 @@
 
         <div class="form-group">
             <label>Description</label>
-            <textarea name="prd_description" class="form-control" rows="3" placeholder="{{$product[0]->description}}"></textarea>
+            <textarea wire:ignore id="des" name="prd_description" class="form-control" rows="3" placeholder="{{$product[0]->description}}"></textarea>
             @if ($errors->has('prd_description'))
                 <p class="text-danger">
                     @foreach ($errors->get('prd_description') as $e)
