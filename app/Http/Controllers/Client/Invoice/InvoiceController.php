@@ -113,7 +113,11 @@ class InvoiceController extends Controller
                             $total += 25;
                         }
                         $address_id = Address::where('customer_id',$userId)->where('active',1)->first()->id;
-                        $invoice_code = '#ORDER'.Invoice::latest()->first()->id+1;
+                        if (Invoice::latest()->first() == null){
+                            $invoice_code = '#ORDER1';
+                        }else{
+                            $invoice_code = '#ORDER'.Invoice::latest()->first()->id+1;
+                        }
                         $invoice = Invoice::create([
                             'customer_id' => $userId,
                             'address_id' => $address_id,
@@ -238,7 +242,11 @@ class InvoiceController extends Controller
                                 $total += 25;
                             }
                             $address_id = Address::where('guest_id',$guest_id)->where('active',1)->first()->id;
-                            $invoice_code = '#ORDER'.Invoice::latest()->first()->id+1;
+                            if (Invoice::latest()->first() == null){
+                                $invoice_code = '#ORDER1';
+                            }else{
+                                $invoice_code = '#ORDER'.Invoice::latest()->first()->id+1;
+                            }
                             $invoice = Invoice::create([
                                 'guest_id' => $guest_id,
                                 'address_id' => $address_id,

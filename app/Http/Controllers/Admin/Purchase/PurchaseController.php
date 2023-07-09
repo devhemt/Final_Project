@@ -134,7 +134,11 @@ class PurchaseController extends Controller
             'prd_description' => 'required'
         ]);
 
-        $product_code = '#PRD'.Product::latest()->first()->id+1;
+        if (Product::latest()->first() == null){
+            $product_code = '#PRD1';
+        }else{
+            $product_code = '#PRD'.Product::latest()->first()->id+1;
+        }
 
         $items = Product::create([
             'demo_image'=> $request->prd_image->getClientOriginalName(),

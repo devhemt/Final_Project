@@ -103,7 +103,7 @@
 										<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 											<div class="prod-bottom-tab-sin description">
 												<h5>Description</h5>
-												<p>{{$p->description}}</p>
+												<p>{!!$p->description!!}</p>
 
 											</div>
 										</div>
