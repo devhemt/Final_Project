@@ -19,7 +19,7 @@
             </div>
             <div class="form-group">
                 <label>Description</label>
-                <textarea readonly name="prd_description" class="form-control" rows="3" placeholder="{{$product[0]->description}}"></textarea>
+                <div style="background: white;border-radius: var(--bs-border-radius);transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;">{!! $product[0]->description !!}</div>
             </div>
     </div>
 

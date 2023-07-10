@@ -21,7 +21,8 @@
                 <thead>
                 <tr>
                     <th scope="col">Preview</th>
-                    <th scope="col">Product</th>
+                    <th scope="col">Product Code</th>
+                    <th scope="col">Product Name</th>
                     <th scope="col">Price</th>
                     <th scope="col">Sold</th>
                 </tr>
@@ -30,6 +31,7 @@
                 @foreach($topProducts as $product)
                     <tr>
                         <th scope="row"><a href="{{url('admin/product/'.$product->id)}}"><img src="{{asset('images/'.$product->demo_image)}}" alt=""></a></th>
+                        <td>{{$product->product_code}}</td>
                         <td><a href="{{url('admin/product/'.$product->id)}}" class="text-primary fw-bold">{{$product->name}}</a></td>
                         <td>${{$product->price}}</td>
                         <td class="fw-bold">{{$product->total_sales}}</td>

@@ -64,7 +64,7 @@
                             <p>
                                 @if (isset($prdQV))
                                     @foreach ($prdQV as $p)
-                                        {{ $p->description }}
+                                        {!! $p->description !!}
                                     @endforeach
                                 @endif
                             </p>

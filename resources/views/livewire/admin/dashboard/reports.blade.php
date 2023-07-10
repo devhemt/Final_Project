@@ -15,7 +15,7 @@
         </div>
 
         <div class="card-body">
-            <h5 class="card-title">Reports: number of products sold <span>/{{$time}}</span></h5>
+            <h5 class="card-title">Products sold <span>/{{$time}}</span></h5>
             <!-- Line Chart -->
             <div style="display: {{$day}};">
                 <div id="lineChart1" wire:ignore></div>
@@ -60,7 +60,15 @@
                         },
                         xaxis: {
                             categories: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23'],
-                        }
+                            title: {
+                                text: 'Hour'
+                            },
+                        },
+                        yaxis: {
+                            title: {
+                                text: 'Amount'
+                            },
+                        },
                     }).render();
                     new ApexCharts(document.querySelector("#lineChart2"), {
                         series: [{
@@ -96,7 +104,15 @@
                                     {{ $i }},
                                 @endfor
                             ],
-                        }
+                            title: {
+                                text: 'Day'
+                            },
+                        },
+                        yaxis: {
+                            title: {
+                                text: 'Amount'
+                            },
+                        },
                     }).render();
                     new ApexCharts(document.querySelector("#lineChart3"), {
                         series: [{
@@ -132,7 +148,15 @@
                                     {{ $i }},
                                 @endfor
                             ],
-                        }
+                            title: {
+                                text: 'Month'
+                            },
+                        },
+                        yaxis: {
+                            title: {
+                                text: 'Amount'
+                            },
+                        },
                     }).render();
 
                 });

@@ -52,6 +52,7 @@ class PurchaseController extends Controller
             'unit_price' => 'required',
             'prd_size' => 'required|max:20',
             'prd_color' => 'required|max:20',
+            'prd_color_name' => 'required|max:50',
             'prd_amount' => 'required',
         ]);
 
@@ -74,6 +75,7 @@ class PurchaseController extends Controller
 
         $size = $request->get('prd_size');
         $color = $request->get('prd_color');
+        $color_name = $request->get('prd_color_name');
         $amount = $request->get('prd_amount');
         $flag = 0;
 
@@ -82,6 +84,7 @@ class PurchaseController extends Controller
                 'prd_id'=> $request->get('prd_id'),
                 'size' => strtoupper($p),
                 'color' => $color[$flag],
+                'color_name' => $color_name[$flag],
                 'batch'=> ($batch->batch+1),
                 'amount' => $amount[$flag]
             ]);
@@ -130,9 +133,11 @@ class PurchaseController extends Controller
             'prd_tag' => 'required',
             'prd_size' => 'required|max:20',
             'prd_color' => 'required|max:20',
+            'prd_color_name' => 'required|max:50',
             'prd_amount' => 'required',
             'prd_description' => 'required'
         ]);
+
 
         if (Product::latest()->first() == null){
             $product_code = '#PRD1';
@@ -169,6 +174,7 @@ class PurchaseController extends Controller
 
         $size = $request->get('prd_size');
         $color = $request->get('prd_color');
+        $color_name = $request->get('prd_color_name');
         $amount = $request->get('prd_amount');
         $quantity = 0;
         foreach ($amount as $a){
@@ -181,6 +187,7 @@ class PurchaseController extends Controller
                 'prd_id'=> $id->id,
                 'size' => strtoupper($p),
                 'color' => $color[$flag],
+                'color_name' => $color_name[$flag],
                 'batch'=> 1,
                 'amount' => $amount[$flag]
             ]);

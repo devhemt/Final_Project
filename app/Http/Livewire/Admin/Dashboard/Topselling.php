@@ -34,8 +34,8 @@ class Topselling extends Component
                 ->whereDay('invoice_items.created_at', '=', $now->day)
                 ->whereMonth('invoice_items.created_at', '=', $now->month)
                 ->whereYear('invoice_items.created_at', '=', $now->year)
-                ->select('product.id', 'product.name', 'product.demo_image', 'product.price', DB::raw('SUM(invoice_items.amount) as total_sales'))
-                ->groupBy('product.id', 'product.name', 'product.demo_image', 'product.price')
+                ->select('product.id', 'product.name', 'product.product_code', 'product.demo_image', 'product.price', DB::raw('SUM(invoice_items.amount) as total_sales'))
+                ->groupBy('product.id', 'product.name', 'product.product_code', 'product.demo_image', 'product.price')
                 ->orderByDesc('total_sales')
                 ->limit(5)
                 ->get();
@@ -50,8 +50,8 @@ class Topselling extends Component
                 ->where('status.status','!=' ,7)
                 ->whereMonth('invoice_items.created_at', '=', $now->month)
                 ->whereYear('invoice_items.created_at', '=', $now->year)
-                ->select('product.id', 'product.name', 'product.demo_image', 'product.price', DB::raw('SUM(invoice_items.amount) as total_sales'))
-                ->groupBy('product.id', 'product.name', 'product.demo_image', 'product.price')
+                ->select('product.id', 'product.name', 'product.product_code', 'product.demo_image', 'product.price', DB::raw('SUM(invoice_items.amount) as total_sales'))
+                ->groupBy('product.id', 'product.name', 'product.product_code', 'product.demo_image', 'product.price')
                 ->orderByDesc('total_sales')
                 ->limit(5)
                 ->get();
@@ -65,8 +65,8 @@ class Topselling extends Component
                 ->where('status.status','!=' ,0)
                 ->where('status.status','!=' ,7)
                 ->whereYear('invoice_items.created_at', '=', $now->year)
-                ->select('product.id', 'product.name', 'product.demo_image', 'product.price', DB::raw('SUM(invoice_items.amount) as total_sales'))
-                ->groupBy('product.id', 'product.name', 'product.demo_image', 'product.price')
+                ->select('product.id', 'product.name', 'product.product_code', 'product.demo_image', 'product.price', DB::raw('SUM(invoice_items.amount) as total_sales'))
+                ->groupBy('product.id', 'product.name', 'product.product_code', 'product.demo_image', 'product.price')
                 ->orderByDesc('total_sales')
                 ->limit(5)
                 ->get();

@@ -131,6 +131,15 @@
                         @endfor
                     </tr>
                     <tr>
+                        <th>Color Name</th>
+                        @for ($i = 0; $i < $count; $i++)
+                            <td><input required type="text" name="prd_color_name[]" class="form-control" value="{{$p1[$i]->color_name}}"></td>
+                            @if($i==4)
+                                @break
+                            @endif
+                        @endfor
+                    </tr>
+                    <tr>
                         <th>Amount</th>
                         @for ($i = 0; $i < $count; $i++)
                             <td><input required name="prd_amount[]" min="0" value="{{$p1[$i]->amount}}" type="number" class="form-control"></td>
@@ -171,6 +180,16 @@
                         @if($count >= 4)
                             @for ($i = 4; $i < $count; $i++)
                                 <td><input type="color" name="prd_color[]" class="form-control form-control-color1" value="{{$p1[$i]->color}}" title="Choose your color"></td>
+                                @if($i==9)
+                                    @break
+                                @endif
+                            @endfor
+                        @endif
+                    </tr>
+                    <tr>
+                        @if($count >= 4)
+                            @for ($i = 4; $i < $count; $i++)
+                                <td><input required type="text" name="prd_color_name[]" class="form-control" value="{{$p1[$i]->color_name}}"></td>
                                 @if($i==9)
                                     @break
                                 @endif
@@ -225,6 +244,16 @@
                         @endif
                     </tr>
                     <tr>
+                        @if($count > 8)
+                            @for ($i = 9; $i < $count; $i++)
+                                <td><input required type="text" name="prd_color_name[]" class="form-control" value="{{$p1[$i]->color_name}}"></td>
+                                @if($i==14)
+                                    @break
+                                @endif
+                            @endfor
+                        @endif
+                    </tr>
+                    <tr>
                         @if($count > 8 )
                             @for ($i = 9; $i < $count; $i++)
                                 <td><input required name="prd_amount[]" min="0" value="{{$p1[$i]->amount}}" type="number" class="form-control"></td>
@@ -262,6 +291,13 @@
                         @if($count > 13 )
                             @for ($i = 14; $i < $count; $i++)
                                 <td><input type="color" name="prd_color[]" class="form-control form-control-color1" value="{{$p1[$i]->color}}" title="Choose your color"></td>
+                            @endfor
+                        @endif
+                    </tr>
+                    <tr>
+                        @if($count > 13)
+                            @for ($i = 14; $i < $count; $i++)
+                                <td><input required type="text" name="prd_color_name[]" class="form-control" value="{{$p1[$i]->color_name}}"></td>
                             @endfor
                         @endif
                     </tr>
@@ -327,9 +363,9 @@
         </div>
 
 
-        <div class="form-group">
+        <div class="form-group" wire:ignore>
             <label>Description</label>
-            <textarea wire:ignore id="des" name="prd_description" class="form-control" rows="3" placeholder="{{$product[0]->description}}"></textarea>
+            <textarea id="des" name="prd_description" class="form-control" rows="3" placeholder="{{$product[0]->description}}"></textarea>
             @if ($errors->has('prd_description'))
                 <p class="text-danger">
                     @foreach ($errors->get('prd_description') as $e)
