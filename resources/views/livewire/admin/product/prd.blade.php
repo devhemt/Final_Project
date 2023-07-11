@@ -2,6 +2,10 @@
     <div class="col-lg-6">
         <form >
             <div class="form-group">
+                <label>Product's Code</label>
+                <input readonly name="prd_code" type="text" class="form-control" placeholder="{{$product[0]->product_code}}">
+            </div>
+            <div class="form-group">
                 <label>Product's Name</label>
                 <input readonly name="prd_name" type="text" class="form-control" placeholder="{{$product[0]->name}}">
             </div>
@@ -46,9 +50,13 @@
     width: 100%;
     background: #f6f9ff;"></div>
     <div class="card-body">
+        @php
+            $stt = 1;
+        @endphp
         <table class="table table-striped">
             <thead>
             <tr>
+                <th scope="col">Stt</th>
                 <th scope="col">Size</th>
                 <th scope="col">Color</th>
                 <th scope="col">Batch</th>
@@ -59,12 +67,16 @@
             <tbody>
                 @foreach($properties as $p)
                     <tr>
+                        <td>{{$stt}}</td>
                         <td>{{$p->size}}</td>
-                        <td style="background: {{$p->color}};"></td>
+                        <td style="color: {{$p->color}};">{{$p->color_name}}</td>
                         <td>{{$p->batch}}</td>
                         <td>{{$p->amount}}</td>
                         <td>{{$p->unit_price}} $</td>
                     </tr>
+                    @php
+                        $stt++;
+                    @endphp
                 @endforeach
             </tbody>
         </table>

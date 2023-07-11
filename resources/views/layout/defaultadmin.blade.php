@@ -45,7 +45,6 @@
     <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.colVis.min.js"></script>
 
 
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
@@ -102,6 +101,19 @@
 
       <!-- Template Main JS File -->
       <script src="{{ asset('assetsAdmin/js/mainadmin.js') }}"></script>
+
+        <script>
+            $(document).ready(function() {
+                var table = $('#example').DataTable( {
+                    "pageLength": 5,
+                    lengthChange: false,
+                    buttons: [ 'copy', 'excel', 'pdf', 'colvis' ]
+                } );
+
+                table.buttons().container()
+                    .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+            } );
+        </script>
       @livewireScripts
     </body>
 

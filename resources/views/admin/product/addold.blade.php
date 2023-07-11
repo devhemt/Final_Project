@@ -10,25 +10,28 @@
                     <li class="breadcrumb-item active">Add old product</li>
                 </ol>
             </nav>
-        </div><!-- End Page Title -->
+        </div>
 
         <section class="section">
             <div class="row addpd">
-                <div class="col-lg-12">
-
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        @foreach($product as $p)
+                            <p><span style="font-weight: 700">Product Code: </span>{{$p->product_code}}</p>
+                            <p><span style="font-weight: 700">Product Name: </span>{{$p->name}}</p>
+                            <p><span style="font-weight: 700">Product Price: </span>{{$p->price}}</p>
+                            <span style="font-weight: 700">Image</span>
+                            <img style="max-height: 400px;max-width: 300px;object-fit: cover" src="{{asset('images/'.$p->demo_image)}}" alt="">
+                        @endforeach
+                    </div>
+                </div>
+                <div class="col-lg-6">
                     <form accept-charset="utf-8" action="{{ url("admin/purchase/addold") }}" role="form" method="POST" enctype="multipart/form-data">
                         {{ method_field('POST') }}
                         @csrf
                         <div class="form-group">
                             <input hidden name="prd_id" class="form-control" value="{{$prd_id}}">
                             <input hidden name="purchase_id" class="form-control" value="{{$purchase_id}}">
-                        </div>
-                        <div class="form-group">
-                            @foreach($product as $p)
-                                <p>{{$p->id}}</p>
-                                <p>{{$p->name}}</p>
-                                <p>{{$p->price}}</p>
-                            @endforeach
                         </div>
                         <div class="form-group">
                             <label>Unit price</label>
@@ -133,10 +136,6 @@
                         <button name="sbm" type="submit" class="btn btn-success">Add new batch</button>
                     </form>
                 </div>
-
-{{--                <div class="col-lg-6">--}}
-
-{{--                </div>--}}
             </div>
         </section>
         <script language="JavaScript" type="text/javascript">

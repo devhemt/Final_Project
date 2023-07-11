@@ -50,7 +50,7 @@ class Purchase extends Component
             ->join('purchase_items', 'purchase.id','=', 'purchase_items.purchase_id')
             ->join('product', 'purchase_items.prd_id','=', 'product.id')
             ->join('category', 'product.category_id','=', 'category.id')
-            ->select('purchase_items.quantity','purchase_items.unit_price','product.name','product.id','category.category_name')
+            ->select('purchase_items.quantity','purchase_items.unit_price','product.name','product.id','product.product_code','product.demo_image','category.category_name')
             ->where('purchase.id',$this->purchase_id)
             ->get();
         return view('livewire.admin.purchase.purchase');
