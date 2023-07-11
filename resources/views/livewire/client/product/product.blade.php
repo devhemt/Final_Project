@@ -38,7 +38,7 @@
             <a href="#{{$product[0]->name}}" wire:click="addcart" class="add-to-cart"><i class="flaticon-shopping-purse-icon"></i>Add to Cart</a>
         </div>
 
-        <p>{{$product[0]->description}}</p>
+        <p>{!!$product[0]->description!!}</p>
         <div class="product-social">
             <span>Share :</span>
             <ul>

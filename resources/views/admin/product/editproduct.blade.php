@@ -14,10 +14,23 @@
 
         <section class="section">
             @livewire('admin.product.editprd',['idprd'=>$id])
-
-
         </section>
         <script language="JavaScript" type="text/javascript">
+            $('#des').summernote({
+                placeholder: 'Please text something',
+                tabsize: 2,
+                height: 120,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link']],
+                    ['view', ['fullscreen', 'codeview', 'help']]
+                ]
+            });
+
             var flag = true;
             var flagname = 1;
             var flagimage = false;
@@ -54,10 +67,6 @@
 
             }
             function appendColumn(){
-                if (flag){
-                    deleteColumns();
-                    flag = false;
-                }
                 var tbl=document.getElementById('my-table');
                 var tbl1=document.getElementById('my-table-1');
                 var tbl2=document.getElementById('my-table-2');
@@ -72,6 +81,9 @@
                             createCellColor(tbl.rows[i].insertCell(tbl.rows[i].cells.length),'prd_color[]','form-control','text');
                         }
                         if (i==2) {
+                            createCell(tbl.rows[i].insertCell(tbl.rows[i].cells.length),'prd_color_name[]','form-control','text');
+                        }
+                        if (i==3) {
                             createCell(tbl.rows[i].insertCell(tbl.rows[i].cells.length),'prd_amount[]','form-control','number');
                         }
                     }
@@ -86,6 +98,9 @@
                             createCellColor(tbl1.rows[i].insertCell(tbl1.rows[i].cells.length),'prd_color[]','form-control','text');
                         }
                         if (i==2) {
+                            createCell(tbl1.rows[i].insertCell(tbl1.rows[i].cells.length),'prd_color_name[]','form-control','text');
+                        }
+                        if (i==3) {
                             createCell(tbl1.rows[i].insertCell(tbl1.rows[i].cells.length),'prd_amount[]','form-control','number');
                         }
                     }
@@ -100,6 +115,9 @@
                             createCellColor(tbl2.rows[i].insertCell(tbl2.rows[i].cells.length),'prd_color[]','form-control','text');
                         }
                         if (i==2) {
+                            createCell(tbl2.rows[i].insertCell(tbl2.rows[i].cells.length),'prd_color_name[]','form-control','text');
+                        }
+                        if (i==3) {
                             createCell(tbl2.rows[i].insertCell(tbl2.rows[i].cells.length),'prd_amount[]','form-control','number');
                         }
                     }
@@ -114,6 +132,9 @@
                             createCellColor(tbl3.rows[i].insertCell(tbl3.rows[i].cells.length),'prd_color[]','form-control','text');
                         }
                         if (i==2) {
+                            createCell(tbl3.rows[i].insertCell(tbl3.rows[i].cells.length),'prd_color_name[]','form-control','text');
+                        }
+                        if (i==3) {
                             createCell(tbl3.rows[i].insertCell(tbl3.rows[i].cells.length),'prd_amount[]','form-control','number');
                         }
                     }

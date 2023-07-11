@@ -24,8 +24,8 @@
         <tr>
             <th scope="col">Stt</th>
             <th scope="col">Name</th>
-            <th scope="col">Demo image</th>
-            <th scope="col">Description</th>
+            <th scope="col">Image</th>
+            <th scope="col">Price</th>
             <th scope="col">Total amount</th>
             <th scope="col">Actions</th>
         </tr>
@@ -36,7 +36,7 @@
             <th scope="row">{{$stt}}</th>
             <td>{{$p->name}}</td>
             <td><img src="{{asset('images/'.$p->demo_image)}}" alt=""></td>
-            <td>{{$p->description}}</td>
+            <td>{{$p->price}} $</td>
             <td>{{$p->total_amount}}</td>
             <td>
                 <a href="#" wire:click="block('{{$p->id}}')" id="deleteprd" title="Delete product"><i class="fas fa-trash "></i></a>

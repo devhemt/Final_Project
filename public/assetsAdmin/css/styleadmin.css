@@ -1457,3 +1457,7 @@ h6 {
     width: 100px;
     object-fit: cover;
 }
+
+.note-editor {
+    background-color: #fff;
+}

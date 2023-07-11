@@ -56,6 +56,11 @@ class ProductController extends Controller
                 'prd_color' => 'required|max:20',
             ]);
         }
+        if ($request->get('prd_color_name') != null){
+        $request->validate([
+            'prd_color_name' => 'required|max:50',
+        ]);
+    }
         if ($request->get('prd_category') != 0){
             $request->validate([
                 'prd_category' => 'required|numeric',
@@ -120,6 +125,7 @@ class ProductController extends Controller
 
         $size = $request->get('prd_size');
         $color = $request->get('prd_color');
+        $color_name = $request->get('prd_color_name');
         $amount = $request->get('prd_amount');
         $flag = 0;
 
@@ -139,6 +145,7 @@ class ProductController extends Controller
                     'prd_id'=> $request->get('prd_id'),
                     'size' => strtoupper($p),
                     'color' => $color[$flag],
+                    'color_name' => $color_name[$flag],
                     'batch'=> 1,
                     'amount' => $amount[$flag]
                 ]);
@@ -158,6 +165,7 @@ class ProductController extends Controller
                     'prd_id'=> $request->get('prd_id'),
                     'size' => strtoupper($p),
                     'color' => $color[$flag],
+                    'color_name' => $color_name[$flag],
                     'batch'=> $request->get('prd_batch'),
                     'amount' => $amount[$flag]
                 ]);

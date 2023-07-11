@@ -207,7 +207,7 @@ class Prdinorder extends Component
                 $this->status = "Cancelled";
                 break;
         }
-        $address = Address::where('id', $this->invoice->address_id)->where('active',1)->first();
+        $address = Address::where('id', $this->invoice->address_id)->first();
         $this->address = $this->getAddress($address->province,$address->district,$address->wards);
 
         if($this->invoice->guest_id == null){

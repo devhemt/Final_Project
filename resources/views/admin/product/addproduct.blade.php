@@ -122,6 +122,10 @@
                                   <td><input type="color" name="prd_color[]" class="form-control form-control-color1" value="#4154f1" title="Choose your color"></td>
                               </tr>
                               <tr>
+                                  <th>Color Name</th>
+                                  <td><input required type="text" name="prd_color_name[]" class="form-control" ></td>
+                              </tr>
+                              <tr>
                                   <th>Amount</th>
                                   <td><input required min="0" name="prd_amount[]" type="number" class="form-control"></td>
                               </tr>
@@ -132,45 +136,30 @@
                   <div class="form-group">
                     <table class="table" id="my-table-1">
                         <tbody>
-                            <tr>
-
-                            </tr>
-                            <tr>
-
-                            </tr>
-                            <tr>
-
-                            </tr>
+                            <tr></tr>
+                            <tr></tr>
+                            <tr></tr>
+                            <tr></tr>
                         </tbody>
                     </table>
                   </div>
                   <div class="form-group">
                     <table class="table" id="my-table-2">
                         <tbody>
-                            <tr>
-
-                            </tr>
-                            <tr>
-
-                            </tr>
-                            <tr>
-
-                            </tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr></tr>
                         </tbody>
                     </table>
                   </div>
                     <div class="form-group">
                         <table class="table" id="my-table-3">
                             <tbody>
-                            <tr>
-
-                            </tr>
-                            <tr>
-
-                            </tr>
-                            <tr>
-
-                            </tr>
+                            <tr></tr>
+                            <tr></tr>
+                            <tr></tr>
+                            <tr></tr>
                             </tbody>
                         </table>
                     </div>
@@ -220,7 +209,7 @@
 
                   <div class="form-group">
                     <label>Description</label>
-                    <textarea required name="prd_description" class="form-control" rows="3"></textarea>
+                    <textarea id="des" required name="prd_description" class="form-control" rows="3"></textarea>
                     @if ($errors->has('prd_description'))
                         <p class="text-danger">
                         @foreach ($errors->get('prd_description') as $e)
@@ -237,6 +226,21 @@
             </div>
         </section>
         <script language="JavaScript" type="text/javascript">
+            $('#des').summernote({
+                placeholder: 'Please text something',
+                tabsize: 2,
+                height: 120,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link']],
+                    ['view', ['fullscreen', 'codeview', 'help']]
+                ]
+            });
+
             var flagname = 1;
             var flagimage = false;
             function preview() {
@@ -286,6 +290,9 @@
                             createCellColor(tbl.rows[i].insertCell(tbl.rows[i].cells.length),'prd_color[]','form-control','text');
                         }
                         if (i==2) {
+                            createCell(tbl.rows[i].insertCell(tbl.rows[i].cells.length),'prd_color_name[]','form-control','text');
+                        }
+                        if (i==3) {
                             createCell(tbl.rows[i].insertCell(tbl.rows[i].cells.length),'prd_amount[]','form-control','number');
                         }
                     }
@@ -300,6 +307,9 @@
                             createCellColor(tbl1.rows[i].insertCell(tbl1.rows[i].cells.length),'prd_color[]','form-control','text');
                         }
                         if (i==2) {
+                            createCell(tbl1.rows[i].insertCell(tbl1.rows[i].cells.length),'prd_color_name[]','form-control','text');
+                        }
+                        if (i==3) {
                             createCell(tbl1.rows[i].insertCell(tbl1.rows[i].cells.length),'prd_amount[]','form-control','number');
                         }
                     }
@@ -314,6 +324,9 @@
                             createCellColor(tbl2.rows[i].insertCell(tbl2.rows[i].cells.length),'prd_color[]','form-control','text');
                         }
                         if (i==2) {
+                            createCell(tbl2.rows[i].insertCell(tbl2.rows[i].cells.length),'prd_color_name[]','form-control','text');
+                        }
+                        if (i==3) {
                             createCell(tbl2.rows[i].insertCell(tbl2.rows[i].cells.length),'prd_amount[]','form-control','number');
                         }
                     }
@@ -328,6 +341,9 @@
                             createCellColor(tbl3.rows[i].insertCell(tbl3.rows[i].cells.length),'prd_color[]','form-control','text');
                         }
                         if (i==2) {
+                            createCell(tbl3.rows[i].insertCell(tbl3.rows[i].cells.length),'prd_color_name[]','form-control','text');
+                        }
+                        if (i==3) {
                             createCell(tbl3.rows[i].insertCell(tbl3.rows[i].cells.length),'prd_amount[]','form-control','number');
                         }
                     }

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('prd_id')->unsigned();
             $table->string('size',20);
             $table->string('color',20);
+            $table->string('color_name',50);
             $table->tinyInteger('batch');
             $table->smallInteger('amount');
             $table->timestamps();

@@ -90,9 +90,15 @@ class Truecart extends Component
                         }
                     }
                     $address_id = Address::where('customer_id',$userId)->where('active',1)->first()->id;
+                    if (Invoice::latest()->first() == null){
+                        $invoice_code = '#ORDER1';
+                    }else{
+                        $invoice_code = '#ORDER'.Invoice::latest()->first()->id+1;
+                    }
                     $invoice = Invoice::create([
                         'customer_id' => $userId,
                         'address_id' => $address_id,
+                        'invoice_code' => $invoice_code,
                         'pay' => $this->totalpl,
                         'true_pay' => $true_pay,
                         'payment' => 'cash',
@@ -204,9 +210,15 @@ class Truecart extends Component
                             }
                         }
                         $address_id = Address::where('guest_id',$guest_id)->where('active',1)->first()->id;
+                        if (Invoice::latest()->first() == null){
+                            $invoice_code = '#ORDER1';
+                        }else{
+                            $invoice_code = '#ORDER'.Invoice::latest()->first()->id+1;
+                        }
                         $invoice = Invoice::create([
                             'guest_id' => $guest_id,
                             'address_id' => $address_id,
+                            'invoice_code' => $invoice_code,
                             'pay' => $this->totalpl,
                             'true_pay' => $true_pay,
                             'payment' => 'cash',

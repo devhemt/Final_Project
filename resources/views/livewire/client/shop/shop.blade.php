@@ -137,7 +137,7 @@
                                                             @endforeach
                                                         </ul>
                                                     </div>
-                                                    <p>{{$product->description}}</p>
+                                                    <p>{!! $product->description !!}</p>
                                                     <a class="btn-two" href="#{{ $product->name }}" wire:click.prefetch="showQuickView({{ $product->id }})">Quick view</a>
                                                 </div>
                                             </div>
