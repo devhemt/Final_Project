@@ -24,7 +24,7 @@
                 </div>
                 <div class="ps-3">
                     <h6>{{$amount}}</h6>
-                    <span class="{{$class}} small pt-1 fw-bold">{{$percent}}%</span> <span class="text-muted small pt-2 ps-1">|| {{$status}} ||<a href="{{url('admin/newcustomer/1')}}">See detail</a></span>
+                    <span class="{{$class}} small pt-1 fw-bold">{{$percent}}%</span> <span class="text-muted small pt-2 ps-1">|| {{$status}} ||<a href="{{url('admin/db/newcustomer/1')}}">See detail</a></span>
 
                 </div>
             </div>

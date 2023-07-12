@@ -15,7 +15,7 @@
         </div>
 
         <div class="card-body pb-0">
-            <h5 class="card-title">Top Selling <span>| {{$time}} || <a href="{{url('admin/topproduct/1')}}">detail</a></span></h5>
+            <h5 class="card-title">Top Selling <span>| {{$time}} || <a href="{{url('admin/db/topproduct/1')}}">detail</a></span></h5>
 
             <table class="table table-borderless">
                 <thead>

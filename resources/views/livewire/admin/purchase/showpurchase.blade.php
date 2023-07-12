@@ -10,13 +10,6 @@
                     @error('purchaseCode') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
             </div>
-{{--            <div class="row mb-3">--}}
-{{--                <label for="inputEmail3" class="col-sm-2 col-form-label">Total pay ($)</label>--}}
-{{--                <div class="col-sm-10">--}}
-{{--                    <input wire:model="totalPay" type="text" class="form-control" id="inputText" required>--}}
-{{--                    @error('totalPay') <span class="text-danger">{{ $message }}</span> @enderror--}}
-{{--                </div>--}}
-{{--            </div>--}}
             <div class="col-md-4">
                 <label for="inputState" class="form-label">State</label>
                 <select wire:model="supplier" id="inputState" class="form-select">
@@ -45,13 +38,6 @@
                     @error('editPurchaseCode') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
             </div>
-{{--            <div class="row mb-3">--}}
-{{--                <label for="inputEmail3" class="col-sm-2 col-form-label">Total pay ($)</label>--}}
-{{--                <div class="col-sm-10">--}}
-{{--                    <input wire:model="editTotalPay" type="text" class="form-control" id="inputText" placeholder="{{$edittingTP}}">--}}
-{{--                    @error('editTotalPay') <span class="text-danger">{{ $message }}</span> @enderror--}}
-{{--                </div>--}}
-{{--            </div>--}}
             <div class="col-md-4">
                 <label for="inputState" class="form-label">Supplier</label>
                 <select wire:model="editSupplier" id="inputState" class="form-select">
@@ -82,11 +68,13 @@
         </div>
     </div>
 
-
+    @php
+        $stt = 1;
+    @endphp
     <table class="table table-striped">
         <thead>
         <tr>
-            <th scope="col">Id</th>
+            <th scope="col">Stt</th>
             <th scope="col">Purchase Code</th>
             <th scope="col">Supplier</th>
             <th scope="col">Total Pay</th>
@@ -97,7 +85,7 @@
         <tbody>
         @foreach($purchase as $p)
             <tr>
-                <th scope="row">{{$p->id}}</th>
+                <th scope="row">{{$stt}}</th>
                 <td>{{$p->purchase_code}}</td>
                 <td>{{$p->name}}</td>
                 <td>{{$p->total_pay}} $</td>
@@ -107,6 +95,9 @@
                     <a href="{{url('admin/purchase/'.$p->id)}}" title="Detail of product"><i class="fas fa-eye "></i></a>
                 </td>
             </tr>
+            @php
+                $stt++;
+            @endphp
         @endforeach
         </tbody>
     </table>

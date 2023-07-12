@@ -34,24 +34,20 @@
     </li>
 
     <li class="nav-item">
-{{--        <a class="nav-link @if($currentUrl != '/admin') collapsed @endif " href="{{asset('admin')}}">--}}
-{{--            <i class="bi bi-grid"></i>--}}
-{{--            <span>Dashboard</span>--}}
-{{--        </a>--}}
         <a class="nav-link  @if($currentUrl != '/admin/category/show') collapsed @endif " href="{{ url('admin/category/show') }}">
-            <i class="bi bi-grid"></i>
+            <i class="bi bi-bookmarks"></i>
             <span>Category</span>
         </a>
         <a class="nav-link  @if($currentUrl != '/admin/supplier/show') collapsed @endif " href="{{ url('admin/supplier/show') }}">
-            <i class="bi bi-grid"></i>
+            <i class="bi bi-handbag"></i>
             <span>Supplier</span>
         </a>
         <a class="nav-link  @if($currentUrl != '/admin/purchase/show') collapsed @endif " href="{{ url('admin/purchase/show') }}">
-            <i class="bi bi-grid"></i>
+            <i class="bi bi-truck"></i>
             <span>Import Purchase</span>
         </a>
         <a class="nav-link  @if($currentUrl != '/admin/product') collapsed @endif " href="{{ url('admin/product') }}">
-            <i class="bi bi-grid"></i>
+            <i class="bi bi-boxes"></i>
             <span>Product</span>
         </a>
     </li>
@@ -60,7 +56,7 @@
 
     <li class="nav-item">
         <a class="nav-link @if(!$cus) collapsed @endif" data-bs-target="#cus-nav" data-bs-toggle="collapse" href="#">
-            <i class="bi bi-menu-button-wide"></i><span>Customer</span><i class="bi bi-chevron-down ms-auto"></i>
+            <i class="bi bi-people"></i><span>Customer</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="cus-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
@@ -78,7 +74,7 @@
 
     <li class="nav-item">
         <a class="nav-link @if(!$order) collapsed @endif" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-            <i class="bi bi-journal-text"></i><span>Order</span><i class="bi bi-chevron-down ms-auto"></i>
+            <i class="bi bi-card-heading"></i><span>Order</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
@@ -96,7 +92,7 @@
 
     <li class="nav-item">
         <a class="nav-link @if(!$account) collapsed @endif" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-            <i class="bi bi-layout-text-window-reverse"></i><span>Account</span><i class="bi bi-chevron-down ms-auto"></i>
+            <i class="bi bi-person-rolodex"></i><span>Account</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>

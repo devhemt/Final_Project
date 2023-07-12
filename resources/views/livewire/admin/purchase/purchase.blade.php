@@ -11,7 +11,7 @@
             </div>
             <div class="search-output" style="background: #d9d9d9; height: 20rem; width: 14rem; overflow-y: scroll; display: {{$outputBox}}; margin-left: 11rem;">
                 @foreach($result as $r)
-                    <a href="{{url('admin/purchase/addnewproduct/'.$r->id.'/'.$purchase_id)}}">{{$r->name}}</a>
+                    <a style="display: block; color: black" href="{{url('admin/purchase/addnewproduct/'.$r->id.'/'.$purchase_id)}}">{{$r->name}} ({{$r->product_code}})</a>
                 @endforeach
             </div>
             <div class="text-center">
@@ -40,12 +40,16 @@
         </div>
     </div>
 
-
+    @php
+        $stt = 1;
+    @endphp
     <table class="table table-striped">
         <thead>
         <tr>
-            <th scope="col">Id</th>
+            <th scope="col">Stt</th>
+            <th scope="col">Product Code</th>
             <th scope="col">Product Name</th>
+            <th scope="col">Image</th>
             <th scope="col">Category</th>
             <th scope="col">Unit Price</th>
             <th scope="col">Quantity</th>
@@ -55,8 +59,10 @@
         <tbody>
         @foreach($products as $p)
             <tr>
-                <th scope="row">{{$p->id}}</th>
+                <th scope="row">{{$stt}}</th>
+                <td>{{$p->product_code}}</td>
                 <td>{{$p->name}}</td>
+                <td><img src="{{asset('images/'.$p->demo_image)}}" alt=""></td>
                 <td>{{$p->category_name}}</td>
                 <td>{{$p->unit_price}} $</td>
                 <td>{{$p->quantity}}</td>
@@ -65,6 +71,9 @@
                     <a href="{{url('admin/product/'.$p->id.'/edit')}}" title="Edit product"><i class="fas fa-edit "></i></a>
                 </td>
             </tr>
+            @php
+                $stt++;
+            @endphp
         @endforeach
         </tbody>
     </table>

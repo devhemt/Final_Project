@@ -23,6 +23,7 @@
         <thead>
         <tr>
             <th scope="col">Stt</th>
+            <th scope="col">Product Code</th>
             <th scope="col">Name</th>
             <th scope="col">Image</th>
             <th scope="col">Price</th>
@@ -34,6 +35,7 @@
         @foreach($products as $p)
         <tr>
             <th scope="row">{{$stt}}</th>
+            <td>{{$p->product_code}}</td>
             <td>{{$p->name}}</td>
             <td><img src="{{asset('images/'.$p->demo_image)}}" alt=""></td>
             <td>{{$p->price}} $</td>

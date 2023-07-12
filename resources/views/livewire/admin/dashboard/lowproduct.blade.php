@@ -1,7 +1,7 @@
 <div class="col-12">
     <div class="card top-selling overflow-auto">
         <div class="card-body pb-0">
-            <h5 class="card-title">Product Is Low In Stock <span>(<= 10) || <a href="{{url('admin/lowproduct/10')}}">detail</a></span></h5>
+            <h5 class="card-title">Product Is Low In Stock <span>(<= 10) || <a href="{{url('admin/db/lowproduct/10')}}">detail</a></span></h5>
 
             <table class="table table-borderless">
                 <thead>

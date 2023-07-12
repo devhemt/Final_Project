@@ -49,7 +49,7 @@ class PurchaseController extends Controller
         $request->validate([
             'prd_id'=> 'required|numeric',
             'purchase_id'=> 'required|numeric',
-            'unit_price' => 'required',
+            'unit_price' => 'required|numeric',
             'prd_size' => 'required|max:20',
             'prd_color' => 'required|max:20',
             'prd_color_name' => 'required|max:50',
@@ -73,11 +73,21 @@ class PurchaseController extends Controller
             'unit_price' => $request->get('unit_price'),
         ]);
 
+
         $size = $request->get('prd_size');
         $color = $request->get('prd_color');
         $color_name = $request->get('prd_color_name');
         $amount = $request->get('prd_amount');
+        $quantity = 0;
+        foreach ($amount as $a){
+            $quantity+= $a;
+        }
         $flag = 0;
+
+        $total = Purchase::where('id', $request->get('purchase_id'))->first()->total_pay;
+        $total += $request->get('unit_price')*$quantity;
+        $affected = Purchase::where('id', $request->get('purchase_id'))
+            ->update(['total_pay' => $total]);
 
         foreach ($size as $p){
             $Properties = Properties::create([
