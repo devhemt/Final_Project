@@ -32,5 +32,40 @@ class DatabaseSeeder extends Seeder
             'phone' => '00000',
             'password' => Hash::make('admin123'),
         ]);
+        DB::table('banner')->insert([
+            'image' => null,
+            'content' => null,
+            'url' => null,
+        ]);
+        DB::table('banner')->insert([
+            'image' => null,
+            'content' => null,
+            'url' => null,
+        ]);
+        DB::table('banner')->insert([
+            'image' => null,
+            'content' => null,
+            'url' => null,
+        ]);
+        DB::table('banner')->insert([
+            'image' => null,
+            'content' => null,
+            'url' => null,
+        ]);
+        DB::table('banner')->insert([
+            'image' => null,
+            'content' => null,
+            'url' => null,
+        ]);
+        DB::table('banner')->insert([
+            'image' => null,
+            'content' => null,
+            'url' => null,
+        ]);
+        DB::table('banner')->insert([
+            'image' => null,
+            'content' => null,
+            'url' => null,
+        ]);
     }
 }

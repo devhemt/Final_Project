@@ -48,7 +48,7 @@
                                 <tbody>
                                 @foreach($customers as $customer)
                                     <tr>
-                                        <td><a href="#" class="text-primary fw-bold">{{$customer->name}}</a></td>
+                                        <td>{{$customer->name}}</td>
                                         <td>{{$customer->email}}</td>
                                         <td>{{$customer->phone}}</td>
                                         <td>{{$customer->invoices_count}}</td>

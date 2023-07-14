@@ -40,7 +40,7 @@ class CustomerController extends Controller
             return redirect('/');
         } else {
             throw \Illuminate\Validation\ValidationException::withMessages([
-                'password' => ['Email or password incorect'],
+                'password' => ['Password incorect'],
             ]);
             return redirect()->back();
         }

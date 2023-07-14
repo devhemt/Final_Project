@@ -7,23 +7,19 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{url('admin')}}">Dashboard</a></li>
                     <li class="breadcrumb-item">Order</li>
-                    <li class="breadcrumb-item active">Guest order</li>
+                    <li class="breadcrumb-item active">Show order</li>
                 </ol>
             </nav>
         </div>
 
         <section class="section">
             <div class="row">
-
                 <div class="col-lg-12">
-
                     <div class="card">
-                        @livewire('admin.order.guestorder')
+                        @livewire('admin.comment.cmt')
                     </div>
-
                 </div>
             </div>
         </section>
-
     </main>
 @endsection

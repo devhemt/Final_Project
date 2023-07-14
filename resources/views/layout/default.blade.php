@@ -112,7 +112,7 @@
                     <div class="col-4">
                         <div class="logo">
                             <a href="index.html">
-                                <img src="media/images/logo.png" alt="">
+                                <img src="{{asset('images/logo.png')}}" alt="">
                             </a>
                         </div>
                     </div>
@@ -120,30 +120,18 @@
                         <div class="top-cart">
                             <a href="javascript:void(0)"><i class="fa fa-shopping-cart" aria-hidden="true"></i> (2)</a>
                             <div class="cart-drop">
-                                <div class="single-cart">
-                                    <div class="cart-img">
-                                        <img alt="" src="media/images/product/car1.jpg">
-                                    </div>
-                                    <div class="cart-title">
-                                        <p><a href="">Aliquam Consequat</a></p>
-                                    </div>
-                                    <div class="cart-price">
-                                        <p>1 x $500</p>
-                                    </div>
-                                    <a href="#"><i class="fa fa-times"></i></a>
-                                </div>
-                                <div class="single-cart">
-                                    <div class="cart-img">
-                                        <img alt="" src="media/images/product/car2.jpg">
-                                    </div>
-                                    <div class="cart-title">
-                                        <p><a href="">Quisque In Arcuc</a></p>
-                                    </div>
-                                    <div class="cart-price">
-                                        <p>1 x $200</p>
-                                    </div>
-                                    <a href="#"><i class="fa fa-times"></i></a>
-                                </div>
+{{--                                <div class="single-cart">--}}
+{{--                                    <div class="cart-img">--}}
+{{--                                        <img alt="" src="media/images/product/car1.jpg">--}}
+{{--                                    </div>--}}
+{{--                                    <div class="cart-title">--}}
+{{--                                        <p><a href="">Aliquam Consequat</a></p>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="cart-price">--}}
+{{--                                        <p>1 x $500</p>--}}
+{{--                                    </div>--}}
+{{--                                    <a href="#"><i class="fa fa-times"></i></a>--}}
+{{--                                </div>--}}
                                 <div class="cart-bottom">
                                     <div class="cart-sub-total">
                                         <p>Sub-Total <span>$700</span></p>
@@ -366,7 +354,7 @@
 
     <!-- Dependency Scripts -->
     <script src="{{ asset('dependencies/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('dependencies/popper.js/popper.min.js') }}"></script>
+{{--    <script src="{{ asset('dependencies/popper.js/popper.min.js') }}"></script>--}}
     <script src="{{ asset('dependencies/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('dependencies/owl.carousel/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('dependencies/wow/js/wow.min.js') }}"></script>
@@ -378,8 +366,6 @@
     <script src="{{ asset('dependencies/slick-carousel/js/slick.js') }}"></script>
     <script src="{{ asset('dependencies/headroom/js/headroom.js') }}"></script>
     <script src="{{ asset('dependencies/jquery-ui/js/jquery-ui.min.js') }}"></script>
-    <!--Google map api -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsBrMPsyNtpwKXPPpG54XwJXnyobfMAIc"></script>
 
 
     <!-- Site Scripts -->

@@ -33,4 +33,14 @@ class OrderController extends Controller
             'id' => $id
         ]);
     }
+
+    public function offline(){
+        return view('admin.order.offlineorder');
+    }
+
+    public function addOffline($id){
+        return view('admin.order.addoffline',[
+            'invoice_id' => $id
+        ]);
+    }
 }

@@ -32,7 +32,7 @@ class Sidebar extends Component
         if (Str::contains($this->currentUrl, 'admin/db/')){
             $this->DE = true;
         }
-        if ($this->currentUrl == '/admin/customer_order' || $this->currentUrl == '/admin/guest_order'){
+        if ($this->currentUrl == '/admin/customer_order' || $this->currentUrl == '/admin/guest_order' || $this->currentUrl == '/admin/offline/order'){
             $this->order = true;
         }
         if ($this->currentUrl == '/admin/profile/create' || $this->currentUrl == '/admin/profile/showall'){

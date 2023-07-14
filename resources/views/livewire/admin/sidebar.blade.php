@@ -50,6 +50,10 @@
             <i class="bi bi-boxes"></i>
             <span>Product</span>
         </a>
+        <a class="nav-link  @if($currentUrl != '/admin/comment') collapsed @endif " href="{{ url('admin/comment') }}">
+            <i class="bi bi-chat-dots"></i>
+            <span>Comment</span>
+        </a>
     </li>
 
 
@@ -85,6 +89,11 @@
             <li>
                 <a href="{{url('admin/guest_order')}}">
                     <i class="bi bi-circle"></i><span>Guest order</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{url('admin/offline/order')}}">
+                    <i class="bi bi-circle"></i><span>Offline order</span>
                 </a>
             </li>
         </ul>
