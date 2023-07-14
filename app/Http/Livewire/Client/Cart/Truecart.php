@@ -51,7 +51,6 @@ class Truecart extends Component
             if ($check_cart > 0){
                 $customer_cart = Cart_memory::where('customer_id',$userId)
                     ->where('check_buy',1)->get();
-
                 $flagcountcheck = true;
                 $true_pay = 0;
                 foreach ($customer_cart as $c){

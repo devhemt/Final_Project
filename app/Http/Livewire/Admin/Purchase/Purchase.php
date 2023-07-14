@@ -11,7 +11,7 @@ class Purchase extends Component
     public $purchase_id;
     public $thisPurchase, $products;
     public $outputBox = 'none', $oldBox = null;
-    public $search, $result = [], $oldProductId, $oldProduct = [];
+    public $search, $result = [];
 
     public function cancelAdd(){
         $this->search = null;

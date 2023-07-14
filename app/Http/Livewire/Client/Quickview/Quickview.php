@@ -48,8 +48,8 @@ class Quickview extends Component
     }
 
     public function addcart(){
-        if ($this->check_amount == 'Stock'){
-            if($this->color != null && $this->getsize != null){
+        if($this->color != null && $this->getsize != null){
+            if ($this->check_amount == 'Stock'){
                 $property_id = Properties::where('prd_id',$this->getid)
                     ->where('size',$this->getsize)
                     ->where('color',$this->color)
@@ -100,9 +100,9 @@ class Quickview extends Component
                     }
                 }
                 $this->emit('success');
-            }else{
-                $this->check_property='Please select properties';
             }
+        }else{
+            $this->check_property='Please select properties';
         }
         $this->emit('loadsmallcart');
     }

@@ -13,17 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('status', function (Blueprint $table) {
+        Schema::create('banner', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('invoice_id')->unsigned();
-            $table->tinyInteger('status');
+            $table->string('image',200)->nullable(true);
+            $table->text('content')->nullable(true);
+            $table->text('url')->nullable(true);
             $table->timestamps();
-            $table->foreign('invoice_id')
-                  ->references('id')->on('invoice')
-                  ->onDelete('cascade');
         });
     }
-//        0=cancelled 1=pending 2=confirmed 3=packing 4=delivery 5=delivered 6=delivery failed 7=return 8=buy offline
+
     /**
      * Reverse the migrations.
      *
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('status');
+        Schema::dropIfExists('banner');
     }
 };

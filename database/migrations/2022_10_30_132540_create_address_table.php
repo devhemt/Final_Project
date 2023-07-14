@@ -18,9 +18,9 @@ return new class extends Migration
             $table->integer('customer_id')->unsigned()->nullable(true);
             $table->integer('guest_id')->unsigned()->nullable(true);
             $table->tinyInteger('active');
-            $table->String('province',200);
-            $table->String('district',200);
-            $table->String('wards',200);
+            $table->smallInteger('province');
+            $table->smallInteger('district');
+            $table->smallInteger('wards');
             $table->String('detailed_address',200);
             $table->timestamps();
             $table->foreign('customer_id')

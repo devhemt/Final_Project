@@ -45,6 +45,8 @@ Route::group(['middleware' => 'isdirector'], function () {
     Route::get('/customer_order', [\App\Http\Controllers\Admin\Order\OrderController::class, 'customer']);
     Route::get('/guest_order', [\App\Http\Controllers\Admin\Order\OrderController::class, 'guest']);
     Route::get('/order/{id}', [\App\Http\Controllers\Admin\Order\OrderController::class, 'show']);
+    Route::get('/offline/order',[\App\Http\Controllers\Admin\Order\OrderController::class,'offline']);
+    Route::get('/offline/add/{id}',[\App\Http\Controllers\Admin\Order\OrderController::class, 'addOffline']);
 
     Route::get('/db/lowproduct/{amount}',[\App\Http\Controllers\Admin\Dashboard\DashboardController::class,'lowProduct']);
     Route::get('/db/newcustomer/{time}',[\App\Http\Controllers\Admin\Dashboard\DashboardController::class,'customer']);
@@ -55,6 +57,8 @@ Route::group(['middleware' => 'isdirector'], function () {
     Route::get('/create/customer',[\App\Http\Controllers\Admin\Customer\CustomerController::class, 'create']);
     Route::post('/create_customer',[\App\Http\Controllers\Admin\Customer\CustomerController::class, 'store']);
     Route::get('/showcustomer/{type}',[\App\Http\Controllers\Admin\Customer\CustomerController::class, 'show']);
+
+    Route::get('/comment',[\App\Http\Controllers\Admin\Comment\CommentController::class,'index']);
 });
 
 

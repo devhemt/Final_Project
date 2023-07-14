@@ -17,7 +17,7 @@ return new class extends Migration
             $table->increments('id');
             $table->integer('customer_id')->unsigned()->nullable(true);
             $table->integer('guest_id')->unsigned()->nullable(true);
-            $table->integer('address_id')->unsigned();
+            $table->integer('address_id')->unsigned()->nullable(true);
             $table->string('invoice_code')->unique(true);
             $table->float('pay')->comment("tiền khách phải trả");
             $table->float('true_pay')->comment("giá trị thực của đơn hàng");
