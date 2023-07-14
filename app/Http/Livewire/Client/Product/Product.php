@@ -35,7 +35,7 @@ class Product extends Component
 
     public function addcart(){
         if($this->color != null && $this->getsize != null){
-            if ($this->check_amount == 'Stock'){
+            if ($this->checked == 'Stock'){
                 $property_id = Properties::where('prd_id',$this->prd_id)
                     ->where('size',$this->getsize)
                     ->where('color',$this->color)
