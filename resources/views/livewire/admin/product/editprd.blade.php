@@ -68,7 +68,7 @@
             </div>
             <div class="form-group">
                 <label>Tag</label>
-                <input name="prd_tag" type="text" class="form-control" placeholder="{{$product[0]->tag}}">
+                <input name="prd_tag" type="text" value="{{ old('prd_tag') }}" class="form-control" placeholder="{{$product[0]->tag}}">
                 @if ($errors->has('prd_tag'))
                     <p class="text-danger">
                         @foreach ($errors->get('prd_tag') as $e)

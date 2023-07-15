@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Product;
 
 use App\Http\Controllers\Controller;
+use App\Models\Purchase;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Category;
@@ -11,6 +12,9 @@ use App\Models\Images;
 use App\Models\Properties;
 use App\Models\Totalproperty;
 use App\Models\Purchase_items;
+use App\Models\Invoice_items;
+use App\Models\Cart_memory;
+use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
@@ -39,11 +43,6 @@ class ProductController extends Controller
         if ($request->get('prd_name') != null){
             $request->validate([
                 'prd_name' => 'required|unique:product,name|max:200',
-            ]);
-        }
-        if ($request->get('prd_brand') != null){
-            $request->validate([
-                'prd_brand'=> 'required|max:200',
             ]);
         }
         if ($request->get('prd_size') != null){
@@ -93,21 +92,15 @@ class ProductController extends Controller
             $affected = Product::where('prd_id', $request->get('prd_id'))
                 ->update(['tag' => $request->get('prd_tag')]);
         }
-        if ($request->get('prd_brand') != null){
-            $affected = Product::where('prd_id', $request->get('prd_id'))
-                ->update(['brand' => $request->get('prd_brand')]);
-        }
         if ($request->get('prd_description') != null){
             $affected = Product::where('prd_id', $request->get('prd_id'))
                 ->update(['description' => $request->get('prd_description')]);
         }
-
         if ($request->prd_image != null){
             $affected = Product::where('id', $request->get('prd_id'))
                 ->update(['demo_image' => $request->prd_image->getClientOriginalName()]);
             $file2 = $request->prd_image->move('images', $request->prd_image->getClientOriginalName());
         }
-
         if ($request->prd_images != null){
             $deleted = Images::where('prd_id', $request->get('prd_id'))->delete();
 
@@ -126,37 +119,63 @@ class ProductController extends Controller
         $size = $request->get('prd_size');
         $color = $request->get('prd_color');
         $color_name = $request->get('prd_color_name');
-        $amount = $request->get('prd_amount');
-        $flag = 0;
 
+        $flag = 0;
         $batch_amuont = 0;
         $amount = $request->get('prd_amount');
         foreach ($amount as $i) {
             $batch_amuont+= $i;
         }
 
+        $flag_batch;
         if ($request->prd_batch == null){
-            $deletedp = Properties::where('batch', 1)
-                ->where('prd_id', $request->get('prd_id'))
-                ->delete();
-
-            foreach ($size as $p){
-                $Properties = Properties::create([
-                    'prd_id'=> $request->get('prd_id'),
-                    'size' => strtoupper($p),
-                    'color' => $color[$flag],
-                    'color_name' => $color_name[$flag],
-                    'batch'=> 1,
-                    'amount' => $amount[$flag]
-                ]);
-                $flag++;
-            }
-
-            $affected3 = Purchase_items::where('prd_id', $request->get('prd_id'))
-                ->where('batch', 1)
-                ->update(['quantity' => $batch_amuont]);
+            $flag_batch = 1;
         }else{
-            $deletedp = Properties::where('batch', $request->get('prd_batch'))
+            $flag_batch = $request->get('prd_batch');
+        }
+
+        $rule = false;
+        $prp = Properties::where('batch', $flag_batch)
+            ->where('prd_id', $request->get('prd_id'))
+            ->get();
+        foreach ($prp as $p){
+            $invoice_item = Invoice_items::where('property_id', $p->id)->count();
+            $cart_memory = Cart_memory::where('property_id', $p->id)->count();
+            if ($invoice_item != 0 || $cart_memory != 0){
+                $rule = true;
+            }
+        }
+        if ($rule){
+            $check_prp = Properties::where('batch', $flag_batch)
+                ->where('prd_id', $request->get('prd_id'))
+                ->count();
+            if (count($size)<$check_prp){
+                $validator = Validator::make($request->all(), []);
+                $validator->errors()->add('prd_size', 'Số lượng biến thể thay đổi ít hơn số lượng cũ có thể ảnh hưởng đến các đươn hàng');
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
+            foreach ($prp as $p){
+                $affected3 = Properties::where('id', $p->id)
+                    ->update(['size' => strtoupper($size[$flag]),
+                        'color' => $color[$flag],
+                        'color_name' => $color_name[$flag],
+                        'amount' => $amount[$flag]]);
+                $flag++;
+            }
+            if(count($size)>$check_prp){
+                for($i = $flag; $i < count($size); $i++){
+                    $Properties = Properties::create([
+                        'prd_id'=> $request->get('prd_id'),
+                        'size' => strtoupper($size[$i]),
+                        'color' => $color[$i],
+                        'color_name' => $color_name[$i],
+                        'batch'=> $flag_batch,
+                        'amount' => $amount[$i]
+                    ]);
+                }
+            }
+        }else{
+            $deletedp = Properties::where('batch', $flag_batch)
                 ->where('prd_id', $request->get('prd_id'))
                 ->delete();
 
@@ -166,16 +185,16 @@ class ProductController extends Controller
                     'size' => strtoupper($p),
                     'color' => $color[$flag],
                     'color_name' => $color_name[$flag],
-                    'batch'=> $request->get('prd_batch'),
+                    'batch'=> $flag_batch,
                     'amount' => $amount[$flag]
                 ]);
                 $flag++;
             }
-
-            $affected3 = Purchase_items::where('prd_id', $request->get('prd_id'))
-                ->where('batch', $request->get('prd_batch'))
-                ->update(['quantity' => $batch_amuont]);
         }
+
+        $affected3 = Purchase_items::where('prd_id', $request->get('prd_id'))
+            ->where('batch', $flag_batch)
+            ->update(['quantity' => $batch_amuont]);
 
 
 
@@ -218,6 +237,16 @@ class ProductController extends Controller
                     ->update(['unit_price' => $request->get('prd_cost')]);
             }
         }
+
+        $purchase_id = Purchase_items::where('prd_id', $request->get('prd_id'))
+            ->where('batch', $flag_batch)->first()->purchase_id;
+        $purchase_item = Purchase_items::where('purchase_id', $purchase_id)->get();
+        $total = 0;
+        foreach ($purchase_item as $p){
+            $total += $p->quantity * $p->unit_price;
+        }
+        $affected = Purchase::where('id', $purchase_id)
+            ->update(['total_pay' => $total]);
 
 
         return redirect('admin/product/'.$request->get('prd_id'));

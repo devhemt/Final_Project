@@ -50,32 +50,7 @@
             <i class="bi bi-boxes"></i>
             <span>Product</span>
         </a>
-        <a class="nav-link  @if($currentUrl != '/admin/comment') collapsed @endif " href="{{ url('admin/comment') }}">
-            <i class="bi bi-chat-dots"></i>
-            <span>Comment</span>
-        </a>
     </li>
-
-
-
-    <li class="nav-item">
-        <a class="nav-link @if(!$cus) collapsed @endif" data-bs-target="#cus-nav" data-bs-toggle="collapse" href="#">
-            <i class="bi bi-people"></i><span>Customer</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="cus-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-            <li>
-                <a href="{{ url('admin/create/customer') }}">
-                    <i class="bi bi-circle"></i><span>Create customer</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ url('admin/showcustomer/1') }}">
-                    <i class="bi bi-circle"></i><span>Show customer</span>
-                </a>
-            </li>
-        </ul>
-    </li>
-
     <li class="nav-item">
         <a class="nav-link @if(!$order) collapsed @endif" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
             <i class="bi bi-card-heading"></i><span>Order</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -97,7 +72,33 @@
                 </a>
             </li>
         </ul>
-    </li><!-- End Forms Nav -->
+    </li>
+    <li>
+        <a class="nav-link  @if($currentUrl != '/admin/comment') collapsed @endif " href="{{ url('admin/comment') }}">
+            <i class="bi bi-chat-dots"></i>
+            <span>Comment</span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link @if(!$cus) collapsed @endif" data-bs-target="#cus-nav" data-bs-toggle="collapse" href="#">
+            <i class="bi bi-people"></i><span>Customer</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="cus-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li>
+                <a href="{{ url('admin/create/customer') }}">
+                    <i class="bi bi-circle"></i><span>Create customer</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url('admin/showcustomer/1') }}">
+                    <i class="bi bi-circle"></i><span>Show customer</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+
+
 
     <li class="nav-item">
         <a class="nav-link @if(!$account) collapsed @endif" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
