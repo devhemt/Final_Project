@@ -3601,30 +3601,31 @@ border-bottom-right-radius: 16px;
 }
 
 .visitor-form-container form{
-  margin:2rem;
-  padding:1.5rem 2rem;
-  border-radius: .5rem;
-  background:#fff;
-  width:40rem;
+    margin: 1rem; /* Giảm khoảng cách viền ngoài form */
+    padding: 1rem; /* Giảm khoảng cách viền trong form */
+    border-radius: 0.3rem; /* Giảm bán kính bo tròn của góc viền form */
+    background: #fff;
+    width: 30rem; /* Giảm chiều rộng của form */
 }
 
 .visitor-form-container form h3{
-  font-size: 3rem;
-  color:#444;
-  text-transform: uppercase;
-  text-align: center;
-  padding:1rem 0;
+    font-size: 1.5rem; /* Giảm kích thước font của tiêu đề */
+    color: #444;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 0.5rem 0; /* Giảm khoảng cách viền trong tiêu đề */
 }
 
 .visitor-form-container form .box{
-  width:100%;
-  padding:1rem;
-  font-size: 1rem;
-  color:#333;
-  margin:.5rem 0;
-  border:.1rem solid rgba(0,0,0,.3);
-  text-transform: none;
+    width: 100%;
+    padding: 0.5rem; /* Giảm khoảng cách viền trong box */
+    font-size: 0.9rem; /* Giảm kích thước font trong box */
+    color: #333;
+    margin: 0.3rem 0; /* Giảm khoảng cách giữa các box */
+    border: 0.1rem solid rgba(0, 0, 0, 0.3);
+    text-transform: none;
 }
+
 
 .visitor-form-container form .box:focus{
   border-color: var(--orange);;
@@ -6531,7 +6532,7 @@ border-bottom-right-radius: 16px;
     width: 20%;
   }
   .cart-title > p a {
-    font-size: 13px;
+    font-size: 20px;
   }
   .cart-price > p {
     font-size: 14px;
@@ -6870,3 +6871,26 @@ border-bottom-right-radius: 16px;
     height: 20px; /* Kích thước chiều cao tùy chọn */
     border-radius: 50%; /* Để tạo hình tròn hoặc sử dụng giá trị 0 để tạo hình vuông */
 }
+
+/*thêm phần discount price cho product1234*/
+.mid-wrapper1234 {
+    display: flex;
+    align-items: center;
+}
+
+.pro-title1234 {
+    margin-right: 1rem; /* Thêm khoảng cách giữa pro-title và regular-price */
+}
+
+.regular-price1234 {
+    font-size: 1rem;
+    text-decoration: line-through;
+    margin-right: 0.5rem; /* Thêm khoảng cách giữa regular-price và discounted-price */
+}
+
+.discounted-price1234 {
+    font-size: 1rem;
+    color: #000;
+}
+
+

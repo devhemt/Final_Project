@@ -38,8 +38,8 @@
                                         </div>
                                         <div class="small-pro-details">
                                             <h5 class="title"><a href="{{url('product/'.$t->id)}}">{{$t->name}}</a></h5>
-                                            <span>${{$t->price}}</span>
-                                            {{--                        <span class="pre-price">$80</span>--}}
+                                            <span class="regular-price1234">${{$t->price}}</span>
+                                            <span class="discounted-price1234">$80</span>
                                         </div>
                                     </div>
                                 @endforeach
@@ -157,96 +157,98 @@
 		</section>
 		<!-- /.shop-area -->
 
-		<section class="main-product padding-120">
-			<div class="container container-two">
-				<div class="section-heading">
-					<h3>related <span>product</span></h3>
-				</div>
-				<!-- /.section-heading-->
-				<div class="row inner-wrapper">
-					<!-- Single product -->
-					<div class="col-sm-6 col-lg-3 col-xl-3">
-						<div class="sin-product">
-							<div class="pro-img">
-								<img src="{{asset('media/images/product/4.jpg')}}" alt="">
-							</div>
-							<div class="mid-wrapper">
-								<h5 class="pro-title"><a href="product.html">Bandage Dresses</a></h5>
-								<span>$60.00</span>
-							</div>
-							<div class="pro-icon">
-								<ul>
-									<li><a href="#"><i class="flaticon-valentines-heart"></i></a></li>
-									<li><a href="#"><i class="flaticon-shopping-cart"></i></a></li>
-									<li><a href="#" class="trigger"><i class="flaticon-zoom-in"></i></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<!-- Single product -->
-					<div class="col-sm-6 col-lg-3 col-xl-3">
-						<div class="sin-product">
-							<div class="pro-img">
-								<img src="{{asset('media/images/product/7.jpg')}}" alt="">
-							</div>
-							<div class="mid-wrapper">
-								<h5 class="pro-title"><a href="product.html">High-Low Dresses</a></h5>
-								<span>$110.00</span>
-							</div>
-							<div class="pro-icon">
-								<ul>
-									<li><a href="#"><i class="flaticon-valentines-heart"></i></a></li>
-									<li><a href="#"><i class="flaticon-shopping-cart"></i></a></li>
-									<li><a href="#" class="trigger"><i class="flaticon-zoom-in"></i></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<!-- Single product -->
-					<div class="col-sm-6 col-lg-3 col-xl-3">
-						<div class="sin-product">
-							<div class="pro-img">
-								<img src="{{asset('media/images/product/4.jpg')}}" alt="">
-							</div>
-							<div class="mid-wrapper">
-								<h5 class="pro-title"><a href="product.html">Empire Waist Dresses</a></h5>
-								<span>$60.00</span>
-							</div>
-							<div class="pro-icon">
-								<ul>
-									<li><a href="#"><i class="flaticon-valentines-heart"></i></a></li>
-									<li><a href="#"><i class="flaticon-shopping-cart"></i></a></li>
-									<li><a href="#" class="trigger"><i class="flaticon-zoom-in"></i></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
+        @livewire('client.home.product4')
 
-					<!-- Single product -->
-					<div class="col-sm-6 col-lg-3 col-xl-3">
-						<div class="sin-product">
-							<div class="pro-img">
-								<img src="{{asset('media/images/product/3.jpg')}}" alt="">
-							</div>
-							<div class="mid-wrapper">
-								<h5 class="pro-title"><a href="product.html">Bodycon Dresses</a></h5>
-								<span>$60.00</span>
-							</div>
-							<div class="pro-icon">
-								<ul>
-									<li><a href="#"><i class="flaticon-valentines-heart"></i></a></li>
-									<li><a href="#"><i class="flaticon-shopping-cart"></i></a></li>
-									<li><a href="#" class="trigger"><i class="flaticon-zoom-in"></i></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- Row End -->
-			</div>
-			<!-- Container  -->
-		</section>
-		<!-- main-product -->
+{{--		<section class="main-product padding-120">--}}
+{{--			<div class="container container-two">--}}
+{{--				<div class="section-heading">--}}
+{{--					<h3>related <span>product</span></h3>--}}
+{{--				</div>--}}
+{{--				<!-- /.section-heading-->--}}
+{{--				<div class="row inner-wrapper">--}}
+{{--					<!-- Single product -->--}}
+{{--					<div class="col-sm-6 col-lg-3 col-xl-3">--}}
+{{--						<div class="sin-product">--}}
+{{--							<div class="pro-img">--}}
+{{--								<img src="{{asset('media/images/product/4.jpg')}}" alt="">--}}
+{{--							</div>--}}
+{{--							<div class="mid-wrapper">--}}
+{{--								<h5 class="pro-title"><a href="product.html">Bandage Dresses</a></h5>--}}
+{{--								<span>$60.00</span>--}}
+{{--							</div>--}}
+{{--							<div class="pro-icon">--}}
+{{--								<ul>--}}
+{{--									<li><a href="#"><i class="flaticon-valentines-heart"></i></a></li>--}}
+{{--									<li><a href="#"><i class="flaticon-shopping-cart"></i></a></li>--}}
+{{--									<li><a href="#" class="trigger"><i class="flaticon-zoom-in"></i></a></li>--}}
+{{--								</ul>--}}
+{{--							</div>--}}
+{{--						</div>--}}
+{{--					</div>--}}
+{{--					<!-- Single product -->--}}
+{{--					<div class="col-sm-6 col-lg-3 col-xl-3">--}}
+{{--						<div class="sin-product">--}}
+{{--							<div class="pro-img">--}}
+{{--								<img src="{{asset('media/images/product/7.jpg')}}" alt="">--}}
+{{--							</div>--}}
+{{--							<div class="mid-wrapper">--}}
+{{--								<h5 class="pro-title"><a href="product.html">High-Low Dresses</a></h5>--}}
+{{--								<span>$110.00</span>--}}
+{{--							</div>--}}
+{{--							<div class="pro-icon">--}}
+{{--								<ul>--}}
+{{--									<li><a href="#"><i class="flaticon-valentines-heart"></i></a></li>--}}
+{{--									<li><a href="#"><i class="flaticon-shopping-cart"></i></a></li>--}}
+{{--									<li><a href="#" class="trigger"><i class="flaticon-zoom-in"></i></a></li>--}}
+{{--								</ul>--}}
+{{--							</div>--}}
+{{--						</div>--}}
+{{--					</div>--}}
+{{--					<!-- Single product -->--}}
+{{--					<div class="col-sm-6 col-lg-3 col-xl-3">--}}
+{{--						<div class="sin-product">--}}
+{{--							<div class="pro-img">--}}
+{{--								<img src="{{asset('media/images/product/4.jpg')}}" alt="">--}}
+{{--							</div>--}}
+{{--							<div class="mid-wrapper">--}}
+{{--								<h5 class="pro-title"><a href="product.html">Empire Waist Dresses</a></h5>--}}
+{{--								<span>$60.00</span>--}}
+{{--							</div>--}}
+{{--							<div class="pro-icon">--}}
+{{--								<ul>--}}
+{{--									<li><a href="#"><i class="flaticon-valentines-heart"></i></a></li>--}}
+{{--									<li><a href="#"><i class="flaticon-shopping-cart"></i></a></li>--}}
+{{--									<li><a href="#" class="trigger"><i class="flaticon-zoom-in"></i></a></li>--}}
+{{--								</ul>--}}
+{{--							</div>--}}
+{{--						</div>--}}
+{{--					</div>--}}
+
+{{--					<!-- Single product -->--}}
+{{--					<div class="col-sm-6 col-lg-3 col-xl-3">--}}
+{{--						<div class="sin-product">--}}
+{{--							<div class="pro-img">--}}
+{{--								<img src="{{asset('media/images/product/3.jpg')}}" alt="">--}}
+{{--							</div>--}}
+{{--							<div class="mid-wrapper">--}}
+{{--								<h5 class="pro-title"><a href="product.html">Bodycon Dresses</a></h5>--}}
+{{--								<span>$60.00</span>--}}
+{{--							</div>--}}
+{{--							<div class="pro-icon">--}}
+{{--								<ul>--}}
+{{--									<li><a href="#"><i class="flaticon-valentines-heart"></i></a></li>--}}
+{{--									<li><a href="#"><i class="flaticon-shopping-cart"></i></a></li>--}}
+{{--									<li><a href="#" class="trigger"><i class="flaticon-zoom-in"></i></a></li>--}}
+{{--								</ul>--}}
+{{--							</div>--}}
+{{--						</div>--}}
+{{--					</div>--}}
+{{--				</div>--}}
+{{--				<!-- Row End -->--}}
+{{--			</div>--}}
+{{--			<!-- Container  -->--}}
+{{--		</section>--}}
+{{--		<!-- main-product -->--}}
 
     </main>
 @endsection

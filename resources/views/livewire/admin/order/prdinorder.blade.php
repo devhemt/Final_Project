@@ -31,10 +31,10 @@
             <a href="#"><i wire:click="block" class="fas fa-trash " title="cancel"></i></a>
             @endif
             @if($status_number != 0 && $status_number != 1 && $status_number != 6 && $status_number != 7)
-            <a href="#"><i wire:click="back" class="fa-solid fa-arrow-left"></i></a>
+            <a href="#"><i wire:click="back" class="fa-solid fa-arrow-left" title="back"></i></a>
             @endif
             @if($status_number != 0 && $status_number != 5 && $status_number != 6 && $status_number != 7)
-            <a href="#"><i wire:click="forward" class="fa-solid fa-arrow-right"></i></a>
+            <a href="#"><i wire:click="forward" class="fa-solid fa-arrow-right" title="forward"></i></a>
             @endif
             @if($status_number == 4)
                 <a href="#"><i wire:click="fail" class="fa-solid fa-phone-slash fa-fade" title="delivery failed"></i></a>

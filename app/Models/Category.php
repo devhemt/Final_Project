@@ -12,4 +12,9 @@ class Category extends Model
     protected $table = 'category';
     protected $primaryKey = 'id';
     protected $fillable = ['category_name'];
+
+//    public function tags()
+//    {
+//        return $this->belongsToMany(Tag::class, 'product_tag', 'product_id', 'tag_id');
+//    }
 }

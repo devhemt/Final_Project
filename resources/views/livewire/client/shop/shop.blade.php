@@ -27,7 +27,7 @@
                     <div class="small-pro-details">
                         <h5 class="title"><a href="{{url('product/'.$t->id)}}">{{$t->name}}</a></h5>
                         <span>${{$t->price}}</span>
-{{--                        <span class="pre-price">$80</span>--}}
+                        <span class="pre-price">$80</span>
                     </div>
                 </div>
                 @endforeach
@@ -95,7 +95,10 @@
                                         @endforeach
                                     </ul>
                                 </div>
-                                <p>Price: <span>${{$product->price}}</span></p>
+                                <p>Price:
+                                    <span class="regular-price regular-price1234" id="{{ $product->price }}">${{ $product->price }}</span>
+                                    <span class="discounted-price discounted-price1234" style="color: #000; font-weight: bold; margin-left: 5px;">$50</span>
+                                </p>
                             </div>
                             <div class="icon-wrapper">
                                 <div class="add-to-cart">
