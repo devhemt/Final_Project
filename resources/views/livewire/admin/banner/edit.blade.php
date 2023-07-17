@@ -53,17 +53,9 @@
             <div id="view-image">
             </div>
         </div>
-
-
-        <button name="sbm" type="submit" class="btn btn-success">Add new</button>
-        <button type="reset" class="btn btn-default">Reset</button>
-        </form>
-    </div>
-
-    <div class="col-lg-12">
         <div class="form-group">
             <label>Content</label>
-            <textarea style="height: 300px"  wire:model="content" placeholder="{{ $content }}" name="content" class="form-control" rows="3"></textarea>
+            <textarea wire:model="content" placeholder="{{ $content }}" name="content" class="form-control" rows="3"></textarea>
             @if ($errors->has('content'))
                 <p class="text-danger">
                     @foreach ($errors->get('content') as $e)
@@ -72,5 +64,9 @@
                 </p>
             @endif
         </div>
+
+        <button name="sbm" type="submit" class="btn btn-success">Add new</button>
+        <button type="reset" class="btn btn-default">Reset</button>
+        </form>
     </div>
 </div>

@@ -61,6 +61,9 @@ Route::group(['middleware' => 'isdirector'], function () {
     Route::get('/comment',[\App\Http\Controllers\Admin\Comment\CommentController::class,'index']);
     Route::get('/banner',[\App\Http\Controllers\Admin\Banner\BannerController::class, 'index']);
     Route::post('/banner/edit',[\App\Http\Controllers\Admin\Banner\BannerController::class, 'edit']);
+
+    Route::get('/sale',[\App\Http\Controllers\Admin\Sale\SaleController::class, 'index']);
+    Route::get('/sale/{id}',[\App\Http\Controllers\Admin\Sale\SaleController::class,'detail']);
 });
 
 

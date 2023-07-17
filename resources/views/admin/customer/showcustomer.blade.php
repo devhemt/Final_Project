@@ -27,7 +27,7 @@
                                 <a href="{{url('admin/showcustomer/2')}}" class="vuong
                         @if($type == 2) active @endif
                     " style="width: 110px;">
-                                    New customer
+                                    New customers
                                 </a>
                                 <a href="{{url('admin/showcustomer/3')}}" class="vuong
                         @if($type == 3) active @endif

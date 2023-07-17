@@ -82,6 +82,10 @@
             <i class="bi bi-card-image"></i>
             <span>Banner</span>
         </a>
+        <a class="nav-link  @if($currentUrl != '/admin/sale') collapsed @endif " href="{{ url('admin/sale') }}">
+            <i class="bi bi-percent"></i>
+            <span>Sale</span>
+        </a>
     </li>
 
     <li class="nav-item">
