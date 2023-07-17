@@ -103,7 +103,6 @@
     </section>
         <!-- main-product 1 End -->
         @livewire('client.home.product3')
-
         <!--=========================-->
         <!--=   Banner discount    =-->
         <!--=========================-->

@@ -51,8 +51,16 @@
                                 </ul>
                                 <p class="text-danger" style="height:10px;padding: 0px;">{{$check_property}}</p>
                             </div>
-                            <p class="text-danger" style="height:10px;padding: 0px;">{{$check_amount}}</p>
 
+{{--                            <p>--}}
+{{--                                @if (isset($prdQV))--}}
+{{--                                    @foreach ($prdQV as $p)--}}
+{{--                                        {!! $p->description !!}--}}
+{{--                                    @endforeach--}}
+{{--                                @endif--}}
+{{--                            </p>--}}
+
+                            <p class="text-danger" style="height:10px;padding: 0px;">{{$check_amount}}</p>
                             <div class="add-tocart-wrap" wire:ignore>
 
                                 <input wire:model="quantity" class="quantityQV" min="1" name="quantity" value="{{$quantity}}" type="number"/>
@@ -61,13 +69,6 @@
                             </div>
 
 
-                            <p>
-                                @if (isset($prdQV))
-                                    @foreach ($prdQV as $p)
-                                        {!! $p->description !!}
-                                    @endforeach
-                                @endif
-                            </p>
 
 {{--                            <div class="product-social">--}}
 {{--                                <span>Share :</span>--}}

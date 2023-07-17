@@ -25,7 +25,7 @@
                     @if ($errors->has('phone'))
                         <span class="text-danger">{{ $errors->first('phone') }}</span>
                     @endif
-                    <div class="col-xl-12">
+                    <div class="col-xl-12" style="padding-right: 0; padding-left: 0 ">
                         <select required class="form-select form-select-sm mb-3" name="city" id="city" aria-label=".form-select-sm">
                             <option value="" selected>City</option>
                         </select>
@@ -51,8 +51,10 @@
                             <span class="text-danger">{{ $errors->first('detailed_address') }}</span>
                         @endif
                     </div>
+                    <br>
                     <input type="submit" value="confirm" class="btn">
-                    <p for="remember">Because you don't have an account, we need you to provide your personal information in order to confirm the order.</p>
+                    <br>
+                    <p for="remember" style="font-size: 10px">Because you don't have an account, we need you to provide your personal information in order to confirm the order.</p>
                 </form>
 
             </div>

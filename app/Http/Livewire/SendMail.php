@@ -11,6 +11,25 @@ class SendMail extends Component
     protected $listeners = ['mail'];
 
     public function mail($datas){
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         Mail::to($datas[0])->send(new MailNotify($datas[1]));
     }
 

@@ -12,9 +12,10 @@
                         <img src="{{ asset('images/'.$p->demo_image) }}" alt="">
                     </div>
                     <div class="small-pro-details">
-                        <h5 class="title"><a href="{{url('product/'.$p->id)}}">{{ $p->name }}</a></h5>
-                        <span id="{{ $p->price }}">${{ $p->price }}</span>
-                        <a class="trigger" href="#{{ $p->name }}" wire:click.prefetch="showQuickView({{ $p->id }})">Buy Now</a>
+                        <h5 class="title" ><a href="{{url('product/'.$p->id)}}">{{ $p->name }}</a></h5>
+                        <span class="regular-price" id="{{ $p->price }}" style="text-decoration: line-through; display: inline-block; margin-bottom: 5px;">${{ $p->price }}</span>
+                        <span class="discounted-price" style="display: inline-block; color: #000; font-weight: bold; margin-left: 5px;">$50</span>
+                        <a class="trigger" href="#{{ $p->name }}" style="display: block; " wire:click.prefetch="showQuickView({{ $p->id }})">Buy Now</a>
                     </div>
                 </div>
                 @endforeach
@@ -33,9 +34,10 @@
                             <img src="{{ asset('images/'.$p->demo_image) }}" alt="">
                         </div>
                         <div class="small-pro-details">
-                            <h5 class="title"><a href="{{url('product/'.$p->id)}}">{{ $p->name }}</a></h5>
-                            <span id="{{ $p->price }}">${{ $p->price }}</span>
-                            <a class="trigger" href="#{{ $p->name }}" wire:click.prefetch="showQuickView({{ $p->id }})">Buy Now</a>
+                            <h5 class="title" ><a href="{{url('product/'.$p->id)}}">{{ $p->name }}</a></h5>
+                            <span class="regular-price" id="{{ $p->price }}" style="text-decoration: line-through; display: inline-block; margin-bottom: 5px;">${{ $p->price }}</span>
+                            <span class="discounted-price" style="display: inline-block; color: #000; font-weight: bold; margin-left: 5px;">$50</span>
+                            <a class="trigger" href="#{{ $p->name }}" style="display: block; " wire:click.prefetch="showQuickView({{ $p->id }})">Buy Now</a>
                         </div>
                     </div>
                 @endforeach
@@ -53,9 +55,10 @@
                             <img src="{{ asset('images/'.$p->demo_image) }}" alt="">
                         </div>
                         <div class="small-pro-details">
-                            <h5 class="title"><a href="{{url('product/'.$p->id)}}">{{ $p->name }}</a></h5>
-                            <span id="{{ $p->price }}">${{ $p->price }}</span>
-                            <a class="trigger" href="#{{ $p->name }}" wire:click.prefetch="showQuickView({{ $p->id }})">Buy Now</a>
+                            <h5 class="title" ><a href="{{url('product/'.$p->id)}}">{{ $p->name }}</a></h5>
+                            <span class="regular-price" id="{{ $p->price }}" style="text-decoration: line-through; display: inline-block; margin-bottom: 5px;">${{ $p->price }}</span>
+                            <span class="discounted-price" style="display: inline-block; color: #000; font-weight: bold; margin-left: 5px;">$50</span>
+                            <a class="trigger" href="#{{ $p->name }}" style="display: block; " wire:click.prefetch="showQuickView({{ $p->id }})">Buy Now</a>
                         </div>
                     </div>
                 @endforeach
@@ -75,9 +78,10 @@
                             <img src="{{ asset('images/'.$p->demo_image) }}" alt="">
                         </div>
                         <div class="small-pro-details">
-                            <h5 class="title"><a href="{{url('product/'.$p->id)}}">{{ $p->name }}</a></h5>
-                            <span id="{{ $p->price }}">${{ $p->price }}</span>
-                            <a class="trigger" href="#{{ $p->name }}" wire:click.prefetch="showQuickView({{ $p->id }})">Buy Now</a>
+                            <h5 class="title" ><a href="{{url('product/'.$p->id)}}">{{ $p->name }}</a></h5>
+                            <span class="regular-price" id="{{ $p->price }}" style="text-decoration: line-through; display: inline-block; margin-bottom: 5px;">${{ $p->price }}</span>
+                            <span class="discounted-price" style="display: inline-block; color: #000; font-weight: bold; margin-left: 5px;">$50</span>
+                            <a class="trigger" href="#{{ $p->name }}" style="display: block; " wire:click.prefetch="showQuickView({{ $p->id }})">Buy Now</a>
                         </div>
                     </div>
                 @endforeach
