@@ -63,7 +63,7 @@
     <div class="col-lg-12">
         <div class="form-group">
             <label>Content</label>
-            <textarea  wire:model="content" placeholder="{{ $content }}" name="content" class="form-control" rows="3"></textarea>
+            <textarea style="height: 300px"  wire:model="content" placeholder="{{ $content }}" name="content" class="form-control" rows="3"></textarea>
             @if ($errors->has('content'))
                 <p class="text-danger">
                     @foreach ($errors->get('content') as $e)

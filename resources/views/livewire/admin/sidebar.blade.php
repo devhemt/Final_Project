@@ -78,6 +78,10 @@
             <i class="bi bi-chat-dots"></i>
             <span>Comment</span>
         </a>
+        <a class="nav-link  @if($currentUrl != '/admin/banner') collapsed @endif " href="{{ url('admin/banner') }}">
+            <i class="bi bi-card-image"></i>
+            <span>Banner</span>
+        </a>
     </li>
 
     <li class="nav-item">
