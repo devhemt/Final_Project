@@ -13,7 +13,7 @@
                                     <img src="{{ asset('images/'.$p->demo_image) }}" alt="">
                                 </div>
                                 <div class="mid-wrapper mid-wrapper1234">
-                                    <h5 class="pro-title pro-title1234"><a href="{{url('product/'.$p->id)}}">{{ $p->name }}</a></h5>
+                                    <h5 class="pro-title pro-title1234"><a style="max-width: 170px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;" href="{{url('product/'.$p->id)}}">{{ $p->name }}</a></h5>
                                     <span class="discounted-price discounted-price1234" style="color: #000; font-weight: bold; margin-left: 5px;">$50</span>
                                     <span class="regular-price regular-price1234" id="{{ $p->price }}">${{ $p->price }}</span>
                                 </div>

@@ -11,11 +11,9 @@
                     <div class="col-md-6">
                         <img src="{{ asset('images/'.$p->demo_image) }}" href="">
                     </div>
-
-
                     <div class="col-md-6">
                         <div class="product-details">
-                            <h5 class="pro-title"><a href="{{url('product/'.$p->id)}}">
+                            <h5 class="pro-title"><a style="max-width: 350px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;" href="{{url('product/'.$p->id)}}">
                                     {{ $p->name }}
                                 </a></h5>
                             <span class="price">Price : ${{ $p->price }}</span>
@@ -52,14 +50,6 @@
                                 <p class="text-danger" style="height:10px;padding: 0px;">{{$check_property}}</p>
                             </div>
 
-{{--                            <p>--}}
-{{--                                @if (isset($prdQV))--}}
-{{--                                    @foreach ($prdQV as $p)--}}
-{{--                                        {!! $p->description !!}--}}
-{{--                                    @endforeach--}}
-{{--                                @endif--}}
-{{--                            </p>--}}
-
                             <p class="text-danger" style="height:10px;padding: 0px;">{{$check_amount}}</p>
                             <div class="add-tocart-wrap" wire:ignore>
 
@@ -68,7 +58,13 @@
 
                             </div>
 
-
+                            <div style="height: 10rem;width: 22rem;overflow: hidden;text-overflow: ellipsis;">
+                                @if (isset($prdQV))
+                                    @foreach ($prdQV as $p)
+                                        {!! $p->description !!}
+                                    @endforeach
+                                @endif
+                            </div>
 
 {{--                            <div class="product-social">--}}
 {{--                                <span>Share :</span>--}}
