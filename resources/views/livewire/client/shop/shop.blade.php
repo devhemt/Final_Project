@@ -96,8 +96,8 @@
                                     </ul>
                                 </div>
                                 <p>Price:
-                                    <span class="regular-price regular-price1234" id="{{ $product->price }}">${{ $product->price }}</span>
                                     <span class="discounted-price discounted-price1234" style="color: #000; font-weight: bold; margin-left: 5px;">$50</span>
+                                    <span class="regular-price regular-price1234" id="{{ $product->price }}">${{ $product->price }}</span>
                                 </p>
                             </div>
                             <div class="icon-wrapper">

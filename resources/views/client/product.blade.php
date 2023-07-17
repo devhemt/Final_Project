@@ -38,8 +38,8 @@
                                         </div>
                                         <div class="small-pro-details">
                                             <h5 class="title"><a href="{{url('product/'.$t->id)}}">{{$t->name}}</a></h5>
-                                            <span class="regular-price1234">${{$t->price}}</span>
                                             <span class="discounted-price1234">$80</span>
+                                            <span class="regular-price1234">${{$t->price}}</span>
                                         </div>
                                     </div>
                                 @endforeach

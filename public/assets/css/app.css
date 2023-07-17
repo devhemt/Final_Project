@@ -6885,12 +6885,13 @@ border-bottom-right-radius: 16px;
 .regular-price1234 {
     font-size: 1rem;
     text-decoration: line-through;
-    margin-right: 0.5rem; /* Thêm khoảng cách giữa regular-price và discounted-price */
+    margin-right: 1.5rem; /* Thêm khoảng cách giữa regular-price và discounted-price */
 }
 
 .discounted-price1234 {
     font-size: 1rem;
     color: #000;
+    margin-right: 0.5rem;
 }
 
 

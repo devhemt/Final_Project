@@ -9,7 +9,7 @@
                 <img alt="" src="{{url('images/'.$c['attributes']['image'])}}">
             </div>
             <div class="cart-title">
-                <p><a style="font-size: 8px" href="{{url('product/'.$c['id'])}}">{{$c['name']}}</a></p>
+                <p><a style="max-width: 170px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;" href="{{url('product/'.$c['id'])}}">{{$c['name']}}</a></p>
             </div>
             <div class="cart-price">
                 <p>{{$c['attributes']['size']}} x <span class="shape" style="background: {{$c['attributes']['color']}}"></span></p>
@@ -46,19 +46,13 @@
                 <p>Sub-Total <span>${{$subtotal}}</span></p>
             </div>
             <div class="cart-sub-total">
-                <p>Eco Tax (-2.00)<span>$7.00</span></p>
-            </div>
-            <div class="cart-sub-total">
-                <p>VAT (20%) <span>$40.00</span></p>
+                <p>Discount<span>$7.00</span></p>
             </div>
             <div class="cart-sub-total">
                 <p>Total <span>${{$total}}</span></p>
             </div>
             <div class="cart-checkout">
                 <a href="{{url('cart')}}"><i class="fa fa-shopping-cart"></i>View Cart</a>
-            </div>
-            <div class="cart-share">
-                <a href="#"><i class="fa fa-share"></i>Checkout</a>
             </div>
         </div>
     </div>

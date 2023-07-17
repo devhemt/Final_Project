@@ -26,31 +26,29 @@
                         <span class="text-danger">{{ $errors->first('phone') }}</span>
                     @endif
                     <div class="col-xl-12" style="padding-right: 0; padding-left: 0 ">
-                        <select required class="form-select form-select-sm mb-3" name="city" id="city" aria-label=".form-select-sm">
+                        <select style="height: 2rem" required class="form-select form-select-sm mb-3" name="city" id="city" aria-label=".form-select-sm">
                             <option value="" selected>City</option>
                         </select>
                         @if ($errors->has('city'))
                             <span class="text-danger">{{ $errors->first('city') }}</span>
                         @endif
-                        <select required class="form-select form-select-sm mb-3" name="district" id="district" aria-label=".form-select-sm">
+                        <select style="height: 2rem" required class="form-select form-select-sm mb-3" name="district" id="district" aria-label=".form-select-sm">
                             <option value="" selected>District</option>
                         </select>
                         @if ($errors->has('district'))
                             <span class="text-danger">{{ $errors->first('district') }}</span>
                         @endif
-                        <select required class="form-select form-select-sm mb-3" name="ward" id="ward" aria-label=".form-select-sm">
+                        <select style="height: 2rem" required class="form-select form-select-sm mb-3" name="ward" id="ward" aria-label=".form-select-sm">
                             <option value="" selected>Ward</option>
                         </select>
                         @if ($errors->has('ward'))
                             <span class="text-danger">{{ $errors->first('ward') }}</span>
                         @endif
                     </div>
-                    <div class="col-xl-12">
-                        <input name="detailed_address" type="text" placeholder="Detailed address">
-                        @if ($errors->has('detailed_address'))
-                            <span class="text-danger">{{ $errors->first('detailed_address') }}</span>
-                        @endif
-                    </div>
+                    <input name="detailed_address" type="text" class="box" placeholder="Detailed address">
+                    @if ($errors->has('detailed_address'))
+                        <span class="text-danger">{{ $errors->first('detailed_address') }}</span>
+                    @endif
                     <br>
                     <input type="submit" value="confirm" class="btn">
                     <br>
