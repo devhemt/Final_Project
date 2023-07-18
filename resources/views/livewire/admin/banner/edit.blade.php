@@ -5,7 +5,7 @@
             @csrf
             <div class="form-group">
                 <label>Banner's Url</label>
-                <input name="url" class="form-control" >
+                <input name="url" class="form-control" placeholder="{{$banner->url}}">
                 @if ($errors->has('url'))
                     <p class="text-danger">
                         @foreach ($errors->get('url') as $e)
@@ -16,7 +16,7 @@
             </div>
             <div class="form-group">
                 <label>Banner</label>
-                <select name="banner" class="form-control">
+                <select wire:model="banner_id" name="banner" class="form-control">
                     <option value="1">-- baner 1 --</option>
                     <option value="2">-- baner 2 --</option>
                     <option value="3">-- baner 3 --</option>
@@ -51,11 +51,12 @@
                 </p>
             @endif
             <div id="view-image">
+                <img src="{{asset('images/'.$banner->image)}}" alt="Thumb" style="height: 200px; width: 400px; object-fit: cover">
             </div>
         </div>
         <div class="form-group">
             <label>Content</label>
-            <textarea wire:model="content" placeholder="{{ $content }}" name="content" class="form-control" rows="3"></textarea>
+            <textarea wire:model="content" name="content" class="form-control" rows="3"></textarea>
             @if ($errors->has('content'))
                 <p class="text-danger">
                     @foreach ($errors->get('content') as $e)

@@ -7,11 +7,22 @@ use App\Models\Banner;
 
 class Edit extends Component
 {
-    public $content;
+    public $banner_id,$banner;
+
+    public function updated($banner_id)
+    {
+        if ($this->banner_id == null || $this->banner_id == ''){
+            $this->banner = Banner::where('id',1)->first();
+        }else{
+            $this->banner = Banner::where('id',$this->banner_id)->first();
+        }
+    }
 
     public function render()
     {
-        $this->content = Banner::where('id',4)->first()->content;
+        if ($this->banner_id == null || $this->banner_id == ''){
+            $this->banner = Banner::where('id',1)->first();
+        }
         return view('livewire.admin.banner.edit');
     }
 }

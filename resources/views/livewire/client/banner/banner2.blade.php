@@ -10,10 +10,9 @@
             <div class="row align-items-center">
                 <div class="col-12 col-sm-8 col-md-8 col-lg-6 ml-auto">
                     <div class="slider-text ">
-                        {!! $test !!}
-{{--                        <h4 class="animated fadeIn" style="color: black;" ><span style="color: white;" >BRAND NEW</span> COLLECTION</h4>--}}
-{{--                        <h1 class="animated fadeIn" style="color: white;" >ELEGANT SHOP</h1>--}}
-{{--                        <p class="animated fadeIn">Discover Elegant, the ultimate destination for fashionable women's clothing. Our brand is dedicated to helping you elevate your style and express your individuality through thoughtfully designed and meticulously crafted pieces.</p>--}}
+                        <h4 class="animated fadeIn" style="color: black;" ><span style="color: white;" >BRAND NEW</span> COLLECTION</h4>
+                        <h1 class="animated fadeIn" style="color: white;" >ELEGANT SHOP</h1>
+                        <p class="animated fadeIn">Discover Elegant, the ultimate destination for fashionable women's clothing. Our brand is dedicated to helping you elevate your style and express your individuality through thoughtfully designed and meticulously crafted pieces.</p>
                         @if($banner1->url == null)
                         <a class="animated fadeIn btn-two" href="{{url('shop/all')}}">SHOP NOW</a>
                         @else
