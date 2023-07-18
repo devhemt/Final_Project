@@ -119,26 +119,54 @@
                                 <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
                                 <hr class="my-4">
 
+{{--                                //fake data discount--}}
                                 <div class="d-flex justify-content-between mb-4">
-                                    <h5 class="text-uppercase">{{$totalquantity}} items</h5>
+                                    <h5 class="text-capitalize" style="color: #b55012">Sub-total</h5>
+                                    <h5>$209</h5>
+                                </div>
+
+                                <div class="d-flex justify-content-between mb-4">
+                                    <h5 class="text-capitalize" style="color: #B55012FF">Discount</h5>
+                                    <h5>$19</h5>
+                                </div>
+
+                                <hr class="my-4">
+                                <div class="d-flex justify-content-between mb-4">
+                                    <h5 class="text-uppercase" style="color: #533f03">{{$totalquantity}} items</h5>
                                     <h5>$ {{$total}}</h5>
                                 </div>
+
+{{--                                <h5 class="text-uppercase mb-3">Shipping</h5>--}}
+
+{{--                                <div class="mb-4 pb-2">--}}
+{{--                                    <select wire:model="deliverymethod" class="select">--}}
+{{--                                        @foreach ($options as $op)--}}
+{{--                                            @if ($op=='Default delivery $5')--}}
+{{--                                                <option selected="selected" value="{{ $op }}">{{ $op }}</option>--}}
+{{--                                            @else--}}
+{{--                                                <option value="{{ $op }}">{{ $op }}</option>--}}
+{{--                                            @endif--}}
+{{--                                        @endforeach--}}
+{{--                                    </select>--}}
+{{--                                </div>--}}
 
                                 <h5 class="text-uppercase mb-3">Shipping</h5>
 
                                 <div class="mb-4 pb-2">
-                                    <select wire:model="deliverymethod" class="select">
+                                    <select wire:model="deliverymethod" style="width: 100%; padding: 10px; border: 1px solid #533f03; border-radius: 5px; background-color: #FFFFFF; color:  #533f03;">
                                         @foreach ($options as $op)
                                             @if ($op=='Default delivery $5')
-                                                <option selected="selected" value="{{ $op }}">{{ $op }}</option>
+                                                <option selected="selected" value="{{ $op }}" style="background-color: #FFFFFF; color: #533f03; border: 1px solid #c7a78b; text-align: center;">{{ $op }}</option>
                                             @else
-                                                <option value="{{ $op }}">{{ $op }}</option>
+                                                <option value="{{ $op }}" style="background-color: #fff; color: #533f03; border: 1px solid #c7a78b; text-align: center;">{{ $op }}</option>
                                             @endif
                                         @endforeach
                                     </select>
                                 </div>
 
-{{--                                <h5 class="text-uppercase mb-3">Give code</h5>--}}
+
+
+                                {{--                                <h5 class="text-uppercase mb-3">Give code</h5>--}}
 
 {{--                                <div class="mb-5">--}}
 {{--                                    <div class="form-outline">--}}
@@ -159,7 +187,8 @@
                                         <div class="d-flex justify-content-between mb-5">
                                             <input hidden name="delivery" value="{{$deliverymethod}}">
                                             <input hidden name="amount" value="{{$totalpl}}">
-                                            <input type="submit" class="btn btn-info" value="MoMo payment">
+{{--                                            <input type="submit" class="btn btn-info" value="MoMo payment">--}}
+                                            <input type="submit"  class="btn btn-dark btn-block btn-lg" id="visitor-btn" value="MoMo payment" style="background-color: #33CC99">
                                         </div>
                                     </form>
                                     <button wire:click="register" type="button" class="btn btn-dark btn-block btn-lg"

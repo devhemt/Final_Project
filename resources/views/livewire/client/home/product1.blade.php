@@ -13,6 +13,7 @@
                 @else
                     <span class="discounted-price discounted-price1234" style="color: #000; font-weight: bold; margin-left: 5px;">${{ $p->price }}</span>
                 @endif
+
             </div>
 
             <div class="pro-icon">

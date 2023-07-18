@@ -3,8 +3,13 @@
     <div class="product-details">
         <h5 class="pro-title"><a style="max-width: 400px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;" href="#">{{$product[0]->name}}</a></h5>
         <p>Price:
-            <span class="discounted-price1234" style="font-size: 28px; color: #000; font-weight: bold; margin-left: 5px;">$50</span>
-            <span class="price" style="text-decoration: line-through">${{$product[0]->price}}</span>
+            @php
+                $regularPrice = $product[0]->price * 1.1;
+            @endphp
+            <span class="discounted-price1234" style="font-size: 28px; color: #000; font-weight: bold; margin-left: 5px;">${{ $product[0]->price }}</span>
+            <span class="price" style="text-decoration: line-through">${{ number_format($regularPrice, 2) }}</span>
+{{--            <span class="discounted-price1234" style="font-size: 28px; color: #000; font-weight: bold; margin-left: 5px;">$50</span>--}}
+{{--            <span class="price" style="text-decoration: line-through">${{$product[0]->price}}</span>--}}
         </p>
         <div wire:poll.500ms.visible="amount" class="size-variation">
             <span>Amount :{{$amount}}</span>

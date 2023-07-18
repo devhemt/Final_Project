@@ -24,29 +24,37 @@
             @if($flag == 0)
                 @foreach($customer_cart as $c)
                     <div class="single-cart">
-                        <div class="cart-img">
-                            <img alt="" src="{{url('images/'.$c->demo_image)}}">
+                        <div style="display: flex; align-items: center;">
+                            <div class="cart-img" style="float: left; margin-right: 10px;">
+                                <img alt="" src="{{url('images/'.$c->demo_image)}}">
+                            </div>
+                            <div style="flex: 1;">
+                                <div class="cart-title">
+                                    <p><a style="font-size: 16px" href="{{url('product/'.$c->id)}}">{{$c->name}}</a></p>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="cart-price">
+                                        <p>{{$c->size}} x <span class="shape" style="background: {{$c->color}}"></span></p>
+                                    </div>
+                                    <div class="cart-price">
+                                        <p>{{$c->amount}} x ${{$c->price}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#"><i wire:click="deleteCartItem({{$c->property_id}})" class="fa fa-times"></i></a>
                         </div>
-                        <div class="cart-title">
-                            <p><a style="font-size: 20px" href="{{url('product/'.$c->id)}}">{{$c->name}}</a></p>
-                        </div>
-                        <div class="cart-price">
-                            <p>{{$c->size}} x <span class="shape" style="background: {{$c->color}}"></span></p>
-                        </div>
-                        <div class="cart-price">
-                            <p>{{$c->amount}} x ${{$c->price}}</p>
-                        </div>
-                        <a href="#"><i wire:click="deleteCartItem({{$c->property_id}})" class="fa fa-times"></i></a>
+
                     </div>
                 @endforeach
             @endif
         </div>
         <div class="cart-bottom">
             <div class="cart-sub-total">
-                <p>Sub-Total <span>${{$subtotal}}</span></p>
+{{--                <p>Sub-Total <span>${{$subtotal}}</span></p>--}}
+                    <p>Sub-Total <span>$209</span></p>
             </div>
             <div class="cart-sub-total">
-                <p>Discount<span>$7.00</span></p>
+                <p>Discount<span>$19.00</span></p>
             </div>
             <div class="cart-sub-total">
                 <p>Total <span>${{$total}}</span></p>
