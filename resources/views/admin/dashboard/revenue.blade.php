@@ -7,7 +7,7 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{url('admin')}}">Dashboard</a></li>
                     <li class="breadcrumb-item">Dashboard Element</li>
-                    <li class="breadcrumb-item active">Top products</li>
+                    <li class="breadcrumb-item active">Revenue</li>
                 </ol>
             </nav>
         </div>
@@ -42,7 +42,12 @@
                                 <tbody>
                                 @foreach($orders as $order)
                                     <tr>
+                                        @if($order->status != 8)
                                         <td><a href="{{url('admin/order/'.$order->id)}}" class="text-primary fw-bold">Xem chi tiết</a></td>
+                                        @endif
+                                        @if($order->status == 8)
+                                                <td><a href="{{url('admin/offline/add/'.$order->id)}}" class="text-primary fw-bold">Xem chi tiết</a></td>
+                                        @endif
                                         <td>{{$order->payment}}</td>
                                         <td>{{$order->pay}}</td>
                                         <td>{{$order->true_pay}}</td>

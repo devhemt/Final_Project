@@ -2,12 +2,12 @@
 @section('content')
     <main id="main" class="main">
         <div class="pagetitle">
-            <h1>General Tables</h1>
+            <h1>Customer manager</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item">Account</li>
-                    <li class="breadcrumb-item active">Create Account</li>
+                    <li class="breadcrumb-item"><a href="{{url('admin')}}">Dashboard</a></li>
+                    <li class="breadcrumb-item">Customer</li>
+                    <li class="breadcrumb-item active">Create account</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->

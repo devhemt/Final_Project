@@ -67,13 +67,24 @@
 
     </div>
 
+    <div class="visitor-form-container" style="top:{{$top}};">
+
+        <form action="">
+            <h3>Are you sure about delete this sale</h3>
+            <input wire:click="yes" type="button" value="Yes" class="btn danger">
+            <input wire:click="no" type="button" value="No" class="btn no">
+            <p for="remember">Please consider your optios.</p>
+        </form>
+
+    </div>
+
     <div class="row">
         <div class="col-6">
-            <h5 class="card-title">Table of order</h5>
+            <h5 class="card-title">Table of sale</h5>
         </div>
         <div class="col-6">
             <a style="float: right; margin-top: 10px;">
-                <button wire:click="create" class="btn btn-primary">Add new order</button>
+                <button wire:click="create" class="btn btn-primary">Add new sale</button>
             </a>
         </div>
     </div>
@@ -99,7 +110,7 @@
                 <td>{{$p->end}}</td>
                 <td style="text-align: center;">
                     <a href="{{url('admin/sale/'.$p->id)}}" title="See detai"><i class="fas fa-eye"></i></a>
-                    <a href="#" wire:click="cancle('{{$p->id}}')" id="deleteprd" title="Delete order"><i class="fas fa-trash "></i></a>
+                    <a href="#" wire:click="delete('{{$p->id}}')" id="deleteprd" title="Delete order"><i class="fas fa-trash "></i></a>
                 </td>
             </tr>
         @endforeach

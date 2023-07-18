@@ -2,12 +2,12 @@
 @section('content')
     <main id="main" class="main">
         <div class="pagetitle">
-            <h1>Order manager</h1>
+            <h1>Comment manager</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{url('admin')}}">Dashboard</a></li>
-                    <li class="breadcrumb-item">Order</li>
-                    <li class="breadcrumb-item active">Show order</li>
+                    <li class="breadcrumb-item">Comment</li>
+                    <li class="breadcrumb-item active">Show comments</li>
                 </ol>
             </nav>
         </div>

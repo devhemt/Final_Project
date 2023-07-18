@@ -7,7 +7,7 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{url('admin')}}">Dashboard</a></li>
                     <li class="breadcrumb-item">Dashboard Element</li>
-                    <li class="breadcrumb-item active">Top products</li>
+                    <li class="breadcrumb-item active">Top city</li>
                 </ol>
             </nav>
         </div>

@@ -9,9 +9,9 @@ use Carbon\Carbon;
 
 class Showsale extends Component
 {
-    public $isShowCreate = null,$salename,$discount,$begin_date,$begin_time,$end_date,$end_time;
+    public $isShowCreate = null,$top = null,$salename,$discount,$begin_date,$begin_time,$end_date,$end_time;
     public $categories,$category,$cus_type;
-    public $flag = true, $type;
+    public $flag = true, $type, $delete_id;
 
     public function create(){
         $this->isShowCreate = 0;
@@ -61,6 +61,19 @@ class Showsale extends Component
 
 
         $this->isShowCreate = null;
+    }
+
+    public function delete($id){
+        $this->delete_id = $id;
+        $this->top = 0;
+
+    }
+    public function yes(){
+        Sale::where('id',$this->delete_id)->delete();
+        $this->top = null;
+    }
+    public function no(){
+        $this->top = null;
     }
 
     public function render()
