@@ -14,7 +14,7 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th scope="col">Id</th>
+            <th scope="col">Order Code</th>
             <th scope="col">Customer Name</th>
             <th scope="col">Phone</th>
             <th scope="col">Email</th>
@@ -26,7 +26,7 @@
         <tbody>
         @foreach($order as $p)
             <tr>
-                <th scope="row">{{$p->id}}</th>
+                <th scope="row">{{$p->invoice_code}}</th>
                 <td>{{$p->name}}</td>
                 <td>{{$p->phone}}</td>
                 <td>{{$p->email}}</td>
