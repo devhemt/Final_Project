@@ -38,8 +38,13 @@
                                         </div>
                                         <div class="small-pro-details">
                                             <h5 class="title"><a style="max-width: 140px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;" href="{{url('product/'.$t->id)}}">{{$t->name}}</a></h5>
-                                            <span class="discounted-price1234">$80</span>
-                                            <span class="regular-price1234">${{$t->price}}</span>
+{{--                                            <span class="discounted-price1234">$80</span>--}}
+{{--                                            <span class="regular-price1234">${{$t->price}}</span>--}}
+                                            @php
+                                                $regularPrice = $t->price * 1.1;
+                                            @endphp
+                                            <span class="discounted-price1234">${{ $t->price }}</span>
+                                            <span class="regular-price1234">${{ number_format($regularPrice, 2) }}</span>
                                         </div>
                                     </div>
                                 @endforeach

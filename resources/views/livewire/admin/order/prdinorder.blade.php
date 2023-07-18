@@ -67,7 +67,11 @@
                 <th scope="row">{{$p->name}}</th>
                 <td><img src="{{asset('images/'.$p->demo_image)}}" alt=""></td>
                 <td>{{$p->size}}</td>
-                <td style="background: {{$p->color}};"></td>
+                <td>
+                    <div style="position: relative; width: 100px;">
+                    <div style="position: absolute; top: 5px; left: 5px; width: 20px; height: 20px; border-radius: 50%; background: {{$p->color}};"></div>
+                    </div>
+                </td>
                 <td>{{$p->batch}}</td>
                 <td>{{$p->amount}}</td>
                 <td>

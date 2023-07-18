@@ -13,8 +13,13 @@
                     </div>
                     <div class="small-pro-details">
                         <h5 class="title" ><a style="max-width: 120px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;" href="{{url('product/'.$p->id)}}">{{ $p->name }}</a></h5>
-                        <span class="discounted-price" style="display: inline-block; color: #000; font-weight: bold; margin-left: 5px;">$50</span>
-                        <span class="regular-price" id="{{ $p->price }}" style="text-decoration: line-through; display: inline-block; margin-bottom: 5px;">${{ $p->price }}</span>
+{{--                        <span class="discounted-price" style="display: inline-block; color: #000; font-weight: bold; margin-left: 5px;">$50</span>--}}
+{{--                        <span class="regular-price" id="{{ $p->price }}" style="text-decoration: line-through; display: inline-block; margin-bottom: 5px;">${{ $p->price }}</span>--}}
+                        @php
+                            $regularPrice = $p->price * 1.1;
+                        @endphp
+                        <span class="discounted-price" style="display: inline-block; color: #000; font-weight: bold; margin-left: 5px;">${{ $p->price }}</span>
+                        <span class="regular-price" id="{{ $p->price }}" style="text-decoration: line-through; display: inline-block; margin-bottom: 5px;">${{ number_format($regularPrice, 2) }}</span>
                         <a class="trigger" href="#{{ $p->name }}" style="display: block; " wire:click.prefetch="showQuickView({{ $p->id }})">Buy Now</a>
                     </div>
                 </div>
@@ -35,8 +40,13 @@
                         </div>
                         <div class="small-pro-details">
                             <h5 class="title" ><a style="max-width: 120px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;" href="{{url('product/'.$p->id)}}">{{ $p->name }}</a></h5>
-                            <span class="discounted-price" style="display: inline-block; color: #000; font-weight: bold; margin-left: 5px;">$50</span>
-                            <span class="regular-price" id="{{ $p->price }}" style="text-decoration: line-through; display: inline-block; margin-bottom: 5px;">${{ $p->price }}</span>
+{{--                            <span class="discounted-price" style="display: inline-block; color: #000; font-weight: bold; margin-left: 5px;">$50</span>--}}
+{{--                            <span class="regular-price" id="{{ $p->price }}" style="text-decoration: line-through; display: inline-block; margin-bottom: 5px;">${{ $p->price }}</span>--}}
+                            @php
+                                $regularPrice = $p->price * 1.1;
+                            @endphp
+                            <span class="discounted-price" style="display: inline-block; color: #000; font-weight: bold; margin-left: 5px;">${{ $p->price }}</span>
+                            <span class="regular-price" id="{{ $p->price }}" style="text-decoration: line-through; display: inline-block; margin-bottom: 5px;">${{ number_format($regularPrice, 2) }}</span>
                             <a class="trigger" href="#{{ $p->name }}" style="display: block; " wire:click.prefetch="showQuickView({{ $p->id }})">Buy Now</a>
                         </div>
                     </div>
@@ -56,8 +66,13 @@
                         </div>
                         <div class="small-pro-details">
                             <h5 class="title" ><a style="max-width: 120px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;" href="{{url('product/'.$p->id)}}">{{ $p->name }}</a></h5>
-                            <span class="discounted-price" style="display: inline-block; color: #000; font-weight: bold; margin-left: 5px;">$50</span>
-                            <span class="regular-price" id="{{ $p->price }}" style="text-decoration: line-through; display: inline-block; margin-bottom: 5px;">${{ $p->price }}</span>
+{{--                            <span class="discounted-price" style="display: inline-block; color: #000; font-weight: bold; margin-left: 5px;">$50</span>--}}
+{{--                            <span class="regular-price" id="{{ $p->price }}" style="text-decoration: line-through; display: inline-block; margin-bottom: 5px;">${{ $p->price }}</span>--}}
+                            @php
+                                $regularPrice = $p->price * 1.1;
+                            @endphp
+                            <span class="discounted-price discounted-price1234" style="color: #000; font-weight: bold; margin-left: 5px;">${{ $p->price }}</span>
+                            <span class="regular-price" id="{{ $p->price }}" style="text-decoration: line-through; display: inline-block; margin-bottom: 5px;">${{ number_format($regularPrice, 2) }}</span>
                             <a class="trigger" href="#{{ $p->name }}" style="display: block; " wire:click.prefetch="showQuickView({{ $p->id }})">Buy Now</a>
                         </div>
                     </div>
@@ -79,8 +94,13 @@
                         </div>
                         <div class="small-pro-details">
                             <h5 class="title" ><a style="max-width: 120px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;" href="{{url('product/'.$p->id)}}">{{ $p->name }}</a></h5>
-                            <span class="discounted-price" style="display: inline-block; color: #000; font-weight: bold; margin-left: 5px;">$50</span>
-                            <span class="regular-price" id="{{ $p->price }}" style="text-decoration: line-through; display: inline-block; margin-bottom: 5px;">${{ $p->price }}</span>
+{{--                            <span class="discounted-price" style="display: inline-block; color: #000; font-weight: bold; margin-left: 5px;">$50</span>--}}
+{{--                            <span class="regular-price" id="{{ $p->price }}" style="text-decoration: line-through; display: inline-block; margin-bottom: 5px;">${{ $p->price }}</span>--}}
+                            @php
+                                $regularPrice = $p->price * 1.1;
+                            @endphp
+                            <span class="discounted-price" style="display: inline-block; color: #000; font-weight: bold; margin-left: 5px;">${{ $p->price }}</span>
+                            <span class="regular-price" id="{{ $p->price }}" style="text-decoration: line-through; display: inline-block; margin-bottom: 5px;">${{ number_format($regularPrice, 2) }}</span>
                             <a class="trigger" href="#{{ $p->name }}" style="display: block; " wire:click.prefetch="showQuickView({{ $p->id }})">Buy Now</a>
                         </div>
                     </div>
