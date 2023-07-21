@@ -10,6 +10,8 @@ use App\Models\Status;
 use App\Models\Invoice_items;
 use App\Models\Guest;
 use App\Models\Address;
+use Carbon\Carbon;
+use App\Models\Product;
 use Cart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -22,7 +24,7 @@ class Truecart extends Component
     public $resultCode;
     public $guest_cart, $customer_cart, $flag = null, $alert = null;
     public $totalquantity = 0;
-    public $total,$totalpl;
+    public $total,$totalpl,$discount = 0;
     public $checked = [];
     public $deliverymethod = 'Default delivery $5';
     public $options = ['Default delivery $5','Fast delivery $15','Super fast delivery $25'];
@@ -30,6 +32,57 @@ class Truecart extends Component
 
 
     public function loadtruecart(){}
+
+    public function getDiscount($id){
+        $now = Carbon::now();
+        $sale = DB::table('sale')
+            ->whereDay('begin', '<=', $now->day)
+            ->whereMonth('begin', '<=', $now->month)
+            ->whereYear('begin', '<=', $now->year)
+            ->whereDay('end', '>=', $now->day)
+            ->whereMonth('end', '>=', $now->month)
+            ->whereYear('end', '>=', $now->year)
+            ->get();
+        $discount = 0;
+        foreach ($sale as $s){
+            if ($s->category_id == null && $s->customer_type == null){
+                $discount += $s->discount;
+            }
+            if ($s->category_id != null && $s->customer_type == null){
+                $cas_id = DB::table('product')
+                    ->join('category', 'product.category_id','=', 'category.id')
+                    ->select('category.id')
+                    ->where('product.id','=',$id)
+                    ->first()->id;
+                if ($cas_id == $s->category_id){
+                    $discount += $s->discount;
+                }
+            }
+            if ($s->category_id == null && $s->customer_type != null){
+                if (Auth::guard("customer")->check()){
+                    $userId = Auth::guard("customer")->id();
+                    $order = DB::table('invoice')
+                        ->where('customer_id','=',$userId)
+                        ->count();
+                    if ($s->customer_type == 3){
+                        $discount += $s->discount;
+                    }else{
+                        if ($s->customer_type == 2){
+                            if ($order >= 1){
+                                $discount += $s->discount;
+                            }
+                        }else{
+                            if ($order >= 2){
+                                $discount += $s->discount;
+                            }
+                        }
+                    }
+                }
+            }
+            return $discount;
+        }
+    }
+
 
     public function deleteCartItem($itemsid){
         if (Auth::guard("customer")->check()){
@@ -295,7 +348,6 @@ class Truecart extends Component
         }
     }
 
-
     public function minus($id){
         if (Auth::guard("customer")->check()){
             $userId = Auth::guard("customer")->id();
@@ -434,6 +486,7 @@ class Truecart extends Component
                 ->where('cart_memory.customer_id',$userId)->count();
 
             foreach ($this->customer_cart as $c){
+                $this->discount += ($this->getDiscount($c->id)/100) * $c->price;
                 $this->total += $c->amount*$c->price;
                 $prd_id = Properties::where('id',$c->property_id)->first()->prd_id;
                 $check_amount = Properties::where('prd_id',$prd_id)
@@ -467,6 +520,8 @@ class Truecart extends Component
 
             foreach ($this->guest_cart as $c){
                 $prd_id = Properties::where('id',$c['id'])->first()->prd_id;
+                $prd_price = Product::where('id', $prd_id)->first()->price;
+                $this->discount += ($this->getDiscount($prd_id)/100) * $prd_price;
                 $check_amount = Properties::where('prd_id',$prd_id)
                     ->where('size',$c['attributes']['size'])
                     ->where('color',$c['attributes']['color'])
@@ -479,15 +534,14 @@ class Truecart extends Component
         }
 
         if ($this->deliverymethod == 'Default delivery $5'){
-            $this->totalpl = $this->total+5;
+            $this->totalpl = $this->total+5 - $this->discount;
         }
         if ($this->deliverymethod == 'Fast delivery $15'){
-            $this->totalpl = $this->total+15;
+            $this->totalpl = $this->total+15 - $this->discount;
         }
         if ($this->deliverymethod == 'Super fast delivery $25'){
-            $this->totalpl = $this->total+25;
+            $this->totalpl = $this->total+25 - $this->discount;
         }
-
 
         return view('livewire.client.cart.truecart');
     }

@@ -26,8 +26,12 @@
                     </div>
                     <div class="small-pro-details">
                         <h5 class="title"><a href="{{url('product/'.$t->id)}}">{{$t->name}}</a></h5>
-                        <span>${{$t->price}}</span>
-                        <span class="pre-price">$80</span>
+                        @if($flag[$t->id])
+                            <span>${{ number_format($salePrice[$t->id], 2) }}</span>
+                            <span class="regular-price regular-price1234">${{ number_format($t->price, 2) }}</span>
+                        @else
+                            <span>${{ number_format($t->price, 2) }}</span>
+                        @endif
                     </div>
                 </div>
                 @endforeach
@@ -95,14 +99,13 @@
                                         @endforeach
                                     </ul>
                                 </div>
-                                <p>Price:
-{{--                                    <span class="discounted-price discounted-price1234" style="color: #000; font-weight: bold; margin-left: 5px;">$50</span>--}}
-{{--                                    <span class="regular-price regular-price1234" id="{{ $product->price }}">${{ $product->price }}</span>--}}
-                                    @php
-                                        $regularPrice = $product->price * 1.1;
-                                    @endphp
-                                    <span class="discounted-price discounted-price1234" style="color: #000; font-weight: bold; margin-left: 5px;">${{ $product->price }}</span>
-                                    <span class="regular-price regular-price1234">${{ number_format($regularPrice, 2) }}</span>
+                                <p>
+                                    @if($flag[$product->id])
+                                    <span class="discounted-price discounted-price1234" style="color: #000; font-weight: bold; margin-left: 5px;">${{ number_format($salePrice[$product->id], 2) }}</span>
+                                    <span class="regular-price regular-price1234">${{ number_format($product->price, 2) }}</span>
+                                    @else
+                                        <span class="discounted-price discounted-price1234" style="color: #000; font-weight: bold; margin-left: 5px;">${{ number_format($product->price, 2) }}</span>
+                                    @endif
                                 </p>
                             </div>
                             <div class="icon-wrapper">
@@ -137,7 +140,12 @@
                                             <div class="col-md-7 col-lg-6 col-xl-8">
                                                 <div class="list-pro-det">
                                                     <h5 class="pro-title"><a href="{{url('product/'.$product->id)}}">{{$product->name}}</a></h5>
-                                                    <span>${{$product->price}}</span>
+                                                    @if($flag[$product->id])
+                                                        <span>${{ number_format($salePrice[$product->id], 2) }}</span>
+                                                        <span class="regular-price regular-price1234">${{ number_format($product->price, 2) }}</span>
+                                                    @else
+                                                        <span>${{ number_format($product->price, 2) }}</span>
+                                                    @endif
                                                     <div class="color-variation">
                                                         <ul>
                                                             @foreach($colorsArray as $color)

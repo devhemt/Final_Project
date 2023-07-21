@@ -17,11 +17,14 @@
                             </div>
                             <div class="mid-wrapper mid-wrapper1234">
                                 <h5 class="pro-title pro-title1234"><a style="max-width: 170px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;" href="{{url('product/'.$p->id)}}">{{ $p->name }}</a></h5>
-                                @php
-                                    $regularPrice = $p->price * 1.1;
-                                @endphp
-                                <span class="discounted-price discounted-price1234" style="color: #000; font-weight: bold; margin-left: 5px;">${{ $p->price }}</span>
-                                <span class="regular-price regular-price1234">${{ number_format($regularPrice, 2) }}</span>
+                            </div>
+                            <div class="mid-wrapper mid-wrapper1234">
+                                @if($flag[$p->id])
+                                    <span class="discounted-price discounted-price1234" style="color: #000; font-weight: bold; margin-left: 5px;">${{ number_format($price[$p->id], 2) }}</span>
+                                    <span class="regular-price regular-price1234">${{ number_format($p->price, 2) }}</span>
+                                @else
+                                    <span class="discounted-price discounted-price1234" style="color: #000; font-weight: bold; margin-left: 5px;">${{ number_format($p->price, 2) }}</span>
+                                @endif
                             </div>
 
                             <div class="pro-icon">
