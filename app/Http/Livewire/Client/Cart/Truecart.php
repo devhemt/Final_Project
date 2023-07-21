@@ -16,6 +16,7 @@ use Cart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use App\Events\SendMailEvent;
 use Livewire\Component;
 
 class Truecart extends Component
@@ -82,7 +83,6 @@ class Truecart extends Component
             return $discount;
         }
     }
-
 
     public function deleteCartItem($itemsid){
         if (Auth::guard("customer")->check()){
@@ -213,6 +213,13 @@ class Truecart extends Component
                     $deleted = Cart_memory::where('customer_id',$userId)
                         ->where('check_buy',1)->delete();
                     $this->emit('loadsmallcart');
+                    $email = Auth::guard("customer")->user()->email;
+                    event(new SendMailEvent([
+                        "email" => $email,
+                        "order" => "Bạn đã đặt hàng thành công",
+                        "notify" => "This is an email notification of your order status in real time. You can track to know the status of your order. Thank you for choosing our products!"
+                    ]));
+                    $this->emit('mask');
                     $this->redirect('success');
                 }
             }
@@ -341,6 +348,12 @@ class Truecart extends Component
                         }
                         Cart::clear();
                         $this->emit('loadsmallcart');
+                        $email = Guest::where('session_id',$userId)->first()->email;
+                        event(new SendMailEvent([
+                            "email" => $email,
+                            "order" => "Bạn đã đặt hàng thành công",
+                            "notify" => "This is an email notification of your order status in real time. You can track to know the status of your order. Thank you for choosing our products!"
+                        ]));
                         $this->redirect('success');
                     }
                 }

@@ -16,9 +16,6 @@
         </div>
     </div>
 
-    @php
-    $stt = 1;
-    @endphp
     <table class="table table-striped">
         <thead>
         <tr>
@@ -34,7 +31,7 @@
         <tbody>
         @foreach($products as $p)
         <tr>
-            <th scope="row">{{$stt}}</th>
+            <th scope="row">{{$loop->index+1}}</th>
             <td>{{$p->product_code}}</td>
             <td>{{$p->name}}</td>
             <td><img src="{{asset('images/'.$p->demo_image)}}" alt=""></td>
@@ -47,9 +44,6 @@
 {{--                <a href="#" title="Add new batch"><i class="fa-solid fa-circle-plus "></i></a>--}}
             </td>
         </tr>
-        @php
-            $stt++;
-        @endphp
         @endforeach
         </tbody>
     </table>

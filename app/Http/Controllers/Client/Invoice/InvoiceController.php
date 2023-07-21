@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Client\Invoice;
 
+use App\Events\SendMailEvent;
 use App\Http\Controllers\Controller;
 use App\Models\Address;
 use App\Models\Cart_memory;
@@ -182,6 +183,12 @@ class InvoiceController extends Controller
                         }
                         $deleted = Cart_memory::where('customer_id',$userId)
                             ->where('check_buy',1)->delete();
+                        $email = Auth::guard("customer")->user()->email;
+                        event(new SendMailEvent([
+                            "email" => $email,
+                            "order" => "Bạn đã đặt hàng thành công",
+                            "notify" => "This is an email notification of your order status in real time. You can track to know the status of your order. Thank you for choosing our products!"
+                        ]));
                         return redirect('success');
                     }
                 }
@@ -319,6 +326,12 @@ class InvoiceController extends Controller
                                 }
                             }
                             Cart::clear();
+                            $email = Guest::where('session_id',$userId)->first()->email;
+                            event(new SendMailEvent([
+                                "email" => $email,
+                                "order" => "Bạn đã đặt hàng thành công",
+                                "notify" => "This is an email notification of your order status in real time. You can track to know the status of your order. Thank you for choosing our products!"
+                            ]));
                             return redirect('success');
                         }
                     }
