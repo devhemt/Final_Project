@@ -361,6 +361,17 @@ class Truecart extends Component
         }
     }
 
+    public function checkBuy($id){
+        $flag = Cart_memory::where('id',$id)->first()->check_buy;
+        if ($flag == 1){
+            $affected = Cart_memory::where('id',$id)
+                ->update(['check_buy' => 0]);
+        }else{
+            $affected = Cart_memory::where('id',$id)
+                ->update(['check_buy' => 1]);
+        }
+    }
+
     public function minus($id){
         if (Auth::guard("customer")->check()){
             $userId = Auth::guard("customer")->id();
@@ -489,7 +500,7 @@ class Truecart extends Component
             $this->customer_cart = DB::table('cart_memory')
                 ->join('properties', 'properties.id','=', 'cart_memory.property_id')
                 ->join('product', 'product.id','=', 'properties.prd_id')
-                ->select('product.*','cart_memory.amount','cart_memory.size','cart_memory.color','cart_memory.property_id')
+                ->select('product.*','cart_memory.amount','cart_memory.size','cart_memory.id','cart_memory.color','cart_memory.check_buy','cart_memory.property_id')
                 ->where('cart_memory.customer_id',$userId)->get();
 
             $this->totalquantity = DB::table('cart_memory')
@@ -500,7 +511,9 @@ class Truecart extends Component
 
             foreach ($this->customer_cart as $c){
                 $this->discount += ($this->getDiscount($c->id)/100) * $c->price;
-                $this->total += $c->amount*$c->price;
+                if ($c->check_buy == 1){
+                    $this->total += $c->amount*$c->price;
+                }
                 $prd_id = Properties::where('id',$c->property_id)->first()->prd_id;
                 $check_amount = Properties::where('prd_id',$prd_id)
                     ->where('size',$c->size)

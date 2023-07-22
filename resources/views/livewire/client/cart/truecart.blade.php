@@ -37,7 +37,7 @@
                                                     @endif
                                                 </h6>
                                             </div>
-                                            <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                                            <div class="col-md-2 col-lg-2 col-xl-1 d-flex">
                                                 <button wire:click="minus({{$c->property_id}})" class="btn btn-link px-2">
                                                     <i class="fas fa-minus"></i>
                                                 </button>
@@ -48,8 +48,14 @@
                                                     <i class="fas fa-plus"></i>
                                                 </button>
                                             </div>
-                                            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                            <div class="col-md-4 col-lg-3 col-xl-3 offset-lg-2" style="display: flex;">
                                                 <h6 class="mb-0">$ {{ number_format($c->price, 2) }}</h6>
+                                                <div style="margin-left: 15px; margin-bottom: 5px;" class="form-check">
+                                                    <input wire:click="checkBuy('{{$c->id}}')" class="form-check-input" type="checkbox" id="gridRadios2" @if($c->check_buy == 1) checked @endif >
+                                                    <label class="form-check-label" for="gridRadios2">
+                                                        Buy
+                                                    </label>
+                                                </div>
                                             </div>
                                             <div class="col-md-1 col-lg-1 col-xl-1 text-end">
                                                 <a href="#!" class="text-muted"><i wire:click="deleteCartItem({{$c->property_id}})" class="fas fa-times"></i></a>
