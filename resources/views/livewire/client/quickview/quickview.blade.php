@@ -58,10 +58,13 @@
 
                             </div>
 
-                            <div style="height: 10rem;width: 22rem;overflow: hidden;text-overflow: ellipsis;">
+                            <br>
+                            <div style="height: 10rem; width: 22rem; overflow: hidden;">
                                 @if (isset($prdQV))
                                     @foreach ($prdQV as $p)
-                                        {!! $p->description !!}
+                                        <div class="clamp-text">
+                                            {!! $p->description !!}
+                                        </div>
                                     @endforeach
                                 @endif
                             </div>

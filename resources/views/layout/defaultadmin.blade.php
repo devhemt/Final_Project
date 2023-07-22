@@ -10,8 +10,11 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+{{--  <link href="assets/img/favicon.png" rel="icon">--}}
+{{--  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">--}}
+    <link rel="apple-touch-icon" sizes="180x180" href="{{asset('assets/img/fav-icons/admin-android-chrome-180x180.png')}}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{asset('assets/img/fav-icons/admin-android-chrome-32x32.png')}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets/img/fav-icons/admin-android-chrome-16x16.png')}}">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
 

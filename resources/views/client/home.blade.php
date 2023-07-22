@@ -202,7 +202,7 @@
                   <span aria-hidden="true">&times;</span>
                   </button>
                   <h3>Newsletter <span>Subscribe</span></h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+                  <p>Let us show you the lastest! Sign up for emails to get the scoop on new arrrivals, free delivery, promotions and more.</p>
                   <div class="popup-subscribe">
                       <div class="subscribe-wrapper">
                           <input placeholder="Enter Keyword" type="text">
@@ -211,7 +211,8 @@
                   </div>
 
                   <input type="checkbox" name="vehicle" value="Bike">
-                  <span>Don't show this popup again</span>
+                  <span >Don't show this popup again</span>
+
               </div>
           </div>
       </div>

@@ -6,7 +6,7 @@
                 <h3>Are you sure about cancel this order</h3>
                 <input wire:click="yes" type="button" value="Yes" class="btn danger">
                 <input wire:click="no" type="button" value="No" class="btn no">
-                <p for="remember">Please consider your optios.</p>
+                <p for="remember">Please consider your options.</p>
             </form>
 
         </div>

@@ -91,7 +91,7 @@
 }
 
 .add-area img{
-    height: 525px;
+    /*height: 525px;*/
     object-fit: cover;
 }
 
@@ -6894,4 +6894,10 @@ border-bottom-right-radius: 16px;
     margin-right: 0.5rem;
 }
 
-
+/* CSS quickview ... */
+.clamp-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}

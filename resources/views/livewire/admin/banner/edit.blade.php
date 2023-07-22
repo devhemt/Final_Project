@@ -17,13 +17,13 @@
             <div class="form-group">
                 <label>Banner</label>
                 <select wire:model="banner_id" name="banner" class="form-control">
-                    <option value="1">-- baner 1 --</option>
-                    <option value="2">-- baner 2 --</option>
-                    <option value="3">-- baner 3 --</option>
-                    <option value="4">-- baner 4 --</option>
-                    <option value="5">-- baner 5 --</option>
-                    <option value="6">-- baner 6 --</option>
-                    <option value="7">-- baner 7 --</option>
+                    <option value="1">-- banner 1 --</option>
+                    <option value="2">-- banner 2 --</option>
+                    <option value="3">-- banner 3 --</option>
+                    <option value="4">-- banner 4 --</option>
+                    <option value="5">-- banner 5 --</option>
+                    <option value="6">-- banner 6 --</option>
+                    <option value="7">-- banner 7 --</option>
                 </select>
                 @if ($errors->has('banner'))
                     <p class="text-danger">

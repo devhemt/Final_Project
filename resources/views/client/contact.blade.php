@@ -44,12 +44,12 @@
 									<div class="col-xl-6">
 										<input type="text" placeholder="Last Name*">
 									</div>
-									<div class="col-xl-6">
+									<div class="col-xl-12">
 										<input type="text" placeholder="Email*">
 									</div>
-									<div class="col-xl-6">
-										<input type="text" placeholder="Website">
-									</div>
+{{--									<div class="col-xl-6">--}}
+{{--										<input type="text" placeholder="Website">--}}
+{{--									</div>--}}
 									<div class="col-xl-12">
 										<textarea name="message" placeholder="Message"></textarea>
 									</div>

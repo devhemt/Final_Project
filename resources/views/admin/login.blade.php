@@ -5,13 +5,16 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Pages / Login - NiceAdmin Bootstrap Template</title>
+    <title>Login - Elegant Admin</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+{{--    <link href="assets/img/favicon.png" rel="icon">--}}
+{{--    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">--}}
+    <link rel="apple-touch-icon" sizes="180x180" href="{{asset('assets/img/fav-icons/admin-android-chrome-180x180.png')}}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{asset('assets/img/fav-icons/admin-android-chrome-32x32.png')}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets/img/fav-icons/admin-android-chrome-16x16.png')}}">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -34,17 +37,17 @@
 
 <body>
 
-<main>
+<main style="background-image: url('{{ asset('assetsAdmin/img/bg admin login.png') }}'); background-size: cover;">
     <div class="container">
 
         <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
-                        <div class="card mb-3">
+                        <div class="card mb-3" style="background: rgba(0,0,0,.2); backdrop-filter: blur(10px);">
                             <div class="card-body">
                                 <div class="pt-4 pb-2">
-                                    <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
+                                    <h5 class="card-title text-center pb-0 fs-4" style="color:black;">Login to Your Account</h5>
                                     <p class="text-center small">Enter your username & password to login</p>
                                 </div>
 
@@ -77,7 +80,7 @@
 {{--                                        </div>--}}
 {{--                                    </div>--}}
                                     <div class="col-12">
-                                        <button class="btn btn-primary w-100" type="submit">Login</button>
+                                        <button class="btn btn-primary w-100" type="submit" style="background-color:orange; border:black">Login</button>
                                     </div>
                                 </form>
 
