@@ -120,18 +120,7 @@
                         <div class="top-cart">
                             <a href="javascript:void(0)"><i class="fa fa-shopping-cart" aria-hidden="true"></i> (2)</a>
                             <div class="cart-drop">
-{{--                                <div class="single-cart">--}}
-{{--                                    <div class="cart-img">--}}
-{{--                                        <img alt="" src="media/images/product/car1.jpg">--}}
-{{--                                    </div>--}}
-{{--                                    <div class="cart-title">--}}
-{{--                                        <p><a href="">Aliquam Consequat</a></p>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="cart-price">--}}
-{{--                                        <p>1 x $500</p>--}}
-{{--                                    </div>--}}
-{{--                                    <a href="#"><i class="fa fa-times"></i></a>--}}
-{{--                                </div>--}}
+
                                 <div class="cart-bottom">
                                     <div class="cart-sub-total">
                                         <p>Sub-Total <span>$700</span></p>
@@ -319,14 +308,6 @@
                             </div>
                         </div>
 
-                        <!-- <div class="footer-widget">
-					            <h3>News & Updates</h3>
-					            <p>Sign up to get the latest on sales, new releases and more …</p>
-					            <div class="footer-subscribe-wrapper">
-						            <input placeholder="Enter Keyword" type="text">
-						            <button type="submit">SUBSCRIBE</button>
-					            </div>
-				        </div> -->
 
                     </div>
                     <!-- /.col-xl-3 -->
