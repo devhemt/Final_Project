@@ -7,6 +7,9 @@
             <li class="nav-item">
                 <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">CHANGE PASSWORD</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#infor" role="tab" aria-controls="infor" aria-selected="false">CHANGE INFORMATION</a>
+            </li>
         </ul>
         <div class="tab-content" id="myTabContent">
             <div wire:ignore.self class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -104,6 +107,43 @@
                                         </div>
                                     </div>
                                     <button style="background: #d19e66;border: 1px solid #d19e66;" wire:click="changePasswordSave" type="button" class="btn btn-primary">Change Password</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div wire:ignore.self class="tab-pane fade" id="infor" role="tabpanel" aria-labelledby="infor-tab">
+                <div class="prod-bottom-tab-sin">
+                    <div class="product-review">
+                        <div class="add-your-review">
+                            <div class="raing-form">
+                                <form action="#">
+                                    <div class="row mb-3">
+                                        <div class="col-md-12 col-lg-12">
+                                            @error('success_infor') <span class="text-success">{{ $message }}</span> @enderror
+                                        </div>
+                                        <label for="new_name" class="col-md-4 col-lg-3 col-form-label">New Name</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input required wire:model="new_name" type="text" class="form-control" id="new_name" placeholder="{{$user->name}}">
+                                            @error('new_name') <span class="text-danger">{{ $message }}</span> @enderror
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="new_email" class="col-md-4 col-lg-3 col-form-label">New Email</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input required wire:model="new_email" type="email" class="form-control" id="new_email" placeholder="{{$user->email}}">
+                                            @error('new_email') <span class="text-danger">{{ $message }}</span> @enderror
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="new_phone" class="col-md-4 col-lg-3 col-form-label">New Phone</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input required wire:model="new_phone" type="tel" class="form-control" id="new_phone" placeholder="{{$user->phone}}">
+                                            @error('new_phone') <span class="text-danger">{{ $message }}</span> @enderror
+                                        </div>
+                                    </div>
+                                    <button style="background: #d19e66;border: 1px solid #d19e66;" wire:click="changeInfor" type="button" class="btn btn-primary">Change Informations</button>
                                 </form>
                             </div>
                         </div>

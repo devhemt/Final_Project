@@ -78,8 +78,6 @@ class Quickview extends Component
                             ->where('property_id',$property_id)
                             ->update(['amount' => $amount+1]);
                     }
-
-
                 }else{
                     if ($this->check_amount == 'Stock'){
                         $userId = Session::getId();

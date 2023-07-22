@@ -46,7 +46,7 @@
                 <p>Sub-Total <span>${{$subtotal}}</span></p>
             </div>
             <div class="cart-sub-total">
-                <p>Discount<span>$7.00</span></p>
+                <p>Discount<span>${{$discount}}</span></p>
             </div>
             <div class="cart-sub-total">
                 <p>Total <span>${{$total}}</span></p>

@@ -11,8 +11,9 @@ use App\Models\Customer;
 class Address extends Component
 {
     public $current_password, $new_password, $new_password_confirmation;
-    public $address, $addressArr = [];
+    public $address,$user, $addressArr = [];
     public $city,$district,$ward,$detailed_address;
+    public $new_name,$new_email,$new_phone;
 
     protected $rules = [
         "city" => "required|numeric",
@@ -72,11 +73,42 @@ class Address extends Component
         return [$city,$district,$warn];
     }
 
+    public function changeInfor(){
+        if ($this->new_name != null && $this->new_name != ''){
+            $this->validate([
+                'new_name' => 'max:200'
+            ]);
+        }
+        if ($this->new_email != null && $this->new_email != ''){
+            $this->validate([
+                'new_email' => 'max:200|email|unique:customer,email'
+            ]);
+        }
+        if ($this->new_phone != null && $this->new_phone != ''){
+            $this->validate([
+                'new_phone' => 'numeric|unique:customer,phone|digits_between:1,10'
+            ]);
+        }
+        $auth = Auth::guard('customer')->user();
+        $user =  Customer::find($auth->id);
+        if ($this->new_name != null && $this->new_name != ''){
+            $user->name =  $this->new_name;
+        }
+        if ($this->new_email != null && $this->new_email != ''){
+            $user->email =  $this->new_email;
+        }
+        if ($this->new_phone != null && $this->new_phone != ''){
+            $user->phone =  $this->new_phone;
+        }
+        $user->save();
+        $this->addError('success_infor', 'Password Changed Successfully.');
+    }
+
     public function changePasswordSave()
     {
         $this->validate([
             'current_password' => 'required|string',
-            'new_password' => 'required|min:8|string'
+            'new_password' => 'required|min:8|string|max:200'
         ]);
 
         $auth = Auth::guard('customer')->user();
@@ -105,6 +137,7 @@ class Address extends Component
     public function render()
     {
         $auth = Auth::guard('customer')->user();
+        $this->user =  Customer::find($auth->id);
         $this->address = \App\Models\Address::where('customer_id',$auth->id)->get();
         foreach ($this->address as $a){
             $this->addressArr[$a->id] = $this->getAddress($a->province,$a->district,$a->wards);

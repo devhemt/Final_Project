@@ -56,7 +56,7 @@ class CustomerController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:customer,email',
-            'phone' => 'required|numeric|unique:customer,phone|digits_between:1,20',
+            'phone' => 'required|numeric|unique:customer,phone|digits_between:1,10',
             'password' => 'required|min:6',
             "city" => "required|numeric",
             "district" => "required|numeric",
@@ -101,7 +101,7 @@ class CustomerController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email',
-            'phone' => 'required|numeric|digits_between:1,20',
+            'phone' => 'required|numeric|digits_between:1,10',
             "city" => "required|numeric",
             "district" => "required|numeric",
             "ward" => "required|numeric",

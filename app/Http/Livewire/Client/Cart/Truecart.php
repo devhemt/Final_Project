@@ -510,7 +510,7 @@ class Truecart extends Component
                 ->where('cart_memory.customer_id',$userId)->count();
 
             foreach ($this->customer_cart as $c){
-                $this->discount += ($this->getDiscount($c->id)/100) * $c->price;
+                $this->discount += ($this->getDiscount($c->id)/100) * $c->price * $c->amount;
                 if ($c->check_buy == 1){
                     $this->total += $c->amount*$c->price;
                 }
@@ -547,7 +547,7 @@ class Truecart extends Component
             foreach ($this->guest_cart as $c){
                 $prd_id = Properties::where('id',$c['id'])->first()->prd_id;
                 $prd_price = Product::where('id', $prd_id)->first()->price;
-                $this->discount += ($this->getDiscount($prd_id)/100) * $prd_price;
+                $this->discount += ($this->getDiscount($prd_id)/100) * $prd_price * $c['quantity'];
                 $check_amount = Properties::where('prd_id',$prd_id)
                     ->where('size',$c['attributes']['size'])
                     ->where('color',$c['attributes']['color'])

@@ -163,8 +163,6 @@ class Product extends Component
                             ->where('property_id',$property_id)
                             ->update(['amount' => $amount+1]);
                     }
-
-
                 }else{
                     if ($this->checked == 'Stock'){
                         $userId = Session::getId();
@@ -184,6 +182,7 @@ class Product extends Component
                         }
                     }
                 }
+                $this->emit('success');
             }
         }else{
             $this->check_property='Please select properties';
