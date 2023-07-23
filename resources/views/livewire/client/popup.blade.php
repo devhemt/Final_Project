@@ -2,9 +2,9 @@
     <!--=========================-->
     <!--=   Popup 1: Báo lỗi có 2 button =-->
     <!--=========================-->
-{{--    <div class="text-center">--}}
-{{--        <a href="#myModal1" class="trigger-btn" data-toggle="modal">Click to Open Confirm Modal</a>--}}
-{{--    </div>--}}
+    <div class="text-center">
+        <a href="#myModal1" class="trigger-btn" data-toggle="modal">Click to Open Confirm Modal</a>
+    </div>
 
     <!-- Modal HTML -->
 {{--    <div id="myModal1" class="modal fade show" style="display: block; padding-right: 17px;">--}}

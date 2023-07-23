@@ -1,15 +1,27 @@
 <section class="account-area">
     <div class="container-fluid custom-container">
-        <div class="visitor-form-container" style="top:{{$top}};">
 
-            <form action="">
-                <h3>Are you sure about cancel this order</h3>
-                <input wire:click="yes" type="button" value="Yes" class="btn danger">
-                <input wire:click="no" type="button" value="No" class="btn no">
-                <p for="remember">Please consider your options.</p>
-            </form>
-
+        <div wire:ignore id="myModal1" class="modal fade">
+            <div class="modal-dialog modal-confirm">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <div class="icon-box d-flex justify-content-center align-items-center" style="color: #f15e5e;">
+                            <i class="material-icons" >&#xE5CD;</i>
+                        </div>
+                        <h4 class="modal-title text-center" style="margin-right: 24px;">Are you sure?</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <p>Do you really want to cancel this order? <br> This process cannot be undone.</p>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-between">
+                        <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                        <button wire:click="yes" type="button" class="btn btn-danger" data-dismiss="modal">Delete</button>
+                    </div>
+                </div>
+            </div>
         </div>
+
         <div class="row">
             <div class="col-xl-3">
                 <div class="account-details">
@@ -74,7 +86,7 @@
                             </td>
                             <td style="text-align: center;">
                                 <a href="{{url('/order/'.$p->id)}}"><i class="fas fa-eye "></i></a>
-                                <a href="#" id="deleteprd"><i wire:click="block('{{$p->id}}')" class="fas fa-trash " title="cancel order"></i></a>
+                                <a href="#myModal1" data-toggle="modal" id="deleteprd"><i wire:click="block('{{$p->id}}')" class="fas fa-trash " title="cancel order"></i></a>
                             </td>
                         </tr>
                         @endforeach

@@ -16,7 +16,6 @@ class Customer extends Component
 
     public function block($orderid){
         $this->orderid = $orderid;
-        $this->top = 0;
     }
     public function yes(){
         $items = Invoice_items::where('invoice_id', $this->orderid)->get();
@@ -31,24 +30,6 @@ class Customer extends Component
             ->where('invoice_id','=', $this->orderid)
             ->update(['status' => 0]);
         $this->top = null;
-    }
-    public function no(){
-        $this->top = null;
-    }
-
-    public function block1($orderid){
-        $this->orderid = $orderid;
-        $this->top1 = 0;
-    }
-
-    public function yes1(){
-        $affected = DB::table('status')
-            ->where('invoice_id','=', $this->orderid)
-            ->update(['status' => 1]);
-        $this->top1 = null;
-    }
-    public function no1(){
-        $this->top1 = null;
     }
 
     public function render()
