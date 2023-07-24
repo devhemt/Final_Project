@@ -254,7 +254,7 @@
                                     <img src="{{asset('images/logowhite.png')}}" alt="">
                                 </a>
                             </div>
-                            <p>The comma brand's official online store in Europe. Sit back and be inspired by our current collections. You can easily order your favourite pieces online at home or on the go</p>
+                            <p>The comma brand's official online store in Vietnam. Sit back and be inspired by our current collections. You can easily order your favourite pieces online at home or on the go</p>
                             <div class="social">
                                 <ul>
                                     <li><a href="https://www.facebook.com/elegantfashionhn/"><i class="fab fa-facebook-f"></i></a></li>
@@ -271,9 +271,9 @@
                             <div class="footer-menu">
                                 <ul>
                                     <li><a href="#">About Us</a></li>
-                                    <li><a href="{{url('shop/all')}}">Browse Products</a></li>
-                                    <li><a href="{{url('blog')}}">Read Our Blog</a></li>
                                     <li><a href="{{url('contact')}}">Contact Us</a></li>
+                                    <li><p>+84638978999</p></li>
+                                    <li><p>No.310 Hoang Mai District, Hanoi, Vietnam.</p></li>
                                 </ul>
                             </div>
                         </div>
@@ -281,12 +281,14 @@
                     <!-- /.col-xl-3 -->
                     <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3">
                         <div class="footer-widget">
-                            <h3>CATEGORIES</h3>
+                            <h3>OUR PRODUCTS</h3>
                             <div class="footer-menu">
                                 <ul>
                                     <li><a href="{{url('shop/all')}}">Dress</a></li>
                                     <li><a href="{{url('shop/all')}}">Shirt</a></li>
                                     <li><a href="{{url('shop/all')}}">Skirt</a></li>
+                                    <li><a href="{{url('shop/all')}}">Jeans</a></li>
+                                    <li><a href="{{url('shop/all')}}">Trousers</a></li>
                                 </ul>
                             </div>
                         </div>

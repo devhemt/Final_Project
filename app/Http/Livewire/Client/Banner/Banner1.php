@@ -7,6 +7,7 @@ use Livewire\Component;
 
 class Banner1 extends Component
 {
+//    small banner
     public $banner1,$banner2,$banner3;
 
     public function render()

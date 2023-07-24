@@ -7,6 +7,7 @@ use App\Models\Banner;
 
 class Banner2 extends Component
 {
+//    banner của slider
     public $banner1,$banner2,$banner3;
     public function render()
     {
