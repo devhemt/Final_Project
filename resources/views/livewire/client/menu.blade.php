@@ -2,7 +2,7 @@
     <li><a href="{{ url('/') }}" class="@if($currentUrl == '') active @endif">home</a>
     </li>
 
-    <li class="has-child"><a href="{{ url('/shop/all') }}" class="@if($shop) active @endif">Categories</a>
+    <li class="has-child"><a href="#" class="@if($shop) active @endif">Categories</a>
         <ul class="sub-menu">
             @foreach($categories as $category)
             <li><a href="{{ url('/shop/'.$category->category_name) }}">{{$category->category_name}}</a></li>

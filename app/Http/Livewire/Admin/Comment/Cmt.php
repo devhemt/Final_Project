@@ -25,6 +25,16 @@ class Cmt extends Component
                     ->orderByDesc('comments.id')
                     ->paginate(10),
             ]);
+        }else{
+            return view('livewire.admin.comment.cmt',[
+                'comments'=> DB::table('comments')
+                    ->join('product', 'product.id','=', 'comments.prd_id')
+                    ->join('customer', 'comments.customer_id','=', 'customer.id')
+                    ->select('comments.comment','product.product_code','product.demo_image','customer.phone','customer.name','customer.email')
+                    ->where('comments.status','=',1)
+                    ->orderByDesc('comments.id')
+                    ->paginate(10),
+            ]);
         }
     }
 }

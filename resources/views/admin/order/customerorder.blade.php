@@ -5,7 +5,7 @@
             <h1>Order manager</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{url('admin')}}">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="{{url('admin')}}">Home</a></li>
                     <li class="breadcrumb-item">Order</li>
                     <li class="breadcrumb-item active">Customer order</li>
                 </ol>

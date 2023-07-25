@@ -5,7 +5,7 @@
             <h1>Dashboard manager</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{url('admin')}}">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="{{url('admin')}}">Home</a></li>
                     <li class="breadcrumb-item">Dashboard Element</li>
                     <li class="breadcrumb-item active">Top city</li>
                 </ol>

@@ -19,7 +19,7 @@ class Menu extends Component
         if(isset($parsedUrl['path'])){
             $this->currentUrl = $parsedUrl['path'];
         }
-        if ($this->currentUrl == '/shop/all' || Str::contains($this->currentUrl, '/shop/')){
+        if (Str::contains($this->currentUrl, '/shop/')){
             $this->shop = true;
         }
 
