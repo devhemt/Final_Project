@@ -32,6 +32,7 @@ class AdminAccountController extends Controller
             'email' => 'required|email|unique:admin_account,email',
             'phone' => 'required|unique:admin_account,phone',
             'password' => 'required|min:6',
+            'role' => 'required|numeric'
         ]);
 
         $data = $request->all();
@@ -41,6 +42,7 @@ class AdminAccountController extends Controller
             'email' => $data['email'],
             'phone' => $data['phone'],
             'password' => Hash::make($data['password']),
+            'role' => $data['role'],
         ]);
 
         return redirect('admin/profile/showall');
