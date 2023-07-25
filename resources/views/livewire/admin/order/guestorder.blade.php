@@ -1,5 +1,5 @@
 <div class="card-body">
-    <h5 class="card-title">Table of order</h5>
+    <h5 class="card-title">Table of order ({{$count}})</h5>
     <div class="row mb-3">
         <label class="col-sm-1 col-form-label">Select:</label>
         <div class="col-sm-3">

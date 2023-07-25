@@ -14,6 +14,7 @@ class Offorder extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
+    public $count;
 
     public function cancle($id){
         $items = Invoice_items::where('invoice_id', $id)->get();
@@ -51,6 +52,11 @@ class Offorder extends Component
 
     public function render()
     {
+        $this->count = DB::table('invoice')
+            ->join('status', 'invoice.id','=', 'status.invoice_id')
+            ->where('status.status', 8)
+            ->select('invoice.*')
+            ->count();
         return view('livewire.admin.order.offorder',[
             'order'=> DB::table('invoice')
                 ->join('status', 'invoice.id','=', 'status.invoice_id')

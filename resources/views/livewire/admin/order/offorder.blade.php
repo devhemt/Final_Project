@@ -1,7 +1,7 @@
 <div class="card-body">
     <div class="row">
         <div class="col-6">
-            <h5 class="card-title">Table of order</h5>
+            <h5 class="card-title">Table of order ({{$count}})</h5>
         </div>
         <div class="col-6">
             <a style="float: right; margin-top: 10px;">
