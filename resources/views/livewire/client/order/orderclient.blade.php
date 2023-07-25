@@ -18,7 +18,7 @@
             <!-- /.col-xl-3 -->
             <div class="col-xl-9">
                 <div class="account-table">
-                    <h6>Ordered order</h6>
+                    <h6>Order details</h6>
                     <table class="tables">
                         <thead>
                         <tr>
