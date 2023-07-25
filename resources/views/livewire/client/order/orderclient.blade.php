@@ -24,7 +24,7 @@
                         <tr>
                             <th>Id</th>
                             <th>Name</th>
-                            <th>Demo image</th>
+                            <th>Image</th>
                             <th>Price</th>
                             <th>Size</th>
                             <th>Color</th>
@@ -36,13 +36,13 @@
                         @foreach($prd as $p)
                             <tr>
                                 <td>
-                                    <a>#{{$p->id}}</a>
+                                    <a>{{$p->product_code}}</a>
                                 </td>
                                 <td>
                                     {{$p->name}}
                                 </td>
                                 <td>
-                                    {{$p->demo_image}}
+                                    <img style="max-width: 100px;max-height: 200px;object-fit: cover;" src="{{ asset('images/'.$p->demo_image) }}" alt="">
                                 </td>
                                 <td>
                                     {{$p->price}}
@@ -50,8 +50,8 @@
                                 <td>
                                     {{$p->size}}
                                 </td>
-                                <td>
-                                    {{$p->color}}
+                                <td style="color: {{$p->color}}">
+                                    {{$p->color_name}}
                                 </td>
                                 <td>
                                     {{$p->amount}}

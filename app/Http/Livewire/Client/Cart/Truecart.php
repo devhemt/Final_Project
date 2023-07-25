@@ -214,7 +214,14 @@ class Truecart extends Component
                         ->where('check_buy',1)->delete();
                     $this->emit('loadsmallcart');
                     $email = Auth::guard("customer")->user()->email;
+                    $prds = DB::table('invoice_items')
+                        ->join('properties', 'properties.id','=', 'invoice_items.property_id')
+                        ->join('product', 'product.id','=', 'properties.prd_id')
+                        ->where('invoice_id', $invoice->id)
+                        ->select('product.*','invoice_items.amount','invoice_items.size','invoice_items.color','properties.color_name','properties.batch')
+                        ->get();
                     event(new SendMailEvent([
+                        "prds" => $prds,
                         "email" => $email,
                         "order" => "Bạn đã đặt hàng thành công",
                         "notify" => "This is an email notification of your order status in real time. You can track to know the status of your order. Thank you for choosing our products!"
@@ -350,6 +357,7 @@ class Truecart extends Component
                         $this->emit('loadsmallcart');
                         $email = Guest::where('session_id',$userId)->first()->email;
                         event(new SendMailEvent([
+                            "prds" => $prds,
                             "email" => $email,
                             "order" => "Bạn đã đặt hàng thành công",
                             "notify" => "This is an email notification of your order status in real time. You can track to know the status of your order. Thank you for choosing our products!"

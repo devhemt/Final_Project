@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -278,9 +278,14 @@
         }
 
 
-        @media screen and (max-width: 500px) {
 
 
+        /* Định dạng tiêu đề bảng */
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            padding: 8px;
+            text-align: left;
         }
 
 
@@ -323,59 +328,97 @@
                 </td>
             </tr><!-- end tr -->
 
-{{--            //Phần bảng thong tin chi tiết đơn hàng--}}
-
-{{--        //Footer--}}
-        <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin: auto;">
-            <tr>
-                <td valign="middle" class="bg_light footer email-section">
-                    <table>
+            @isset($data['prds'])
+                <div style="background-color: #f1f1f1;">
+                    <table style="border-collapse: collapse;width: 100%;border: 1px solid #ccc;">
+                        <thead>
                         <tr>
-                            <td valign="top" width="33.333%" style="padding-top: 20px;">
-                                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                                    <tr>
-                                        <td style="text-align: left; padding-right: 10px;">
-                                            <h3 class="heading">About Elegant Store</h3>
-                                            <p>The comma brand's official online store in Vietnam. Sit back and be inspired by our current collections. You can easily order your favourite pieces online at home or on the go</p>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </td>
-                            <td valign="top" width="33.333%" style="padding-top: 20px;">
-                                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                                    <tr>
-                                        <td style="text-align: left; padding-left: 5px; padding-right: 5px;">
-                                            <h3 class="heading">Contact Info</h3>
-                                            <ul>
-                                                <li><span class="text">N0.310 Hoang Mai District, Hanoi, Vietnam.</span></li>
-                                                <li><span class="text">+84638978999</span></li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </td>
-                            <td valign="top" width="33.333%" style="padding-top: 20px;">
-                                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                                    <tr>
-                                        <td style="text-align: left; padding-left: 10px;">
-                                            <h3 class="heading">Useful Links</h3>
-                                            <ul>
-                                                <li><a href="#">Homepage</a></li>
-                                                <li><a href="#">Our Products</a></li>
-                                                <li><a href="#">Contact</a></li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </td>
+                            <th style="border: 1px solid #ccc;">Id</th>
+                            <th style="border: 1px solid #ccc;">Name</th>
+                            <th style="border: 1px solid #ccc;">Price</th>
+                            <th style="border: 1px solid #ccc;">Size</th>
+                            <th style="border: 1px solid #ccc;">Color</th>
+                            <th style="border: 1px solid #ccc;">Amount</th>
                         </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($data['prds'] as $p)
+                            <tr>
+                                <td style="border: 1px solid #ccc;padding: 8px;">
+                                    <a>{{$p->product_code}}</a>
+                                </td>
+                                <td style="border: 1px solid #ccc;padding: 8px;">
+                                    {{$p->name}}
+                                </td>
+                                <td style="border: 1px solid #ccc;padding: 8px;">
+                                    {{$p->price}}
+                                </td>
+                                <td style="border: 1px solid #ccc;padding: 8px;">
+                                    {{$p->size}}
+                                </td>
+                                <td style="border: 1px solid #ccc;padding: 8px;">
+                                    {{$p->color_name}}
+                                </td>
+                                <td style="border: 1px solid #ccc;">
+                                    {{$p->amount}}
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
                     </table>
-                </td>
-            </tr><!-- end: tr -->
-        </table>
+                </div>
+            @endisset
+
+            {{--        //Footer--}}
+            <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin: auto;">
+                <tr>
+                    <td valign="middle" class="bg_light footer email-section">
+                        <table>
+                            <tr>
+                                <td valign="top" width="33.333%" style="padding-top: 20px;">
+                                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                        <tr>
+                                            <td style="text-align: left; padding-right: 10px;">
+                                                <h3 class="heading">About Elegant Store</h3>
+                                                <p>The comma brand's official online store in Vietnam. Sit back and be inspired by our current collections. You can easily order your favourite pieces online at home or on the go</p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td valign="top" width="33.333%" style="padding-top: 20px;">
+                                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                        <tr>
+                                            <td style="text-align: left; padding-left: 5px; padding-right: 5px;">
+                                                <h3 class="heading">Contact Info</h3>
+                                                <ul>
+                                                    <li><span class="text">N0.310 Hoang Mai District, Hanoi, Vietnam.</span></li>
+                                                    <li><span class="text">+84638978999</span></li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td valign="top" width="33.333%" style="padding-top: 20px;">
+                                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                        <tr>
+                                            <td style="text-align: left; padding-left: 10px;">
+                                                <h3 class="heading">Useful Links</h3>
+                                                <ul>
+                                                    <li><a href="#">Homepage</a></li>
+                                                    <li><a href="#">Our Products</a></li>
+                                                    <li><a href="#">Contact</a></li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr><!-- end: tr -->
+            </table>
 
     </div>
 </center>
 </body>
 </html>
-

@@ -52,6 +52,16 @@
                                         <span class="text-danger">{{ $errors->first('password') }}</span>
                                     @endif
                                 </div>
+                                <div class="col-12">
+                                    <label for="inputState" class="form-label">Role</label>
+                                    <select name="role" id="inputState" class="form-select">
+                                        <option value="1" selected>Director</option>
+                                        <option value="2">Staff</option>
+                                    </select>
+                                    @if ($errors->has('role'))
+                                        <span class="text-danger">{{ $errors->first('role') }}</span>
+                                    @endif
+                                </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                     <button type="reset" class="btn btn-secondary">Reset</button>

@@ -19,7 +19,9 @@
             <th scope="col">Phone</th>
             <th scope="col">Email</th>
             <th scope="col">Image</th>
+            @if($flag)
             <th scope="col">Actions</th>
+            @endif
         </tr>
         </thead>
         <tbody>
@@ -30,11 +32,13 @@
                 <td>{{$p->phone}}</td>
                 <td>{{$p->email}}</td>
                 <td>
-                    {{$p->image}}
+                    <img style="max-height: 200px;max-width: 100px;object-fit: cover;" src="{{asset('imagesadmin/images/'.$p->image)}}" alt="Profile">
                 </td>
+                @if($flag)
                 <td style="text-align: center;">
                     <a href="#" wire:click="block('{{$p->id}}')" id="deleteprd"><i class="fas fa-trash "></i></a>
                 </td>
+                @endif
             </tr>
         @endforeach
         </tbody>

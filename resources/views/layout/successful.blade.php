@@ -13,13 +13,10 @@
                                 <div class="row g-0">
                                     <div class="col-lg-12 bg-grey">
                                         <div class="success">
-                                            <br>
+                                            <h2>Thank for your order !</h2>
                                             <img src="{{asset('images/success.png')}}">
-                                            <br>
-                                            <a href="{{url('shop')}}" class="btn-two">BUY MORE</a>
-                                            <br>
-                                            <h3><a href="{{url('login')}}">View order if you have an account</a></h3>
-                                            <br>
+                                            <a href="{{url('shop/all')}}">by more</a>
+                                            <a href="{{url('login')}}">view order if you have a account</a>
                                         </div>
                                     </div>
                                 </div>

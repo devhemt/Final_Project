@@ -27,6 +27,7 @@ class HomeController extends Controller
         }else{
             $flag = false;
         }
+
         return view('client.home',[
             'flag' => $flag,
         ]);
