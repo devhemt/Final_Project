@@ -184,7 +184,14 @@ class InvoiceController extends Controller
                         $deleted = Cart_memory::where('customer_id',$userId)
                             ->where('check_buy',1)->delete();
                         $email = Auth::guard("customer")->user()->email;
+                        $prds = DB::table('invoice_items')
+                            ->join('properties', 'properties.id','=', 'invoice_items.property_id')
+                            ->join('product', 'product.id','=', 'properties.prd_id')
+                            ->where('invoice_id', $invoice->id)
+                            ->select('product.*','invoice_items.amount','invoice_items.size','invoice_items.color','properties.color_name','properties.batch')
+                            ->get();
                         event(new SendMailEvent([
+                            "prds" => $prds,
                             "email" => $email,
                             "order" => "Bạn đã đặt hàng thành công",
                             "notify" => "This is an email notification of your order status in real time. You can track to know the status of your order. Thank you for choosing our products!"
@@ -327,7 +334,14 @@ class InvoiceController extends Controller
                             }
                             Cart::clear();
                             $email = Guest::where('session_id',$userId)->first()->email;
+                            $prds = DB::table('invoice_items')
+                                ->join('properties', 'properties.id','=', 'invoice_items.property_id')
+                                ->join('product', 'product.id','=', 'properties.prd_id')
+                                ->where('invoice_id', $invoice->id)
+                                ->select('product.*','invoice_items.amount','invoice_items.size','invoice_items.color','properties.color_name','properties.batch')
+                                ->get();
                             event(new SendMailEvent([
+                                "prds" => $prds,
                                 "email" => $email,
                                 "order" => "Bạn đã đặt hàng thành công",
                                 "notify" => "This is an email notification of your order status in real time. You can track to know the status of your order. Thank you for choosing our products!"

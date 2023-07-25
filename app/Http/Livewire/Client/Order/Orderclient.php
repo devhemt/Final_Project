@@ -50,7 +50,7 @@ class Orderclient extends Component
             ->join('properties', 'properties.id','=', 'invoice_items.property_id')
             ->join('product', 'product.id','=', 'properties.prd_id')
             ->where('invoice_id', $this->orderid)
-            ->select('product.*','invoice_items.amount','invoice_items.size','invoice_items.color','properties.batch')
+            ->select('product.*','invoice_items.amount','invoice_items.size','invoice_items.color','properties.color_name','properties.batch')
             ->get();
         return view('livewire.client.order.orderclient');
     }

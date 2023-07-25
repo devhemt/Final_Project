@@ -15,7 +15,7 @@
                                         <div class="success">
                                             <h2>Thank for your order !</h2>
                                             <img src="{{asset('images/success.png')}}">
-                                            <a href="{{url('shop')}}">by more</a>
+                                            <a href="{{url('shop/all')}}">by more</a>
                                             <a href="{{url('login')}}">view order if you have a account</a>
                                         </div>
                                     </div>
