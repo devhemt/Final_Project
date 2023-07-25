@@ -4,12 +4,22 @@
 
         <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-bell"></i>
-            <span class="badge bg-primary badge-number">1</span>
+            <span class="badge bg-primary badge-number">
+                @if($tb != 0)
+                    1
+                @else
+                    0
+                @endif
+            </span>
         </a><!-- End Notification Icon -->
 
         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
             <li class="dropdown-header">
+                @if($tb != 0)
                 You have 1 new notifications
+                @else
+                    You have 0 new notifications
+                @endif
             </li>
             <li>
                 <hr class="dropdown-divider">
@@ -17,10 +27,13 @@
 
             <li class="notification-item">
                 <i class="bi bi-exclamation-circle text-warning"></i>
-                <div>
-                    <h4>Khách mua hàng</h4>
-                    <p>Khách customer1 đã mua skirt2</p>
-                    <p>30 min. ago</p>
+                <div wire:poll.2000ms.visible="getTb">
+                    <h4>Có {{$tb}} đơn hàng mới</h4>
+                    @if($tb != 0)
+                        <p>{{$time}}</p>
+                    @else
+                        <p>You don't have new notifications</p>
+                    @endif
                 </div>
             </li>
 

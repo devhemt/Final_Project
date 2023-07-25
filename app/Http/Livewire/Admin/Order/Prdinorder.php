@@ -47,6 +47,14 @@ class Prdinorder extends Component
             $affected = Status::where('invoice_id', $this->idinvoice)
                 ->update(['status' => ($invoice_status->status+1)]);
         }
+        if ($invoice_status->status == 0){
+            if ($invoice_status->customer_id != null){
+                $this->redirect('/admin/customer_order');
+            }
+            if ($invoice_status->customer_id != null){
+                $this->redirect('/admin/guest_order');
+            }
+        }
         if ($invoice_status->status == 1){
             $this->data = [
                 "order" => "Your order was comfirmed",
@@ -88,6 +96,14 @@ class Prdinorder extends Component
         if ($invoice_status->status != 0 && $invoice_status->status != 1 && $invoice_status->status != 6 && $invoice_status->status != 7){
             $affected = Status::where('invoice_id', $this->idinvoice)
                 ->update(['status' => ($invoice_status->status-1)]);
+        }
+        if ($invoice_status->status == 0){
+            if ($invoice_status->customer_id != null){
+                $this->redirect('/admin/customer_order');
+            }
+            if ($invoice_status->customer_id != null){
+                $this->redirect('/admin/guest_order');
+            }
         }
         if ($invoice_status->status == 5){
             $this->data = [
