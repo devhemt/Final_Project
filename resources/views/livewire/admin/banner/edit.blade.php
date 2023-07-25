@@ -5,7 +5,14 @@
             @csrf
             <div class="form-group">
                 <label>Banner's Url</label>
-                <input name="url" class="form-control" placeholder="{{$banner->url}}">
+                <select name="url" class="form-control">
+                    @foreach($url as $u)
+                        @if($banner->url == $u)
+                            <option selected value="{{$u}}">-- {{$u}} --</option>
+                        @endif
+                        <option value="{{$u}}">-- {{$u}} --</option>
+                    @endforeach
+                </select>
                 @if ($errors->has('url'))
                     <p class="text-danger">
                         @foreach ($errors->get('url') as $e)
@@ -51,7 +58,9 @@
                 </p>
             @endif
             <div id="view-image">
+                @isset($banner->image)
                 <img src="{{asset('images/'.$banner->image)}}" alt="Thumb" style="height: 200px; width: 400px; object-fit: cover">
+                @endisset
             </div>
         </div>
 {{--        <div class="form-group">--}}
@@ -66,8 +75,8 @@
 {{--            @endif--}}
 {{--        </div>--}}
 
-        <button name="sbm" type="submit" class="btn btn-success">Add new</button>
-        <button type="reset" class="btn btn-default">Reset</button>
+        <button name="sbm" type="submit" class="btn btn-success">Edit banner</button>
+        <button type="reset" class="btn btn-default">Reset input</button>
         </form>
     </div>
 </div>

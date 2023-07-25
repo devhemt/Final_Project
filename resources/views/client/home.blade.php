@@ -201,17 +201,13 @@
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                   </button>
-                  <h3>Newsletter <span>Subscribe</span></h3>
-                  <p>Let us show you the lastest! Sign up for emails to get the scoop on new arrrivals, free delivery, promotions and more.</p>
+                  <h3>Elegant <span>Store</span></h3>
+                  <p>Buy now to get the scoop on new arrrivals, free delivery, promotions and more.</p>
                   <div class="popup-subscribe">
                       <div class="subscribe-wrapper">
-                          <input placeholder="Enter Keyword" type="text">
-                          <button type="submit">SUBSCRIBE</button>
+                          <button type="submit"><a href="{{url('shop/all')}}">BUY NOW</a></button>
                       </div>
                   </div>
-
-                  <input type="checkbox" name="vehicle" value="Bike">
-                  <span >Don't show this popup again</span>
 
               </div>
           </div>

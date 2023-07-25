@@ -2,14 +2,36 @@
 
 namespace App\Http\Controllers\Client\Home;
 
+use App\Events\SendMailEvent;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Images;
 
 class HomeController extends Controller
 {
+    public function contact(Request $request){
+        $request->validate([
+            'first' => 'required',
+            'last' => 'required',
+            'email' => 'required|email',
+            "message" => "required",
+        ]);
+
+        event(new SendMailEvent([
+            "email" => 'ElegantFashion.Shop.Service@gmail.com',
+            "order" => $request->first.' '.$request->last.' - '.$request->email,
+            "notify" => $request->message
+        ]));
+
+        throw \Illuminate\Validation\ValidationException::withMessages([
+            'success' => ['Your message has sent'],
+        ]);
+        return redirect()->back();
+    }
+
     public function success()
     {
         return view('layout.successful');

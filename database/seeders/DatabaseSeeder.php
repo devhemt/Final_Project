@@ -33,37 +33,37 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('admin123'),
         ]);
         DB::table('banner')->insert([
-            'image' => 'banner1.1.png',
+            'image' => null,
             'content' => null,
             'url' => 'shop/all',
         ]);
         DB::table('banner')->insert([
-            'image' => 'banner1.2.jpg',
+            'image' => null,
             'content' => null,
             'url' => 'shop/all',
         ]);
         DB::table('banner')->insert([
-            'image' => 'banner1.3.png',
+            'image' => null,
             'content' => null,
             'url' => 'shop/all',
         ]);
         DB::table('banner')->insert([
-            'image' => 'banner4.jpg',
+            'image' => null,
             'content' => null,
             'url' => 'shop/all',
         ]);
         DB::table('banner')->insert([
-            'image' => 'banner2.png',
+            'image' => null,
             'content' => null,
             'url' => 'shop/all',
         ]);
         DB::table('banner')->insert([
-            'image' => 'banner3.PNG',
+            'image' => null,
             'content' => null,
             'url' => 'shop/all',
         ]);
         DB::table('banner')->insert([
-            'image' => 'banner1.png',
+            'image' => null,
             'content' => null,
             'url' => 'shop/all',
         ]);
