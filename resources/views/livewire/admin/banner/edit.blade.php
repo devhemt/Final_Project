@@ -54,17 +54,17 @@
                 <img src="{{asset('images/'.$banner->image)}}" alt="Thumb" style="height: 200px; width: 400px; object-fit: cover">
             </div>
         </div>
-        <div class="form-group">
-            <label>Content</label>
-            <textarea wire:model="content" name="content" class="form-control" rows="3"></textarea>
-            @if ($errors->has('content'))
-                <p class="text-danger">
-                    @foreach ($errors->get('content') as $e)
-                        {{ $e }}
-                    @endforeach
-                </p>
-            @endif
-        </div>
+{{--        <div class="form-group">--}}
+{{--            <label>Content</label>--}}
+{{--            <textarea wire:model="content" name="content" class="form-control" rows="3"></textarea>--}}
+{{--            @if ($errors->has('content'))--}}
+{{--                <p class="text-danger">--}}
+{{--                    @foreach ($errors->get('content') as $e)--}}
+{{--                        {{ $e }}--}}
+{{--                    @endforeach--}}
+{{--                </p>--}}
+{{--            @endif--}}
+{{--        </div>--}}
 
         <button name="sbm" type="submit" class="btn btn-success">Add new</button>
         <button type="reset" class="btn btn-default">Reset</button>

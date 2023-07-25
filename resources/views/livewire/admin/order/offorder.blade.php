@@ -22,7 +22,7 @@
         <tbody>
         @foreach($order as $p)
             <tr>
-                <th scope="row">{{$p->id}}</th>
+                <th scope="row">{{$p->invoice_code}}</th>
                 <td>{{$p->pay}} $</td>
                 <td>{{$p->created_at}}</td>
                 <td style="text-align: center;">
