@@ -21,7 +21,7 @@ class Prdinorder extends Component
     public $idinvoice;
     public $invoice,$cusdetail,$prd;
     public $top = null;
-    public $email = 'thucc6696@gmail.com',$data,$address,$status,$status_number;
+    public $email = 'ElegantFashion.Shop.Service@gmail.com',$data,$address,$status,$status_number;
 
     public function fail(){
         $affected = Status::where('invoice_id', $this->idinvoice)
@@ -91,7 +91,7 @@ class Prdinorder extends Component
         }
         if ($invoice_status->status == 5){
             $this->data = [
-                "order" => "Your order was comfirmed",
+                "order" => "Your order was confirmed",
                 "notify" => "This is an email notification of your order status in real time. You can track to know the status of your order. Thank you for choosing our products!"
             ];
         }

@@ -12,6 +12,6 @@
 
     <li><a href="{{ url('/shop/all') }}">All products</a></li>
 
-    <li><a href="{{ url('/blog') }}">blog</a></li>
+{{--    <li><a href="{{ url('/blog') }}">blog</a></li>--}}
     <li><a href="{{ url('/contact') }}">CONTACT</a></li>
 </ul>
