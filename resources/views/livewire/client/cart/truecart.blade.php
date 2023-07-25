@@ -172,7 +172,7 @@
                                 @if(!$momodirec)
                                     <form>
                                         <div class="d-flex justify-content-between mb-5">
-                                            <input onclick="openForm()" type="button" class="btn btn-info" value="MoMo payment">
+                                            <input onclick="openForm()" class="btn btn-dark btn-block btn-lg" id="visitor-btn" value="MoMo payment" style="background-color: #33CC99">
                                         </div>
                                     </form>
                                     <button onclick="openForm()" type="button" class="btn btn-dark btn-block btn-lg"
