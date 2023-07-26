@@ -356,6 +356,12 @@ class Truecart extends Component
                         Cart::clear();
                         $this->emit('loadsmallcart');
                         $email = Guest::where('session_id',$userId)->first()->email;
+                        $prds = DB::table('invoice_items')
+                            ->join('properties', 'properties.id','=', 'invoice_items.property_id')
+                            ->join('product', 'product.id','=', 'properties.prd_id')
+                            ->where('invoice_id', $invoice->id)
+                            ->select('product.*','invoice_items.amount','invoice_items.size','invoice_items.color','properties.color_name','properties.batch')
+                            ->get();
                         event(new SendMailEvent([
                             "prds" => $prds,
                             "email" => $email,
