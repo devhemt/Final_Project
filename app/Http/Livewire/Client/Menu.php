@@ -10,7 +10,7 @@ use Livewire\Component;
 class Menu extends Component
 {
     public $categories;
-    public $currentUrl,$shop;
+    public $currentUrl,$shop = false;
 
     public function render()
     {
@@ -19,8 +19,12 @@ class Menu extends Component
         if(isset($parsedUrl['path'])){
             $this->currentUrl = $parsedUrl['path'];
         }
+
         if (Str::contains($this->currentUrl, '/shop/')){
             $this->shop = true;
+        }
+        if($this->currentUrl == "/shop/all"){
+            $this->shop = false;
         }
 
 
