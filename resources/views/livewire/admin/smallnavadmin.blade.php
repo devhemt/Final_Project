@@ -1,4 +1,4 @@
-    <ul class="d-flex align-items-center">
+    <ul wire:poll.2000ms.visible="getTb" class="d-flex align-items-center">
 
     <li class="nav-item dropdown">
 
@@ -27,7 +27,7 @@
 
             <li class="notification-item">
                 <i class="bi bi-exclamation-circle text-warning"></i>
-                <div wire:poll.2000ms.visible="getTb">
+                <div>
                     <h4>Có {{$tb}} đơn hàng mới</h4>
                     @if($tb != 0)
                         <p>{{$time}}</p>
@@ -82,7 +82,7 @@
     </li><!-- End Notification Nav -->
 
 
-    <li class="nav-item dropdown pe-3">
+    <li wire:ignore class="nav-item dropdown pe-3">
 
         <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="{{asset('imagesadmin/images/'.$profile->image)}}" alt="Profile" class="rounded-circle">
