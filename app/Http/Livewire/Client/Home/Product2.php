@@ -13,6 +13,7 @@ class Product2 extends Component
     public $allprd = [], $sold = [],$size;
     public $products;
     public $flag,$price;
+    public $sale, $topDay, $topMonth, $topWeek, $lastest;
 
     public function checkSale($id){
         $now = Carbon::now();
