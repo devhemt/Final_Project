@@ -196,8 +196,9 @@ class Prdinorder extends Component
     {
         $this->invoice = Invoice::where('id', $this->idinvoice)
             ->first();
+
         if ($this->invoice->see == 0){
-            $affected = Status::where('invoice_id', $this->idinvoice)
+            $affected = Invoice::where('id', $this->idinvoice)
                 ->update(['see' => 1]);
         }
         $this->status_number = Status::where('invoice_id', $this->idinvoice)->first()->status;

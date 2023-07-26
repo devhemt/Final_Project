@@ -13,7 +13,7 @@
                                         <div class="success">
                                             <br>
                                             <img src="{{asset('images/success.png')}}">
-                                            <a href="{{url('shop/all')}}">BY MORE</a>
+                                            <a href="{{url('shop/all')}}">BUY MORE</a>
                                             <a href="{{url('login')}}">view order if you have an account</a>
                                         </div>
                                     </div>

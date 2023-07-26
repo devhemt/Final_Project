@@ -109,7 +109,6 @@
                 <td>{{$p->begin}}</td>
                 <td>{{$p->end}}</td>
                 <td style="text-align: center;">
-                    <a href="{{url('admin/sale/'.$p->id)}}" title="See detai"><i class="fas fa-eye"></i></a>
                     <a href="#" wire:click="delete('{{$p->id}}')" id="deleteprd" title="Delete order"><i class="fas fa-trash "></i></a>
                 </td>
             </tr>
