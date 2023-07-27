@@ -36,7 +36,7 @@
                         <a href="{{url($banner2->url)}}">
                 @endif
                     <div class="sin-banner style-two">
-                        @if($banner1->image == null)
+                        @if($banner2->image == null)
                         <img src="{{asset('images/banner1.2.jpg')}}" alt="">
                         <div class="sin-banner-con">
                             <div class="sin-banner-inner-wrap">
@@ -59,7 +59,7 @@
                         <a href="{{url($banner3->url)}}">
                 @endif
                     <div class="sin-banner">
-                        @if($banner1->image == null)
+                        @if($banner3->image == null)
                         <img src="{{asset('images/banner1.3.png')}}" alt="">
                         <div class="br-wrapper">
                             <div class="sin-banner-con-right">

@@ -506,6 +506,7 @@ class Truecart extends Component
 
     public function render()
     {
+        $this->discount = 0;
         $this->totalquantity = 0;
         if (Auth::guard("customer")->check()){
             $this->flag = 0;
@@ -524,9 +525,9 @@ class Truecart extends Component
                 ->where('cart_memory.customer_id',$userId)->count();
 
             foreach ($this->customer_cart as $c){
-                $this->discount += ($this->getDiscount($c->id)/100) * $c->price * $c->amount;
                 if ($c->check_buy == 1){
                     $this->total += $c->amount*$c->price;
+                    $this->discount += ($this->getDiscount($c->id)/100) * $c->price * $c->amount;
                 }
                 $prd_id = Properties::where('id',$c->property_id)->first()->prd_id;
                 $check_amount = Properties::where('prd_id',$prd_id)
