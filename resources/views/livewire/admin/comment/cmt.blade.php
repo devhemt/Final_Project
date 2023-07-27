@@ -23,7 +23,9 @@
             <th scope="col">Product Code</th>
             <th scope="col">Image</th>
             <th scope="col">Comment</th>
+            @if($type==1)
             <th scope="col">Actions</th>
+            @endif
         </tr>
         </thead>
         <tbody>
@@ -36,9 +38,11 @@
                 <td>{{$comment->product_code}}</td>
                 <td><img src="{{asset('images/'.$comment->demo_image)}}" alt=""></td>
                 <td>{{$comment->comment}}</td>
+                @if($type==1)
                 <td style="text-align: center;">
-                    <a href="#"><i class="fa-solid fa-check"></i></a>
+                    <a href="#" wire:click="done('{{$comment->id}}')"><i class="fa-solid fa-check"></i></a>
                 </td>
+                @endif
             </tr>
             @php
                 $stt++;
