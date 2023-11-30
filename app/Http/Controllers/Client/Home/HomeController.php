@@ -158,6 +158,7 @@ class HomeController extends Controller
     public function show($id)
     {
         $now = Carbon::now();
+        $flag = [];$price = [];
         $topProducts = DB::table('invoice_items')
             ->join('invoice', 'invoice.id', '=', 'invoice_items.invoice_id')
             ->join('status', 'status.invoice_id', '=', 'invoice.id')
