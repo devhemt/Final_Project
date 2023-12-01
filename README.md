@@ -7,13 +7,15 @@
 <img src="img_2.png">
 <h2>Bước 4: Nhấn nút New trên sidebar bên trái để tạo cơ sở dữ liệu mới tên là "laravel_test" sau đó nhấn Create</h2>
 <img src="img_3.png">
-<h2>Bước 5: Mở cmd và truy cập vào thư mục code sau đó thực hiện các lệnh sau:</h2>
+<h2>Bước 5: import file sql dữ liệu đã fake từ trước bằng cách chọn phần Import sau đó choose File và chọn file sql. Sau đó kéo xuống dưới cùng của trang đó và chọn Go để hoàn tất</h2>
+<img src="img_6.png">
+<h2>Bước 6: Mở cmd và truy cập vào thư mục code sau đó thực hiện các lệnh sau:</h2>
 <h4>Tải các file cần thiết: composer install</h4>
 <h4>Tạo các bảng trong cơ sở dữ liệu: php artisan migrate</h4>
 <h4>Khởi tạo cơ sở dữ liệu cần thiết: php artisan db:seed</h4>
 <h4>Chạy serve ảo của laravel: php artisan serve</h4>
 <img src="img_4.png">
 <h4>nhấn vào đường link để truy cập trang web</h4>
-<h2>Bước 6: Để gửi mail thông báo cho người mua hàng</h2>
+<h2>Bước 7: Để gửi mail thông báo cho người mua hàng</h2>
 <h4>Chạy hàng đợi để gửi mail: php artisan queue:work</h4>
 <img src="img_5.png">
